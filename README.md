@@ -6,5 +6,5 @@
 
 #### Using it
 ```
-import {Button} from '@gadeoli/rjs-component-themed';
+import {Button} from '@gadeoli/rjs-component-library-themed';
 ```

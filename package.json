@@ -1,5 +1,5 @@
 {
-  "name": "@gadeoli/rjs-component-themed",
+  "name": "@gadeoli/rjs-component-library-themed",
   "version": "0.0.1",
   "description": "A first try of doing: a reactjs component library with theme support",
   "scripts": {
@@ -30,12 +30,12 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gadeoli/rjs-component-themed.git"
+    "url": "git+https://github.com/Gadeoli/rjs-component-library-themed.git"
   },
   "bugs": {
-    "url": "https://github.com/Gadeoli/rjs-component-themed/issues"
+    "url": "https://github.com/Gadeoli/rjs-component-library-themed/issues"
   },
-  "homepage": "https://github.com/Gadeoli/rjs-component-themed#readme",
+  "homepage": "https://github.com/Gadeoli/rjs-component-library-themed#readme",
   "publishConfig": {
     "access": "public"
   }
