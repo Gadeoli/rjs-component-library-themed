@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-interface ButtonProps{
-    label: string;
-}
+import './Button.css';
+import { ButtonProps } from './Button.types';
 
-const Button = (props: ButtonProps) => {
-  return <button>{props.label}</button>;
-}
+const Button: FC<ButtonProps> = ({
+    disabled,
+    label, 
+    onClick
+}) => (
+    <button type="button" className="cl-themed-button" onClick={onClick} disabled={disabled}>{label}</button>
+) 
 
 export default Button;
