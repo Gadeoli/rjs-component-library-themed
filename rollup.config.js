@@ -15,20 +15,23 @@ export default [
             {
                 file: packageJson.main,
                 format: 'cjs',
-                sourcemap: true,
+                sourcemap: !production,
                 name: 'react-ts-lib'
             },
             {
                 file: packageJson.module,
                 format: 'esm',
-                sourcemap: true
+                sourcemap: !production
             }
         ],
         plugins: [
             external(),
             resolve(),
             commonjs(),
-            typescript({ tsconfig: './tsconfig.json' }),
+            typescript({ 
+                tsconfig: './tsconfig.json',
+                sourceMap: !production,
+            }),
             postcss(),
             terser()
         ]
