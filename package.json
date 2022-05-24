@@ -10,7 +10,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "rollup": "npm run prebuild && rollup -c"
+    "rollup": "npm run prebuild && rollup -c",
+    "test": "jest"
   },
   "keywords": [
     "reactjs",
@@ -19,10 +20,20 @@
   "author": "gadeoli",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
+    "@babel/preset-typescript": "^7.17.12",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.2",
+    "@testing-library/react": "^13.2.0",
+    "@types/jest": "^27.5.1",
     "@types/react": "^18.0.9",
+    "babel-jest": "^28.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
     "react": "^18.1.0",
     "rollup": "^2.74.1",
     "rollup-plugin-dts": "^4.2.1",
