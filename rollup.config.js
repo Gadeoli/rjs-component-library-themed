@@ -7,6 +7,7 @@ import postcss      from 'rollup-plugin-postcss';
 import dts          from 'rollup-plugin-dts';
 
 const packageJson = require('./package.json');
+const production = !process.env.ROLLUP_WATCH;
 
 export default [
     {
