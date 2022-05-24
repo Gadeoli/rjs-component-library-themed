@@ -4,8 +4,8 @@ A reactjs component library with a custom theme support by default. This is a te
 
 
 ## Sources
-[source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe){target="_blank"}
-[source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj){target="_blank"}
+[Link](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe "Source I" target="_blank")
+[Link](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe "Source II" target="_blank")
 
 ## Testing
 
