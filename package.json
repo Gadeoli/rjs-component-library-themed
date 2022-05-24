@@ -1,11 +1,16 @@
 {
   "name": "@gadeoli/rjs-component-library-themed",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A first try of doing: a reactjs component library with theme support",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
   "scripts": {
-    "rollup": "rollup -c"
+    "prebuild": "rm -rf dist",
+    "rollup": "npm run prebuild && rollup -c"
   },
   "keywords": [
     "reactjs",

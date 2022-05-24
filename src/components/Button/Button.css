@@ -2,7 +2,8 @@
     background-color: #FFF;
     color: #000;
     border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .cl-themed-button:hover{
