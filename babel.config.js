@@ -1,7 +1,17 @@
-module.exports = {
-    presets: [
-        "@babel/preset-env",
-        "@babel/preset-react",
-        "@babel/preset-typescript",
-    ]
-};
+const presets = [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+];
+
+const plugins = [
+    "babel-plugin-styled-components", {
+        namespace: 'cl-themed-',
+        displayName: false,
+        fileName: false
+    }
+];
+
+const excludes = "node_modules/**";
+
+module.exports = { presets, plugins, excludes };
