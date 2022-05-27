@@ -5,13 +5,11 @@ const presets = [
 ];
 
 const plugins = [
-    "babel-plugin-styled-components", {
+    ["babel-plugin-styled-components", {
         namespace: 'cl-themed-',
         displayName: false,
         fileName: false
-    }
+    }]
 ];
 
-const excludes = "node_modules/**";
-
-module.exports = { presets, plugins, excludes };
+module.exports = { presets, plugins };

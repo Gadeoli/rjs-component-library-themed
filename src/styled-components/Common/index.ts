@@ -1,3 +1,1 @@
-export { 
-    Button
-} from "./Common";
+export { Button } from "./Common";

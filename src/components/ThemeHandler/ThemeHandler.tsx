@@ -4,26 +4,26 @@ import { ThemeHandlerProps, ThemeValueProps, setThemeProps } from './ThemeHandle
 import { usePersistedState } from '@gadeoli/rjs-hooks-library';
 
 export const initialThemeValues : ThemeValueProps = {
-    primary:    "",
-    secondary:  "",
-    success:    "",
-    danger:     "",
+    primary:    "#FFF",
+    secondary:  "#FFF",
+    success:    "#FFF",
+    danger:     "#FFF",
     
-    background: "",
-    body:       "",
-    link:       "",
-    outline:    "",
-    text:       "",
+    background: "#FFF",
+    body:       "#FFF",
+    link:       "#FFF",
+    outline:    "#FFF",
+    text:       "#FFF",
 
     fonts: {
-        primary:    "",
-        secondary:  "",
+        primary:    "sans-serif",
+        secondary:  "sans-serif",
     },
 
     fontSize: {
-        title:      "",
-        subtitle:   "",
-        text:       ""
+        title:      "32",
+        subtitle:   "24",
+        text:       "12"
     },
 
     custom : {}

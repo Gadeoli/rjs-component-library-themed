@@ -9,14 +9,14 @@ const Button: FC<ButtonProps> = ({children, disabled, onClick, className, style}
     const {theme} = useTheme();
     
     return (<StyledButton 
-        theme={theme} 
-        type="button" 
         className={`cl-themed-button ${className}`} 
-        style={style} 
-        onClick={onClick} 
         disabled={disabled}
+        theme={theme} 
+        onClick={onClick} 
+        style={style} 
+        type="button" 
     >
-            {children}
+        {children}
     </StyledButton>);
 }
 
