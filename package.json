@@ -13,7 +13,7 @@
     "prebuild": "rm -rf dist",
     "rollup": "npm run prebuild && rollup -c",
     "test": "jest",
-    "sb": "npm run build-sb && bookstart-storybook -p 6006",
+    "sb": "npm run build-sb && start-storybook -p 6006",
     "build-sb": "build-storybook"
   },
   "keywords": [

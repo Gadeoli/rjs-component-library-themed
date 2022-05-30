@@ -73,3 +73,32 @@ export const Button = styled.button`
         }
     }
 `;
+
+export const Span = styled.span`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => props.theme.fontSize.text};
+
+    &.danger{
+        color: ${(props: any) => props.theme.danger};
+    }
+
+    &.link{
+        color: ${(props: any) => props.theme.link};
+
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.link)};
+        }
+    }
+
+    &.primary{
+        color: ${(props: any) => props.theme.primary};
+    }
+
+    &.secondary{
+        color: ${(props: any) => props.theme.secondary};
+    }
+
+    &.success{
+        color: ${(props: any) => props.theme.success};
+    }
+`;
