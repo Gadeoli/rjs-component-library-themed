@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { render } from "@testing-library/react"
 
-import ThemeHandler4Test from "../ThemeHandler/ThemeHandler4Test";
+import App4Test from "../Test/App4Test";
 import Button from "./Button";
 
 const compName = "Button"
@@ -10,8 +10,8 @@ describe(compName, () => {
     
         test(`Renders the ${compName} component`, () => {
 
-        render(<ThemeHandler4Test>
-            <Button onClick={() => console.log('Hey!')}><span>abc</span></Button>
-        </ThemeHandler4Test>);
+        render(<App4Test>
+            <Button onClick={() => console.log('Hey!')}>abc</Button>
+        </App4Test>);
     })
 })

@@ -28,7 +28,7 @@ interface HandlerTestProps{
     children: React.ReactNode;
 };
 
-const ThemeHandler4Test = (props: HandlerTestProps) => {
+const App4Test = (props: HandlerTestProps) => {
     return <ThemeHandler>
         <ThemeContext.Consumer>
             {({setTheme}) => { 
@@ -42,4 +42,4 @@ const ThemeHandler4Test = (props: HandlerTestProps) => {
     </ThemeHandler>
 }
 
-export default ThemeHandler4Test;
+export default App4Test;
