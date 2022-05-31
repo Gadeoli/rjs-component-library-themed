@@ -10,13 +10,13 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 // const Template: ComponentStory<typeof App4Test> = (args) => <App4Test><Span {...args} /></App4Test>;
-const Template: ComponentStory<typeof Span> = (args) => <App4Test><Span {...args} /></App4Test>;
+const Template: ComponentStory<typeof Span> = (args) => <App4Test><Span {...args} /><>abc</></App4Test>;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "primary",
+    type: "",
     className: "",
     style: {}
 }   
@@ -25,12 +25,12 @@ Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
         defaultValue: 'primary',
-        description: 'clean | danger | link | primary | secondary | success'
+        description: 'danger | link | primary | secondary | success'
     },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'full'
+        description: ''
     },
     style: {
         type: {name: 'other', required: false},

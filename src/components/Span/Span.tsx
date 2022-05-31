@@ -4,11 +4,11 @@ import { SpanProps } from './Span.types';
 import { Span as StyledSpan } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 
-const Button: FC<SpanProps> = ({children, className, type, style}) => {
+const Span: FC<SpanProps> = ({children, className, type, style}) => {
     const {theme} = useTheme();
     
     return (<StyledSpan 
-        className={`cl-themed-button ${type || 'primary'} ${className}`} 
+        className={`cl-themed-span ${type} ${className}`} 
         theme={theme} 
         style={style}  
     >
@@ -16,4 +16,4 @@ const Button: FC<SpanProps> = ({children, className, type, style}) => {
     </StyledSpan>);
 }
 
-export default Button;
+export default Span;
