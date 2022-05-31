@@ -1,6 +1,7 @@
 # RJS Component Library Themed
 
-A reactjs component library with a custom theme support by default. This is a test for now.
+A reactjs component library with a custom theme support by default. This is a test for now.  
+Testing with steled-components for know.  
 
 
 ## Sources
@@ -16,11 +17,57 @@ npm run test
 ## Storybook
 
 ```
-npm run storybook
+npm run sb
 ```
 
-## Components
+## Installing
 
 ```
-import {Button} from '@gadeoli/rjs-component-library-themed';
+//check the peer dependencies
+npm i @gadeoli/rjs-component-library-themed
+```
+
+```
+// index.js (or similar)
+import { 
+  ThemeHandler
+} from '@gadeoli/rjs-component-library-themed';
+
+root.render(
+    <ThemeHandler>
+      <App />
+    </ThemeHandler>
+);
+```
+
+```
+// App.js (or similar)
+import { 
+  Button,
+  initialThemeValues,
+  Span,
+  ThemeContext
+} from '@gadeoli/rjs-component-library-themed';
+
+//set all initialThemeValues
+const testThemeValues = {...initialThemeValues};
+
+testThemeValues.primary =    "#1D1E26";  
+testThemeValues.secondary =  "#FCCC29";
+...
+testThemeValues.fontSize.text =       12;
+
+function App() {
+  return (
+    <div>
+      <ThemeContext.Consumer>
+        {({setTheme}) => { setTheme(testThemeValues); return <></>; }}
+      </ThemeContext.Consumer>
+
+      <Button onClick={() => console.log('hey')} disabled={false}>
+        <Span>ABC</Span>
+      </Button> 
+    </div>
+  );
+}
 ```
