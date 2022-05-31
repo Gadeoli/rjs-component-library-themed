@@ -49,13 +49,16 @@ import {
   ThemeContext
 } from '@gadeoli/rjs-component-library-themed';
 
-//set all initialThemeValues
+// set all initialThemeValues
+// specific: [Button] component uses main color to background (type) and "maincolor_text" are used to its style color param 
 const testThemeValues = {...initialThemeValues};
 
-testThemeValues.primary =    "#1D1E26";  
-testThemeValues.secondary =  "#FCCC29";
+testThemeValues.primary =     "#1D1E26";
+testThemeValues.primary_text ="#FFF"; 
+testThemeValues.secondary =   "#FCCC29";
 ...
 testThemeValues.fontSize.text =       12;
+...
 
 function App() {
   return (

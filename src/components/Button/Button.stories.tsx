@@ -22,7 +22,7 @@ Default.args = {
     disabled: false,
     style: {},
     onClick: () => {console.log('hey')},
-    children: <Span>abc</Span>
+    children: <span>abc</span>
 }   
 
 Default.argTypes = {

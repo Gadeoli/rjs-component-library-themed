@@ -10,10 +10,14 @@ export interface setThemeProps {
 };
 
 export interface ThemeValueProps {
-    primary:    string;
-    secondary:  string;
-    success:    string;
-    danger:     string;
+    primary:        string;
+    primary_text:   string;
+    secondary:      string;
+    secondary_text: string;
+    success:        string;
+    success_text:   string;
+    danger:         string;
+    danger_text:    string;
     
     background: string;
     body:       string;

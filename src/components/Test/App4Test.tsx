@@ -4,10 +4,17 @@ import ThemeHandler, { ThemeContext, initialThemeValues } from "../ThemeHandler"
 
 const myTheme = {...initialThemeValues};
     
-myTheme.primary =    "#1D1E26";  
-myTheme.secondary =  "#FCCC29";
-myTheme.success =    "#ACF39D";
-myTheme.danger =     "#E85F5C";
+myTheme.primary =       "#1D1E26";  
+myTheme.primary_text =  "#FFF";
+
+myTheme.secondary =     "#FCCC29";
+myTheme.secondary_text ="#000";
+
+myTheme.success =       "#ACF39D";
+myTheme.success_text =  "#1D1E26";
+
+myTheme.danger =        "#E85F5C";
+myTheme.danger_text =   "#FFF";
 
 myTheme.background = "#FFFFFF";
 myTheme.body =       "#F1F1F1";

@@ -14,6 +14,10 @@ export const Button = styled.button`
         box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     }
 
+    :disabled {
+        opacity: 0.6;
+    }
+
     &.clean{
         background-color: transparent;
         border: 0;
@@ -24,6 +28,7 @@ export const Button = styled.button`
     &.danger{
         background-color: ${(props: any) => props.theme.danger};
         border-color: ${(props: any) => props.theme.danger};
+        color: ${(props: any) => props.theme.danger_text};
         
         :hover{
             background-color: ${(props: any) => shade(0.15, props.theme.danger)};
@@ -49,6 +54,7 @@ export const Button = styled.button`
     &.primary{
         background-color: ${(props: any) => props.theme.primary};
         border-color: ${(props: any) => props.theme.primary};
+        color: ${(props: any) => props.theme.primary_text};
         
         :hover{
             background-color: ${(props: any) => shade(0.15, props.theme.primary)};
@@ -58,6 +64,7 @@ export const Button = styled.button`
     &.secondary{
         background-color: ${(props: any) => props.theme.secondary};
         border-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
         
         :hover{
             background-color: ${(props: any) => shade(0.15, props.theme.secondary)};
@@ -67,6 +74,7 @@ export const Button = styled.button`
     &.success{
         background-color: ${(props: any) => props.theme.success};
         border-color: ${(props: any) => props.theme.success};
+        color: ${(props: any) => props.theme.success_text};
         
         :hover{
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
