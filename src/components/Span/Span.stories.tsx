@@ -1,7 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Span from './Span';
-import App4Test from "../Test/App4Test";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -9,14 +8,13 @@ export default {
 } as ComponentMeta<typeof Span>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-// const Template: ComponentStory<typeof App4Test> = (args) => <App4Test><Span {...args} /></App4Test>;
-const Template: ComponentStory<typeof Span> = (args) => <App4Test><Span {...args} /><>abc</></App4Test>;
+const Template: ComponentStory<typeof Span> = (args) => <Span {...args}>abc</Span>;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "",
+    type: "danger",
     className: "",
     style: {}
 }   

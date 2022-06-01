@@ -1,3 +1,6 @@
+import React from "react";
+import App4Test from "../src/components/Test/App4Test";
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
@@ -7,3 +10,11 @@ export const parameters = {
     },
   },
 }
+
+export const decorators = [
+  (Story) => (
+    <App4Test>
+      <Story />
+    </App4Test>
+  )
+]
