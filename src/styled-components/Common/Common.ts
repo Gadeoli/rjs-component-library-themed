@@ -1,6 +1,12 @@
 import  styled from 'styled-components';
 import { shade } from 'polished';
 
+export const Body = styled.div`
+    min-height: 100vh;
+    width: 100%;
+    background-color: ${(props: any) => props.theme.body};
+`;
+
 export const Button = styled.button`
     margin: 0;
     padding: 5px 10px;
