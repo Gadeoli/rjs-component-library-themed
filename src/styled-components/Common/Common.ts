@@ -88,6 +88,34 @@ export const Button = styled.button`
     }
 `;
 
+export const Container = styled.div`
+    background-color: ${(props: any) => props.theme.background};
+    
+    &.full{
+        width: 100%;
+    }
+
+    &.danger{
+        background-color: ${(props: any) => props.theme.danger};
+        color: ${(props: any) => props.theme.danger_text};
+    }
+
+    &.primary{
+        background-color: ${(props: any) => props.theme.primary};
+        color: ${(props: any) => props.theme.primary_text};
+    }
+
+    &.secondary{
+        background-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
+    }
+
+    &.success{
+        background-color: ${(props: any) => props.theme.success};
+        color: ${(props: any) => props.theme.success_text};
+    }
+`;
+
 export const Span = styled.span`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text};
