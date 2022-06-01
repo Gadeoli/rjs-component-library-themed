@@ -1,4 +1,4 @@
-import  styled from 'styled-components';
+import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 export const Body = styled.div`
@@ -86,6 +86,87 @@ export const Button = styled.button`
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
+`;
+
+export const ShineAnimation = keyframes`
+    to {
+        background-position-x: -200%;
+    }
+`;
+
+export const Card = styled.div`
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 4px;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: ${(props: any) => props.theme.background};
+
+    &.loading{
+        h2, h3, h4, p, span, image, div.loading-effect{
+            width: 100%;
+            min-height: 30px;
+            border-radius: 2px;
+
+            background-color: unset;
+            background-size: 200% 100%;
+            background: ${(props: any) => props.theme.body};
+            background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
+            background-size: 200% 100%;
+            animation: ${ShineAnimation} 1.5s linear infinite;
+            
+            /*
+                animation-name: ${ShineAnimation};
+                animation-duration: 1.5s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+            */
+        }
+    }
+
+    &.danger{
+        background-color: ${(props: any) => props.theme.danger};
+        color: ${(props: any) => props.theme.danger_text};
+        
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.danger)};
+        }
+
+        &.loading{
+            background: linear-gradient(110deg, ${(props: any) => props.theme.danger} 8%, ${(props: any) => props.theme.body} 18%, ${(props: any) => props.theme.danger} 33%);
+        }
+    }
+
+    &.primary{
+        background-color: ${(props: any) => props.theme.primary};
+        color: ${(props: any) => props.theme.primary_text};
+        
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.primary)};
+        }
+    }
+
+    &.secondary{
+        background-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
+        
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.secondary)};
+        }
+    }
+
+    &.success{
+        background-color: ${(props: any) => props.theme.success};
+        color: ${(props: any) => props.theme.success_text};
+        
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.success)};
+        }
+    }
+`;
+
+export const CardContent = styled.div`
+    width: 100;
+    padding: 20px 16px;
 `;
 
 export const Container = styled.div`
