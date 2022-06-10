@@ -6,7 +6,7 @@ const presets = [
 
 const plugins = [
     ["babel-plugin-styled-components", {
-        namespace: 'cl-themed-',
+        namespace: 'cl-themed',
         displayName: false,
         fileName: false
     }]

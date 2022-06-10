@@ -232,6 +232,101 @@ export const Span = styled.span`
     }
 `;
 
+export const P = styled.p`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => props.theme.fontSize.text + "rem"};
+
+    &.danger{
+        color: ${(props: any) => props.theme.danger};
+    }
+
+    &.link{
+        color: ${(props: any) => props.theme.link};
+
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.link)};
+        }
+    }
+
+    &.primary{
+        color: ${(props: any) => props.theme.primary};
+    }
+
+    &.secondary{
+        color: ${(props: any) => props.theme.secondary};
+    }
+
+    &.success{
+        color: ${(props: any) => props.theme.success};
+    }
+`;
+
+export const TitleH1 = styled.h1`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => props.theme.fontSize.title + "rem"};
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+
+    &.danger{
+        color: ${(props: any) => props.theme.danger};
+    }
+
+    &.link{
+        color: ${(props: any) => props.theme.link};
+
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.link)};
+        }
+    }
+
+    &.primary{
+        color: ${(props: any) => props.theme.primary};
+    }
+
+    &.secondary{
+        color: ${(props: any) => props.theme.secondary};
+    }
+
+    &.success{
+        color: ${(props: any) => props.theme.success};
+    }
+`;
+
+export const TitleHn = styled.h2`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => (props.n > 1 ? props.theme.fontSize.subtitle * (1 - (0.1 * (props.n - 1))) : props.theme.fontSize.subtitle) + "rem"};
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+
+    &.danger{
+        color: ${(props: any) => props.theme.danger};
+    }
+
+    &.link{
+        color: ${(props: any) => props.theme.link};
+
+        :hover{
+            background-color: ${(props: any) => shade(0.15, props.theme.link)};
+        }
+    }
+
+    &.primary{
+        color: ${(props: any) => props.theme.primary};
+    }
+
+    &.secondary{
+        color: ${(props: any) => props.theme.secondary};
+    }
+
+    &.success{
+        color: ${(props: any) => props.theme.success};
+    }
+`;
+
 export const Input = styled.input`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};

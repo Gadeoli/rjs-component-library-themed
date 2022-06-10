@@ -4,11 +4,14 @@ A reactjs component library with a custom theme support by default. This is a te
 Testing with steled-components for know.  
 
 ## Components
-ThemeHandler
-Button  
-Card && CardContent  
+ThemeHandler    
+Button   
+Card && CardContent    
 Input  
 Span  
+Textarea  
+TitleH1  
+TitleHn   
 Toggle  
 
 
