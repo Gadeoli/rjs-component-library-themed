@@ -10,7 +10,6 @@ import { useTheme } from '../ThemeHandler';
 import uniqid from 'uniqid';
 
 const Toggle: FC<ToggleProps> = ({
-    icon,
     value,
     checkedValue,
     uncheckedValue,
@@ -41,9 +40,11 @@ const Toggle: FC<ToggleProps> = ({
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
             <input name="" type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 
-            <StyledToggleFill className="fill" sizes={sizes} colors={colors} checked={checked} onClick={() => onChange(checked ? uncheckedValue : checkedValue)}>
+            <StyledToggleFill className={`fill ${disabled ? 'disabled' : ''}`} sizes={sizes} colors={colors} checked={checked} onClick={() => {
+                !disabled && onChange(checked ? uncheckedValue : checkedValue)
+            }}>
                 <StyledToggleFillIcon className='fill-icon' sizes={sizes} checked={checked}>
-                    {icon && children}
+                    {children}
                 </StyledToggleFillIcon>
             </StyledToggleFill>
         </StyledToggleLabel>

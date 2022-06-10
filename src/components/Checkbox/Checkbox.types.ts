@@ -1,14 +1,15 @@
 import React, { MouseEventHandler } from "react";
 
-export interface ToggleProps {
+export interface CheckboxProps {
     value: any,
     checkedValue: any,
     uncheckedValue: any,
     size?: number,
-    disabled?: boolean;
-    onChange: MouseEventHandler<HTMLButtonElement>;
     type?: "danger" | "primary" | "secondary" | "success";
-    className?: string;
-    style?: object;
+    disabled?: boolean, 
+    text: string,
+    className?: string,
+    style?: object,
+    onChange: MouseEventHandler<HTMLButtonElement>,
     children?: React.ReactNode
 }

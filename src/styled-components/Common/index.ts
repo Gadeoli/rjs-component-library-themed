@@ -4,6 +4,8 @@ export {
     Button,
     Card,
     Container,
+    CheckboxContainer,
+    CheckboxSquare,
     Input,
     P,
     Span,

@@ -369,6 +369,10 @@ export const ToggleLabel = styled.label`
     cursor: pointer;
     position: relative;
 
+    .disabled{
+        opacity: 0.6;
+    }
+
     input{
         display: none;
 
@@ -385,7 +389,7 @@ export const ToggleLabel = styled.label`
             left: 2px;
         }
     }
-`
+`;
 
 export const ToggleFillIcon = styled.div`
     position: absolute;
@@ -395,7 +399,7 @@ export const ToggleFillIcon = styled.div`
     svg{
         font-size: ${(props: any) => (props.sizes.main / 3) + 'px'} 
     }
-`
+`;
 
 export const ToggleFill = styled.div`
     /* Fill is the background bar */
@@ -419,10 +423,35 @@ export const ToggleFill = styled.div`
         border-radius: ${(props: any) => props.sizes.borderRadius};
         transition: transform 0.2s;
     }
-`
+`;
 
 export const ToggleContainer = styled.div`
     flex-direction: row;
     opacity: ${(props: any) => props.disabled ? 0.6 : 1};
-`
+`;
 /* End Toogle Components */
+
+/* Checkbox Components */
+export const CheckboxContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    cursor: pointer;
+`;
+
+export const CheckboxSquare = styled.div`
+    width: ${(props: any) => props.size + "px" || '15px'};
+    height: ${(props: any) => props.size + "px" || '15px'};
+    border: 1px solid ${(props: any) => props.colors.checked};
+    border-radius: 2px;
+    background-color: ${(props: any) => props.checked ? props.colors.checked : props.colors.unchecked};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+
+    &.disabled{
+        opacity: 0.6;
+    }
+`;
+/* Checkbox Components */
