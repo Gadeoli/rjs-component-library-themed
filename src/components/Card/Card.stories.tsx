@@ -20,7 +20,7 @@ Default.args = {
     loading: false,
     className: "",
     style: {},
-    children: <CardContent><Span>Card => CardContent => Span</Span></CardContent>
+    children: <CardContent><Span>Card - CardContent - Span</Span></CardContent>
 }   
 
 Default.argTypes = {

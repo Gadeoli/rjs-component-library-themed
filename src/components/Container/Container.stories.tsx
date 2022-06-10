@@ -18,7 +18,7 @@ Default.args = {
     type: "",
     className: "",
     style: {},
-    children: <Span>Container (Simple Div) => Span</Span>
+    children: <Span>Container (Simple Div) - Span</Span>
 }   
 
 Default.argTypes = {

@@ -23,7 +23,7 @@ const Template: Story<InputProps> = (args) => {
                 onChange={(value) => setValue(value) }
             />
 
-            <br/> <br/> <Span>Card => CardContent => Input</Span>
+            <br/> <br/> <Span>Card - CardContent - Input</Span>
         </CardContent>
     </Card>)
 };
