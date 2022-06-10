@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Container from './Container';
+import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -14,16 +15,16 @@ const Template: ComponentStory<typeof Container> = (args) => <Container {...args
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "primary",
+    type: "",
     className: "",
     style: {},
-    children: <span>content</span>
+    children: <Span>Container (Simple Div) => Span</Span>
 }   
 
 Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
-        defaultValue: 'primary',
+        defaultValue: '',
         description: 'danger | primary | secondary | success'
     },
     className: {

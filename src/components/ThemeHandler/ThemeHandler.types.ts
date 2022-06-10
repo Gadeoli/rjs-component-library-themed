@@ -5,9 +5,9 @@ export interface ThemeHandlerProps {
     children: React.ReactNode
 }
 
-export interface setThemeProps {
-    (theme: object) : any
-};
+export interface setThemeValueProps { (values: object) : any };
+
+export interface setThemeModeProps { (mode: string) : any };
 
 export interface ThemeValueProps {
     primary:        string;

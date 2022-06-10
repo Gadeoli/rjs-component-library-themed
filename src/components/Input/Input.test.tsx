@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { render } from "@testing-library/react"
 
 import App4Test from "../Test/App4Test";
-import Body from "./Body";
+import Input from "./Input";
 
-const compName = "Body"
+const compName = "Button"
 
 describe(compName, () => {
     
         test(`Renders the ${compName} component`, () => {
 
         render(<App4Test>
-            <Body>content</Body>
+            <Input />
         </App4Test>);
     })
 })

@@ -2,6 +2,7 @@ import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Card from './Card';
 import { CardContent } from "../../styled-components/Common/Common";
+import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -15,17 +16,17 @@ const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "primary",
+    type: "",
     loading: false,
     className: "",
     style: {},
-    children: <CardContent><span>abc</span></CardContent>
+    children: <CardContent><Span>Card => CardContent => Span</Span></CardContent>
 }   
 
 Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
-        defaultValue: 'primary',
+        defaultValue: '',
         description: 'danger | primary | secondary | success'
     },
     className: {

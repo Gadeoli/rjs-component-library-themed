@@ -1,6 +1,8 @@
 export { 
+    lightThemeKey,
+    darkThemeKey,
     default,
     ThemeContext, 
-    initialThemeValues, 
+    themeValuesPattern, 
     useTheme
 } from './ThemeHandler';

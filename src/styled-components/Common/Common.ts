@@ -7,6 +7,11 @@ export const Body = styled.div`
     background-color: ${(props: any) => props.theme.body};
 `;
 
+export const BodyContent = styled.div`
+    width: 100;
+    padding: 20px 16px;
+`;
+
 export const Button = styled.button`
     margin: 0;
     padding: 5px 10px;
@@ -106,7 +111,8 @@ export const Card = styled.div`
             width: 100%;
             min-height: 30px;
             border-radius: 2px;
-
+            color: transparent;
+            
             background-color: unset;
             background-size: 200% 100%;
             background: ${(props: any) => props.theme.body};
@@ -199,7 +205,7 @@ export const Container = styled.div`
 
 export const Span = styled.span`
     color: ${(props: any) => props.theme.text};
-    font-size: ${(props: any) => props.theme.fontSize.text};
+    font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
 
     &.danger{
         color: ${(props: any) => props.theme.danger};
@@ -225,3 +231,88 @@ export const Span = styled.span`
         color: ${(props: any) => props.theme.success};
     }
 `;
+
+export const Input = styled.input`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
+
+    background-color: transparent;
+    border: 0;
+    border: 1px solid ${(props: any) => props.theme.body};
+    box-sizing: border-box;
+    outline-color: ${(props: any) => props.theme.outline};
+    border-radius: 3px;
+    width: 100%;
+    padding: 5px 9px;
+
+    &.full{
+        width: 100%;
+    }
+`;
+
+// Toogle Components
+export const ToggleLabel = styled.label`
+    width: ${(props: any) => props.sizes.width};
+    height: ${(props: any) => props.sizes.height};
+    border-radius: ${(props: any) => props.sizes.borderRadius};
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+
+    input{
+        display: none;
+
+        &:checked ~ .fill{
+            background: ${(props: any) => props.colors.background};
+        }
+
+        &:checked ~ .fill::after {
+            transform: translateX(${(props: any) => props.sizes.height});
+        }
+
+        &::checked ~ fill-icon{
+            top: 1px;
+            left: 2px;
+        }
+    }
+`
+
+export const ToggleFillIcon = styled.div`
+    position: absolute;
+    z-index: 2;
+    top: 1px; 
+    right: ${(props: any) => props.checked ? (props.sizes.main / 11) + 'px' : (props.sizes.main / 1.7) + 'px'};
+    svg{
+        font-size: ${(props: any) => (props.sizes.main / 3) + 'px'} 
+    }
+`
+
+export const ToggleFill = styled.div`
+    /* Fill is the background bar */
+    position: relative;
+    width: ${(props: any) => props.sizes.width};
+    height: ${(props: any) => props.sizes.height};
+    border-radius: ${(props: any) => props.sizes.borderRadius};
+    background: ${(props: any) => props.colors.background};
+    transition: background 0.2s;
+
+    /* Fill after is the circle */
+    &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: ${(props: any) => props.sizes.height};
+        height: ${(props: any) => props.sizes.height};
+        background: ${(props: any) => props.colors.cicle};
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        border-radius: ${(props: any) => props.sizes.borderRadius};
+        transition: transform 0.2s;
+    }
+`
+
+export const ToggleContainer = styled.div`
+    flex-direction: row;
+    opacity: ${(props: any) => props.disabled ? 0.6 : 1};
+`
+// End Toogle Components

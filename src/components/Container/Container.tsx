@@ -7,7 +7,7 @@ const Container: FC<ContainerProps> = ({children, className, type, style}) => {
     const {theme} = useTheme();
     
     return (<StyledContainer 
-        className={`cl-themed-container ${type || 'primary'} ${className}`} 
+        className={`cl-themed-container ${type} ${className}`} 
         theme={theme}
         style={style}
     >

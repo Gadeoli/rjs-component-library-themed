@@ -6,6 +6,12 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
         background: ${(props: any) => props.theme.body};
         font-family: ${(props: any) => props.theme.fonts.primary}, sans-serif;
-        font-size: ${(props: any) => props.theme.fontSize.text}, sans-serif;
+        font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: ${(props: any) => props.theme.fonts.primary}, sans-serif;
     }
 `;
