@@ -235,14 +235,29 @@ export const Span = styled.span`
 export const Input = styled.input`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
-
     background-color: transparent;
     border: 0;
     border: 1px solid ${(props: any) => props.theme.body};
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: 3px;
-    width: 100%;
+    padding: 5px 9px;
+
+    &.full{
+        width: 100%;
+    }
+`;
+
+export const Textarea = styled.textarea`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
+    background-color: transparent;
+    border: 0;
+    border: 1px solid ${(props: any) => props.theme.body};
+    box-sizing: border-box;
+    outline-color: ${(props: any) => props.theme.outline};
+    border-radius: 3px;
+    min-height: 100px;
     padding: 5px 9px;
 
     &.full{

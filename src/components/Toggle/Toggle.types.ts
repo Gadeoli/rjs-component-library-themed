@@ -12,5 +12,5 @@ export interface ToggleProps {
     type?: "danger" | "primary" | "secondary" | "success";
     className?: string;
     style?: object;
-    children: React.ReactNode
+    children?: React.ReactNode
 }

@@ -61,9 +61,11 @@ const App4Test = (props: HandlerTestProps) => {
     return <ThemeHandler>
         <ThemeContext.Consumer>
             {({mode, theme, setMode, setDarkValues, setLightValues}) => { 
-                setDarkValues(myDarkValues);
-                setLightValues(myLightValues);
-
+                setTimeout(() => {
+                    setDarkValues(myDarkValues);
+                    setLightValues(myLightValues);
+                }, 500);
+                
                 return <>
                     <GlobalStyle />
                     <Card style={styles.card}>

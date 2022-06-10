@@ -6,6 +6,7 @@ export {
     Container,
     Input,
     Span,
+    Textarea,
     ToggleLabel,
     ToggleFillIcon,
     ToggleFill,
