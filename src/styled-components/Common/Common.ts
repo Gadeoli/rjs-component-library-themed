@@ -250,7 +250,7 @@ export const Input = styled.input`
     }
 `;
 
-// Toogle Components
+/* Toogle Components */
 export const ToggleLabel = styled.label`
     width: ${(props: any) => props.sizes.width};
     height: ${(props: any) => props.sizes.height};
@@ -315,4 +315,4 @@ export const ToggleContainer = styled.div`
     flex-direction: row;
     opacity: ${(props: any) => props.disabled ? 0.6 : 1};
 `
-// End Toogle Components
+/* End Toogle Components */

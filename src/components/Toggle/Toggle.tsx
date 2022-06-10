@@ -19,7 +19,8 @@ const Toggle: FC<ToggleProps> = ({
     onChange,
     type,
     className,
-    style
+    style,
+    children
 }) => {
     const {theme} = useTheme();
     const id = uniqid();
