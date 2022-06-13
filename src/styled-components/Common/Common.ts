@@ -1,6 +1,9 @@
 import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
+const defaultRadius = '4px';
+const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
+
 export const Body = styled.div`
     min-height: 100vh;
     width: 100%;
@@ -15,14 +18,14 @@ export const BodyContent = styled.div`
 export const Button = styled.button`
     margin: 0;
     padding: 5px 10px;
-    border-radius: 3px;
+    border-radius: ${defaultRadius};
     transition: background-color .4s ease-in-out;
     border: 1px solid;
     color: ${(props: any) => props.theme.text};
     cursor: pointer;
     
     :hover {
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        box-shadow: ${defaultShadow};
     }
 
     :disabled {
@@ -54,7 +57,6 @@ export const Button = styled.button`
         color: ${(props: any) => props.theme.link};
         background-color: unset;
         border-color: none;
-        box-shadow: none;
         box-shadow: none;
 
         :hover{
@@ -99,10 +101,16 @@ export const ShineAnimation = keyframes`
     }
 `;
 
+export const BlinkerAnimation = keyframes`
+    50% {
+        opacity: 0;
+    }
+`;
+
 export const Card = styled.div`
     width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 4px;
-    border-radius: 2px;
+    box-shadow: ${defaultShadow};
+    border-radius: ${defaultRadius};
     overflow: hidden;
     background-color: ${(props: any) => props.theme.background};
 
@@ -110,7 +118,7 @@ export const Card = styled.div`
         h2, h3, h4, p, span, image, div.loading-effect{
             width: 100%;
             min-height: 30px;
-            border-radius: 2px;
+            border-radius: ${defaultRadius};
             color: transparent;
             
             background-color: unset;
@@ -203,6 +211,73 @@ export const Container = styled.div`
     }
 `;
 
+export const ImageContainer = styled.div`
+    border: 1px solid ${(props: any) => props.theme.body};
+    border-radius: ${defaultRadius};
+    height: ${(props: any) => props.height || '150px'};
+    width: ${(props: any) => props.width || '150px'};
+    background-color: ${(props: any) => props.theme.background};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img{
+        flex-shrink: 0;
+        min-width: 100%;
+        min-height: 100%;
+
+        transition: opacity .3s ease-in;
+        transition: filter .3s ease-in;
+    }
+
+    &.opacity-effect{
+        img{
+            filter: grayscale(100%);
+            opacity: 0.9;
+        }
+        img:hover{
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    }
+
+    &.loading-effect{
+        border-color: ${(props: any) => props.theme.background};
+        color: transparent;    
+        background-color: unset;
+        background-size: 200% 100%;
+        background: ${(props: any) => props.theme.body};
+        background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
+        background-size: 200% 100%;
+        animation: ${ShineAnimation} 1.5s linear infinite;
+    }
+
+    &.full{
+        width: 100%;
+    }
+
+    &.danger{
+        background-color: ${(props: any) => props.theme.danger};
+        color: ${(props: any) => props.theme.danger_text};
+    }
+
+    &.primary{
+        background-color: ${(props: any) => props.theme.primary};
+        color: ${(props: any) => props.theme.primary_text};
+    }
+
+    &.secondary{
+        background-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
+    }
+
+    &.success{
+        background-color: ${(props: any) => props.theme.success};
+        color: ${(props: any) => props.theme.success_text};
+    }
+`
+
 export const Span = styled.span`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
@@ -229,6 +304,10 @@ export const Span = styled.span`
 
     &.success{
         color: ${(props: any) => props.theme.success};
+    }
+
+    &.blink{
+        animation: ${BlinkerAnimation} .7s linear infinite;
     }
 `;
 
@@ -335,7 +414,7 @@ export const Input = styled.input`
     border: 1px solid ${(props: any) => props.theme.body};
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
-    border-radius: 3px;
+    border-radius: ${defaultRadius};
     padding: 5px 9px;
 
     &.full{
@@ -351,7 +430,7 @@ export const Textarea = styled.textarea`
     border: 1px solid ${(props: any) => props.theme.body};
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
-    border-radius: 3px;
+    border-radius: ${defaultRadius};
     min-height: 100px;
     padding: 5px 9px;
 
@@ -443,7 +522,7 @@ export const CheckboxSquare = styled.div`
     width: ${(props: any) => props.size + "px" || '15px'};
     height: ${(props: any) => props.size + "px" || '15px'};
     border: 1px solid ${(props: any) => props.colors.checked};
-    border-radius: 2px;
+    border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.checked ? props.colors.checked : props.colors.unchecked};
     display: flex;
     justify-content: center;

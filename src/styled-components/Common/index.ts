@@ -6,6 +6,7 @@ export {
     Container,
     CheckboxContainer,
     CheckboxSquare,
+    ImageContainer,
     Input,
     P,
     Span,

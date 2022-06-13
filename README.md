@@ -6,14 +6,17 @@ Testing with steled-components for know.
 ## Components
 ThemeHandler    
 Button   
-Card && CardContent    
+Checkbox  
+Card && CardContent  
+ImageContainer    
 Input  
+Loading  
+P  
 Span  
 Textarea  
 TitleH1  
 TitleHn   
 Toggle  
-
 
 ## Sources
 [source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)  
