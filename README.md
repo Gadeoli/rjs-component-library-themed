@@ -7,6 +7,7 @@ Testing with steled-components for know.
 ThemeHandler    
 Button   
 Checkbox  
+CheckboxMulti  
 Card && CardContent  
 ImageContainer    
 Input  

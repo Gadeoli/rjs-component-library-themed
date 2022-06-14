@@ -1,7 +1,7 @@
 import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-const defaultRadius = '4px';
+const defaultRadius = '.25rem';
 const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
 
 export const Body = styled.div`
@@ -12,12 +12,12 @@ export const Body = styled.div`
 
 export const BodyContent = styled.div`
     width: 100;
-    padding: 20px 16px;
+    padding: 1.25rem 1rem;
 `;
 
 export const Button = styled.button`
     margin: 0;
-    padding: 5px 10px;
+    padding: 0.5rem 1rem;
     border-radius: ${defaultRadius};
     transition: background-color .4s ease-in-out;
     border: 1px solid;
@@ -117,7 +117,7 @@ export const Card = styled.div`
     &.loading{
         h2, h3, h4, p, span, image, div.loading-effect{
             width: 100%;
-            min-height: 30px;
+            min-height: 2rem;
             border-radius: ${defaultRadius};
             color: transparent;
             
@@ -180,7 +180,7 @@ export const Card = styled.div`
 
 export const CardContent = styled.div`
     width: 100;
-    padding: 20px 16px;
+    padding: 1.25rem 1rem;
 `;
 
 export const Container = styled.div`
@@ -214,8 +214,8 @@ export const Container = styled.div`
 export const ImageContainer = styled.div`
     border: 1px solid ${(props: any) => props.theme.body};
     border-radius: ${defaultRadius};
-    height: ${(props: any) => props.height || '150px'};
-    width: ${(props: any) => props.width || '150px'};
+    height: ${(props: any) => props.height || '10rem'};
+    width: ${(props: any) => props.width || '10rem'};
     background-color: ${(props: any) => props.theme.background};
     display: flex;
     justify-content: center;
@@ -415,7 +415,7 @@ export const Input = styled.input`
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
-    padding: 5px 9px;
+    padding: .5rem 1rem;
 
     &.full{
         width: 100%;
@@ -431,13 +431,46 @@ export const Textarea = styled.textarea`
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
-    min-height: 100px;
-    padding: 5px 9px;
+    min-height: 10rem;
+    padding: .5rem 1rem;
 
     &.full{
         width: 100%;
     }
 `;
+
+/* Radio Components */
+export const RadioMultiContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+`;
+
+export const RadioContainer = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+`;
+
+export const RadioCircle = styled.div`
+    width: ${(props: any) => props.size || '1rem'};
+    height: ${props => props.size || '1rem'};
+    border: 1px solid ${(props: any) => props.colors.selected};
+    border-radius: ${(props: any) => props.size || '1rem'};
+    background-color: ${(props: any) => props.selected ? props.colors.selected : props.colors.unselect};
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin-right: .5rem;
+
+    span{
+        color: ${(props: any) => props.colors.unselect};;
+    }
+`;
+/* End Radio Components */
 
 /* Toogle Components */
 export const ToggleLabel = styled.label`
@@ -511,16 +544,30 @@ export const ToggleContainer = styled.div`
 /* End Toogle Components */
 
 /* Checkbox Components */
+export const CheckboxMultiContainer = styled.div`
+    display: flex;
+    flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
+    cursor: pointer;
+
+    .cl-themed-checkbox{
+        margin-bottom: .5rem;
+    }
+`;
+
 export const CheckboxContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     cursor: pointer;
+
+    span{
+        margin-left: .5rem;
+    }
 `;
 
 export const CheckboxSquare = styled.div`
-    width: ${(props: any) => props.size + "px" || '15px'};
-    height: ${(props: any) => props.size + "px" || '15px'};
+    width: ${(props: any) => props.size || '.75rem'};
+    height: ${(props: any) => props.size || '.75rem'};
     border: 1px solid ${(props: any) => props.colors.checked};
     border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.checked ? props.colors.checked : props.colors.unchecked};

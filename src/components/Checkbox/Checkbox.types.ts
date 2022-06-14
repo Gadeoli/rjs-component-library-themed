@@ -4,10 +4,10 @@ export interface CheckboxProps {
     value: any,
     checkedValue: any,
     uncheckedValue: any,
-    size?: number,
-    type?: "danger" | "primary" | "secondary" | "success";
+    size?: string,
+    type?: "danger" | "primary" | "secondary" | "success",
     disabled?: boolean, 
-    text: string,
+    text?: string,
     className?: string,
     style?: object,
     onChange: MouseEventHandler<HTMLButtonElement>,

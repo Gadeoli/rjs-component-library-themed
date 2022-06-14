@@ -1,28 +1,25 @@
 import React, {useState} from "react";
 import { ComponentMeta, Story } from "@storybook/react";
-import Checkbox from './Checkbox';
+import Radio from './Radio';
 import Card from "../Card";
 import { CardContent } from "../../styled-components/Common/Common";
-import { CheckboxProps } from "./Checkbox.types";
+import { RadioProps } from "./Radio.types";
 import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "RjsComponentLibraryThemed/Checkbox",
-} as ComponentMeta<typeof Checkbox>;
+    title: "RjsComponentLibraryThemed/Radio",
+} as ComponentMeta<typeof Radio>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 // const Template: ComponentStory<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
-const Template: Story<CheckboxProps> = (args) => {
-    const [value, setValue] = useState();
+const Template: Story<RadioProps> = (args) => {
 
     return(<Card><CardContent>
-        <Checkbox 
+        <Radio 
             {...args}
-            value={value}
-            onChange={(value) => setValue(value) }
         />    
-        <br/> <Span>Card - CardContent - Checkbox</Span>
+        <br/> <Span>Card - CardContent - Radio</Span>
     </CardContent></Card>)
 };
 
@@ -30,37 +27,35 @@ const Template: Story<CheckboxProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    checkedValue:true,
-    uncheckedValue:false,
-    value: true,
-    size: '.75rem',
-    disabled: false,
-    text: 'My checkbox',
-    type: '',
     className: '',
     style: {},
+    selectedValue: 'apple',
+    size: '15px',
+    text: 'Apple',
+    value: 'apple',
+    onChange: (v) => console.log(v)
 }   
 
 Default.argTypes = {
+    text: {
+        type: {name: 'string', required: true},
+        defaultValue: '',
+        description: 'Text is more likely THE LABEL'
+    },
     value: {
-        type: {name: 'any', required: false},
+        type: {name: 'other', required: true},
         defaultValue: '',
         description: ''
     },
-    checkedValue: {
+    selectedValue: {
         type: {name: 'other', required: true},
         defaultValue: '',
-        description: '',
-    },
-    uncheckedValue: {
-        type: {name: 'other', required: true},
-        defaultValue: '',
-        description: '',
+        description: ''
     },
     size: {
-        type: {name: 'string', required: false},
-        defaultValue: '.75rem',
-        description: '',
+        type: {name: 'string', required: true},
+        defaultValue: '15px',
+        description: 'Size in string with unity (px etc)',
     },
     disabled: {
         type: {name: 'boolean', required: false},
@@ -68,14 +63,9 @@ Default.argTypes = {
         description: '',
         size: { control: 'radio' }
     },
-    text: {
-        type: {name: 'string', required: false},
-        defaultValue: '',
-        description: 'Label'
-    },
     type: {
         type: {name: 'string', required: false},
-        defaultValue: 'primary',
+        defaultValue: '',
         description: 'danger | primary | secondary | success'
     },
     className: {

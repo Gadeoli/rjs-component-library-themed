@@ -40,3 +40,19 @@ const Checkbox: FC<CheckboxProps> = ({
 }
 
 export default Checkbox;
+
+/* 
+    How to use (examples)
+    
+    //single
+    const [v, setV] = useState(true)
+
+    <Checkbox 
+        onChange={(v) => {setV(v)}}
+        value={v}
+        checkedValue={true}
+        uncheckedValue={false}
+        text={'my text'}
+    />
+
+*/
