@@ -13,6 +13,7 @@ ImageContainer
 Input  
 Loading  
 P  
+Select
 Span  
 Textarea  
 TitleH1  

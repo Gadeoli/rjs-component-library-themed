@@ -439,6 +439,17 @@ export const Textarea = styled.textarea`
     }
 `;
 
+//A component with flex children direction choise (row or column)
+export const DirectionContainer = styled.div`
+    display: flex;
+    flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
+    cursor: pointer;
+
+    .cl-themed-checkbox{
+        margin-bottom: .5rem;
+    }
+`;
+
 /* Radio Components */
 export const RadioMultiContainer = styled.div`
     display: flex;
@@ -544,16 +555,6 @@ export const ToggleContainer = styled.div`
 /* End Toogle Components */
 
 /* Checkbox Components */
-export const CheckboxMultiContainer = styled.div`
-    display: flex;
-    flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
-    cursor: pointer;
-
-    .cl-themed-checkbox{
-        margin-bottom: .5rem;
-    }
-`;
-
 export const CheckboxContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -580,4 +581,100 @@ export const CheckboxSquare = styled.div`
         opacity: 0.6;
     }
 `;
-/* Checkbox Components */
+/* End Checkbox Components */
+
+/* Select Component */
+export const SelectContainer = styled.div`
+    position: relative;
+    width: 100%;
+`;
+
+export const SelectedResult = styled.div`
+    background-color: transparent;
+    border: 0;
+    border: 1px solid ${(props: any) => props.theme.body};
+    color: ${(props: any) => props.theme.text};
+    outline-color: ${(props: any) => props.theme.outline};
+    border-radius: ${defaultRadius};
+    box-sizing: border-box;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+`;
+
+export const SelectedResultItem = styled.span`
+    font-family: ${(props: any) => props.theme.fonts.primary}, sans-serif;
+    background-color: ${(props: any) => props.theme.body};
+    color: ${(props: any) => props.theme.text};
+    padding: .5rem;
+    border-radius: ${defaultRadius};
+    margin-right: .25rem;
+    margin-bottom: .25rem;
+`;
+
+export const SelectDrawerContainer = styled.div`
+    position: relative;
+    width: 100%;
+`;
+
+export const SelectDrawer = styled.div`
+    display: ${(props: any) => props.show ? 'block' : 'none'};
+    position: absolute;
+    
+    margin: 0;
+    padding: 0;
+    margin-top: .5rem;
+    bottom: ${(props: any) => props.sizes.bottom};
+    top: ${(props: any) => props.sizes.top};
+    right: ${(props: any) => props.sizes.right};
+    left: ${(props: any) => props.sizes.left};
+    max-width: ${(props: any) => props.sizes.maxWidth + 'px'};
+    max-height: ${(props: any) => props.sizes.maxHeight + 'px'};
+    z-index: 100;
+    padding: .5rem .75rem;
+    background-color: ${(props: any) => props.theme.background};
+    border: 1px solid ${(props: any) => props.theme.body};
+    border-radius: 4px;  
+`;
+
+export const SelectDrawerSearchContainer = styled.div`
+    position: relative;
+
+    button{
+        position: absolute;
+        top: .25rem;
+        right: .5rem;
+    }   
+`;
+
+export const SelectDrawerItem = styled.button`
+    color: ${(props: any) => props.selected ? props.theme.body : props.theme.text};
+    background-color: ${(props: any) => props.selected ? props.theme.secondary : props.theme.body};
+    padding: .5rem;
+    border-radius: ${defaultRadius};
+    cursor: pointer;
+    border: none;
+    margin: .25rem 0.1rem;
+    margin-left: 0;
+`
+
+export const SelectBtn = styled.button`
+    width: ${(props: any) => props.width + 'px'};
+    height: ${(props: any) => props.width + 'px'};
+    background-color: ${(props: any) => props.bgcolor};
+    border: 1px solid ${(props: any) => props.bgcolor};
+    border-radius: ${defaultRadius};
+    text-align: center;
+    cursor: pointer;
+    z-index: 101;
+    color: ${(props: any) => shade(0.15, props.color)};;
+
+    :hover{
+        border: 1px solid ${(props: any) => shade(0.15, props.bgcolor)};
+        background-color: ${(props: any) => shade(0.15, props.bgcolor)};
+    }
+`;
+/* End Select Component */

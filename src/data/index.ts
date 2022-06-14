@@ -1,0 +1,1 @@
+export { fruitData } from './fake';

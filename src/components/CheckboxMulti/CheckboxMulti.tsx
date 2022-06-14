@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { 
-    CheckboxMultiContainer as StyledCheckboxMultiContainer
+    DirectionContainer as StyledDirectionContainer
 } from '../../styled-components/Common';
 import Checkbox from '../Checkbox';
 import { CheckboxMultiProps } from './CheckboxMulti.types';
@@ -47,7 +47,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
         }
     }
 
-    return (<StyledCheckboxMultiContainer direction={direction}>
+    return (<StyledDirectionContainer direction={direction}>
         {values && values.length && values.map((i) => {
             const thisValueIsChecked = hangleIsCheckedValue(i.key)
     
@@ -65,7 +65,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
                 className={className}
             />)
         })}
-    </StyledCheckboxMultiContainer>)
+    </StyledDirectionContainer>)
 }
 
 export default CheckboxMulti;
