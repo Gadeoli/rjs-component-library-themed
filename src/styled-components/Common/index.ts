@@ -3,6 +3,7 @@ export {
     BodyContent,
     Button,
     Card,
+    CardContent,
     Container,
     DirectionContainer,
     CheckboxContainer,
