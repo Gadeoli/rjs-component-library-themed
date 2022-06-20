@@ -11,7 +11,9 @@ const Input: FC<InputProps> = ({disabled, value, type, className, style, onChang
         disabled={disabled}
         theme={theme} 
         value={value}
-        onChange={(e) => onChange(e.target.value)} 
+        onChange={(e) => {
+            onChange(e.target.value);
+        }} 
         style={style} 
         type={type} 
     />);

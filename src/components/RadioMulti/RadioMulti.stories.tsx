@@ -20,7 +20,10 @@ const Template: Story<RadioMultiProps> = (args) => {
         <RadioMulti 
             {...args}
             selectedValue={v}
-            onChange={(value) => setV(value.key)}
+            onChange={(value) => {
+                setV(value.key)
+                console.log(value)
+            }}
         />    
         <br/><Span>Card - CardContent - RadioMulti</Span>
     </CardContent></Card>)
@@ -34,28 +37,24 @@ Default.args = {
     values: [{key: 1, value: 'apple'}, {key: 2, value: 'watermelon'}],
     selectedValue: {key: 1, value: 'apple'}, 
     className: '',
+    direction: 'column',
     style: {},
 }   
 
 Default.argTypes = {
-    text: {
-        type: {name: 'string', required: true},
-        defaultValue: '',
-        description: 'Text is more likely THE LABEL'
-    },
-    value: {
-        type: {name: 'other', required: true},
-        defaultValue: '',
-        description: ''
+    values: {
+        type: {name: 'other', required: false},
+        defaultValue: null,
+        description: 'Array of objects (same as checkedvalue)',
     },
     selectedValue: {
-        type: {name: 'other', required: true},
+        type: {name: 'other', required: false},
         defaultValue: '',
-        description: ''
+        description: "a ONLY object {key: 1, value: 'abc'}",
     },
     size: {
-        type: {name: 'string', required: true},
-        defaultValue: '15px',
+        type: {name: 'string', required: false},
+        defaultValue: '.75rem',
         description: 'Size in string with unity (px etc)',
     },
     disabled: {
@@ -63,6 +62,11 @@ Default.argTypes = {
         defaultValue: false,
         description: '',
         size: { control: 'radio' }
+    },
+    direction: {
+        type: {name: 'string', required: false},
+        defaultValue: 'column',
+        description: 'column | row'
     },
     type: {
         type: {name: 'string', required: false},
@@ -78,5 +82,8 @@ Default.argTypes = {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
-    }
+    },
+    onChange: {
+        description: 'function to run on onchange event. this will recieve the value changed'
+    },
 }

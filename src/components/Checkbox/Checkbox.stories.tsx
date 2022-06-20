@@ -20,7 +20,10 @@ const Template: Story<CheckboxProps> = (args) => {
         <Checkbox 
             {...args}
             value={value}
-            onChange={(value) => setValue(value) }
+            onChange={(value) => {
+                setValue(value);
+                console.log('changed: ', value);
+            } }
         />    
         <br/> <Span>Card - CardContent - Checkbox</Span>
     </CardContent></Card>)
@@ -45,27 +48,27 @@ Default.argTypes = {
     value: {
         type: {name: 'any', required: false},
         defaultValue: '',
-        description: ''
+        description: 'checkedValue or uncheckedValue'
     },
     checkedValue: {
         type: {name: 'other', required: true},
         defaultValue: '',
-        description: '',
+        description: 'value === checkedValue => checked',
     },
     uncheckedValue: {
         type: {name: 'other', required: true},
         defaultValue: '',
-        description: '',
+        description: 'value === uncheckedValue => unchecked',
     },
     size: {
         type: {name: 'string', required: false},
         defaultValue: '.75rem',
-        description: '',
+        description: 'Square size',
     },
     disabled: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
-        description: '',
+        description: 'Click disabled and styled effects add',
         size: { control: 'radio' }
     },
     text: {
@@ -81,11 +84,14 @@ Default.argTypes = {
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'full'
+        description: 'full;'
     },
     style: {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
-    }
+    },
+    onChange: {
+        description: 'function to run on onchange event. this will recieve the value changed'
+    },
 }

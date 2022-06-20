@@ -30,6 +30,7 @@ export const Button = styled.button`
 
     :disabled {
         opacity: 0.6;
+        cursor: default;
     }
 
     &.clean{
@@ -143,10 +144,6 @@ export const Card = styled.div`
         
         :hover{
             background-color: ${(props: any) => shade(0.15, props.theme.danger)};
-        }
-
-        &.loading{
-            background: linear-gradient(110deg, ${(props: any) => props.theme.danger} 8%, ${(props: any) => props.theme.body} 18%, ${(props: any) => props.theme.danger} 33%);
         }
     }
 
@@ -445,8 +442,9 @@ export const DirectionContainer = styled.div`
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
 
-    .cl-themed-checkbox{
+    .cl-themed-checkbox, .cl-themed-radio{
         margin-bottom: .5rem;
+        margin-right: .75rem;
     }
 `;
 
@@ -564,6 +562,11 @@ export const CheckboxContainer = styled.div`
     span{
         margin-left: .5rem;
     }
+
+    &.disabled{
+        cursor: default;
+        opacity: 0.6;
+    }
 `;
 
 export const CheckboxSquare = styled.div`
@@ -578,6 +581,7 @@ export const CheckboxSquare = styled.div`
     padding: 2px;
 
     &.disabled{
+        cursor: default;
         opacity: 0.6;
     }
 `;
@@ -645,7 +649,7 @@ export const SelectDrawerSearchContainer = styled.div`
 
     button{
         position: absolute;
-        top: .25rem;
+        top: .5rem;
         right: .5rem;
     }   
 `;

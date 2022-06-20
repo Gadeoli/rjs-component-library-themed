@@ -43,5 +43,8 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'Loading card make mirror loading effect inside: h2, h3, h4, p, span, image, div.loading-effect'
+    },
+    children: {
+        description: 'ReactNode'
     }
 }

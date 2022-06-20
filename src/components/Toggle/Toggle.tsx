@@ -8,6 +8,7 @@ import {
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import uniqid from 'uniqid';
+import { transparentize } from 'polished';
 
 const Toggle: FC<ToggleProps> = ({
     value,
@@ -23,10 +24,6 @@ const Toggle: FC<ToggleProps> = ({
 }) => {
     const {theme} = useTheme();
     const id = uniqid();
-    const colors = {
-        cicle: theme[type || "secondary"],
-        background: theme.body
-    }
     const aux = size ? size : 40;
     const sizes = {
         main: aux,
@@ -35,6 +32,14 @@ const Toggle: FC<ToggleProps> = ({
         borderRadius: (aux / 4) + 'px'
     }
     const checked = checkedValue === value
+    const colors = {
+        cicle: theme[type || "secondary"],
+        background: theme.body
+    }
+
+    if(!checked){
+        colors.cicle = transparentize(0.5, colors.cicle)
+    }
 
     return (<StyledToggleContainer className={`cl-themed-toogle ${className} ${disabled}`} style={style}>
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>

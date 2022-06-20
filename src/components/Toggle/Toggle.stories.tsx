@@ -20,7 +20,10 @@ const Template: Story<ToggleProps> = (args) => {
         <Toggle 
             {...args}
             value={value}
-            onChange={(value) => setValue(value) }
+            onChange={(value) => {
+                setValue(value);
+                console.log(value)
+            }}
         />    
         <br/> <Span>Card - CardContent - Toggle</Span>
     </CardContent></Card>)
@@ -53,7 +56,7 @@ Default.argTypes = {
     size: {
         type: {name: 'number', required: false},
         defaultValue: 40,
-        description: 'Size in pixels',
+        description: 'Size in number. Dont use unity here. The component inside use px by default',
     },
     disabled: {
         type: {name: 'boolean', required: false},
@@ -75,5 +78,8 @@ Default.argTypes = {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
-    }
+    },
+    onChange: {
+        description: 'function to run on onchange event. this will recieve the value changed'
+    },
 }

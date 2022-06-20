@@ -10,9 +10,10 @@ const RadioMulti: FC<RadioMultiProps> = ({
     className,
     style,
     size,
-    disabled
+    disabled,
+    direction
 }) => {
-    return <DirectionContainer>
+    return <DirectionContainer direction={direction}>
         {values.map((i) => { 
             return (<Radio
                 key={i.key}

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 export interface TextareaProps {
-    (onChange: any) : any,
+    onChange: MouseEventHandler<HTMLButtonElement>,
     type: "text" | "number",
     value: "text" | "number",    
     disabled?: boolean;

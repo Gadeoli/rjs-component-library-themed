@@ -29,7 +29,7 @@ const Checkbox: FC<CheckboxProps> = ({
     }
     const checked = value === checkedValue
 
-    return (<StyledCheckboxContainer className={`cl-themed-checkbox ${className}`} onClick={() => {
+    return (<StyledCheckboxContainer className={`cl-themed-checkbox ${disabled ? 'disabled' : ''} ${className}`} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
         <StyledCheckboxSquare className={`${disabled ? 'disabled' : ''}`} checked={checked} size={size} colors={colors}>

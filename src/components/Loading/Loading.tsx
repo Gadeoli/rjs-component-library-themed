@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { LoadingProps } from './Loading.types';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
+import './Loading.scss';
 
 const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, style}) => {
     const {theme} = useTheme();

@@ -19,10 +19,13 @@ const Template: Story<SelectProps> = (args) => {
     return( <Card style={{paddingBottom: '5rem'}}>
         <CardContent>
             <Select 
-                multiple={true}
+                {...args}
                 emptyText={'select something here...'} 
                 values={vs} 
-                handleValues={(vs) => setVs(vs)}
+                handleValues={(vs) => {
+                    setVs(vs);
+                    console.log(vs);
+                }}
             />
 
             <br/> <br/> <Span>Card - CardContent - Select</Span>
@@ -37,18 +40,23 @@ Default.argTypes = {
     multiple: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
-        description: '',
+        description: 'If true is allowed to select more than one option',
         size: { control: 'radio' }
     },
     emptyText: {
-        type: {name: 'string', required: true},
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: 'The text when no values selected'
+    },
+    values: {
+        type: {name: 'array', required: false},
         defaultValue: '',
         description: ''
     },
-    values: {
-        type: {name: 'array', required: true},
+    handleValues: {
+        type: {name: 'any', required: true},
         defaultValue: '',
-        description: ''
+        description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed'
     },
     style: {
         type: {name: 'other', required: false},

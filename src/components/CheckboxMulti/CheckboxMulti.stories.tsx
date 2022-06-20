@@ -22,7 +22,10 @@ const Template: Story<CheckboxMultiProps> = (args) => {
         <CheckboxMulti 
             {...args}
             checkedValues={vs}
-            onChange={(values) => setVs(values) }
+            onChange={(values) => {
+                setVs(values);
+                console.log('changed: ', values);
+            }}
         />    
         <br/> <Span>Card - CardContent - CheckboxMulti</Span>
     </CardContent></Card>)
@@ -46,48 +49,51 @@ Default.argTypes = {
     checkedValues: {
         checked: {name: 'other', required: false},
         defaultValue: '',
-        description: 'Array of objects if multiple, a only object if single',
+        description: 'Array of objects if multiple, a ONLY object if single',
     },
     single: {
-        type: {name: 'boolean', required: true},
+        type: {name: 'boolean', required: false},
         defaultValue: true,
-        description: 'Set false if are multiple check answers (checkedValue need to be a array)',
+        description: 'Set false if are multiple check answers (checkedValue need to be a array) - not working in storybook',
         size: { control: 'radio' }
     },
     size: {
         type: {name: 'string', required: false},
         defaultValue: '.75rem',
-        description: '',
+        description: 'The checkbox square size',
     },
     values: {
-        type: {name: 'other', required: true},
+        type: {name: 'other', required: false},
         defaultValue: null,
         description: 'Array of key values',
     },
     disabled: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
-        description: 'Just passed to all checkboxes',
+        description: 'Disable click && add opacity style',
         size: { control: 'radio' }
     },
     direction: {
         type: {name: 'string', required: false},
         defaultValue: 'column',
-        description: ''
+        description: 'column | row'
     },
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'Just passed to all checkboxes'
+        description: 'Same checkbox'
     },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'Just passed to all checkboxes'
+        description: 'Same checkbox'
     },
     style: {
         type: {name: 'other', required: false},
         defaultValue: null,
-        description: 'Just passed to all checkboxes'
-    }
+        description: 'Same checkbox'
+    },
+    onChange: {
+        description: 'function to run on onchange event. this will recieve the value changed'
+    },
 }

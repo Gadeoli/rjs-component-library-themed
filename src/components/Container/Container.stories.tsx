@@ -30,11 +30,14 @@ Default.argTypes = {
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'full'
+        description: 'full;'
     },
     style: {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
+    },
+    children: {
+        description: 'ReactNode'
     }
 }

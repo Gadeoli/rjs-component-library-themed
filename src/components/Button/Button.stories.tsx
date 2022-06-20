@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "primary",
+    type: "",
     className: "",
     disabled: false,
     style: {},
@@ -32,17 +32,23 @@ Default.argTypes = {
     disabled: {
         type: {name: 'boolean', required: false},
         defaultValue: '',
-        description: 'custom styles',
+        description: 'disable click and add style effect',
         size: { control: 'radio' }
     },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'full'
+        description: 'full;'
     },
     style: {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
+    },
+    onClick: {
+        description: 'function to run on onclick event'
+    },
+    children: {
+        description: 'ReactNode'
     }
 }

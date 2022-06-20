@@ -20,7 +20,10 @@ const Template: Story<TextareaProps> = (args) => {
             <Textarea 
                 {...args}
                 value={value}
-                onChange={(value) => setValue(value) }
+                onChange={(value) => {
+                    setValue(value);
+                    console.log(value)
+                } }
             />
 
             <br/> <br/> <Span>Card - CardContent - Textarea</Span>
@@ -57,5 +60,8 @@ Default.argTypes = {
         defaultValue: '',
         description: 'custom styles',
         size: { control: 'radio' }
-    }
+    },
+    onChange: {
+        description: 'function to run on onchange event. this will recieve the value changed'
+    },
 }

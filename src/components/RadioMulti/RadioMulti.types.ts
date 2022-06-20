@@ -5,6 +5,7 @@ export interface RadioMultiProps {
     values: any,         // [{key: 1, value: 'apple'}, {key: 2, value: 'watermelon'}]
     selectedValue: any,  // {key: 1, value: 'apple'}
     className?: string,
+    direction?: "row" | "column",
     style?: object,  //some custom style
     size?: string,
     disabled?: boolean,

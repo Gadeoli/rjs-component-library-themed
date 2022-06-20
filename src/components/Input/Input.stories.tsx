@@ -50,12 +50,15 @@ Default.argTypes = {
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'full'
+        description: 'full;'
     },
     disabled: {
         type: {name: 'boolean', required: false},
         defaultValue: '',
         description: 'custom styles',
         size: { control: 'radio' }
-    }
+    },
+    onChange: {
+        description: 'function to run on onchange event. this will recieve the value changed'
+    },
 }

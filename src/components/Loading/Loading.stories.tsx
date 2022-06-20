@@ -36,12 +36,12 @@ Default.argTypes = {
     text: {
         type: {name: 'string', required: true},
         defaultValue: '',
-        description: ''
+        description: 'The content that will be written/rewritten'
     },
     timeout: {
         type: {name: 'number', required: false},
         defaultValue: 500,
-        description: ''
+        description: 'time between effects'
     },
     cursor: {
         type: {name: 'boolean', required: false},

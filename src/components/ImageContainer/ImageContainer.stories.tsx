@@ -26,15 +26,18 @@ Default.args = {
 }   
 
 Default.argTypes = {
+    src: {
+        description: 'image source'
+    },
     width: {
         type: {name: 'string', required: false},
         defaultValue: '150px',
-        description: ''
+        description: 'value + unity'
     },
     height: {
         type: {name: 'string', required: false},
         defaultValue: '150px',
-        description: ''
+        description: 'value + unity'
     },
     opacityEffect: {
         type: {name: 'boolean', required: false},
@@ -54,7 +57,7 @@ Default.argTypes = {
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'full'
+        description: 'full;'
     },
     style: {
         type: {name: 'other', required: false},
