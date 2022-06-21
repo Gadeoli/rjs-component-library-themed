@@ -33,6 +33,7 @@ const Template: Story<ToggleProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
+    name: "",
     checkedValue:true,
     uncheckedValue:false,
     size: 40,
@@ -43,6 +44,11 @@ Default.args = {
 }   
 
 Default.argTypes = {
+    name: {
+        type: {name: 'string', required: true},
+        defaultValue: '',
+        description: 'Toggle name'
+    },
     checkedValue: {
         type: {name: 'other', required: true},
         defaultValue: '',

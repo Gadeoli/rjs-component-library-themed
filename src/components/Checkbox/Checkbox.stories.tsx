@@ -33,6 +33,7 @@ const Template: Story<CheckboxProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
+    name: "",
     checkedValue:true,
     uncheckedValue:false,
     value: true,
@@ -45,6 +46,11 @@ Default.args = {
 }   
 
 Default.argTypes = {
+    name: {
+        type: {name: 'string', required: true},
+        defaultValue: '',
+        description: 'Checkbox name'
+    },
     value: {
         type: {name: 'any', required: false},
         defaultValue: '',

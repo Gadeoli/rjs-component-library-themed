@@ -17,6 +17,7 @@ describe(compName, () => {
 
         render(<App4Test>
             <Select
+                name="myselect"
                 multiple={true}
                 emptyText={'select something here...'} 
                 values={vs} 

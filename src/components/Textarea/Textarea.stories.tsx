@@ -20,6 +20,7 @@ const Template: Story<TextareaProps> = (args) => {
             <Textarea 
                 {...args}
                 value={value}
+                name="mytextarea"
                 onChange={(value) => {
                     setValue(value);
                     console.log(value)
@@ -40,6 +41,11 @@ Default.args = {
 }   
 
 Default.argTypes = {
+    name: {
+        type: {name: 'string', required: true},
+        defaultValue: '',
+        description: 'Textarea name'
+    },
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',

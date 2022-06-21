@@ -11,6 +11,7 @@ describe(compName, () => {
     test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Toggle 
+                name="mytoggle"
                 value={toggle}
                 checkedValue={'abc'}
                 uncheckedValue={'cde'}

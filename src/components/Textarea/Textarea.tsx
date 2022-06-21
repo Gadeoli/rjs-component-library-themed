@@ -3,7 +3,7 @@ import { TextareaProps } from './Textarea.types';
 import { Textarea as StyledTextarea } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 
-const Textarea: FC<TextareaProps> = ({disabled, value, type, className, style, onChange}) => {
+const Textarea: FC<TextareaProps> = ({name, disabled, value, type, className, style, onChange}) => {
     const {theme} = useTheme();
     
     return (<StyledTextarea 
@@ -14,6 +14,7 @@ const Textarea: FC<TextareaProps> = ({disabled, value, type, className, style, o
         onChange={(e) => onChange(e.target.value)} 
         style={style} 
         type={type} 
+        name={name}
     />);
 }
 

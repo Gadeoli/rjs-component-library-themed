@@ -1,4 +1,5 @@
 export interface SelectProps {
+    name: '',
     emptyText: string,          //a text to show when none value is selected
     values: Array<object>,     //an array of obj {key: k, value: v, selected: true}
     handleValues: (any) => any, //
@@ -13,6 +14,8 @@ export interface DrawerItemProps {
 }
 
 export interface SelectDrawerProps {
+    multiple?: boolean,
+    name: string,
     values: Array<object>, 
     onSelect: (any) => any, 
     onSearch (any) => any, 

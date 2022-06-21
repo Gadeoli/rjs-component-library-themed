@@ -1,6 +1,7 @@
 import React, { MouseEventHandler } from "react";
 
 export interface CheckboxProps {
+    name: string,
     value: any,
     checkedValue: any,
     uncheckedValue: any,

@@ -11,6 +11,7 @@ import uniqid from 'uniqid';
 import { transparentize } from 'polished';
 
 const Toggle: FC<ToggleProps> = ({
+    name,
     value,
     checkedValue,
     uncheckedValue,
@@ -43,7 +44,7 @@ const Toggle: FC<ToggleProps> = ({
 
     return (<StyledToggleContainer className={`cl-themed-toogle ${className} ${disabled}`} style={style}>
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
-            <input name="" type="checkbox" id={id} checked={checked} onChange={() => {}}/>
+            <input name={name} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 
             <StyledToggleFill className={`fill ${disabled ? 'disabled' : ''}`} sizes={sizes} colors={colors} checked={checked} onClick={() => {
                 !disabled && onChange(checked ? uncheckedValue : checkedValue)

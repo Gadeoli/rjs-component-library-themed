@@ -9,6 +9,7 @@ import uniqid from 'uniqid';
 import Span from '../Span';
 
 const Checkbox: FC<CheckboxProps> = ({
+    name,
     checkedValue,
     uncheckedValue,
     onChange,
@@ -32,6 +33,7 @@ const Checkbox: FC<CheckboxProps> = ({
     return (<StyledCheckboxContainer className={`cl-themed-checkbox ${disabled ? 'disabled' : ''} ${className}`} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
+        <input type="checkbox" name={name} checked={checked ? true : undefined}/>
         <StyledCheckboxSquare className={`${disabled ? 'disabled' : ''}`} checked={checked} size={size} colors={colors}>
             {children}
         </StyledCheckboxSquare>

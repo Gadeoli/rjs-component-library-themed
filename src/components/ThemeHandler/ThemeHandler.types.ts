@@ -21,6 +21,7 @@ export interface ThemeValueProps {
     
     background: string;
     body:       string;
+    border:     string;
     link:       string;
     outline:    string;
     text:       string;

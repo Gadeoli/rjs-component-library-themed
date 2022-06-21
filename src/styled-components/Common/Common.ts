@@ -1,7 +1,7 @@
 import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-const defaultRadius = '.25rem';
+const defaultRadius = '.35rem';
 const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
 
 export const Body = styled.div`
@@ -112,7 +112,6 @@ export const Card = styled.div`
     width: 100%;
     box-shadow: ${defaultShadow};
     border-radius: ${defaultRadius};
-    overflow: hidden;
     background-color: ${(props: any) => props.theme.background};
 
     &.loading{
@@ -209,7 +208,7 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-    border: 1px solid ${(props: any) => props.theme.body};
+    border: 1px solid ${(props: any) => props.theme.border};
     border-radius: ${defaultRadius};
     height: ${(props: any) => props.height || '10rem'};
     width: ${(props: any) => props.width || '10rem'};
@@ -408,11 +407,11 @@ export const Input = styled.input`
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
     background-color: transparent;
     border: 0;
-    border: 1px solid ${(props: any) => props.theme.body};
+    border: 1.5px solid ${(props: any) => props.theme.border};
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
-    padding: .5rem 1rem;
+    padding: .35rem .5rem;
 
     &.full{
         width: 100%;
@@ -424,12 +423,12 @@ export const Textarea = styled.textarea`
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
     background-color: transparent;
     border: 0;
-    border: 1px solid ${(props: any) => props.theme.body};
+    border: 1px solid ${(props: any) => props.theme.border};
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     min-height: 10rem;
-    padding: .5rem 1rem;
+    padding: .5rem .75rem;
 
     &.full{
         width: 100%;
@@ -559,6 +558,10 @@ export const CheckboxContainer = styled.div`
     align-items: flex-end;
     cursor: pointer;
 
+    input{
+        display: none;
+    }
+
     span{
         margin-left: .5rem;
     }
@@ -596,12 +599,12 @@ export const SelectContainer = styled.div`
 export const SelectedResult = styled.div`
     background-color: transparent;
     border: 0;
-    border: 1px solid ${(props: any) => props.theme.body};
+    border: 1px solid ${(props: any) => props.theme.border};
     color: ${(props: any) => props.theme.text};
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     box-sizing: border-box;
-    padding: .5rem 1rem;
+    padding: .5rem .75rem;
     cursor: pointer;
     display: flex;
     flex-wrap: wrap;
@@ -640,8 +643,12 @@ export const SelectDrawer = styled.div`
     z-index: 100;
     padding: .5rem .75rem;
     background-color: ${(props: any) => props.theme.background};
-    border: 1px solid ${(props: any) => props.theme.body};
+    border: 1px solid ${(props: any) => props.theme.border};
     border-radius: 4px;  
+
+    select{
+        display: none;
+    }
 `;
 
 export const SelectDrawerSearchContainer = styled.div`

@@ -11,7 +11,7 @@ describe(compName, () => {
         test(`Renders the ${compName} component`, () => {
 
         render(<App4Test>
-            <Input />
+            <Input name="myinput"/>
         </App4Test>);
     })
 })

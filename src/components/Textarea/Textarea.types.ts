@@ -7,4 +7,5 @@ export interface TextareaProps {
     disabled?: boolean;
     className?: string;
     style?: object;
+    name: string;
 }

@@ -87,6 +87,7 @@ myLightValues.danger =        "#E85F5C";
 myLightValues.danger_text =   "#FFF";
 myLightValues.background = "#FFFFFF";
 myLightValues.body =       "#F1F1F1";
+myLightValues.border =     "#F1F1F1",
 myLightValues.link =       "#0000EE";
 myLightValues.outline =    "#FF7F50";
 myLightValues.text =       "#333333";

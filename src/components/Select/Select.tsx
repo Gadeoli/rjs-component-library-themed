@@ -20,6 +20,7 @@ import Span from '../Span';
 import Input from '../Input';
 
 const Select: FC<SelectProps> = ({
+    name,
     emptyText,      
     values,         
     handleValues,
@@ -84,6 +85,8 @@ const Select: FC<SelectProps> = ({
             </div>
 
             <SelectDrawer
+                name={name}
+                multiple={multiple}
                 theme={theme} 
                 show={showDrawer} 
                 toggle={() => setShowDrawer(!showDrawer)}
@@ -97,6 +100,8 @@ const Select: FC<SelectProps> = ({
 }
 
 const SelectDrawer: FC<SelectDrawerProps> = ({
+    multiple,
+    name,
     values, 
     onSelect, 
     onSearch, 
@@ -134,6 +139,11 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
             }}>&#10006;</StyledSelectBtn>
         </StyledSelectDrawerSearchContainer>
         
+        <select name={name} multiple={multiple ? true : undefined}>
+            {values.map((v) => {
+                return <option value={v.key} selected={v.selected ? true : undefined}>{v.value}</option>
+            })}
+        </select>
         
         <StyledSelectDrawerContainer className='spacer mt-1'>
             {values.map((v) => {

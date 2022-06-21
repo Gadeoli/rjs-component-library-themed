@@ -20,6 +20,7 @@ const Template: Story<InputProps> = (args) => {
             <Input 
                 {...args}
                 value={value}
+                name="myinput"
                 onChange={(value) => setValue(value) }
             />
 
@@ -37,6 +38,11 @@ Default.args = {
 }   
 
 Default.argTypes = {
+    name: {
+        type: {name: 'string', required: true},
+        defaultValue: '',
+        description: 'Input name'
+    },
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',

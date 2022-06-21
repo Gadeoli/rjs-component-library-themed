@@ -11,6 +11,7 @@ describe(compName, () => {
     test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Checkbox 
+                name="mycheckbox"
                 checkedValue={true}
                 uncheckedValue={false}
                 onChange={(value: any) => {

@@ -16,10 +16,11 @@ export default {
 const Template: Story<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
 
-    return( <Card style={{paddingBottom: '5rem'}}>
+    return( <Card>
         <CardContent>
             <Select 
                 {...args}
+                name="myselect"
                 emptyText={'select something here...'} 
                 values={vs} 
                 handleValues={(vs) => {
@@ -37,6 +38,11 @@ const Template: Story<SelectProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.argTypes = {
+    name: {
+        type: {name: 'string', required: true},
+        defaultValue: '',
+        description: 'Select name'
+    },
     multiple: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
