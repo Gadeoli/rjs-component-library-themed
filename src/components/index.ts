@@ -4,6 +4,7 @@ export { default as CardContent } from './CardContent';
 export { default as Checkbox } from './Checkbox';
 export { default as CheckboxMulti } from './CheckboxMulti';
 export { default as Container } from './Container';
+export { default as ImageContainer } from './ImageContainer';
 export { default as GlobalStyle } from './GlobalStyle';
 export { default as Input } from './Input';
 export { default as Loading } from './Loading';
