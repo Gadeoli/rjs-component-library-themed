@@ -42,7 +42,7 @@ const Toggle: FC<ToggleProps> = ({
         colors.cicle = transparentize(0.5, colors.cicle)
     }
 
-    return (<StyledToggleContainer className={`cl-themed-toogle ${className} ${disabled}`} style={style}>
+    return (<StyledToggleContainer className={`cl-themed__toogle ${className} ${disabled}`} style={style}>
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
             <input name={name} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 

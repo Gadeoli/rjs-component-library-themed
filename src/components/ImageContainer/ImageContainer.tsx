@@ -10,7 +10,7 @@ const ImageContainer: FC<ImageContainerProps> = ({height, width, loading, opacit
     return (<StyledImageContainer   
         height={height || defaultSize}
         width={width || defaultSize}
-        className={`cl-themed-image-container ${type} ${className} ${loading && 'loading-effect'} ${opacityEffect && 'opacity-effect'}`} 
+        className={`cl-themed-image__container ${type} ${className} ${loading && 'loading-effect'} ${opacityEffect && 'opacity-effect'}`} 
         theme={theme}
         style={style}
     >

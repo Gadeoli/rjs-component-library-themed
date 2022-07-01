@@ -39,16 +39,16 @@ const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, styl
         }
     });
 
-    return (<div className={`cl-themed-loading`}>
+    return (<div className={`cl-themed__loading`}>
         <Span 
-            className={`cl-themed-loading-text ${type} ${className}`} 
+            className={`cl-themed__loading__text ${type} ${className}`} 
             theme={theme} 
             style={style}  
         >
             {text.substring(0, counter)}
         </Span>
         {cursor && <Span 
-            className={`cl-themed-loading-cursor ${type} blink`} 
+            className={`cl-themed__loading__cursor ${type} blink`} 
             theme={theme} 
         >|</Span>}
     </div>);

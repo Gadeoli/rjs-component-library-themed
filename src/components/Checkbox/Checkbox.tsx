@@ -30,7 +30,7 @@ const Checkbox: FC<CheckboxProps> = ({
     }
     const checked = value === checkedValue
 
-    return (<StyledCheckboxContainer className={`cl-themed-checkbox ${disabled ? 'disabled' : ''} ${className}`} onClick={() => {
+    return (<StyledCheckboxContainer className={`cl-themed__checkbox ${disabled ? 'disabled' : ''} ${className}`} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
         <input type="checkbox" name={name} checked={checked ? true : undefined}/>

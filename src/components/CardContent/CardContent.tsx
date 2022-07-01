@@ -7,7 +7,7 @@ const CardContent: FC<CardContentProps> = ({children, className, style}) => {
     const {theme} = useTheme();
     
     return (<StyledCardContent 
-        className={`cl-themed-card-content ${className}`} 
+        className={`cl-themed__card-content ${className}`} 
         style={style}
     >
         {children}

@@ -8,7 +8,7 @@ const Span: FC<SpanProps> = ({children, className, type, style}) => {
     const {theme} = useTheme();
     
     return (<StyledSpan 
-        className={`cl-themed-span ${type} ${className}`} 
+        className={`cl-themed__span ${type} ${className}`} 
         theme={theme} 
         style={style}  
     >

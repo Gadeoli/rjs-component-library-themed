@@ -8,7 +8,7 @@ const P: FC<PProps> = ({children, className, type, style}) => {
     const {theme} = useTheme();
     
     return (<StyledP 
-        className={`cl-themed-p ${type} ${className}`} 
+        className={`cl-themed__p ${type} ${className}`} 
         theme={theme} 
         style={style}  
     >

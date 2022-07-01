@@ -7,7 +7,7 @@ const Card: FC<CardProps> = ({children, className, loading, type, style}) => {
     const {theme} = useTheme();
     
     return (<StyledCard 
-        className={`cl-themed-card ${type} ${loading && 'loading'}  ${className}`} 
+        className={`cl-themed__card ${type} ${loading && 'loading'}  ${className}`} 
         theme={theme} 
         style={style} 
     >

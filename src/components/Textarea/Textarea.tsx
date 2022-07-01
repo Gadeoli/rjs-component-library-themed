@@ -7,7 +7,7 @@ const Textarea: FC<TextareaProps> = ({name, disabled, value, type, className, st
     const {theme} = useTheme();
     
     return (<StyledTextarea 
-        className={`cl-themed-textarea ${type} ${className}`} 
+        className={`cl-themed__textarea ${type} ${className}`} 
         disabled={disabled}
         theme={theme} 
         value={value}

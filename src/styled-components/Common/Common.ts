@@ -441,7 +441,7 @@ export const DirectionContainer = styled.div`
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
 
-    .cl-themed-checkbox, .cl-themed-radio{
+    .cl-themed__checkbox, .cl-themed__radio{
         margin-bottom: .5rem;
         margin-right: .75rem;
     }
