@@ -15,7 +15,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     n: 1,
-    type: "",
+    type: undefined,
     className: "",
     style: {}
 }   
