@@ -18,6 +18,6 @@ export interface SelectDrawerProps {
     name: string,
     values: Array<object>, 
     onSelect: (any) => any, 
-    onSearch (any) => any, 
+    onSearch: (any) => any, 
     theme: object
 }
