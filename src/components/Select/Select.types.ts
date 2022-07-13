@@ -19,8 +19,5 @@ export interface SelectDrawerProps {
     values: Array<object>, 
     onSelect: (any) => any, 
     onSearch (any) => any, 
-    show: boolean, 
-    toggle?: boolean, 
-    theme: object, 
-    resultSize: object
+    theme: object
 }

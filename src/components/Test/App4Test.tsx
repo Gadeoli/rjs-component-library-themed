@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useState } from 'react';
+import React from 'react';
 import Toggle from '../Toggle';
 import  ThemeHandler, { 
         ThemeContext, 
@@ -64,7 +64,8 @@ const App4Test = (props: HandlerTestProps) => {
                 setTimeout(() => {
                     setDarkValues(myDarkValues);
                     setLightValues(myLightValues);
-                }, 500);
+                    setMode(mode)
+                }, 200);
                 
                 return <>
                     <GlobalStyle />

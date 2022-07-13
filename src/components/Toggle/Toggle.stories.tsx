@@ -22,7 +22,7 @@ const Template: Story<ToggleProps> = (args) => {
             value={value}
             onChange={(value) => {
                 setValue(value);
-                console.log(value)
+                // console.log(value)
             }}
         />    
         <br/> <Span>Card - CardContent - Toggle</Span>

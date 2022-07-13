@@ -3,13 +3,23 @@
 A reactjs component library with a custom theme support by default. This is a test for now.  
 Testing with steled-components for know.  
 
+## How to maintain
+
+1. Clone  
+2. NVM use 16.14.2 (node 16.14.2 / npm 8.5.0)  
+3. npm i  
+4. make changes  
+5. git add / git commit / git push  
+6. npm run publish (custom command)  
+
 ## Components
+
 ThemeHandler    
 Button   
 Checkbox  
 CheckboxMulti  
 Container  
-Card && CardContent  
+Card && CardContent && CardToggle  
 ImageContainer    
 Input  
 Loading  
@@ -23,6 +33,7 @@ TitleHn
 Toggle  
 
 ## Sources
+
 [source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)  
 [source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)
 

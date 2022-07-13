@@ -24,7 +24,7 @@ const Template: Story<CheckboxMultiProps> = (args) => {
             checkedValues={vs}
             onChange={(values) => {
                 setVs(values);
-                console.log('changed: ', values);
+                // console.log('changed: ', values);
             }}
         />    
         <br/> <Span>Card - CardContent - CheckboxMulti</Span>

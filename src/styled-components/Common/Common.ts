@@ -616,10 +616,15 @@ export const SelectedResultItem = styled.span`
     font-family: ${(props: any) => props.theme.fonts.primary}, sans-serif;
     background-color: ${(props: any) => props.theme.body};
     color: ${(props: any) => props.theme.text};
-    padding: .5rem;
     border-radius: ${defaultRadius};
-    margin-right: .25rem;
-    margin-bottom: .25rem;
+    margin-right: .1rem;
+    display: flex;
+    align-items: center;
+
+    span{
+        font-size: 90%;
+        padding-left: .2rem;
+    }
 `;
 
 export const SelectDrawerContainer = styled.div`
@@ -628,23 +633,16 @@ export const SelectDrawerContainer = styled.div`
 `;
 
 export const SelectDrawer = styled.div`
-    display: ${(props: any) => props.show ? 'block' : 'none'};
-    position: absolute;
-    
+    width: 100%;
     margin: 0;
     padding: 0;
     margin-top: .5rem;
-    bottom: ${(props: any) => props.sizes.bottom};
-    top: ${(props: any) => props.sizes.top};
-    right: ${(props: any) => props.sizes.right};
-    left: ${(props: any) => props.sizes.left};
-    max-width: ${(props: any) => props.sizes.maxWidth + 'px'};
-    max-height: ${(props: any) => props.sizes.maxHeight + 'px'};
     z-index: 100;
     padding: .5rem .75rem;
     background-color: ${(props: any) => props.theme.background};
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: 4px;  
+    box-sizing: border-box;
 
     select{
         display: none;
@@ -656,7 +654,7 @@ export const SelectDrawerSearchContainer = styled.div`
 
     button{
         position: absolute;
-        top: .5rem;
+        top: .35rem;
         right: .5rem;
     }   
 `;
@@ -664,11 +662,11 @@ export const SelectDrawerSearchContainer = styled.div`
 export const SelectDrawerItem = styled.button`
     color: ${(props: any) => props.selected ? props.theme.body : props.theme.text};
     background-color: ${(props: any) => props.selected ? props.theme.secondary : props.theme.body};
-    padding: .5rem;
+    padding: .25rem;
     border-radius: ${defaultRadius};
     cursor: pointer;
     border: none;
-    margin: .25rem 0.1rem;
+    margin: .2rem;
     margin-left: 0;
 `
 

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
@@ -15,26 +15,19 @@ import {
     SelectBtn as StyledSelectBtn
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
-import { useElementSize, useOnClickOutside } from '@gadeoli/rjs-hooks-library';
 import Span from '../Span';
 import Input from '../Input';
+import CardToggle from '../CardToggle';
 
 const Select: FC<SelectProps> = ({
     name,
     emptyText,      
     values,         
     handleValues,
-    multiple,
-    styles
+    multiple
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
-    
-    const resultRef = useRef()
-    const drawerRef = useRef()
-
-    useOnClickOutside(drawerRef, () => showDrawer && setShowDrawer(false));
-    const dimentions = useElementSize(resultRef)
 
     const handleOnSelect = (selected) => {
         if(!multiple){
@@ -77,25 +70,19 @@ const Select: FC<SelectProps> = ({
     }
 
     return (<StyledSelectContainer>  
-        <div ref={drawerRef}>
-            <div ref={resultRef}>
-                <StyledSelectedResult onClick={() => setShowDrawer(!showDrawer)} theme={theme}>
-                    {renderSelected()}
-                </StyledSelectedResult>
-            </div>
-
+        <CardToggle 
+            toggleTrigger={(trigger: any) => (<StyledSelectedResult onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
+            className={'full'}
+        >
             <SelectDrawer
                 name={name}
                 multiple={multiple}
                 theme={theme} 
-                show={showDrawer} 
-                toggle={() => setShowDrawer(!showDrawer)}
                 values={values} 
-                resultSize={dimentions}
                 onSelect={(v) => handleValues(handleOnSelect(v))}
                 onSearch={(s) => handleValues(handleOnSearch(s))}
             />
-        </div>
+        </CardToggle>
     </StyledSelectContainer>);
 }
 
@@ -105,10 +92,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     values, 
     onSelect, 
     onSearch, 
-    show, 
-    toggle, 
-    theme, 
-    resultSize
+    theme
 }) => {
     const [search, setSearch] = useState('')
 
@@ -118,20 +102,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     }, [search])
     /* eslint-enable */
 
-    const sizes = () => {
-        const testX = resultSize.position.left + resultSize.width > (resultSize.screen.width / 2)
-        const testY = resultSize.position.top + resultSize.height > (resultSize.screen.height / 2)
-        return {
-            left: testX ? 'unset' : 0,
-            right: testX ? 0 : 'unset', 
-            top: testY ? 'unset' : resultSize.height,
-            bottom: testY ? resultSize.height * -1 : 'unset',
-            maxWidth: resultSize.width > resultSize.screen.width / 2 ? resultSize.width + 100 : resultSize.screen.width / 2,
-            maxHeight: resultSize.screen.height / 3
-        }
-    }
-
-    return (<StyledSelectDrawer show={show} theme={theme} sizes={sizes()}>
+    return (<StyledSelectDrawer theme={theme}>
         <StyledSelectDrawerSearchContainer>
             <Input theme={theme} value={search} className='full' onChange={(e) => setSearch(e)}/>
             <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={() => {
@@ -140,8 +111,8 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>
-            {values.map((v) => {
-                return <option value={v.key} selected={v.selected ? true : undefined}>{v.value}</option>
+            {values.map((v, i) => {
+                return <option value={v.key} key={i} selected={v.selected ? true : undefined}>{v.value}</option>
             })}
         </select>
         

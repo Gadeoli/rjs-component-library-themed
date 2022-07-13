@@ -1,6 +1,6 @@
 {
   "name": "@gadeoli/rjs-component-library-themed",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "A first try of doing: a reactjs component library with theme support",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -68,7 +68,7 @@
     "uniqid": "^5.4.0"
   },
   "peerDependencies": {
-    "@gadeoli/rjs-hooks-library": "^0.0.5",
+    "@gadeoli/rjs-hooks-library": "^0.0.8",
     "polished": "^4.2.2",
     "react": "^18.1.0",
     "styled-components": "^5.3.5",

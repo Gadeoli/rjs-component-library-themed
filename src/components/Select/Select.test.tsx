@@ -21,7 +21,9 @@ describe(compName, () => {
                 multiple={true}
                 emptyText={'select something here...'} 
                 values={vs} 
-                handleValues={(vs) => console.log(vs)}
+                handleValues={(vs) => {
+                    // console.log(vs)
+                }}
             />
         </App4Test>);
     })

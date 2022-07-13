@@ -16,7 +16,9 @@ describe(compName, () => {
             <RadioMulti 
                 selectedValue={vs}  
                 values={data}
-                onChange={(values) => console.log(values)}
+                onChange={(values) => {
+                    // console.log(values)
+                }}
             />
         </App4Test>);
     })

@@ -16,7 +16,7 @@ describe(compName, () => {
                 checkedValue={'abc'}
                 uncheckedValue={'cde'}
                 onChange={(value: any) => {
-                    console.log(value);
+                    // console.log(value);
                 }}
                 type={'primary'}
             />

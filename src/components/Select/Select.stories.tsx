@@ -25,7 +25,7 @@ const Template: Story<SelectProps> = (args) => {
                 values={vs} 
                 handleValues={(vs) => {
                     setVs(vs);
-                    console.log(vs);
+                    // console.log(vs);
                 }}
             />
 
