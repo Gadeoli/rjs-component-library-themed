@@ -113,6 +113,7 @@ export const Card = styled.div`
     box-shadow: ${defaultShadow};
     border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.theme.background};
+    overflow: hidden;
 
     &.loading{
         h2, h3, h4, p, span, image, div.loading-effect{
