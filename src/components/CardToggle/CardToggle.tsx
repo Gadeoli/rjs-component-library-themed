@@ -59,8 +59,8 @@ const CardToggle : FC<CardToggleProps> = ({
     const handleAbsoluteY = () => {
         if(yOverride){
             return yOverride === 'top' ?
-                {top: `${gHeight + 5}px`, bottom: 'unset'} :
-                {top: 'unset', bottom: `${gHeight + 5}px`};
+                {top: 'unset', bottom: `${gHeight + 5}px`} :
+                {top: `${gHeight + 5}px`, bottom: 'unset'};
         }else{
             return (tPositionY + tHeight) < (wHeight - tHeight) ? 
                     {top: `${gHeight + 5}px`, bottom: 'unset'} :
