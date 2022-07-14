@@ -17,7 +17,7 @@ export const BodyContent = styled.div`
 
 export const Button = styled.button`
     margin: 0;
-    padding: 0.5rem 1rem;
+    padding: .25rem .5rem;
     border-radius: ${defaultRadius};
     transition: background-color .4s ease-in-out;
     border: 1px solid;
@@ -411,7 +411,7 @@ export const Input = styled.input`
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
-    padding: .35rem .5rem;
+    padding: .25rem .5rem;
 
     &.full{
         width: 100%;
@@ -623,7 +623,7 @@ export const SelectedResultItem = styled.span`
 
     span{
         font-size: 90%;
-        padding-left: .2rem;
+        padding-left: .25rem;
     }
 `;
 
