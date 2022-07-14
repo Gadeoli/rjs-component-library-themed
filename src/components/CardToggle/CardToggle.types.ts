@@ -3,4 +3,6 @@ export interface CardToggleProps {
     initialToggle?: boolean;
     children: React.ReactNode;
     className?: string;
+    xOverride?: "left" | "right";
+    yOverride?: "top" | "bottom";
 }

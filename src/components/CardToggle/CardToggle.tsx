@@ -3,7 +3,14 @@ import { CardToggleProps } from './CardToggle.types';
 import { useElementSize, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
 import styled from 'styled-components';
 
-const CardToggle : FC<CardToggleProps> = ({toggleTrigger, initialToggle = false, children, className}) => {
+const CardToggle : FC<CardToggleProps> = ({
+    toggleTrigger, 
+    initialToggle = false, 
+    children, 
+    className,
+    xOverride,
+    yOverride
+}) => {
     const [toggle, setToggle] = useState(true);
 
     /** Main control */
@@ -38,15 +45,27 @@ const CardToggle : FC<CardToggleProps> = ({toggleTrigger, initialToggle = false,
     /** Trigger Position Control */
 
     const handleAbsoluteX = () => {
-        return (tPositionX + tWidth) > (wWidth - tWidth) ? 
+        if(xOverride){
+            return xOverride === 'left' ?
+                {left: 0, right: 'unset'} :
+                {left: 'unset', right: 0};
+        }else{
+            return (tPositionX + tWidth) > (wWidth - tWidth) ? 
                     {left: 'unset', right: 0} :
-                    {left: 0, right: 'unset'}          
+                    {left: 0, right: 'unset'};
+        }
     }
 
     const handleAbsoluteY = () => {
-        return (tPositionY + tHeight) < (wHeight - tHeight) ? 
+        if(yOverride){
+            return yOverride === 'top' ?
+                {top: `${gHeight + 5}px`, bottom: 'unset'} :
+                {top: 'unset', bottom: `${gHeight + 5}px`};
+        }else{
+            return (tPositionY + tHeight) < (wHeight - tHeight) ? 
                     {top: `${gHeight + 5}px`, bottom: 'unset'} :
                     {top: 'unset', bottom: `${gHeight + 5}px`}
+        }
     }
 
     const {left, right} = handleAbsoluteX();
