@@ -176,7 +176,7 @@ export const Card = styled.div`
 
 export const CardContent = styled.div`
     width: 100;
-    padding: 1.25rem 1rem;
+    padding: .5rem .75rem;
 `;
 
 export const Container = styled.div`
