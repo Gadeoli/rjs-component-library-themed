@@ -12,7 +12,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof CardToggle> = (args) => <CardToggle 
     {...args}
-    toggleTrigger={(trigger: any) => (<Button style={{width: '100%'}} onClick={() => trigger()}>triggerMe</Button>)}
+    toggleTrigger={(trigger: any) => (<Button onClick={() => trigger()}>triggerMe</Button>)}
 />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

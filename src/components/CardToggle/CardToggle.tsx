@@ -8,7 +8,7 @@ const CardToggle : FC<CardToggleProps> = ({toggleTrigger, initialToggle = false,
 
     /** Main control */
     const mainContainerRef = useRef();
-    useOnClickOutside(mainContainerRef, (e : any) => clickOutSideAction(e));
+    useOnClickOutside(mainContainerRef, (e: any) => clickOutSideAction(e));
     const clickOutSideAction = (e: any) => {
         if(toggle){
             setToggle(false);
@@ -18,9 +18,9 @@ const CardToggle : FC<CardToggleProps> = ({toggleTrigger, initialToggle = false,
     /** Main control */
 
     /** Toggle Position Control */
+    const windowSize = useWindowSize();
     const toggleContainerRef = useRef();
     const toggleSize = useElementSize(toggleContainerRef);
-    const windowSize = useWindowSize();
     
     const wWidth = windowSize.width;
     const tPositionX = toggleSize.position.x;
@@ -31,38 +31,22 @@ const CardToggle : FC<CardToggleProps> = ({toggleTrigger, initialToggle = false,
     const tHeight = toggleSize.height;
     /** Toggle Position Control */
 
-     /** Trigger Position Control */
+    /** Trigger Position Control */
     const triggerContainerRef = useRef();
     const triggerSize = useElementSize(triggerContainerRef);
     const gHeight = triggerSize.height; // g of gatilho (trigger in PT_BR)
-     /** Trigger Position Control */
+    /** Trigger Position Control */
 
     const handleAbsoluteX = () => {
-        if(tPositionX + tWidth > wWidth){
-            return {
-                left: 'unset',
-                right: 0
-            }
-        }else{
-            return {
-                left: 0,
-                right: 'unset'
-            }
-        }
+        return (tPositionX + tWidth) > (wWidth - tWidth) ? 
+                    {left: 'unset', right: 0} :
+                    {left: 0, right: 'unset'}          
     }
 
     const handleAbsoluteY = () => {
-        if(tPositionY + tHeight > wHeight){
-            return {
-                top: 'unset',
-                bottom: `${gHeight + 5}px`,
-            }
-        }else{
-            return {
-                top: `${gHeight + 5}px`,
-                bottom: 'unset'
-            }
-        }
+        return (tPositionY + tHeight) < (wHeight - tHeight) ? 
+                    {top: `${gHeight + 5}px`, bottom: 'unset'} :
+                    {top: 'unset', bottom: `${gHeight + 5}px`}
     }
 
     const {left, right} = handleAbsoluteX();
