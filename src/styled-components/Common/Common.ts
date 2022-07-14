@@ -371,7 +371,7 @@ export const TitleH1 = styled.h1`
 
 export const TitleHn = styled.h2`
     color: ${(props: any) => props.theme.text};
-    font-size: ${(props: any) => (props.n > 1 ? props.theme.fontSize.subtitle * (1 - (0.1 * (props.n - 1))) : props.theme.fontSize.subtitle) + "rem"};
+    font-size: ${(props: any) => (props.n > 1 ? (props.theme.fontSize.subtitle * (1 - (0.1 * (props.n - 1)))).toFixed(3) : props.theme.fontSize.subtitle) + "rem"};
     font-weight: 700;
     margin: 0;
     padding: 0;
