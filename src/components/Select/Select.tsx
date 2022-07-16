@@ -29,27 +29,46 @@ const Select: FC<SelectProps> = ({
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
 
-    const handleOnSelect = (selected) => {
+    const handleOnSelect = (selected : any) => {
         if(!multiple){
+            const prev = values.filter(v => v.key === selected && v?.selected === true);
+
             setShowDrawer(!showDrawer)
-            return [...values].map(i => {
-                return {...i, selected: i.selected ? false : i.key === selected}
-            })
+            return {
+                selected: prev && prev.length ? null : selected,
+                values: [...values].map(i => {
+                    return {...i, selected: i.selected ? false : i.key === selected}
+                }) 
+            }
         }else{
-            return [...values].map(i => {
+            const aux = [...values].map(i => {
                 if(i.key !== selected){
                     return {...i}
                 }else{
                     return {...i, selected: i.selected ? false : true} //dont use !i.selected because selected maybe is not set
                 }
-            }) 
+            })
+
+            return {
+                selected: [...aux].filter(elF => elF.selected === true).map(elM => { return elM.key }),
+                values: aux
+            }
         }
     }
 
-    const handleOnSearch = (search) => {
-        return [...values].map(i => {
-            return {...i, hide: search && i.value.indexOf(search) === -1}
-        })
+    const handleOnSearch = (search: any) => {
+        let selected = values.filter(elF => elF.selected === true).map(elM => elM.key);
+
+        if(!multiple){
+            selected = selected && selected.length ? selected[0] : null;
+        }
+
+        return {
+            selected,
+            values: [...values].map(i => {
+                return {...i, hide: search && i.value.indexOf(search) === -1}
+            })
+        }
     }
 
     const renderSelected = () => {
@@ -81,6 +100,7 @@ const Select: FC<SelectProps> = ({
                 values={values} 
                 onSelect={(v) => handleValues(handleOnSelect(v))}
                 onSearch={(s) => handleValues(handleOnSearch(s))}
+                // onSearch={(s) => console.log()}
             />
         </CardToggle>
     </StyledSelectContainer>);
@@ -118,7 +138,12 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
         
         <StyledSelectDrawerContainer className='spacer mt-1'>
             {values.map((v) => {
-                return v.selected || !v.hide ? (<DrawerItem handleSelect={(k) => onSelect(k)} item={v} theme={theme} key={v.key}/>) : null
+                return v.selected || !v.hide ? (<DrawerItem 
+                    handleSelect={(k) => onSelect(k)} 
+                    item={v} 
+                    theme={theme} 
+                    key={v.key}/>
+                ) : null
             })}
         </StyledSelectDrawerContainer>   
     </StyledSelectDrawer>)

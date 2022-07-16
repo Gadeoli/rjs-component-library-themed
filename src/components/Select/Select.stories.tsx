@@ -23,9 +23,8 @@ const Template: Story<SelectProps> = (args) => {
                 name="myselect"
                 emptyText={'select something here...'} 
                 values={vs} 
-                handleValues={(vs) => {
-                    setVs(vs);
-                    // console.log(vs);
+                handleValues={({selected, values}) => {
+                    setVs(selected, values);
                 }}
             />
 
