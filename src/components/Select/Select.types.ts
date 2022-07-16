@@ -4,7 +4,8 @@ export interface SelectProps {
     values: Array<object>,     //an array of obj {key: k, value: v, selected: true}
     handleValues: (any) => any, //
     multiple?: boolean,         //if allow to select multiple values
-    styles?: object
+    styles?: object,
+    className?: string,
 }
 
 export interface DrawerItemProps {

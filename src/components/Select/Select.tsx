@@ -24,7 +24,8 @@ const Select: FC<SelectProps> = ({
     emptyText,      
     values,         
     handleValues,
-    multiple
+    multiple,
+    className
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
@@ -88,7 +89,7 @@ const Select: FC<SelectProps> = ({
         }
     }
 
-    return (<StyledSelectContainer className='cl-themed__select'>  
+    return (<StyledSelectContainer className={`cl-themed__select ${className}`}>  
         <CardToggle 
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
