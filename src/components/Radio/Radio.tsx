@@ -26,10 +26,10 @@ const Radio: FC<RadioProps> = ({
     const selected = value === selectedValue
 
     return <StyledRadioContainer colors={colors} className={`cl-themed__radio ${className}`} onClick={() => onChange(value)} style={style}>
-        <StyledRadioCircle selected={selected} size={size} colors={colors}>
+        <StyledRadioCircle className='cl-themed__radio__circle' selected={selected} size={size} colors={colors}>
             <span >{selected && children}</span>
         </StyledRadioCircle>
-        <Span className='spacer ml-1' theme={theme}>{text}</Span>
+        <Span className='cl-themed__radio__text spacer ml-1' theme={theme}>{text}</Span>
     </StyledRadioContainer>
 }
 

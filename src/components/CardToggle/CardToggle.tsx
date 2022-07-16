@@ -78,11 +78,12 @@ const CardToggle : FC<CardToggleProps> = ({
     }, [initialToggle]);
 
     return (<MainCointainer className="cl-themed__card-toggle" ref={mainContainerRef}>
-        <TriggerContainer ref={triggerContainerRef}>
+        <TriggerContainer className="cl-themed__card-toggle__trigger" ref={triggerContainerRef}>
             {toggleTrigger(() => setToggle(!toggle))}
         </TriggerContainer>
         
         <ToggleContainer
+            className="cl-themed__card-toggle__toggle"
             ref={toggleContainerRef} 
             show={toggle} 
             position={{

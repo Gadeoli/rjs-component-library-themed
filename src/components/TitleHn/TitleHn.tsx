@@ -9,7 +9,7 @@ const TitleHn: FC<TitleHnProps> = ({n, children, className, type, style}) => {
     
     return (<StyledTitleHn
         n={n}
-        className={`cl-themed__title__hn ${type} ${className}`} 
+        className={`cl-themed__title-hn ${type} ${className}`} 
         theme={theme} 
         style={style}  
     >

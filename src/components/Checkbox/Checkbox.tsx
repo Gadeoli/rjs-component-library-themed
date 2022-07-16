@@ -34,10 +34,10 @@ const Checkbox: FC<CheckboxProps> = ({
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
         <input type="checkbox" name={name} checked={checked ? true : undefined}/>
-        <StyledCheckboxSquare className={`${disabled ? 'disabled' : ''}`} checked={checked} size={size} colors={colors}>
+        <StyledCheckboxSquare className={`cl-themed__checkbox__square ${disabled ? 'disabled' : ''}`} checked={checked} size={size} colors={colors}>
             {children}
         </StyledCheckboxSquare>
-        {text ? <Span type={type}>{text}</Span> : null}
+        {text ? <Span className="cl-themed__checkbox__text" type={type}>{text}</Span> : null}
     </StyledCheckboxContainer>)
 }
 

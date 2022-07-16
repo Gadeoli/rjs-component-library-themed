@@ -88,9 +88,9 @@ const Select: FC<SelectProps> = ({
         }
     }
 
-    return (<StyledSelectContainer>  
+    return (<StyledSelectContainer className='cl-themed__select'>  
         <CardToggle 
-            toggleTrigger={(trigger: any) => (<StyledSelectedResult onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
+            toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
         >
             <SelectDrawer
@@ -122,8 +122,8 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     }, [search])
     /* eslint-enable */
 
-    return (<StyledSelectDrawer theme={theme}>
-        <StyledSelectDrawerSearchContainer>
+    return (<StyledSelectDrawer className='cl-themed__select__drawer' theme={theme}>
+        <StyledSelectDrawerSearchContainer className='cl-themed__select__drawer__search'>
             <Input theme={theme} value={search} className='full' onChange={(e) => setSearch(e)}/>
             <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={() => {
                 setSearch('')
@@ -136,7 +136,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
             })}
         </select>
         
-        <StyledSelectDrawerContainer className='spacer mt-1'>
+        <StyledSelectDrawerContainer className='cl-themed__select__drawer__itens spacer mt-1'>
             {values.map((v) => {
                 return v.selected || !v.hide ? (<DrawerItem 
                     handleSelect={(k) => onSelect(k)} 

@@ -8,7 +8,7 @@ const TitleH1: FC<TitleH1Props> = ({children, className, type, style}) => {
     const {theme} = useTheme();
     
     return (<StyledTitleH1 
-        className={`cl-themed__title__h1 ${type} ${className}`} 
+        className={`cl-themed__title-h1 ${type} ${className}`} 
         theme={theme} 
         style={style}  
     >

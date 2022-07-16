@@ -47,7 +47,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
         }
     }
 
-    return (<StyledDirectionContainer direction={direction}>
+    return (<StyledDirectionContainer className='cl-themed__multi-checkbox' direction={direction}>
         {values && values.length && values.map((i) => {
             const thisValueIsChecked = hangleIsCheckedValue(i.key)
     

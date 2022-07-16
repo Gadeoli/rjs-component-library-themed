@@ -46,7 +46,7 @@ const Toggle: FC<ToggleProps> = ({
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
             <input name={name} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 
-            <StyledToggleFill className={`fill ${disabled ? 'disabled' : ''}`} sizes={sizes} colors={colors} checked={checked} onClick={() => {
+            <StyledToggleFill className={`cl-themed__toogle__fill fill ${disabled ? 'disabled' : ''}`} sizes={sizes} colors={colors} checked={checked} onClick={() => {
                 !disabled && onChange(checked ? uncheckedValue : checkedValue)
             }}>
                 <StyledToggleFillIcon className='fill-icon' sizes={sizes} checked={checked}>
