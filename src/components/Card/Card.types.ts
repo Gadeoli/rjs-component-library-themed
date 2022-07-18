@@ -1,6 +1,6 @@
 export interface CardProps {
     children: React.ReactNode;
-    loading?: boolean, 
+    loading?: boolean;
     type?: "danger" | "primary" | "secondary" | "success";
     className?: string;
     style?: object;

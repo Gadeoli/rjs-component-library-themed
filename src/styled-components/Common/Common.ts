@@ -461,6 +461,11 @@ export const RadioContainer = styled.div`
     align-items: center;
     flex-direction: row;
     cursor: pointer;
+
+    &.disabled{
+        cursor: default;
+        opacity: 0.6;
+    }
 `;
 
 export const RadioCircle = styled.div`

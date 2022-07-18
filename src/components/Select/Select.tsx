@@ -18,6 +18,7 @@ import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import Input from '../Input';
 import CardToggle from '../CardToggle';
+import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const Select: FC<SelectProps> = ({
     name,
@@ -29,6 +30,10 @@ const Select: FC<SelectProps> = ({
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
+    const classNamesSelectContainer = handleCssClassnames([
+        'cl-themed__select',
+        className
+    ]);
 
     const handleOnSelect = (selected : any) => {
         if(!multiple){
@@ -89,7 +94,7 @@ const Select: FC<SelectProps> = ({
         }
     }
 
-    return (<StyledSelectContainer className={`cl-themed__select ${className}`}>  
+    return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
@@ -133,7 +138,9 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
         
         <select name={name} multiple={multiple ? true : undefined}>
             {values.map((v, i) => {
-                return <option value={v.key} key={i} selected={v.selected ? true : undefined}>{v.value}</option>
+                // Dont use seleted on option tag. Instead use value prop on select tag
+                // return <option value={v.key} key={i} selected={v.selected ? true : undefined}>{v.value}</option>
+                return <option value={v.key} key={i}>{v.value}</option>
             })}
         </select>
         

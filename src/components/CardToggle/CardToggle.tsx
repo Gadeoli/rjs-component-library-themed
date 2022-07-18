@@ -2,6 +2,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { CardToggleProps } from './CardToggle.types';
 import { useElementSize, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
 import styled from 'styled-components';
+import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const CardToggle : FC<CardToggleProps> = ({
     toggleTrigger, 
@@ -12,6 +13,10 @@ const CardToggle : FC<CardToggleProps> = ({
     yOverride
 }) => {
     const [toggle, setToggle] = useState(true);
+    const toggleContainerClassNames = handleCssClassnames([
+        'cl-themed__card-toggle__toggle',
+        className
+    ]);
 
     /** Main control */
     const mainContainerRef = useRef();
@@ -83,7 +88,7 @@ const CardToggle : FC<CardToggleProps> = ({
         </TriggerContainer>
         
         <ToggleContainer
-            className="cl-themed__card-toggle__toggle"
+            className={toggleContainerClassNames}
             ref={toggleContainerRef} 
             show={toggle} 
             position={{
@@ -92,7 +97,6 @@ const CardToggle : FC<CardToggleProps> = ({
                 left,
                 right 
             }}
-            className={className}
         >
             {children}
         </ToggleContainer>

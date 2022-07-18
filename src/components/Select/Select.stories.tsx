@@ -24,7 +24,7 @@ const Template: Story<SelectProps> = (args) => {
                 emptyText={'select something here...'} 
                 values={vs} 
                 handleValues={({selected, values}) => {
-                    setVs(selected, values);
+                    setVs(values);
                 }}
             />
 

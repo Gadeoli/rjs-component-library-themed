@@ -9,6 +9,7 @@ import {
 import { useTheme } from '../ThemeHandler';
 import uniqid from 'uniqid';
 import { transparentize } from 'polished';
+import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const Toggle: FC<ToggleProps> = ({
     name,
@@ -37,16 +38,27 @@ const Toggle: FC<ToggleProps> = ({
         cicle: theme[type || "secondary"],
         background: theme.body
     }
+    const classNamesToggle = handleCssClassnames([
+        'cl-themed__toogle',
+        disabled ? 'disabled' : undefined,
+        className
+    ]);
+    const classNamesFill = handleCssClassnames([
+        'cl-themed__toogle__fill',
+        'fill',
+        disabled ? 'disabled' : undefined,
+    ]);
+
 
     if(!checked){
         colors.cicle = transparentize(0.5, colors.cicle)
     }
 
-    return (<StyledToggleContainer className={`cl-themed__toogle ${className} ${disabled}`} style={style}>
+    return (<StyledToggleContainer className={classNamesToggle} style={style}>
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
             <input name={name} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 
-            <StyledToggleFill className={`cl-themed__toogle__fill fill ${disabled ? 'disabled' : ''}`} sizes={sizes} colors={colors} checked={checked} onClick={() => {
+            <StyledToggleFill className={classNamesFill} sizes={sizes} colors={colors} checked={checked} onClick={() => {
                 !disabled && onChange(checked ? uncheckedValue : checkedValue)
             }}>
                 <StyledToggleFillIcon className='fill-icon' sizes={sizes} checked={checked}>

@@ -4,12 +4,18 @@ import { LoadingProps } from './Loading.types';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import './Loading.scss';
+import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, style}) => {
     const {theme} = useTheme();
     const [counter, setCounter] = useState(0);
     const [direction, setDirection] = useState(true); //up (true) or down (false)
     const max = text.length;
+    const classNamesLText = handleCssClassnames([
+        'cl-themed__loading__text',
+        type,
+        className
+    ]);
 
     useEffect(() => {
         let writter = setTimeout(() => {            
@@ -41,7 +47,7 @@ const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, styl
 
     return (<div className={`cl-themed__loading`}>
         <Span 
-            className={`cl-themed__loading__text ${type} ${className}`} 
+            className={classNamesLText} 
             theme={theme} 
             style={style}  
         >

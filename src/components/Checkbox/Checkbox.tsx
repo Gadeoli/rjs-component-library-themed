@@ -7,6 +7,7 @@ import {
 import { useTheme } from '../ThemeHandler';
 import uniqid from 'uniqid';
 import Span from '../Span';
+import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const Checkbox: FC<CheckboxProps> = ({
     name,
@@ -29,8 +30,13 @@ const Checkbox: FC<CheckboxProps> = ({
         unchecked: theme.body
     }
     const checked = value === checkedValue
+    const classNames = handleCssClassnames([
+        'cl-themed__checkbox',
+        disabled ? 'disabled' : undefined,
+        className
+    ]);
 
-    return (<StyledCheckboxContainer className={`cl-themed__checkbox ${disabled ? 'disabled' : ''} ${className}`} onClick={() => {
+    return (<StyledCheckboxContainer className={classNames} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
         <input type="checkbox" name={name} checked={checked ? true : undefined}/>

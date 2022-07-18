@@ -3,13 +3,19 @@ import React, { FC } from 'react';
 import { TitleHnProps } from './TitleHn.types';
 import { TitleHn as StyledTitleHn } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
+import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const TitleHn: FC<TitleHnProps> = ({n, children, className, type, style}) => {
     const {theme} = useTheme();
-    
+    const classNames = handleCssClassnames([
+        'cl-themed__title-hn',
+        type,
+        className
+    ]);
+
     return (<StyledTitleHn
         n={n}
-        className={`cl-themed__title-hn ${type} ${className}`} 
+        className={classNames} 
         theme={theme} 
         style={style}  
     >

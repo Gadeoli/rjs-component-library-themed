@@ -10,6 +10,7 @@ const RadioMulti: FC<RadioMultiProps> = ({
     className,
     style,
     size,
+    type,
     disabled,
     direction
 }) => {
@@ -23,6 +24,7 @@ const RadioMulti: FC<RadioMultiProps> = ({
                 text={i.value} 
                 disabled={disabled}
                 size={size}
+                type={type}
                 className={className}
                 style={style}
             />)
