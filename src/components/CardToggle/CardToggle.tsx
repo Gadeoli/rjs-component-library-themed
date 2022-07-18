@@ -13,8 +13,8 @@ const CardToggle : FC<CardToggleProps> = ({
     yOverride
 }) => {
     const [toggle, setToggle] = useState(true);
-    const toggleContainerClassNames = handleCssClassnames([
-        'cl-themed__card-toggle__toggle',
+    const classNamesMainContainer = handleCssClassnames([
+        'cl-themed__card-toggle',
         className
     ]);
 
@@ -82,13 +82,13 @@ const CardToggle : FC<CardToggleProps> = ({
         setToggle(initialToggle || false);
     }, [initialToggle]);
 
-    return (<MainCointainer className="cl-themed__card-toggle" ref={mainContainerRef}>
+    return (<MainCointainer className={classNamesMainContainer} ref={mainContainerRef}>
         <TriggerContainer className="cl-themed__card-toggle__trigger" ref={triggerContainerRef}>
             {toggleTrigger(() => setToggle(!toggle))}
         </TriggerContainer>
         
         <ToggleContainer
-            className={toggleContainerClassNames}
+            className={'cl-themed__card-toggle__toggle'}
             ref={toggleContainerRef} 
             show={toggle} 
             position={{
