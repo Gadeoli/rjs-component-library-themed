@@ -219,8 +219,9 @@ export const ImageContainer = styled.div`
 
     img{
         flex-shrink: 0;
-        min-width: 100%;
-        min-height: 100%;
+        width: ${(props: any) => props.width};
+        max-width: 100%;
+        max-height: 100%;
 
         transition: opacity .3s ease-in;
         transition: filter .3s ease-in;
