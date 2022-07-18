@@ -7,4 +7,5 @@ export interface ButtonProps {
     type?: "clean" | "danger" | "link" | "primary" | "secondary" | "success";
     className?: string;
     style?: object;
+    loading?: boolean;
 }

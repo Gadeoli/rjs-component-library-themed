@@ -17,7 +17,8 @@ Default.args = {
     n: 1,
     type: undefined,
     className: "",
-    style: {}
+    style: {},
+    loading: false
 }   
 
 Default.argTypes = {
@@ -25,6 +26,11 @@ Default.argTypes = {
         type: {name: 'number', required: false},
         defaultValue: 1,
         description: "font-size is equal: <br> n = 1 theme.fontSize.subtitle x 1; <br> n = 2 theme.fontSize.subtitle x 0.9;  <br>... <br> n = 9 theme.fontSize.subtitle x 0.1"
+    },
+    loading: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Loading effect, if true add a class: loading-effect to component'
     },
     type: {
         type: {name: 'string', required: false},

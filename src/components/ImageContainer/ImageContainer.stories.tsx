@@ -47,7 +47,7 @@ Default.argTypes = {
     loading: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
-        description: 'Apply a simple css loading effect'
+        description: 'Loading effect, if true add a class: loading-effect to component'
     },
     type: {
         type: {name: 'string', required: false},

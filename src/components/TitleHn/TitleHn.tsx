@@ -5,10 +5,11 @@ import { TitleHn as StyledTitleHn } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const TitleHn: FC<TitleHnProps> = ({n, children, className, type, style}) => {
+const TitleHn: FC<TitleHnProps> = ({n, children, className, loading, type, style}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__title-hn',
+        loading ? 'loading-effect' : undefined,
         type,
         className
     ]);
@@ -19,7 +20,7 @@ const TitleHn: FC<TitleHnProps> = ({n, children, className, type, style}) => {
         theme={theme} 
         style={style}  
     >
-        {children}
+        {!loading && children}
     </StyledTitleHn>);
 }
 

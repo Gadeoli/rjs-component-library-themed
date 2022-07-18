@@ -8,7 +8,7 @@ const Input: FC<InputProps> = ({name, disabled, value, type, className, style, o
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__input',
-        loading ? 'loading' : undefined,
+        loading ? 'loading-effect' : undefined,
         className
     ]);
 

@@ -16,7 +16,8 @@ export const Default = Template.bind({});
 Default.args = {
     type: "",
     className: "",
-    style: {}
+    style: {},
+    loading: false
 }   
 
 Default.argTypes = {
@@ -24,6 +25,11 @@ Default.argTypes = {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'danger | link | primary | secondary | success'
+    },
+    loading: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Loading effect, if true add a class: loading-effect to component'
     },
     className: {
         type: {name: 'string', required: false},

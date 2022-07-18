@@ -5,10 +5,11 @@ import { Span as StyledSpan } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const Span: FC<SpanProps> = ({children, className, type, style}) => {
+const Span: FC<SpanProps> = ({children, className, loading, type, style}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__span',
+        loading ? 'loading-effect' : undefined,
         type,
         className
     ]);
@@ -18,7 +19,7 @@ const Span: FC<SpanProps> = ({children, className, type, style}) => {
         theme={theme} 
         style={style}  
     >
-        {children}
+        {!loading && children}
     </StyledSpan>);
 }
 

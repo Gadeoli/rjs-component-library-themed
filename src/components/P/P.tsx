@@ -5,10 +5,11 @@ import { P as StyledP } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const P: FC<PProps> = ({children, className, type, style}) => {
+const P: FC<PProps> = ({children, className, loading, type, style}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__p',
+        loading ? 'loading-effect' : undefined,
         type,
         className
     ]);
@@ -18,7 +19,7 @@ const P: FC<PProps> = ({children, className, type, style}) => {
         theme={theme} 
         style={style}  
     >
-        {children}
+        {!loading && children}
     </StyledP>);
 }
 

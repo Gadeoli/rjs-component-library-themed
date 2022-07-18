@@ -4,10 +4,11 @@ import { Textarea as StyledTextarea } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const Textarea: FC<TextareaProps> = ({name, disabled, value, type, className, style, onChange}) => {
+const Textarea: FC<TextareaProps> = ({name, disabled, value, type, loading, className, style, onChange}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__textarea',
+        loading ? 'loading-effect' : undefined,
         type,
         className
     ]);

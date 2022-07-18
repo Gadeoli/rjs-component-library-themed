@@ -17,6 +17,7 @@ export const Default = Template.bind({});
 Default.args = {
     type: "",
     className: "",
+    loading: false,
     disabled: false,
     style: {},
     onClick: () => {console.log('hey')},
@@ -50,5 +51,10 @@ Default.argTypes = {
     },
     children: {
         description: 'ReactNode'
-    }
+    },
+    loading: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Loading effect, if true add a class: loading-effect to component'
+    },
 }

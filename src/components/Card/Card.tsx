@@ -9,7 +9,7 @@ const Card: FC<CardProps> = ({children, className, loading, type, style}) => {
     const classNames = handleCssClassnames([
         'cl-themed__card',
         type,
-        loading ? 'loading' : undefined,
+        loading ? 'loading-effect-card' : undefined,
         className
     ]);
 

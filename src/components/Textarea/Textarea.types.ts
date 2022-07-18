@@ -8,4 +8,5 @@ export interface TextareaProps {
     className?: string;
     style?: object;
     name: string;
+    loading?: boolean;
 }

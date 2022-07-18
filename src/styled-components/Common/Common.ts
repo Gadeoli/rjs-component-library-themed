@@ -4,6 +4,12 @@ import { shade } from 'polished';
 const defaultRadius = '.35rem';
 const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
 
+export const ShineAnimation = keyframes`
+    to {
+        background-position-x: -200%;
+    }
+`;
+
 export const Body = styled.div`
     min-height: 100vh;
     width: 100%;
@@ -94,11 +100,11 @@ export const Button = styled.button`
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
-`;
 
-export const ShineAnimation = keyframes`
-    to {
-        background-position-x: -200%;
+    &.loading-effect{
+        min-width: 50px;
+        min-height: 20px;
+        border-color: ${(props: any) => props.theme.border};
     }
 `;
 
@@ -114,7 +120,7 @@ export const Card = styled.div`
     border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.theme.background};
 
-    &.loading{
+    &.loading-effect-card{
         h2, h3, h4, p, span, image, div.loading-effect{
             width: 100%;
             min-height: 2rem;
@@ -127,13 +133,6 @@ export const Card = styled.div`
             background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
             background-size: 200% 100%;
             animation: ${ShineAnimation} 1.5s linear infinite;
-            
-            /*
-                animation-name: ${ShineAnimation};
-                animation-duration: 1.5s;
-                animation-timing-function: linear;
-                animation-iteration-count: infinite;
-            */
         }
     }
 
@@ -238,17 +237,6 @@ export const ImageContainer = styled.div`
         }
     }
 
-    &.loading-effect{
-        border-color: ${(props: any) => props.theme.background};
-        color: transparent;    
-        background-color: unset;
-        background-size: 200% 100%;
-        background: ${(props: any) => props.theme.body};
-        background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
-        background-size: 200% 100%;
-        animation: ${ShineAnimation} 1.5s linear infinite;
-    }
-
     &.full{
         width: 100%;
     }
@@ -277,6 +265,8 @@ export const ImageContainer = styled.div`
 export const Span = styled.span`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
+    min-height: 10px;
+    min-width: 30px;
 
     &.danger{
         color: ${(props: any) => props.theme.danger};
@@ -304,6 +294,13 @@ export const Span = styled.span`
 
     &.blink{
         animation: ${BlinkerAnimation} .7s linear infinite;
+    }
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 50px;
+        border-radius: 4px;
+        display: inline-block;
     }
 `;
 
@@ -333,6 +330,12 @@ export const P = styled.p`
 
     &.success{
         color: ${(props: any) => props.theme.success};
+    }
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 60px;
+        border-radius: 4px;
     }
 `;
 
@@ -367,6 +370,12 @@ export const TitleH1 = styled.h1`
     &.success{
         color: ${(props: any) => props.theme.success};
     }
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 60px;
+        border-radius: 4px;
+    }
 `;
 
 export const TitleHn = styled.h2`
@@ -399,6 +408,12 @@ export const TitleHn = styled.h2`
 
     &.success{
         color: ${(props: any) => props.theme.success};
+    }
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 60px;
+        border-radius: 4px;
     }
 `;
 
