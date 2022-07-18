@@ -1,4 +1,5 @@
 export interface ImageContainerProps {
+    alt?: string;
     width?: string;
     height?: string;
     opacityEffect?: boolean;

@@ -29,6 +29,9 @@ Default.argTypes = {
     src: {
         description: 'image source'
     },
+    alt: {
+        description: 'a alt img text'
+    },
     width: {
         type: {name: 'string', required: false},
         defaultValue: '150px',

@@ -4,7 +4,7 @@ import { ImageContainer as StyledImageContainer } from '../../styled-components/
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const ImageContainer: FC<ImageContainerProps> = ({height, width, loading, opacityEffect, src, className, type, style}) => {
+const ImageContainer: FC<ImageContainerProps> = ({height, width, loading, opacityEffect, src, className, type, style, alt}) => {
     const {theme} = useTheme();
     const defaultSize = '150px';
     const classNames = handleCssClassnames([
@@ -22,7 +22,7 @@ const ImageContainer: FC<ImageContainerProps> = ({height, width, loading, opacit
         theme={theme}
         style={style}
     >
-        {!loading && src && <img src={src} />}
+        {!loading && src && <img src={src} alt={alt}/>}
     </StyledImageContainer>);
 }
 
