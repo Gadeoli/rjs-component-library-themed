@@ -10,7 +10,7 @@ describe(compName, () => {
         test(`Renders the ${compName} component`, () => {
 
         render(<App4Test>
-            <Loading text="..." type="danger">abc</Loading>
+            <Loading text="..." type="danger" />
         </App4Test>);
     })
 })

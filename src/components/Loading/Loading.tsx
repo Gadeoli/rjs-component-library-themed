@@ -1,13 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { LoadingProps } from './Loading.types';
-import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import './Loading.scss';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, style}) => {
-    const {theme} = useTheme();
     const [counter, setCounter] = useState(0);
     const [direction, setDirection] = useState(true); //up (true) or down (false)
     const max = text.length;
@@ -48,14 +46,12 @@ const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, styl
     return (<div className={`cl-themed__loading`}>
         <Span 
             className={classNamesLText} 
-            theme={theme} 
             style={style}  
         >
             {text.substring(0, counter)}
         </Span>
         {cursor && <Span 
             className={`cl-themed__loading__cursor ${type} blink`} 
-            theme={theme} 
         >|</Span>}
     </div>);
 }
