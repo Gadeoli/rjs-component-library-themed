@@ -11,7 +11,7 @@ describe(compName, () => {
         test(`Renders the ${compName} component`, () => {
 
         render(<App4Test>
-            <Label text="label para o input XPTO"/>
+            <Label>label para o input XPTO</Label>
         </App4Test>);
     })
 })

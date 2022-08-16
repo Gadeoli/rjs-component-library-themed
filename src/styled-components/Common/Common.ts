@@ -268,6 +268,7 @@ export const Label = styled.label`
     font-size: ${(props: any) => (props.theme.fontSize.text * 0.75)+"rem"};
     min-height: 10px;
     min-width: 30px;
+    margin-bottom: 5px;
 
     &.loading-effect{
         min-height: 20px;
@@ -276,7 +277,6 @@ export const Label = styled.label`
         display: inline-block;
     }
 `;
-
 
 export const Span = styled.span`
     color: ${(props: any) => props.theme.text};
@@ -431,6 +431,12 @@ export const TitleHn = styled.h2`
         min-width: 60px;
         border-radius: 4px;
     }
+`;
+
+export const InputContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 `;
 
 export const Input = styled.input`

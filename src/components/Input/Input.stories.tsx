@@ -3,8 +3,9 @@ import { ComponentMeta, Story } from "@storybook/react";
 import Input from './Input';
 import { InputProps } from "./Input.types";
 import Card from "../Card";
-import { CardContent } from "../../styled-components/Common/Common";
+import { CardContent, InputContainer } from "../../styled-components/Common/Common";
 import Span from "../Span";
+import Label from "../Label";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -17,14 +18,17 @@ const Template: Story<InputProps> = (args) => {
 
     return( <Card>
         <CardContent>
-            <Input 
-                {...args}
-                value={value}
-                name="myinput"
-                onChange={(value) => setValue(value) }
-            />
+            <InputContainer>
+                <Label htmlFor="myinput">myinput label</Label>
+                <Input 
+                    {...args}
+                    value={value}
+                    onChange={(e) => setValue(e.target.value) }
+                />
+            </InputContainer>
+            
 
-            <br/> <br/> <Span>Card - CardContent - Input</Span>
+            <br/> <br/> <Span>Card - CardContent - InputContainer - Label + Input</Span>
         </CardContent>
     </Card>)
 };
@@ -79,7 +83,7 @@ Default.argTypes = {
         size: { control: 'radio' }
     },
     onChange: {
-        description: 'function to run on onchange event. this will recieve the value changed'
+        description: 'function to run on onchange event. this will recieve the event'
     },
     onFocus: {
         description: 'not required. function to run on onfocus event. this will recieve the event'

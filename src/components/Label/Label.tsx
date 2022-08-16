@@ -4,7 +4,7 @@ import { useTheme } from '../ThemeHandler';
 import { Label as StyledLabel } from '../../styled-components/Common';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const Label: FC<LabelProps> = ({htmlFor, text, className, style, loading}) => {
+const Label: FC<LabelProps> = ({htmlFor, children, className, style, loading}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__label',
@@ -12,7 +12,7 @@ const Label: FC<LabelProps> = ({htmlFor, text, className, style, loading}) => {
         className
     ]);
 
-    return (<StyledLabel htmlFor={htmlFor} theme={theme} className={classNames} style={style}>{!loading && text}</StyledLabel>);
+    return (<StyledLabel htmlFor={htmlFor} theme={theme} className={classNames} style={style}>{!loading && children}</StyledLabel>);
 }
 
 export default Label;

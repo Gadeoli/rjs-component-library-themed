@@ -10,6 +10,7 @@ export {
     CheckboxSquare,
     ImageContainer,
     Input,
+    InputContainer,
     Label,
     P,
     RadioCircle,

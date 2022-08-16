@@ -19,9 +19,7 @@ const Input: FC<InputProps> = ({name, disabled, value, type, className, style, l
         disabled={disabled}
         theme={theme} 
         value={value}
-        onChange={(e) => {
-            onChange(e.target.value);
-        }} 
+        onChange={(e: any) => onChange(e)}
         onBlur={(e: any) => onBlur && onBlur(e)}
         onFocus={(e: any) => onFocus && onFocus(e)}
         style={style} 

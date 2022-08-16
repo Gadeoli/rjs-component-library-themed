@@ -15,7 +15,7 @@ export default {
 const Template: Story<LabelProps> = (args) => {
     return( <Card>
         <CardContent>
-            <Label {...args}>{args.text}</Label>
+            <Label {...args}>{args.children}</Label>
             
 
             <br/> <br/> <Span>Card - CardContent - Label</Span>
@@ -28,7 +28,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     htmlFor:"myinput",
-    text:"label for my input xpto",
+    children:"label for my input xpto",
 }   
 
 Default.argTypes = {

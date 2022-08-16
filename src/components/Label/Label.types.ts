@@ -1,6 +1,8 @@
+import { ReactNode } from "react";
+
 export interface LabelProps {
     htmlFor?: string;
-    text: string;
+    children: ReactNode;
     className?: string;
     style?: object; 
     loading?: boolean;
