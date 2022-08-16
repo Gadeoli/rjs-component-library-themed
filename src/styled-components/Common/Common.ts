@@ -433,7 +433,7 @@ export const TitleHn = styled.h2`
     }
 `;
 
-export const InputContainer = styled.div`
+export const FormGroup = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;

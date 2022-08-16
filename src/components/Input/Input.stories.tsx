@@ -3,9 +3,10 @@ import { ComponentMeta, Story } from "@storybook/react";
 import Input from './Input';
 import { InputProps } from "./Input.types";
 import Card from "../Card";
-import { CardContent, InputContainer } from "../../styled-components/Common/Common";
 import Span from "../Span";
 import Label from "../Label";
+import CardContent from "../CardContent";
+import FormGroup from "../FormGroup";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,17 +19,17 @@ const Template: Story<InputProps> = (args) => {
 
     return( <Card>
         <CardContent>
-            <InputContainer>
+            <FormGroup>
                 <Label htmlFor="myinput">myinput label</Label>
                 <Input 
                     {...args}
                     value={value}
                     onChange={(e) => setValue(e.target.value) }
                 />
-            </InputContainer>
+            </FormGroup>
             
 
-            <br/> <br/> <Span>Card - CardContent - InputContainer - Label + Input</Span>
+            <br/> <br/> <Span>Card - CardContent - FormGroup - Label + Input</Span>
         </CardContent>
     </Card>)
 };
