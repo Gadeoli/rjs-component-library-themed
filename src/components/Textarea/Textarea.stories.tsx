@@ -36,7 +36,6 @@ const Template: Story<TextareaProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "text",
     disabled: false,
     loading: false
 }   
@@ -46,11 +45,6 @@ Default.argTypes = {
         type: {name: 'string', required: true},
         defaultValue: '',
         description: 'Textarea name'
-    },
-    type: {
-        type: {name: 'string', required: false},
-        defaultValue: '',
-        description: 'text | number'
     },
     loading: {
         type: {name: 'boolean', required: false},

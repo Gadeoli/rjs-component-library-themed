@@ -2,11 +2,16 @@ import React, { MouseEventHandler } from "react";
 
 export interface TextareaProps {
     onChange: MouseEventHandler<HTMLButtonElement>;
-    type: "text" | "number";
-    value: "text" | "number";    
+    onBlur?: MouseEventHandler<HTMLButtonElement>;
+    onFocus?: MouseEventHandler<HTMLButtonElement>;
+    id?: string;
+    name: string;
+    value: any;    
     disabled?: boolean;
     className?: string;
+    placeholder?: string;
+    readonly?: boolean;
+    rows?: number;
     style?: object;
-    name: string;
     loading?: boolean;
 }

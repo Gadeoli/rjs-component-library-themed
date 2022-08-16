@@ -33,12 +33,20 @@ const Template: Story<InputProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
+    id:"myinput",
+    name:"myinput",
     type: "text",
+    placeholder: "",
     disabled: false,
     loading: false
 }   
 
 Default.argTypes = {
+    id: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: 'Input id'
+    },
     name: {
         type: {name: 'string', required: true},
         defaultValue: '',
@@ -47,7 +55,7 @@ Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number'
+        description: 'text | number | password | hidden'
     },
     loading: {
         type: {name: 'boolean', required: false},
@@ -57,7 +65,7 @@ Default.argTypes = {
     value: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number'
+        description: 'text | number | password | hidden'
     },
     className: {
         type: {name: 'string', required: false},
@@ -72,5 +80,11 @@ Default.argTypes = {
     },
     onChange: {
         description: 'function to run on onchange event. this will recieve the value changed'
+    },
+    onFocus: {
+        description: 'not required. function to run on onfocus event. this will recieve the event'
+    },
+    onBlur: {
+        description: 'not required. function to run on onblur event. this will recieve the event'
     },
 }

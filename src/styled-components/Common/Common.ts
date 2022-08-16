@@ -263,6 +263,21 @@ export const ImageContainer = styled.div`
     }
 `
 
+export const Label = styled.label`
+    color: ${(props: any) => props.theme.text};
+    font-size: ${(props: any) => (props.theme.fontSize.text * 0.75)+"rem"};
+    min-height: 10px;
+    min-width: 30px;
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 50px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+`;
+
+
 export const Span = styled.span`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
