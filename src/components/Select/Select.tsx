@@ -130,7 +130,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
 
     return (<StyledSelectDrawer className='cl-themed__select__drawer' theme={theme}>
         <StyledSelectDrawerSearchContainer className='cl-themed__select__drawer__search'>
-            <Input theme={theme} value={search} className='full' onChange={(e) => setSearch(e)}/>
+            <Input theme={theme} value={search} className='full' onChange={(e: any) => setSearch(e.target.value)}/>
             <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={() => {
                 setSearch('')
             }}>&#10006;</StyledSelectBtn>
