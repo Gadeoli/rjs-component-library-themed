@@ -1,5 +1,5 @@
 export interface SelectProps {
-    name: '',
+    name: string,
     emptyText: string,          //a text to show when none value is selected
     values: Array<object>,     //an array of obj {key: k, value: v, selected: true}
     handleValues: (any) => any, //

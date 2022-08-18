@@ -6,6 +6,7 @@ import Span from "../Span";
 import { SelectProps } from "./Select.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData } from "../../data";
+import Input from "../Input";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -15,6 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
+    const [value, setValue] = useState();
 
     return( <Card>
         <CardContent>
@@ -62,6 +64,11 @@ Default.argTypes = {
         type: {name: 'any', required: true},
         defaultValue: '',
         description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed'
+    },
+    className: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: 'full;'
     },
     style: {
         type: {name: 'other', required: false},

@@ -465,7 +465,7 @@ export const Textarea = styled.textarea`
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     min-height: 10rem;
-    padding: .5rem .75rem;
+    padding: .25rem .5rem;
 
     &.full{
         width: 100%;
@@ -635,18 +635,23 @@ export const CheckboxSquare = styled.div`
 /* Select Component */
 export const SelectContainer = styled.div`
     position: relative;
-    width: 100%;
+    width: fit-content;
+    min-width: 150px;
+
+    &.full{
+        width: 100%;
+    }
 `;
 
 export const SelectedResult = styled.div`
     background-color: transparent;
     border: 0;
-    border: 1px solid ${(props: any) => props.theme.border};
+    border: 1.5px solid ${(props: any) => props.theme.border};
     color: ${(props: any) => props.theme.text};
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     box-sizing: border-box;
-    padding: .5rem .75rem;
+    padding: .25rem .5rem;
     cursor: pointer;
     display: flex;
     flex-wrap: wrap;
@@ -656,6 +661,7 @@ export const SelectedResult = styled.div`
 
 export const SelectedResultItem = styled.span`
     font-family: ${(props: any) => props.theme.fonts.primary}, sans-serif;
+    font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
     background-color: ${(props: any) => props.theme.body};
     color: ${(props: any) => props.theme.text};
     border-radius: ${defaultRadius};
@@ -680,7 +686,7 @@ export const SelectDrawer = styled.div`
     padding: 0;
     margin-top: .5rem;
     z-index: 100;
-    padding: .5rem .75rem;
+    padding: .25rem .5rem;
     background-color: ${(props: any) => props.theme.background};
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: 4px;  
@@ -693,11 +699,13 @@ export const SelectDrawer = styled.div`
 
 export const SelectDrawerSearchContainer = styled.div`
     position: relative;
-
+    display: flex;
     button{
-        position: absolute;
-        top: .35rem;
-        right: .5rem;
+        font-size: 60%;
+        padding: 6px;
+        margin-left: -15px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
     }   
 `;
 

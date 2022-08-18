@@ -19,6 +19,7 @@ import Span from '../Span';
 import Input from '../Input';
 import CardToggle from '../CardToggle';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
+import Button from '../Button';
 
 const Select: FC<SelectProps> = ({
     name,
@@ -129,11 +130,11 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     /* eslint-enable */
 
     return (<StyledSelectDrawer className='cl-themed__select__drawer' theme={theme}>
-        <StyledSelectDrawerSearchContainer className='cl-themed__select__drawer__search'>
+        <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
             <Input theme={theme} value={search} className='full' onChange={(e: any) => setSearch(e.target.value)}/>
-            <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={() => {
+            <Button type='danger' onClick={() => {
                 setSearch('')
-            }}>&#10006;</StyledSelectBtn>
+            }}>&#10006;</Button>
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>
