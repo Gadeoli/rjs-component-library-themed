@@ -38,6 +38,11 @@ Default.argTypes = {
         defaultValue: '',
         description: 'The content that will be written/rewritten'
     },
+    align: {
+        type: {name: 'string', required: false},
+        defaultValue: 'center',
+        description: ''
+    },
     timeout: {
         type: {name: 'number', required: false},
         defaultValue: 500,

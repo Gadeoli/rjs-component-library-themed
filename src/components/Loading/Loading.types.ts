@@ -7,4 +7,5 @@ export interface LoadingProps {
     type?: "danger" | "link" | "primary" | "secondary" | "success";
     className?: string;
     style?: object;
+    align?: string;
 }

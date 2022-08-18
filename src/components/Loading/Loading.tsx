@@ -4,8 +4,9 @@ import { LoadingProps } from './Loading.types';
 import Span from '../Span';
 import './Loading.scss';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
+import { LoadingContainer } from '../../styled-components/Common/Common';
 
-const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, style}) => {
+const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, style, align = 'center'}) => {
     const [counter, setCounter] = useState(0);
     const [direction, setDirection] = useState(true); //up (true) or down (false)
     const max = text.length;
@@ -43,7 +44,7 @@ const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, styl
         }
     });
 
-    return (<div className={`cl-themed__loading`}>
+    return (<LoadingContainer align={align} className={`cl-themed__loading`}>
         <Span 
             className={classNamesLText} 
             style={style}  
@@ -53,7 +54,7 @@ const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, styl
         {cursor && <Span 
             className={`cl-themed__loading__cursor ${type} blink`} 
         >|</Span>}
-    </div>);
+    </LoadingContainer>);
 }
 
 export default Loading;

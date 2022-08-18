@@ -12,6 +12,7 @@ export {
     Input,
     FormGroup,
     Label,
+    LoadingContainer,
     P,
     RadioCircle,
     RadioContainer,

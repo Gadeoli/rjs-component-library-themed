@@ -728,4 +728,8 @@ export const SelectBtn = styled.button`
         background-color: ${(props: any) => shade(0.15, props.bgcolor)};
     }
 `;
+
+export const LoadingContainer = styled.div<{align: string}>`
+    text-align: ${props => props.align};
+`;
 /* End Select Component */
