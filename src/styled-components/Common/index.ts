@@ -34,3 +34,7 @@ export {
     ToggleFill,
     ToggleContainer
 } from "./Common";
+
+export {
+    Spinner
+} from './Spinners';

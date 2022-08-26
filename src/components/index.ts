@@ -15,6 +15,7 @@ export { default as P } from './P';
 export { default as Radio } from './Radio';
 export { default as Select } from './Select';
 export { default as Span } from './Span';
+export { default as Spinner } from './Spinner';
 export { default as Textarea } from './Textarea';
 export { default as TitleH1 } from './TitleH1';
 export { default as TitleHn } from './TitleHn';
