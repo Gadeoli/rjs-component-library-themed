@@ -92,4 +92,7 @@ Default.argTypes = {
     onBlur: {
         description: 'not required. function to run on onblur event. this will recieve the event'
     },
+    onKeyDown: {
+        description: 'not required. function to run on keydown event. this will recieve the event'
+    },
 }

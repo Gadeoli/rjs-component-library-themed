@@ -2,6 +2,7 @@ import React, { MouseEventHandler } from "react";
 
 export interface InputProps {
     onChange: MouseEventHandler<HTMLButtonElement>;
+    onKeyDown?: MouseEventHandler<HTMLButtonElement>;
     onBlur?: MouseEventHandler<HTMLButtonElement>;
     onFocus?: MouseEventHandler<HTMLButtonElement>;
     id?: string;
