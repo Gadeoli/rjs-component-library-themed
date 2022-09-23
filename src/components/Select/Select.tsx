@@ -107,7 +107,6 @@ const Select: FC<SelectProps> = ({
                 values={values} 
                 onSelect={(v) => handleValues(handleOnSelect(v))}
                 onSearch={(s) => handleValues(handleOnSearch(s))}
-                // onSearch={(s) => console.log()}
             />
         </CardToggle>
     </StyledSelectContainer>);
@@ -121,17 +120,14 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     onSearch, 
     theme
 }) => {
-    const [search, setSearch] = useState('')
-
-    /* eslint-disable */
-    useEffect(() => {
-        onSearch(search)
-    }, [search])
-    /* eslint-enable */
+    const [search, setSearch] = useState('');
 
     return (<StyledSelectDrawer className='cl-themed__select__drawer' theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
-            <Input theme={theme} value={search} className='full' onChange={(e: any) => setSearch(e.target.value)}/>
+            <Input theme={theme} value={search} className='full' onChange={(e: any) => {
+                setSearch(e.target.value);
+                onSearch(e.target.value);
+            }}/>
             <Button type='danger' onClick={() => {
                 setSearch('')
             }}>&#10006;</Button>
