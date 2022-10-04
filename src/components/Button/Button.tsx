@@ -8,7 +8,7 @@ const Button: FC<ButtonProps> = ({children, disabled, onClick, className, loadin
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__button',
-        type || 'primary',
+        type ? type : 'primary',
         loading ? 'loading-effect' : undefined,
         className
     ]);
