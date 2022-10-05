@@ -112,6 +112,7 @@ const MainCointainer = styled.div`
 const TriggerContainer = styled.div``;
 
 const ToggleContainer = styled.div`
+    z-index: 1;
     position: absolute;
     box-sizing: border-box;
     display: ${props => props.show ? 'block' : 'none'};
