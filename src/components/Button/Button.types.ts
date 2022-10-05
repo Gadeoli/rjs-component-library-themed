@@ -6,6 +6,7 @@ export interface ButtonProps {
     onClick: MouseEventHandler<HTMLButtonElement>;
     type?: "clean" | "danger" | "link" | "primary" | "secondary" | "success";
     className?: string;
+    action?: "button" | "submit";
     style?: object;
     loading?: boolean;
 }

@@ -4,7 +4,7 @@ import { Button as StyledButton } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const Button: FC<ButtonProps> = ({children, disabled, onClick, className, loading, type, style}) => {
+const Button: FC<ButtonProps> = ({children, disabled, onClick, className, loading, type, action = 'button', style}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__button',
@@ -19,7 +19,7 @@ const Button: FC<ButtonProps> = ({children, disabled, onClick, className, loadin
         theme={theme} 
         onClick={onClick} 
         style={style} 
-        type="button" 
+        type={action} 
     >
         {!loading && children}
     </StyledButton>);
