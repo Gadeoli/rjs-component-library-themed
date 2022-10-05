@@ -107,13 +107,11 @@ export default CardToggle;
 
 const MainCointainer = styled.div`
     position: relative;
-    z-index: 1;
 `;
 
 const TriggerContainer = styled.div``;
 
 const ToggleContainer = styled.div`
-    z-index: 2;
     position: absolute;
     box-sizing: border-box;
     display: ${props => props.show ? 'block' : 'none'};
