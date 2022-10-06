@@ -20,15 +20,18 @@ const Template: Story<SelectProps> = (args) => {
 
     return( <Card>
         <CardContent>
-            <Select 
-                {...args}
-                name="myselect"
-                emptyText={'select something here...'} 
-                values={vs} 
-                handleValues={({selected, values}) => {
-                    setVs(values);
-                }}
-            />
+            <form>
+                <Select 
+                    {...args}
+                    name="myselect"
+                    emptyText={'select something here...'} 
+                    values={vs} 
+                    handleValues={({selected, values}) => {
+                        setVs(values);
+                    }}
+                />
+            </form>
+            
 
             <br/> <br/> <Span>Card - CardContent - Select</Span>
         </CardContent>

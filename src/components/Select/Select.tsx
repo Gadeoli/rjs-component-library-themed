@@ -159,7 +159,7 @@ const DrawerItem: FC<DrawerItemProps> = ({
     item,
     handleSelect
 }) => {
-    return <StyledSelectDrawerItem onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
+    return <StyledSelectDrawerItem type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
 export default Select;
