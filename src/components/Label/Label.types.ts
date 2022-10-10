@@ -6,4 +6,5 @@ export interface LabelProps {
     className?: string;
     style?: object; 
     loading?: boolean;
+    required?: boolean;
 }

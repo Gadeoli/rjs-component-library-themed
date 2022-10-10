@@ -42,6 +42,11 @@ Default.argTypes = {
         defaultValue: false,
         description: 'Loading effect, if true add a class: loading-effect to component'
     },
+    required: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Add a * after label text'
+    },
     text: {
         type: {name: 'string', required: true},
         defaultValue: '',
