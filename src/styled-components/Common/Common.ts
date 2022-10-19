@@ -678,6 +678,8 @@ export const SelectedResultItem = styled.span`
 export const SelectDrawerContainer = styled.div`
     position: relative;
     width: 100%;
+    max-height: 350px;
+    overflow-y: auto;
 
     &.inline-options{
         display: flex;

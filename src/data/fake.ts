@@ -5,4 +5,12 @@ export const fruitData = [
     {key: 4, value: 'orange'},
     {key: 5, value: 'banana'},
     {key: 6, value: 'melon'},
+    {key: 7, value: 'tomato'},
+    {key: 8, value: 'kiwi'},
+    {key: 9, value: 'mango'},
+    {key: 10, value: 'pear'},
+    {key: 11, value: 'strawberry'},
+    {key: 12, value: 'papaya'},
+    {key: 13, value: 'coconut'},
+    {key: 14, value: 'avocado'}
 ];
