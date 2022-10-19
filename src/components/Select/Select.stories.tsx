@@ -29,6 +29,7 @@ const Template: Story<SelectProps> = (args) => {
                     handleValues={({selected, values}) => {
                         setVs(values);
                     }}
+                    inlineDrawer={true}
                 />
             </form>
             

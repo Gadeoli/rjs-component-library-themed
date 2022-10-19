@@ -27,7 +27,8 @@ const Select: FC<SelectProps> = ({
     values,         
     handleValues,
     multiple,
-    className
+    className,
+    inlineDrawer
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
@@ -107,6 +108,7 @@ const Select: FC<SelectProps> = ({
                 values={values} 
                 onSelect={(v) => handleValues(handleOnSelect(v))}
                 onSearch={(s) => handleValues(handleOnSearch(s))}
+                inlineDrawer={inlineDrawer ? inlineDrawer : false}
             />
         </CardToggle>
     </StyledSelectContainer>);
@@ -118,7 +120,8 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     values, 
     onSelect, 
     onSearch, 
-    theme
+    theme,
+    inlineDrawer
 }) => {
     const [search, setSearch] = useState('');
 
@@ -141,7 +144,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
             })}
         </select>
         
-        <StyledSelectDrawerContainer className='cl-themed__select__drawer__itens spacer mt-1'>
+        <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens spacer mt-1 ${inlineDrawer ? 'inline-options' : ''}`}>
             {values.map((v) => {
                 return v.selected || !v.hide ? (<DrawerItem 
                     handleSelect={(k) => onSelect(k)} 

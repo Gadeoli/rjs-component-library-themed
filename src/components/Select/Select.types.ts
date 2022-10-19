@@ -1,24 +1,26 @@
 export interface SelectProps {
-    name: string,
-    emptyText: string,          //a text to show when none value is selected
-    values: Array<object>,     //an array of obj {key: k, value: v, selected: true}
-    handleValues: (any) => any, //
-    multiple?: boolean,         //if allow to select multiple values
-    styles?: object,
-    className?: string,
+    name: string;
+    emptyText: string;         //a text to show when none value is selected
+    values: Array<object>;     //an array of obj {key: k, value: v, selected: true}
+    handleValues: (any) => any;//
+    multiple?: boolean;        //if allow to select multiple values
+    styles?: object;
+    className?: string;
+    inlineDrawer?: boolean; 
 }
 
 export interface DrawerItemProps {
-    theme: object, 
-    item: object,
-    handleSelect: (any) => any    
+    theme: object;
+    item: object;
+    handleSelect: (any) => any;    
 }
 
 export interface SelectDrawerProps {
-    multiple?: boolean,
-    name: string,
-    values: Array<object>, 
-    onSelect: (any) => any, 
-    onSearch: (any) => any, 
-    theme: object
+    multiple?: boolean;
+    name: string;
+    values: Array<object>; 
+    onSelect: (any) => any; 
+    onSearch: (any) => any; 
+    theme: object;
+    inlineDrawer?: boolean; 
 }

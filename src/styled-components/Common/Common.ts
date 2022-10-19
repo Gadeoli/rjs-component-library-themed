@@ -678,6 +678,12 @@ export const SelectedResultItem = styled.span`
 export const SelectDrawerContainer = styled.div`
     position: relative;
     width: 100%;
+
+    &.inline-options{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }   
 `;
 
 export const SelectDrawer = styled.div`
@@ -728,7 +734,7 @@ export const SelectBtn = styled.button`
     border-radius: ${defaultRadius};
     text-align: center;
     cursor: pointer;
-    z-index: 101;
+    z-index: 1;
     color: ${(props: any) => shade(0.15, props.color)};;
 
     :hover{
