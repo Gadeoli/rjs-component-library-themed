@@ -10,20 +10,28 @@ const CardToggle : FC<CardToggleProps> = ({
     children, 
     className,
     xOverride,
-    yOverride
+    yOverride,
+    parentToggleStateControl
 }) => {
     const [toggle, setToggle] = useState(true);
     const classNamesMainContainer = handleCssClassnames([
         'cl-themed__card-toggle',
         className
     ]);
+    
+    const handleToggle = (t: boolean) => {
+        setToggle(t);
+        if(parentToggleStateControl){
+            parentToggleStateControl(t);
+        }
+    }
 
     /** Main control */
     const mainContainerRef = useRef();
     useOnClickOutside(mainContainerRef, (e: any) => clickOutSideAction(e));
     const clickOutSideAction = (e: any) => {
         if(toggle){
-            setToggle(false);
+            handleToggle(false);
         }
     }
     useOnPressKey(mainContainerRef, 27, clickOutSideAction);
@@ -79,12 +87,12 @@ const CardToggle : FC<CardToggleProps> = ({
     useEffect(() => {
         //set toggle false here because if start the component
         //with display hidden cause failure to calc the position sizes
-        setToggle(initialToggle || false);
+        handleToggle(initialToggle || false);
     }, [initialToggle]);
 
     return (<MainCointainer className={classNamesMainContainer} ref={mainContainerRef}>
         <TriggerContainer className="cl-themed__card-toggle__trigger" ref={triggerContainerRef}>
-            {toggleTrigger(() => setToggle(!toggle))}
+            {toggleTrigger(() => handleToggle(!toggle) )}
         </TriggerContainer>
         
         <ToggleContainer

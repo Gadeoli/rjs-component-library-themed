@@ -12,7 +12,9 @@ import {
     SelectDrawer as StyledSelectDrawer,
     SelectDrawerSearchContainer as StyledSelectDrawerSearchContainer,
     SelectDrawerItem as StyledSelectDrawerItem,
-    SelectBtn as StyledSelectBtn
+    SelectBtn as StyledSelectBtn,
+    SelectDropSymbol as StyledSelectDropSymbol,
+    SelectSelectedOptions as StyledSelectSelectedOptions
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
@@ -41,7 +43,6 @@ const Select: FC<SelectProps> = ({
         if(!multiple){
             const prev = values.filter(v => v.key === selected && v?.selected === true);
 
-            setShowDrawer(!showDrawer)
             return {
                 selected: prev && prev.length ? null : selected,
                 values: [...values].map(i => {
@@ -80,24 +81,25 @@ const Select: FC<SelectProps> = ({
     }
 
     const renderSelected = () => {
-        const selected = [...values].filter(i => i.selected)
+        const selected = [...values].filter(i => i.selected);
+        const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
+            <Span theme={theme}>{sel.value}</Span> 
+            
+            <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={(e) => {
+                e.stopPropagation()
+                handleValues(handleOnSelect(sel.key))
+            }}>&#10006;</StyledSelectBtn>
+        </StyledSelectedResultItem>) : '';
 
-        if(selected && selected.length){
-            return selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
-                <Span theme={theme}>{sel.value}</Span> 
-                
-                <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={(e) => {
-                    e.stopPropagation()
-                    handleValues(handleOnSelect(sel.key))
-                }}>&#10006;</StyledSelectBtn>
-            </StyledSelectedResultItem>)
-        }else{
-            return <Span theme={theme} onClick={() => setShowDrawer(!showDrawer)}>{emptyText}</Span>
-        }
+        return (<StyledSelectSelectedOptions>
+            {selected && selected.length ? (<>{selections}</>) : (<Span theme={theme}>{emptyText}</Span>)}
+            <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
+        </StyledSelectSelectedOptions>);
     }
 
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
+            parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
         >

@@ -5,4 +5,5 @@ export interface CardToggleProps {
     className?: string;
     xOverride?: "left" | "right";
     yOverride?: "top" | "bottom";
+    parentToggleStateControl?: any;
 }

@@ -25,6 +25,8 @@ export {
     SelectDrawerSearchContainer,
     SelectDrawerItem,
     SelectBtn,
+    SelectDropSymbol,
+    SelectSelectedOptions,
     Span,
     Textarea,
     TitleH1,

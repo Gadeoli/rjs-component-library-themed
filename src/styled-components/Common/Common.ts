@@ -735,11 +735,52 @@ export const SelectBtn = styled.button`
     border-radius: ${defaultRadius};
     text-align: center;
     cursor: pointer;
-    color: ${(props: any) => shade(0.15, props.color)};;
+    color: ${(props: any) => shade(0.15, props.color)};
 
     :hover{
         border: 1px solid ${(props: any) => shade(0.15, props.bgcolor)};
         background-color: ${(props: any) => shade(0.15, props.bgcolor)};
+    }
+`;
+
+export const SelectSelectedOptions = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+`
+
+export const SelectDropSymbol = styled.div`
+    position: relative;
+    height: 15px;
+    width: 15px;
+    margin-left: 15px;
+
+    &::before,&::after{
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        width: 0.5rem;
+        height: 3px;
+        transition: all 0.5s;
+        background-color: ${props => props.theme.border};
+    }
+
+    &::before{
+        left: -0.1rem;
+        transform: rotate(45deg);
+    }
+
+    &.toggled::before{
+        transform: rotate(-45deg) !important;
+    }
+
+    &::after {
+        left: 0.15rem;
+        transform: rotate(-45deg);
+    }
+
+    &.toggled::after{
+        transform: rotate(45deg) !important;
     }
 `;
 
