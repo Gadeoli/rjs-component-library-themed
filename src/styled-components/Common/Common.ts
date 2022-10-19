@@ -691,7 +691,6 @@ export const SelectDrawer = styled.div`
     margin: 0;
     padding: 0;
     margin-top: .5rem;
-    z-index: 100;
     padding: .25rem .5rem;
     background-color: ${(props: any) => props.theme.background};
     border: 1px solid ${(props: any) => props.theme.border};
@@ -734,7 +733,6 @@ export const SelectBtn = styled.button`
     border-radius: ${defaultRadius};
     text-align: center;
     cursor: pointer;
-    z-index: 1;
     color: ${(props: any) => shade(0.15, props.color)};;
 
     :hover{
