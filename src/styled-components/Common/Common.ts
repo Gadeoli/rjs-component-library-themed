@@ -747,6 +747,10 @@ export const SelectSelectedOptions = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+
+    & > div{
+        display: flex;
+    }
 `
 
 export const SelectDropSymbol = styled.div`

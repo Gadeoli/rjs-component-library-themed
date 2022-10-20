@@ -92,7 +92,12 @@ const Select: FC<SelectProps> = ({
         </StyledSelectedResultItem>) : '';
 
         return (<StyledSelectSelectedOptions>
-            {selected && selected.length ? (<>{selections}</>) : (<Span theme={theme}>{emptyText}</Span>)}
+            <div>
+                {selected && selected.length ? 
+                    (<>{selections}</>) : 
+                    (<Span theme={theme}>{emptyText}</Span>)
+                }
+            </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
         </StyledSelectSelectedOptions>);
     }

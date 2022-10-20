@@ -24,6 +24,7 @@ const Template: Story<SelectProps> = (args) => {
                 <Select 
                     {...args}
                     name="myselect"
+                    className="full"
                     emptyText={'select something here...'} 
                     values={vs} 
                     handleValues={({selected, values}) => {
