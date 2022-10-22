@@ -27,6 +27,7 @@ export {
     SelectBtn,
     SelectDropSymbol,
     SelectSelectedOptions,
+    SearchLoadingContainer,
     Span,
     Textarea,
     TitleH1,

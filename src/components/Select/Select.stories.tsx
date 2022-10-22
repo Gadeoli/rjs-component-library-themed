@@ -30,6 +30,9 @@ const Template: Story<SelectProps> = (args) => {
                     handleValues={({selected, values}) => {
                         setVs(values);
                     }}
+                    handleSelect={(s) => {
+                        console.log(s)
+                    }}
                     inlineDrawer={true}
                 />
             </form>
@@ -69,6 +72,17 @@ Default.argTypes = {
         type: {name: 'any', required: true},
         defaultValue: '',
         description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed'
+    },
+    handleSearch: {
+        type: {name: 'any', required: false},
+        defaultValue: '',
+        description: 'function to run on onsearch event. this will recieve the search value'
+    },
+    isSearching: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'If true show a loading content on search field',
+        size: { control: 'radio' }
     },
     className: {
         type: {name: 'string', required: false},

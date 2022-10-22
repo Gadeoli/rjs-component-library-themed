@@ -704,9 +704,24 @@ export const SelectDrawer = styled.div`
     }
 `;
 
+export const SearchLoadingContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: ${props => props.theme.background};
+    opacity: 0.5;
+`;
+
 export const SelectDrawerSearchContainer = styled.div`
     position: relative;
     display: flex;
+    overflow: hidden;
     button{
         font-size: 60%;
         padding: 6px;

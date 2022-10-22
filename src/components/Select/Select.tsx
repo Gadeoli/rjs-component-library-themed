@@ -14,7 +14,8 @@ import {
     SelectDrawerItem as StyledSelectDrawerItem,
     SelectBtn as StyledSelectBtn,
     SelectDropSymbol as StyledSelectDropSymbol,
-    SelectSelectedOptions as StyledSelectSelectedOptions
+    SelectSelectedOptions as StyledSelectSelectedOptions,
+    SearchLoadingContainer as StyledSearchLoadingContainer
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
@@ -22,12 +23,15 @@ import Input from '../Input';
 import CardToggle from '../CardToggle';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
+import Spinner from '../Spinner';
 
 const Select: FC<SelectProps> = ({
     name,
     emptyText,      
     values,         
     handleValues,
+    handleSelect,
+    isSearching = false,
     multiple,
     className,
     inlineDrawer
@@ -112,9 +116,15 @@ const Select: FC<SelectProps> = ({
                 name={name}
                 multiple={multiple}
                 theme={theme} 
-                values={values} 
+                values={values}
+                isSearching={isSearching} 
                 onSelect={(v) => handleValues(handleOnSelect(v))}
-                onSearch={(s) => handleValues(handleOnSearch(s))}
+                onSearch={(s) => {
+                    handleValues(handleOnSearch(s));
+                    if(typeof handleSelect !== 'undefined'){
+                        handleSelect(s);
+                    }
+                }}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
             />
         </CardToggle>
@@ -127,6 +137,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     values, 
     onSelect, 
     onSearch, 
+    isSearching = false,
     theme,
     inlineDrawer
 }) => {
@@ -138,6 +149,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                 setSearch(e.target.value);
                 onSearch(e.target.value);
             }}/>
+            {isSearching ? (<StyledSearchLoadingContainer theme={theme}><Spinner size={2}/></StyledSearchLoadingContainer>) : null}
             <Button type='danger' onClick={() => {
                 setSearch('')
             }}>&#10006;</Button>

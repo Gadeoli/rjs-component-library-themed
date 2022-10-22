@@ -2,7 +2,9 @@ export interface SelectProps {
     name: string;
     emptyText: string;         //a text to show when none value is selected
     values: Array<object>;     //an array of obj {key: k, value: v, selected: true}
-    handleValues: (any) => any;//
+    handleValues:   (any) => any;//
+    handleSelect?:  (any) => any;//
+    isSearching?:   boolean;  
     multiple?: boolean;        //if allow to select multiple values
     styles?: object;
     className?: string;
@@ -21,6 +23,7 @@ export interface SelectDrawerProps {
     values: Array<object>; 
     onSelect: (any) => any; 
     onSearch: (any) => any; 
+    isSearching?:   boolean;  
     theme: object;
     inlineDrawer?: boolean; 
 }
