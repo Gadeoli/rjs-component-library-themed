@@ -185,3 +185,42 @@ const DrawerItem: FC<DrawerItemProps> = ({
 }
 
 export default Select;
+
+export const apiDataToSelect = ({
+    data=[],
+    key,
+    value,
+    selected,
+    delimiter='-'
+} : {
+    data: any;
+    key: string;
+    value: any;
+    selected: any;
+    delimiter: string;
+}) => {
+    return data.map((i: any) => {
+        let aux = {};
+
+        aux.key = i[key];
+
+        if(Array.isArray(value)){
+            aux.value = value.map((d, index) => {
+                const hasDelimiter = value.length > 1 && index + 1 !== value.length;
+                return  `${i[d]} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
+            })
+        }else{
+            aux.value = i[value];
+        }
+
+        if(selected){
+            if(Array.isArray(selected)){
+                aux.selected = selected.includes(i[key])
+            }else{
+                aux.selected = selected === i[key]
+            }
+        }
+
+        return aux;
+    });
+};
