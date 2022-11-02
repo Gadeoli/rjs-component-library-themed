@@ -43,7 +43,7 @@ const Checkbox: FC<CheckboxProps> = ({
         <StyledCheckboxSquare className={`cl-themed__checkbox__square ${disabled ? 'disabled' : ''}`} checked={checked} size={size} colors={colors}>
             {children}
         </StyledCheckboxSquare>
-        {text ? <Span className="cl-themed__checkbox__text" type={type}>{text}</Span> : null}
+        {text ? <Span className="cl-themed__checkbox__text">{text}</Span> : null}
     </StyledCheckboxContainer>)
 }
 
