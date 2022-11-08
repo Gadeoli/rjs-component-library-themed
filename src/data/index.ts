@@ -1,1 +1,1 @@
-export { fruitData } from './fake';
+export { fruitData, candyData } from './fake';

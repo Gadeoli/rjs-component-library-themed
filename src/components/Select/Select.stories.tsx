@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Story, ComponentMeta } from "@storybook/react";
-import Select from './Select';
+import Select, { apiDataToSelect } from './Select';
 import Card from "../Card";
 import Span from "../Span";
 import { SelectProps } from "./Select.types";
 import { CardContent } from "../../styled-components/Common/Common";
-import { fruitData } from "../../data";
+import { fruitData, candyData } from "../../data";
 import Input from "../Input";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -17,6 +17,14 @@ export default {
 const Template: Story<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
     const [value, setValue] = useState();
+
+    const aux = apiDataToSelect({
+        data: candyData, 
+        key: 'id', 
+        value: ['name', 'extra.color']
+    });
+    const [candies, setCandies] = useState(aux);
+    const [candie, setCandie] = useState();
 
     return( <Card>
         <CardContent>
@@ -31,7 +39,25 @@ const Template: Story<SelectProps> = (args) => {
                         setVs(values);
                     }}
                     handleSelect={(s) => {
-                        console.log(s)
+                        // console.log(s)
+                    }}
+                    inlineDrawer={true}
+                />
+
+                <br />
+
+                <Select 
+                    {...args}
+                    name="myselect2"
+                    className="full"
+                    emptyText={'select something here...'} 
+                    values={candies} 
+                    handleValues={({selected, values}) => {
+                        setCandies(values);
+                        setCandie(selected);
+                    }}
+                    handleSelect={(s) => {
+                        // console.log(s)
                     }}
                     inlineDrawer={true}
                 />

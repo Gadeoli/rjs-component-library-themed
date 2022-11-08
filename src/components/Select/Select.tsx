@@ -196,28 +196,32 @@ export const apiDataToSelect = ({
     data: any;
     key: string;
     value: any;
-    selected: any;
-    delimiter: string;
+    selected?: any;
+    delimiter?: string;
 }) => {
-    return data.map((i: any) => {
+    return data.map((itemData: any) => {
         let aux = {};
 
-        aux.key = i[key];
+        //Set aux key from a custom given key (accept string: myKey, myKey.mySubKey)
+        // aux.key = i[key];
+        const iKey = key.split('.').reduce((k, ki) => k[ki], itemData);    
+        aux.key = iKey;
 
         if(Array.isArray(value)){
-            aux.value = value.map((d, index) => {
-                const hasDelimiter = value.length > 1 && index + 1 !== value.length;
-                return  `${i[d]} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
+            aux.value = value.map((valueItem, valueIndex) => {
+                const hasDelimiter = value.length > 1 && valueIndex + 1 !== value.length;
+                const iValue = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
+                return  `${iValue} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
             })
         }else{
-            aux.value = i[value];
+            aux.value = value.split('.').reduce((v, vi) => v[vi], itemData);
         }
 
         if(selected){
             if(Array.isArray(selected)){
-                aux.selected = selected.includes(i[key])
+                aux.selected = selected.includes(iKey)
             }else{
-                aux.selected = selected === i[key]
+                aux.selected = selected === iKey
             }
         }
 

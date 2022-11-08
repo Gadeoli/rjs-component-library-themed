@@ -14,3 +14,8 @@ export const fruitData = [
     {key: 13, value: 'coconut'},
     {key: 14, value: 'avocado'}
 ];
+
+export const candyData = [
+    {id: 1, name: 'chocolate', extra: {color: 'brown'}},
+    {id: 2, name: 'bubble gum', extra: {color: 'any'}}
+];
