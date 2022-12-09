@@ -1,6 +1,7 @@
 import React from "react";
 
 export interface SpanProps {
+    id?: string;
     type?: "danger" | "link" | "primary" | "secondary" | "success";
     className?: string;
     style?: object;

@@ -21,6 +21,11 @@ Default.args = {
 }   
 
 Default.argTypes = {
+    id: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: ''
+    },
     type: {
         type: {name: 'string', required: false},
         defaultValue: 'primary',
