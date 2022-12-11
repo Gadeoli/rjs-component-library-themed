@@ -803,6 +803,64 @@ export const SelectDropSymbol = styled.div`
     }
 `;
 
+export const TabsContent = styled.div`
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    background: ${props => props.theme.background};
+    border-radius: ${defaultRadius};
+`;
+
+export const TabsNav = styled.ul`
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid ${props => props.theme.border};
+    border-top-right-radius: ${defaultRadius};
+
+    li:first-child{
+        border-top-left-radius: ${defaultRadius};
+    }
+
+    li:last-child{
+        border-top-right-radius: ${defaultRadius};
+    }
+`;
+
+export const TabsNavItem = styled.li<{active: boolean}>`
+    padding: 8px 12px;
+    list-style: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    border: 1px solid ${props => props.theme.border};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.active{
+        border-color: ${props => props.theme.secondary};
+        color: ${props => props.theme.secondary};
+    }
+
+    &.emphasis-active{
+        padding: 10px 12px;
+        margin-top: -4px; //fix bigger padding
+        border-top-left-radius: ${defaultRadius};
+        border-top-right-radius: ${defaultRadius};
+    }
+`;
+
+export const TabsBody = styled.div`
+    min-height: 150px;
+    padding: 8px 12px;
+    border: 1px solid ${props => props.theme.border};
+    border-radius: ${defaultRadius};
+    border-top-left-radius: unset;
+    margin-top: -1px; //fix doble border (its border and the nav border)
+`;
+
 export const LoadingContainer = styled.div<{align: string}>`
     text-align: ${props => props.align};
 `;
