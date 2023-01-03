@@ -115,6 +115,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
+            fullToogle={true}
         >
             <SelectDrawer
                 name={name}
@@ -157,6 +158,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
                 value={search} 
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
+                className='full' 
                 onChange={(e: any) => {
                     setSearch(e.target.value);
                     

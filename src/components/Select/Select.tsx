@@ -125,6 +125,7 @@ const Select: FC<SelectProps> = ({
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
+            fullToogle={true}
         >
             <SelectDrawer
                 name={name}

@@ -6,4 +6,5 @@ export interface CardToggleProps {
     xOverride?: "left" | "right";
     yOverride?: "top" | "bottom";
     parentToggleStateControl?: any;
+    fullToogle?: boolean;
 }

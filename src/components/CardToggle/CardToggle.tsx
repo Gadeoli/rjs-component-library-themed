@@ -11,7 +11,8 @@ const CardToggle : FC<CardToggleProps> = ({
     className,
     xOverride,
     yOverride,
-    parentToggleStateControl
+    parentToggleStateControl,
+    fullToogle = false
 }) => {
     const [toggle, setToggle] = useState(true);
     const classNamesMainContainer = handleCssClassnames([
@@ -99,6 +100,7 @@ const CardToggle : FC<CardToggleProps> = ({
             className={'cl-themed__card-toggle__toggle'}
             ref={toggleContainerRef} 
             show={toggle} 
+            full={fullToogle}
             position={{
                 top,
                 bottom, 
@@ -119,8 +121,9 @@ const MainCointainer = styled.div`
 
 const TriggerContainer = styled.div``;
 
-const ToggleContainer = styled.div`
+const ToggleContainer = styled.div<{full: boolean}>`
     z-index: 1;
+    width: ${props => props.full ? "100%" : "auto"};
     position: absolute;
     box-sizing: border-box;
     display: ${props => props.show ? 'block' : 'none'};
