@@ -33,6 +33,5 @@ export interface SelectAsyncDrawerProps {
 
 export interface HandleSelectAsyncProps {
     oldValues: Array<object>, 
-    newValues: Array<object>, 
-    search: any
+    newValues: Array<object>
 }

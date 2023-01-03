@@ -211,10 +211,10 @@ const DrawerItem: FC<DrawerItemProps> = ({
 
 export const handleValuesAsync = (props: HandleSelectAsyncProps) => {
     // console.log(props);
-    const {oldValues, newValues, search} = props;
+    const {oldValues, newValues} = props;
 
     //only searched or selected (from oldValues)
-    const filteredData = oldValues.filter((ov: any) => (ov.value.indexOf(search) !== -1) || ov.selected) || [];
+    const filteredData = oldValues.filter((ov: any) => ov.selected) || [];
     //get the filtered keys
     const filteredKeys = filteredData.map((fk: any) => fk.key);
 
@@ -222,7 +222,7 @@ export const handleValuesAsync = (props: HandleSelectAsyncProps) => {
     const exists = (key: any) =>  filteredKeys.some((k: any) => k === key);
 
     //the new Data
-    let newData = newValues.filter((nv: any) => !exists(nv.key) && (nv.value.indexOf(search) !== -1)) || [];
+    let newData = newValues.filter((nv: any) => !exists(nv.key)) || [];
     
     return newData.concat(filteredData);  
 }

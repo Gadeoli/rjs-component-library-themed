@@ -20,14 +20,15 @@ const Template: Story<SelectAsyncProps> = (args) => {
     const [selectSearching, setSelectSearching] = useState(false);
 
     const handleSelectSearchCall = (search: string) => {
-        //make axios call or something
+        //make axios call or something /users?search=search
         setSelectSearching(true);
 
         setTimeout(() => {
+            const newVs = fruitData.filter((fd : any) => (fd.value.indexOf(search) !== -1)) || [];
+
             const newValues = handleValuesAsync({
                 oldValues: vs, 
-                newValues: fruitData, //use apiDataToSelect if necessary. need a array of key value objects [{key: 1, value: "my value"}] 
-                search: search
+                newValues: newVs //use apiDataToSelect if necessary. need a array of key value objects [{key: 1, value: "my value"}] 
             });
 
             setVs([...newValues]);
