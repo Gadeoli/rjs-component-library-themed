@@ -722,13 +722,23 @@ export const SelectDrawerSearchContainer = styled.div`
     position: relative;
     display: flex;
     overflow: hidden;
+`;
+
+export const SelectDrawerSearchActions = styled.div<{outline: boolean}>`
+    display: flex;
+    align-items: center;
+    margin-left: -6px;
+    border: 2px solid ${props => props.outline ? props.theme.outline : props.theme.border};
+    border-left: unset;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    overflow: hidden;
+    
     button{
+        height: 100%;
         font-size: 60%;
-        padding: 6px;
-        margin-left: -15px;
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
-    }   
+        border-radius: unset;
+    }
 `;
 
 export const SelectDrawerItem = styled.button`

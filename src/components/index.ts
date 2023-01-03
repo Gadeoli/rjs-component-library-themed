@@ -14,6 +14,7 @@ export { default as Loading } from './Loading';
 export { default as P } from './P';
 export { default as Radio } from './Radio';
 export { default as Select, apiDataToSelect } from './Select';
+export { default as SelectAsync, handleValuesAsync } from './SelectAsync';
 export { default as Span } from './Span';
 export { default as Spinner } from './Spinner';
 export { default as Tabs } from './Tabs';

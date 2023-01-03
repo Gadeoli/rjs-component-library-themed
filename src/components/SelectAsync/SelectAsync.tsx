@@ -1,9 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 import { 
-    SelectProps, 
+    SelectAsyncProps, 
     DrawerItemProps,
-    SelectDrawerProps
-} from './Select.types';
+    SelectAsyncDrawerProps,
+    HandleSelectAsyncProps
+} from './SelectAsync.types';
 import { 
     SelectContainer as StyledSelectContainer,
     SelectedResult as StyledSelectedResult,
@@ -26,13 +27,14 @@ import Button from '../Button';
 import Spinner from '../Spinner';
 import { SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 
-const Select: FC<SelectProps> = ({
+const SelectAsync: FC<SelectAsyncProps> = ({
     name,
     emptyText,      
-    values,         
+    values,
     handleValues,
     handleSelect,
     isSearching = false,
+    manualSearch = true,
     multiple,
     className,
     inlineDrawer
@@ -43,19 +45,20 @@ const Select: FC<SelectProps> = ({
         'cl-themed__select',
         className
     ]);
+    const [search, setSearch] = useState<string>('');
 
     const handleOnSelect = (selected : any) => {
         if(!multiple){
-            const prev = values.filter(v => v.key === selected && v?.selected === true);
+            const prev = values.filter((v: any) => v.key === selected && v?.selected === true);
 
             return {
                 selected: prev && prev.length ? null : selected,
-                values: [...values].map(i => {
+                values: [...values].map((i: any) => {
                     return {...i, selected: i.selected ? false : i.key === selected}
-                }) 
+                })
             }
         }else{
-            const aux = [...values].map(i => {
+            const aux = [...values].map((i: any) => {
                 if(i.key !== selected){
                     return {...i}
                 }else{
@@ -70,8 +73,8 @@ const Select: FC<SelectProps> = ({
         }
     }
 
-    const handleOnSearch = (search: any) => {
-        let selected = values.filter(elF => elF.selected === true).map(elM => elM.key);
+    const handleOnSearch = (search: string) => {
+        let selected = values.filter((elF: any) => elF.selected === true).map(elM => elM.key);
 
         if(!multiple){
             selected = selected && selected.length ? selected[0] : null;
@@ -79,28 +82,15 @@ const Select: FC<SelectProps> = ({
 
         return {
             selected,
-            values: [...values].map(i => {
-                let finded = false;
-
-                if(Array.isArray(i.value)){
-                    for (let j = 0; j < i.value.length; j++) {
-                        const el = i.value[j];
-                        finded = el.indexOf(search) !== -1;
-
-                        if(finded) break;
-                    }
-                }else{
-                    finded = i.value.indexOf(search) !== -1;
-                }
-
-                return {...i, hide: search && !finded}
+            values: [...values].map((i: any) => {
+                return {...i, hide: search && i.value.indexOf(search) === -1}
             })
         }
     }
 
     const renderSelected = () => {
-        const selected = [...values].filter(i => i.selected);
-        const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
+        const selected = [...values].filter((i: any) => i.selected);
+        const selections = selected && selected.length ? selected.map((sel: any) => <StyledSelectedResultItem theme={theme} key={sel.key}>
             <Span theme={theme}>{sel.value}</Span> 
             
             <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={(e) => {
@@ -131,7 +121,8 @@ const Select: FC<SelectProps> = ({
                 multiple={multiple}
                 theme={theme} 
                 values={values}
-                isSearching={isSearching} 
+                isSearching={isSearching}
+                manualSearch={manualSearch} 
                 onSelect={(v) => handleValues(handleOnSelect(v))}
                 onSearch={(s) => {
                     handleValues(handleOnSearch(s));
@@ -145,12 +136,13 @@ const Select: FC<SelectProps> = ({
     </StyledSelectContainer>);
 }
 
-const SelectDrawer: FC<SelectDrawerProps> = ({
+const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
     multiple,
     name,
     values, 
     onSelect, 
     onSearch, 
+    manualSearch,
     isSearching = false,
     theme,
     inlineDrawer
@@ -165,20 +157,27 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                 value={search} 
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
-                className='full' 
                 onChange={(e: any) => {
                     setSearch(e.target.value);
-                    onSearch(e.target.value);
+                    
+                    if(!manualSearch){
+                        onSearch(e.target.value);
+                    }   
                 }
             }/>
+            
             {isSearching ? (<StyledSearchLoadingContainer theme={theme}><Spinner size={2}/></StyledSearchLoadingContainer>) : null}
+            
             <SelectDrawerSearchActions theme={theme} outline={inputFocus}>
+                {manualSearch ? (<Button type='success' onClick={() => {
+                    onSearch(search);
+                }}>&#10003;</Button>) : ('')}
+                
                 <Button type='danger' onClick={() => {
-                    setSearch('');
-                    onSearch('');
+                    setSearch('')
+                    if(manualSearch) onSearch('');
                 }}>&#10006;</Button>
             </SelectDrawerSearchActions>
-            
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>
@@ -210,47 +209,22 @@ const DrawerItem: FC<DrawerItemProps> = ({
     return <StyledSelectDrawerItem type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
-export default Select;
+export const handleValuesAsync = (props: HandleSelectAsyncProps) => {
+    // console.log(props);
+    const {oldValues, newValues, search} = props;
 
-export const apiDataToSelect = ({
-    data=[],
-    key,
-    value,
-    selected,
-    delimiter='-'
-} : {
-    data: any;
-    key: string;
-    value: any;
-    selected?: any;
-    delimiter?: string;
-}) => {
-    return data.map((itemData: any) => {
-        let aux = {};
+    //only searched or selected (from oldValues)
+    const filteredData = oldValues.filter((ov: any) => (ov.value.indexOf(search) !== -1) || ov.selected) || [];
+    //get the filtered keys
+    const filteredKeys = filteredData.map((fk: any) => fk.key);
 
-        //Set aux key from a custom given key (accept string: myKey, myKey.mySubKey)
-        // aux.key = i[key];
-        const iKey = key.split('.').reduce((k, ki) => k[ki], itemData);    
-        aux.key = iKey;
+    //a check - if the current key exists in filteredData
+    const exists = (key: any) =>  filteredKeys.some((k: any) => k === key);
 
-        if(Array.isArray(value)){
-            aux.value = value.map((valueItem, valueIndex) => {
-                const hasDelimiter = value.length > 1 && valueIndex + 1 !== value.length;
-                const iValue = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
-                return  `${iValue} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
-            })
-        }else{
-            aux.value = value.split('.').reduce((v, vi) => v[vi], itemData);
-        }
+    //the new Data
+    let newData = newValues.filter((nv: any) => !exists(nv.key) && (nv.value.indexOf(search) !== -1)) || [];
+    
+    return newData.concat(filteredData);  
+}
 
-        if(selected){
-            if(Array.isArray(selected)){
-                aux.selected = selected.includes(iKey)
-            }else{
-                aux.selected = selected === iKey
-            }
-        }
-
-        return aux;
-    });
-};
+export default SelectAsync;
