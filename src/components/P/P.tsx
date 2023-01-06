@@ -5,7 +5,7 @@ import { P as StyledP } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const P: FC<PProps> = ({children, className, loading, type, style}) => {
+const P: FC<PProps> = ({children, className, loading, type, style, onClick = () => {}}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__p',
@@ -18,6 +18,7 @@ const P: FC<PProps> = ({children, className, loading, type, style}) => {
         className={classNames} 
         theme={theme} 
         style={style}  
+        onClick={onClick}
     >
         {!loading && children}
     </StyledP>);

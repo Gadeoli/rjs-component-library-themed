@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 export interface SpanProps {
     id?: string;
@@ -7,4 +7,5 @@ export interface SpanProps {
     style?: object;
     children: React.ReactNode;
     loading?: boolean;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }

@@ -17,7 +17,8 @@ Default.args = {
     type: "danger",
     loading: false,
     className: "",
-    style: {}
+    style: {},
+    onClick: () => {console.log('hey')}
 }   
 
 Default.argTypes = {
