@@ -15,6 +15,11 @@ const CardToggle : FC<CardToggleProps> = ({
     fullToogle = false
 }) => {
     const [toggle, setToggle] = useState(true);
+    const [position, setPosition] = useState({
+        left: '0px', right: 'unset',
+        top: '0px', bottom: 'unset'
+    });
+
     const classNamesMainContainer = handleCssClassnames([
         'cl-themed__card-toggle',
         className
@@ -42,7 +47,7 @@ const CardToggle : FC<CardToggleProps> = ({
     const windowSize = useWindowSize();
     const toggleContainerRef = useRef();
     const toggleSize = useElementSize(toggleContainerRef);
-    
+
     const wWidth = windowSize.width;
     const tPositionX = toggleSize.position.x;
     const tWidth = toggleSize.width;
@@ -71,25 +76,36 @@ const CardToggle : FC<CardToggleProps> = ({
     }
 
     const handleAbsoluteY = () => {
+        // console.log({tPositionY, tHeight, wHeight});
         if(yOverride){
             return yOverride === 'top' ?
                 {top: 'unset', bottom: `${gHeight + 5}px`} :
                 {top: `${gHeight + 5}px`, bottom: 'unset'};
         }else{
-            return (tPositionY + tHeight) < (wHeight - tHeight) ? 
-                    {top: `${gHeight + 5}px`, bottom: 'unset'} :
-                    {top: 'unset', bottom: `${gHeight + 5}px`}
+            // return (tPositionY + tHeight) < (wHeight - tHeight) ?
+            return (tPositionY + tHeight) < wHeight ? 
+                {top: `${gHeight + 5}px`, bottom: 'unset'} :
+                {top: 'unset', bottom: `${gHeight + 5}px`};                    
         }
     }
-
-    const {left, right} = handleAbsoluteX();
-    const {top, bottom} = handleAbsoluteY();
     
+    useEffect(() => {
+        if(!initialToggle || toggle){
+            const {left, right} = handleAbsoluteX();
+            const {top, bottom} = handleAbsoluteY();
+
+            setPosition({
+                left, right,
+                top, bottom
+            });
+        }
+    }, [toggle]);
+
     useEffect(() => {
         //set toggle false here because if start the component
         //with display hidden cause failure to calc the position sizes
         handleToggle(initialToggle || false);
-    }, [initialToggle]);
+    }, [])
 
     return (<MainCointainer className={classNamesMainContainer} ref={mainContainerRef}>
         <TriggerContainer className="cl-themed__card-toggle__trigger" ref={triggerContainerRef}>
@@ -102,10 +118,10 @@ const CardToggle : FC<CardToggleProps> = ({
             show={toggle} 
             full={fullToogle}
             position={{
-                top,
-                bottom, 
-                left,
-                right 
+                top: position.top,
+                bottom: position.bottom, 
+                left: position.left,
+                right: position.right 
             }}
         >
             {children}

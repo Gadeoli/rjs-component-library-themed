@@ -63,6 +63,23 @@ const Template: Story<SelectProps> = (args) => {
                 />
             </form>
             
+            <div style={{paddingTop: '500px'}}>
+            <Select 
+                    {...args}
+                    name="myselect"
+                    className="full"
+                    emptyText={'select something here...'} 
+                    values={vs} 
+                    handleValues={({selected, values}) => {
+                        setVs(values);
+                    }}
+                    handleSelect={(s) => {
+                        // console.log(s)
+                    }}
+                    inlineDrawer={true}
+                />
+
+            </div>
 
             <br/> <br/> <Span>Card - CardContent - Select</Span>
         </CardContent>
