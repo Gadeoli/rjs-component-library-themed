@@ -76,7 +76,7 @@ const CardToggle : FC<CardToggleProps> = ({
                 {top: 'unset', bottom: `${gHeight + 5}px`} :
                 {top: `${gHeight + 5}px`, bottom: 'unset'};
         }else{
-            return (tPositionY + tHeight) < (wHeight - (tHeight + tPositionY)) ? 
+            return (tPositionY + tHeight) < (wHeight - tHeight) ? 
                     {top: `${gHeight + 5}px`, bottom: 'unset'} :
                     {top: 'unset', bottom: `${gHeight + 5}px`}
         }

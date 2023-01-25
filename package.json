@@ -1,6 +1,6 @@
 {
   "name": "@gadeoli/rjs-component-library-themed",
-  "version": "0.1.81",
+  "version": "0.1.82",
   "description": "A first try of doing: a reactjs component library with theme support",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
