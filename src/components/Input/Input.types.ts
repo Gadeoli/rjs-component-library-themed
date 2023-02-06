@@ -14,4 +14,5 @@ export interface InputProps {
     style?: object;
     loading?: boolean;
     placeholder?: string;
+    autocomplete?: string;
 }

@@ -4,7 +4,22 @@ import { Input as StyledInput } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const Input: FC<InputProps> = ({name, disabled, value, type, className, style, loading, id, placeholder, onChange, onBlur, onFocus, onKeyDown}) => {
+const Input: FC<InputProps> = ({
+    name, 
+    disabled, 
+    value, 
+    type, 
+    className, 
+    style, 
+    loading, 
+    id, 
+    placeholder, 
+    autocomplete, 
+    onChange, 
+    onBlur, 
+    onFocus, 
+    onKeyDown
+}) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__input',
@@ -26,6 +41,7 @@ const Input: FC<InputProps> = ({name, disabled, value, type, className, style, l
         style={style} 
         type={type} 
         placeholder={placeholder}
+        autoComplete={autocomplete}
     />);
 }
 
