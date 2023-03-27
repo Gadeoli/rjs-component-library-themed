@@ -6,6 +6,7 @@ import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const CardToggle : FC<CardToggleProps> = ({
     toggleTrigger, 
+    toggleUpper,
     initialToggle = false, 
     children, 
     className,
@@ -27,6 +28,9 @@ const CardToggle : FC<CardToggleProps> = ({
     
     const handleToggle = (t: boolean) => {
         setToggle(t);
+        if(toggleUpper){
+            toggleUpper(t);
+        }
         if(parentToggleStateControl){
             parentToggleStateControl(t);
         }
