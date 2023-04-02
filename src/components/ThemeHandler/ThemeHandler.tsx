@@ -1,6 +1,6 @@
 import React, { createContext, useContext, FC } from 'react';
 
-import { ThemeHandlerProps, ThemeValueProps, setThemeValueProps, setThemeModeProps} from './ThemeHandler.types';
+import { ThemeHandlerProps, ThemeValueProps, setThemeValueProps, setThemeModeProps, setThemeVersionProps} from './ThemeHandler.types';
 import { usePersistedState } from '@gadeoli/rjs-hooks-library';
 
 export const lightThemeKey = "light";
@@ -35,6 +35,7 @@ export const themeValuesPattern : ThemeValueProps = {
 
 const initialSetTheme : setThemeValueProps = () => {}
 const initialSetMode : setThemeModeProps = () => {}
+const initialSetVersion : setThemeVersionProps = () => {}
 
 const initialContextValues = {
     //keep the current theme key
@@ -44,25 +45,29 @@ const initialContextValues = {
     //keep the dark and light theme values
     dark: {...themeValuesPattern},
     light: {...themeValuesPattern},
+    version: null, //use version to force update the theme values
     //control mode, dark values and light values
     setMode: initialSetMode,
     setDarkValues: initialSetTheme,
-    setLightValues: initialSetTheme
+    setLightValues: initialSetTheme,
+    setVersion: initialSetVersion
 }
 
 export const ThemeContext = createContext({...initialContextValues});
 
 const ThemeHandler: FC<ThemeHandlerProps> = ({children}) => {
-    const [themeModePersisted, setThemeModePersisted] = usePersistedState('@rjs-theme-mode', lightThemeKey)
-    const [themePersisted, setThemePersisted] = usePersistedState('@rjs-theme', {...themeValuesPattern})
-    const [themeDarkPersisted, setThemeDarkPersisted] = usePersistedState('@rjs-theme-dark', {...themeValuesPattern})
-    const [themeLightPersisted, setThemeLightPersisted] = usePersistedState('@rjs-theme-light', {...themeValuesPattern})
+    const [themeModePersisted, setThemeModePersisted] = usePersistedState('@rjs-theme-mode', lightThemeKey);
+    const [themeVersionPersisted, setThemeVersionPersisted] = usePersistedState('@rjs-theme-version', null);
+    const [themePersisted, setThemePersisted] = usePersistedState('@rjs-theme', {...themeValuesPattern});
+    const [themeDarkPersisted, setThemeDarkPersisted] = usePersistedState('@rjs-theme-dark', {...themeValuesPattern});
+    const [themeLightPersisted, setThemeLightPersisted] = usePersistedState('@rjs-theme-light', {...themeValuesPattern});
 
     return (<ThemeContext.Provider value={{
         mode: themeModePersisted,
         theme: themePersisted,
         dark: themeDarkPersisted,
         light: themeLightPersisted,
+        version: themeVersionPersisted,
         setMode: (mode: string) => {            
             if(mode === lightThemeKey){
                 setThemeModePersisted(lightThemeKey);
@@ -71,6 +76,9 @@ const ThemeHandler: FC<ThemeHandlerProps> = ({children}) => {
                 setThemeModePersisted(darkThemeKey);
                 setThemePersisted(themeDarkPersisted);
             }
+        },
+        setVersion: (version: string) => {   
+            setThemeVersionPersisted(version);         
         },
         setDarkValues: (values: object) =>  setThemeDarkPersisted(values),
         setLightValues: (values: object) =>  setThemeLightPersisted(values),

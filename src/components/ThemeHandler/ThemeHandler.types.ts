@@ -9,6 +9,8 @@ export interface setThemeValueProps { (values: object) : any };
 
 export interface setThemeModeProps { (mode: string) : any };
 
+export interface setThemeVersionProps { (version: string) : any };
+
 export interface ThemeValueProps {
     primary:        string;
     primary_text:   string;
