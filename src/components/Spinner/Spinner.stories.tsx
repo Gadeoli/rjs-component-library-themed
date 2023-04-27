@@ -25,7 +25,9 @@ Default.args = {
     size: 2,
     type: undefined,
     className: "",
-    style: {}
+    style: {},
+    backgroundColor: '',
+    color: ''
 }   
 
 Default.argTypes = {
@@ -48,5 +50,15 @@ Default.argTypes = {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
+    },
+    backgroundColor: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: ''
+    },
+    color: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: ''
     }
 }

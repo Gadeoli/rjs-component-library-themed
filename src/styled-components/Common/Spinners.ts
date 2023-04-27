@@ -10,7 +10,7 @@ export const SpinnerDefaultAnimation = keyframes`
 `;
 
 export const Spinner = styled.div<{size: number}>`
-    color: ${(props: any) => props.theme.text};
+    color: ${(props: any) => props.color ? props.color : props.theme.text};
     font-size: ${props => props.size + 'px'} ;
     text-indent: -99999em;
     position: relative;
@@ -28,7 +28,7 @@ export const Spinner = styled.div<{size: number}>`
         border-radius: 50%;
         position: absolute;
         content: '';
-        background: ${(props: any) => props.theme.background};
+        background: ${(props: any) => props.backgroundColor ? props.backgroundColor : props.theme.background};
     }
 
     &:before {

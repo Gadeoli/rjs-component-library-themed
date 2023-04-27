@@ -5,5 +5,7 @@ export interface SpinnerProps {
     size: number;
     className?: string;
     style?: object;
+    color?: string;
+    backgroundColor?: string;
 }
 

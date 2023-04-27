@@ -4,7 +4,7 @@ import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import { Spinner as StyledSpinner } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 
-const Loading: FC<SpinnerProps> = ({size, type, className, style}) => { 
+const Loading: FC<SpinnerProps> = ({size, type, className, style, color, backgroundColor}) => { 
     const { theme } = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__spinner',
@@ -17,6 +17,8 @@ const Loading: FC<SpinnerProps> = ({size, type, className, style}) => {
         size={size}
         className={classNames}
         style={style}
+        color={color}
+        backgroundColor={backgroundColor}
     >Loading...</StyledSpinner>);
 }
 
