@@ -1,4 +1,5 @@
 import { createGlobalStyle, keyframes } from 'styled-components';
+import { darken } from 'polished';
 
 export const ShineAnimation = keyframes`
     to {
@@ -22,20 +23,24 @@ export const GlobalStyle = createGlobalStyle`
 
         .loading-effect{
             background-color: unset;
-            background-size: 200% 100%;
             background: ${(props: any) => props.theme.body};
             background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
-            
+            background-size: 200% 100%;
+            animation: ${ShineAnimation} 1.5s linear infinite;
+
             &.loading-primary{
-                background: linear-gradient(110deg, ${(props: any) => props.theme.primary} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.primary} 33%);
+                background: ${(props: any) => props.theme.primary};
+                background: linear-gradient(110deg, ${(props: any) => props.theme.primary} 8%, ${(props: any) => darken(-0.2, props.theme.primary)} 18%, ${(props: any) =>  props.theme.primary} 33%);
+                background-size: 200% 100%;
+                animation: ${ShineAnimation} 1.5s linear infinite;
             }
 
             &.loading-secondary{
-                background: linear-gradient(110deg, ${(props: any) => props.theme.secondary} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.secondary} 33%);
-            }
-            
-            background-size: 200% 100%;
-            animation: ${ShineAnimation} 1.5s linear infinite;
+                background: ${(props: any) => props.theme.secondary};
+                background: linear-gradient(110deg, ${(props: any) => props.theme.secondary} 8%, ${(props: any) => darken(-0.2, props.theme.secondary)} 18%, ${(props: any) =>  props.theme.secondary} 33%);
+                background-size: 200% 100%;
+                animation: ${ShineAnimation} 1.5s linear infinite;
+            }      
         }
     }
 `;
