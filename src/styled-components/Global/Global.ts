@@ -25,6 +25,15 @@ export const GlobalStyle = createGlobalStyle`
             background-size: 200% 100%;
             background: ${(props: any) => props.theme.body};
             background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
+            
+            &.loading-primary{
+                background: linear-gradient(110deg, ${(props: any) => props.theme.primary} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.primary} 33%);
+            }
+
+            &.loading-secondary{
+                background: linear-gradient(110deg, ${(props: any) => props.theme.secondary} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.secondary} 33%);
+            }
+            
             background-size: 200% 100%;
             animation: ${ShineAnimation} 1.5s linear infinite;
         }
