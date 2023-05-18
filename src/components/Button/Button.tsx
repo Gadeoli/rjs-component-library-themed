@@ -20,6 +20,7 @@ const Button: FC<ButtonProps> = ({children, disabled, onClick, className, loadin
         onClick={onClick} 
         style={style} 
         type={action} 
+        loading={loading}
     >
         {!loading && children}
     </StyledButton>);

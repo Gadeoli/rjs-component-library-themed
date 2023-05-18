@@ -28,7 +28,7 @@ export const Button = styled.button`
     transition: background-color .4s ease-in-out;
     border: 1px solid;
     color: ${(props: any) => props.theme.text};
-    cursor: pointer;
+    cursor: ${(props: any) => props.loading ? 'default' : 'pointer'};
     
     :hover {
         box-shadow: ${defaultShadow};
