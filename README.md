@@ -46,7 +46,7 @@ Toggle
 ## Sources
 
 [source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)  
-[source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)
+[source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)  
 [source III - Spinners](https://loading.io/css/)
 
 ## Testing
