@@ -1,7 +1,7 @@
 # RJS Component Library Themed
 
 A reactjs component library with a custom theme support by default. This is a test for now.  
-Testing with steled-components for know.  
+Testing with steled-components for now.  
 
 ## How to maintain
 
