@@ -16,13 +16,14 @@ Testing with steled-components for know.
 
 ThemeHandler    
 Button   
+Card && CardContent && CardToggle  
 Checkbox  
 CheckboxMulti  
 Container  
-Card && CardContent && CardToggle  
 FormGroup
 ImageContainer    
 Input  
+Label
 Loading  
 P  
 Radio
@@ -30,6 +31,13 @@ RadioMulti
 Select
 SelectAsync  
 Span  
+Spinner
+SpinnerCoin
+SpinnerDots
+SpinnerDotsCircle
+SpinnerRipple
+SpinnerView
+Tabs
 Textarea    
 TitleH1  
 TitleHn   
@@ -39,6 +47,7 @@ Toggle
 
 [source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)  
 [source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)
+[source III - Spinners](https://loading.io/css/)
 
 ## Testing
 

@@ -1,27 +1,27 @@
 import React, { FC } from 'react';
-import { SpinnerProps } from './Spinner.types';
+import { SpinnerRippleProps } from './SpinnerRipple.types';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
-import { Spinner as StyledSpinner } from '../../styled-components/Common';
+import { SpinnerRipple as StyledSpinnerRipple } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 
-const Spinner: FC<SpinnerProps> = ({size, type, className, style, customColor}) => { 
+const SpinnerRipple: FC<SpinnerRippleProps> = ({size, type, className, style, customColor}) => { 
     const { theme } = useTheme();
     const classNames = handleCssClassnames([
-        'cl-themed__spinner',
+        'cl-themed__spinner-ripple',
         customColor ? 'custom' : '',
         type,
         className
     ]);
 
-    return (<StyledSpinner
+    return (<StyledSpinnerRipple
         theme={theme}
         size={size}
         className={classNames}
         style={style}
         customColor={customColor}
     >
-        <div></div><div></div><div></div><div></div>
-    </StyledSpinner>);
+        <div></div><div></div>
+    </StyledSpinnerRipple>);
 }
 
-export default Spinner;
+export default SpinnerRipple;

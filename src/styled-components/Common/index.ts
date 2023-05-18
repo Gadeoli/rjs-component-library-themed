@@ -43,5 +43,10 @@ export {
 } from "./Common";
 
 export {
-    Spinner
+    Spinner,
+    SpinnerCoin,
+    SpinnerDots,
+    SpinnerDotsCircle,
+    SpinnerRipple,
+    SpinnerView
 } from './Spinners';

@@ -1,27 +1,27 @@
 import React, { FC } from 'react';
-import { SpinnerProps } from './Spinner.types';
+import { SpinnerCoinProps } from './SpinnerCoin.types';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
-import { Spinner as StyledSpinner } from '../../styled-components/Common';
+import { SpinnerCoin as StyledSpinnerCoin } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 
-const Spinner: FC<SpinnerProps> = ({size, type, className, style, customColor}) => { 
+const SpinnerCoin: FC<SpinnerCoinProps> = ({size, type, className, style, customColor}) => { 
     const { theme } = useTheme();
     const classNames = handleCssClassnames([
-        'cl-themed__spinner',
+        'cl-themed__spinner-coin',
         customColor ? 'custom' : '',
         type,
         className
     ]);
 
-    return (<StyledSpinner
+    return (<StyledSpinnerCoin
         theme={theme}
         size={size}
         className={classNames}
         style={style}
         customColor={customColor}
     >
-        <div></div><div></div><div></div><div></div>
-    </StyledSpinner>);
+        <div></div>
+    </StyledSpinnerCoin>);
 }
 
-export default Spinner;
+export default SpinnerCoin;

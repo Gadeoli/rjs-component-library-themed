@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import { SpinnerProps } from './Spinner.types';
+import { SpinnerDotsProps } from './SpinnerDots.types';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
-import { Spinner as StyledSpinner } from '../../styled-components/Common';
+import { SpinnerDots as StyledSpinnerDots } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 
-const Spinner: FC<SpinnerProps> = ({size, type, className, style, customColor}) => { 
+const SpinnerDots: FC<SpinnerDotsProps> = ({size, type, className, style, customColor}) => { 
     const { theme } = useTheme();
     const classNames = handleCssClassnames([
-        'cl-themed__spinner',
+        'cl-themed__spinner-dots',
         customColor ? 'custom' : '',
         type,
         className
     ]);
 
-    return (<StyledSpinner
+    return (<StyledSpinnerDots
         theme={theme}
         size={size}
         className={classNames}
@@ -21,7 +21,7 @@ const Spinner: FC<SpinnerProps> = ({size, type, className, style, customColor}) 
         customColor={customColor}
     >
         <div></div><div></div><div></div><div></div>
-    </StyledSpinner>);
+    </StyledSpinnerDots>);
 }
 
-export default Spinner;
+export default SpinnerDots;

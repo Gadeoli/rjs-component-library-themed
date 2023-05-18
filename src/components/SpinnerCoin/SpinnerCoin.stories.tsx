@@ -1,20 +1,20 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Spinner from './Spinner';
+import SpinnerCoin from './SpinnerCoin';
 import Card from "../Card";
 import CardContent from "../CardContent";
 import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "RjsComponentLibraryThemed/Spinner",
-} as ComponentMeta<typeof Spinner>;
+    title: "RjsComponentLibraryThemed/SpinnerCoin",
+} as ComponentMeta<typeof SpinnerCoin>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Spinner> = (args) => <Card>
+const Template: ComponentStory<typeof SpinnerCoin> = (args) => <Card>
     <CardContent>
-        <Span>Card - CardContent - Spinner</Span><br/>
-        <Spinner {...args} />
+        <Span>Card - CardContent - SpinnerCoin</Span><br/>
+        <SpinnerCoin {...args} />
     </CardContent>
 </Card>;
 

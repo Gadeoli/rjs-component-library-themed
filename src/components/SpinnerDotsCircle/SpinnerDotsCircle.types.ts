@@ -1,4 +1,4 @@
-export interface SpinnerProps {
+export interface SpinnerDotsCircleProps {
     type?: "danger" | "link" | "primary" | "secondary" | "success";
     size: number;
     className?: string;
