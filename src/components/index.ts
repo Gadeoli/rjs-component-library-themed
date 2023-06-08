@@ -27,6 +27,7 @@ export { default as Textarea } from './Textarea';
 export { default as TitleH1 } from './TitleH1';
 export { default as TitleHn } from './TitleHn';
 export { default as Toggle } from './Toggle';
+export { default as Tooltip } from './Tooltip';
 export { 
     default as ThemeHandler, 
     ThemeContext, 

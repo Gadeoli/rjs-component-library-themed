@@ -1,5 +1,6 @@
 import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
+import { darken, rgba } from 'polished';
 
 const defaultRadius = '.35rem';
 const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
@@ -875,3 +876,167 @@ export const LoadingContainer = styled.div<{align: string}>`
     text-align: ${props => props.align};
 `;
 /* End Select Component */
+
+export const Tooltip = styled.div<{show: boolean}>`
+    position: relative;
+    width: fit-content;
+
+    &.loading-effect{
+        min-width: 20px;
+        min-height: 16px;
+        background-color: unset;
+        background-size: 200% 100%;
+        background: ${(props: any) => props.theme.body};
+        background: linear-gradient(110deg, ${(props: any) => props.theme.body} 8%, ${(props: any) => props.theme.background} 18%, ${(props: any) => props.theme.body} 33%);
+        background-size: 200% 100%;
+        animation: ${ShineAnimation} 1.5s linear infinite;
+    }
+
+    //pointer
+    &:before{
+        content: '';
+        display: ${props => props.show ? 'block' : 'none'};
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+    }
+
+    &.bottom:before{
+        border-left: 5px solid black;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+    }
+`;
+
+export const TooltipContext = styled.div`
+`;
+
+export const TooltipContent = styled.div<{position?: string, type?: string, show: boolean}>`
+    position: absolute;
+    /* display: ${props => props.show ? 'block' : 'none'}; */
+    padding: 5px 10px;
+    border-radius: 5px; 
+
+    //pointer
+    :before{
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 9px solid;
+    }
+
+    //position
+    &.right{
+        left: calc(100% + 15px);
+        top: 2px;
+
+        :before{
+            top: 5px;
+            left: -9px;
+            
+            border-left: unset; 
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+    }
+
+    &.left{
+        right: calc(100% + 15px);
+        top: 2px;
+
+        :before{
+            top: 5px;
+            right: -9px;
+            
+            border-right: unset; 
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+        }
+    }
+    
+    &.top{
+        bottom: calc(100% + 15px);
+        left: 2px;
+
+        :before{
+            bottom: -9px;
+            left: 10px;
+            
+            border-bottom: unset; 
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+    }
+
+    &.bottom{
+        top: calc(100% + 15px);
+        left: 2px;
+
+        :before{
+            top: -9px;
+            left: 10px;
+            
+            border-top: unset; 
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+    }
+
+     //colors (keep colors after position)
+     &.default{
+        background-color: ${(props: any) => rgba(darken(0.2, props.theme.background), 0.8)};
+
+        &.bottom:before{border-bottom-color: ${(props: any) => rgba(darken(0.2, props.theme.background), 0.8)};}
+        &.top:before{border-top-color: ${(props: any) => rgba(darken(0.2, props.theme.background), 0.8)};}
+        &.left:before{border-left-color: ${(props: any) => rgba(darken(0.2, props.theme.background), 0.8)};}
+        &.right:before{border-right-color: ${(props: any) => rgba(darken(0.2, props.theme.background), 0.8)};}
+    }
+    
+    &.danger{
+        background-color: ${(props: any) => props.theme.danger};
+
+        &.bottom:before{border-bottom-color: ${(props: any) => props.theme.danger};}
+        &.top:before{border-top-color: ${(props: any) => props.theme.danger};}
+        &.left:before{border-left-color: ${(props: any) => props.theme.danger};}
+        &.right:before{border-right-color: ${(props: any) => props.theme.danger};}
+    }
+
+    &.link{
+        background-color: ${(props: any) => props.theme.link};
+
+        &.bottom:before{border-bottom-color: ${(props: any) => props.theme.link};}
+        &.top:before{border-top-color: ${(props: any) => props.theme.link};}
+        &.left:before{border-left-color: ${(props: any) => props.theme.link};}
+        &.right:before{border-right-color: ${(props: any) => props.theme.link};}
+    }
+
+    &.primary{
+        background-color: ${(props: any) => props.theme.primary};
+
+        &.bottom:before{border-bottom-color: ${(props: any) => props.theme.primary};}
+        &.top:before{border-top-color: ${(props: any) => props.theme.primary};}
+        &.left:before{border-left-color: ${(props: any) => props.theme.primary};}
+        &.right:before{border-right-color: ${(props: any) => props.theme.primary};}
+    }
+
+    &.secondary{
+        background-color: ${(props: any) => props.theme.secondary};
+
+        &.bottom:before{border-bottom-color: ${(props: any) => props.theme.secondary};}
+        &.top:before{border-top-color: ${(props: any) => props.theme.secondary};}
+        &.left:before{border-left-color: ${(props: any) => props.theme.secondary};}
+        &.right:before{border-right-color: ${(props: any) => props.theme.secondary};}
+    }
+
+    &.success{
+        background-color: ${(props: any) => props.theme.success};
+
+        &.bottom:before{border-bottom-color: ${(props: any) => props.theme.success};}
+        &.top:before{border-top-color: ${(props: any) => props.theme.success};}
+        &.left:before{border-left-color: ${(props: any) => props.theme.success};}
+        &.right:before{border-right-color: ${(props: any) => props.theme.success};}
+    }   
+`;

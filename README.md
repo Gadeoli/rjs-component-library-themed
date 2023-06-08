@@ -42,6 +42,7 @@ Textarea
 TitleH1  
 TitleHn   
 Toggle  
+Tooltip  
 
 ## Sources
 
