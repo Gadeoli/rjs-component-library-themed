@@ -19,7 +19,7 @@ const Template: Story<TooltipProps> = (args) => {
         <CardContent>
             <Tooltip
                 {...args}
-                tipcontent={<><Span>abc</Span></>}
+                tipcontent={<></>}
             >
                 <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
             </Tooltip>

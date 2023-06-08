@@ -918,6 +918,8 @@ export const TooltipContent = styled.div<{position?: string, type?: string, show
     display: ${props => props.show ? 'block' : 'none'};
     padding: 5px 10px;
     border-radius: 5px; 
+    min-width: 25px;
+    min-height: ${props => props.position === 'left' || props.position === 'right' ? '20px' : '14px'};
 
     //pointer
     :before{
@@ -963,7 +965,7 @@ export const TooltipContent = styled.div<{position?: string, type?: string, show
 
         :before{
             bottom: -9px;
-            left: 10px;
+            left: 6px;
             
             border-bottom: unset; 
             border-left-color: transparent;
@@ -977,7 +979,7 @@ export const TooltipContent = styled.div<{position?: string, type?: string, show
 
         :before{
             top: -9px;
-            left: 10px;
+            left: 6px;
             
             border-top: unset; 
             border-left-color: transparent;
