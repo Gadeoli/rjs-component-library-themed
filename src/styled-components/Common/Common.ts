@@ -915,7 +915,7 @@ export const TooltipContext = styled.div`
 
 export const TooltipContent = styled.div<{position?: string, type?: string, show: boolean}>`
     position: absolute;
-    /* display: ${props => props.show ? 'block' : 'none'}; */
+    display: ${props => props.show ? 'block' : 'none'};
     padding: 5px 10px;
     border-radius: 5px; 
 

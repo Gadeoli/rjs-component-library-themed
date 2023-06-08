@@ -10,8 +10,8 @@ import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import { useHover } from '@gadeoli/rjs-hooks-library';
 
 const Tooltip: FC<TooltipProps> = ({
-    position,
-    type,
+    position="bottom",
+    type="default",
     children,
     tipcontent,
     className, 
