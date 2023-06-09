@@ -68,7 +68,7 @@
     "uniqid": "^5.4.0"
   },
   "peerDependencies": {
-    "@gadeoli/rjs-hooks-library": "~0.0.19",
+    "@gadeoli/rjs-hooks-library": "~0.0.21",
     "@gadeoli/js-helpers-library": "~0.0.15",
     "polished": "^4.2.2",
     "react": "^18.1.0",
