@@ -829,7 +829,7 @@ export const TabsNav = styled.ul`
     justify-content: flex-start;
     border-bottom: 1px solid ${props => props.theme.border};
     border-top-right-radius: ${defaultRadius};
-
+    overflow: auto;
     li:first-child{
         border-top-left-radius: ${defaultRadius};
     }
