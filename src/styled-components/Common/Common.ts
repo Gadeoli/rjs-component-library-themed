@@ -872,6 +872,96 @@ export const TabsBody = styled.div`
     margin-top: -1px; //fix doble border (its border and the nav border)
 `;
 
+export const MultiFormContent = styled.div`
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    background: ${props => props.theme.background};
+`;
+
+export const MultiFormBody = styled.div`
+    min-height: 150px;
+`;
+
+export const MultiFormNav = styled.ul`
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    box-sizing: border-box;
+`;
+
+export const MultiFormNavItem = styled.li`
+    margin: .4rem 0;
+    list-style: none;
+    text-align: center;
+    cursor: default;
+    transition: all 0.4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const MultiFormNavItemKey = styled.div`
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 1.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+
+    /* disabled */
+    border: 1px solid;
+    border-color: ${props => props.theme.disabled};
+    color: ${props => props.theme.disabled_text};
+    background-color: unset;
+
+    &.completed, &.current{
+        background-color: unset;
+        color: ${props => props.theme.secondary};
+        border-color: ${props => props.theme.secondary};
+    }
+
+    &.current{
+        color: ${props => props.theme.secondary_text};
+        background-color: ${props => props.theme.secondary};
+    }
+`;
+
+export const MultiFormNavItemDivisor = styled.div`
+    width: 3rem;
+    height: 1px;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+
+    /* disabled */
+    background-color: ${props => props.theme.disabled};
+
+    &.completed{
+        background-color: ${props => props.theme.secondary};
+    }
+`;
+
+export const MultiFormNavItemLabel = styled.div`
+    /* disabled */
+    color: ${props => props.theme.disabled_text};
+
+    * { 
+        color: ${props => props.theme.disabled_text};
+    }
+
+    &.completed, &.current{
+        color: ${props => props.theme.text};
+    }
+
+    &.completed *, &.current *{
+        color: ${props => props.theme.text};
+    }
+`;
+
 export const LoadingContainer = styled.div<{align: string}>`
     text-align: ${props => props.align};
 `;

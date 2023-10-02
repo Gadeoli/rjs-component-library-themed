@@ -15,6 +15,8 @@ export const themeValuesPattern : ThemeValueProps = {
     success_text:   "#FFF",
     danger:         "#FFF",
     danger_text:    "#FFF",
+    disabled:       "#FFF",
+    disabled_text:  "#FFF",
     background: "#FFF",
     body:       "#FFF",
     border:     "#FFF",

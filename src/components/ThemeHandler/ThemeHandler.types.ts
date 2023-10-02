@@ -20,6 +20,8 @@ export interface ThemeValueProps {
     success_text:   string;
     danger:         string;
     danger_text:    string;
+    disabled:       string;
+    disabled_text:  string;
     
     background: string;
     body:       string;
