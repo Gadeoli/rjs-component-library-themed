@@ -50,7 +50,6 @@ const Template: ComponentStory<typeof Tabs> = (args) => {
             tabs={tabs}
             noneText="No content to display"
             onChange={(key: any) => {
-                console.log(key);
                 setActiveTab(key);
             }}
             emphasisActive={false}

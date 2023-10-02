@@ -2,7 +2,7 @@ import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import { darken, rgba } from 'polished';
 
-const defaultRadius = '.35rem';
+const defaultRadius = '.25rem';
 const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
 
 export const ShineAnimation = keyframes`
@@ -24,7 +24,7 @@ export const BodyContent = styled.div`
 
 export const Button = styled.button`
     margin: 0;
-    padding: .25rem .5rem;
+    padding: .4rem .75rem;
     border-radius: ${defaultRadius};
     transition: background-color .4s ease-in-out;
     border: 1px solid;
@@ -176,7 +176,7 @@ export const Card = styled.div`
 
 export const CardContent = styled.div`
     width: 100;
-    padding: .5rem .75rem;
+    padding: .4rem .75rem;
 `;
 
 export const Container = styled.div`
@@ -449,7 +449,7 @@ export const Input = styled.input`
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
-    padding: .25rem .5rem;
+    padding: .4rem .75rem;
 
     &.full{
         width: 100%;
@@ -466,7 +466,7 @@ export const Textarea = styled.textarea`
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     min-height: 10rem;
-    padding: .25rem .5rem;
+    padding: .4rem .75rem;
 
     &.full{
         width: 100%;
@@ -652,7 +652,7 @@ export const SelectedResult = styled.div`
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     box-sizing: border-box;
-    padding: .25rem .5rem;
+    padding: .4rem .75rem;
     cursor: pointer;
     display: flex;
     flex-wrap: wrap;
@@ -694,7 +694,7 @@ export const SelectDrawer = styled.div`
     margin: 0;
     padding: 0;
     margin-top: .5rem;
-    padding: .25rem .5rem;
+    padding: .4rem .75rem;
     background-color: ${(props: any) => props.theme.background};
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: 4px;  
@@ -840,7 +840,7 @@ export const TabsNav = styled.ul`
 `;
 
 export const TabsNavItem = styled.li<{active: boolean}>`
-    padding: 8px 12px;
+    padding: .4rem .75rem;
     list-style: none;
     text-align: center;
     cursor: pointer;
@@ -856,7 +856,7 @@ export const TabsNavItem = styled.li<{active: boolean}>`
     }
 
     &.emphasis-active{
-        padding: 10px 12px;
+        padding: .5rem .75rem;
         margin-top: -4px; //fix bigger padding
         border-top-left-radius: ${defaultRadius};
         border-top-right-radius: ${defaultRadius};
@@ -865,7 +865,7 @@ export const TabsNavItem = styled.li<{active: boolean}>`
 
 export const TabsBody = styled.div`
     min-height: 150px;
-    padding: 8px 12px;
+    padding: .4rem .75rem;
     border: 1px solid ${props => props.theme.border};
     border-radius: ${defaultRadius};
     border-top-left-radius: unset;
@@ -916,8 +916,8 @@ export const TooltipContext = styled.div`
 export const TooltipContent = styled.div<{position?: string, type?: string, show: boolean}>`
     position: absolute;
     display: ${props => props.show ? 'block' : 'none'};
-    padding: 5px 10px;
-    border-radius: 5px; 
+    padding: .4rem .75rem;
+    border-radius: ${defaultRadius};
     min-width: 25px;
     min-height: ${props => props.position === 'left' || props.position === 'right' ? '20px' : '14px'};
 
