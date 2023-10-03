@@ -65,7 +65,7 @@ npm run sb
 ## Installing
 
 ```
-//intall (remember to check the peer dependencies
+//install (remember to check the peer dependencies)
 npm i @gadeoli/rjs-component-library-themed
 ```
 
