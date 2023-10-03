@@ -1,6 +1,7 @@
 import  styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import { darken, rgba } from 'polished';
+import { deviceMax } from '../../components/device';
 
 const defaultRadius = '.25rem';
 const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
@@ -883,14 +884,16 @@ export const MultiFormBody = styled.div`
     min-height: 150px;
 `;
 
+export const MultiFormNavContainer = styled.ul`
+    margin: 0 auto;
+    overflow-x: auto;
+    display: flex;
+`;
+
 export const MultiFormNav = styled.ul`
-    width: 90%;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
-    overflow: auto;
-    box-sizing: border-box;
 `;
 
 export const MultiFormNavItem = styled.li`
@@ -942,6 +945,12 @@ export const MultiFormNavItemDivisor = styled.div`
 
     &.completed{
         background-color: ${props => props.theme.secondary};
+    }
+
+    @media ${deviceMax.tablet}{
+        width: 1.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 `;
 
