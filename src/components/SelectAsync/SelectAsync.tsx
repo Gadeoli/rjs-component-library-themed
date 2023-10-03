@@ -171,11 +171,11 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
             {isSearching ? (<StyledSearchLoadingContainer theme={theme}><Spinner size={2}/></StyledSearchLoadingContainer>) : null}
             
             <SelectDrawerSearchActions theme={theme} outline={inputFocus}>
-                {manualSearch ? (<Button type='success' onClick={() => {
+                {manualSearch ? (<Button action='button' type='success' onClick={() => {
                     onSearch(search);
                 }}>&#10003;</Button>) : ('')}
                 
-                <Button type='danger' onClick={() => {
+                <Button type='danger' action='button' onClick={() => {
                     setSearch('')
                     if(manualSearch) onSearch('');
                 }}>&#10006;</Button>

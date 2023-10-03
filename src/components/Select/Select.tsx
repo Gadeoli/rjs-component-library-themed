@@ -174,7 +174,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
             }/>
             {isSearching ? (<StyledSearchLoadingContainer theme={theme}><Spinner size={2}/></StyledSearchLoadingContainer>) : null}
             <SelectDrawerSearchActions theme={theme} outline={inputFocus}>
-                <Button type='danger' onClick={() => {
+                <Button type='danger' action='button' onClick={() => {
                     setSearch('');
                     onSearch('');
                 }}>&#10006;</Button>
