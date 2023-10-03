@@ -217,14 +217,18 @@ export const apiDataToSelect = ({
     data=[],
     key,
     value,
+    valueHandler,
     selected,
-    delimiter='-'
+    delimiter='-',
+    unseted='NoN'
 } : {
     data: any;
     key: string;
     value: any;
+    valueHandler?: any;
     selected?: any;
     delimiter?: string;
+    unseted: string;
 }) => {
     return data.map((itemData: any) => {
         let aux = {};
@@ -237,11 +241,26 @@ export const apiDataToSelect = ({
         if(Array.isArray(value)){
             aux.value = value.map((valueItem, valueIndex) => {
                 const hasDelimiter = value.length > 1 && valueIndex + 1 !== value.length;
-                const iValue = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
+                
+                const valueToHandle = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
+                let iValue = "";
+
+                if(valueHandler[valueItem] && typeof valueHandler[valueItem] !== 'undefined'){
+                    iValue = valueHandler[valueItem](valueToHandle);
+                }else{
+                    iValue =  valueToHandle !== null ? valueToHandle : unseted;
+                }
+
                 return  `${iValue} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
             })
         }else{
-            aux.value = value.split('.').reduce((v, vi) => v[vi], itemData);
+            const valueToHandle = value.split('.').reduce((v, vi) => v[vi], itemData);
+
+            if(valueHandler && typeof valueHandler !== 'undefined'){
+                aux.value = valueHandler(valueToHandle);
+            }else{
+                aux.value = valueToHandle !== null ? valueToHandle : unseted;
+            }
         }
 
         if(selected){
