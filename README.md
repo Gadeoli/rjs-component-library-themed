@@ -24,6 +24,7 @@ ImageContainer
 Input  
 Label  
 Loading  
+MultiForm
 P  
 Radio  
 RadioMulti  
@@ -126,9 +127,9 @@ myLightValues.custom = {};
 
 // specify dark values: 
 const myDarkValues = {...themeValuesPattern};
-myLightValues.primary =       "#1D1E26";
+myDarkValues.primary =       "#1D1E26";
 ...
-myLightValues.custom = {};
+myDarkValues.custom = {};
 
 function App() {
   return (
