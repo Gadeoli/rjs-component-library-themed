@@ -245,7 +245,7 @@ export const apiDataToSelect = ({
                 const valueToHandle = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
                 let iValue = "";
 
-                if(valueHandler[valueItem] && typeof valueHandler[valueItem] !== 'undefined'){
+                if(valueHandler && typeof valueHandler[valueItem] !== 'undefined'){
                     iValue = valueHandler[valueItem](valueToHandle);
                 }else{
                     iValue =  valueToHandle !== null ? valueToHandle : unseted;
