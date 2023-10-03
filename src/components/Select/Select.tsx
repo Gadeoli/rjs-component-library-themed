@@ -228,7 +228,7 @@ export const apiDataToSelect = ({
     valueHandler?: any;
     selected?: any;
     delimiter?: string;
-    unseted: string;
+    unseted?: string;
 }) => {
     return data.map((itemData: any) => {
         let aux = {};
