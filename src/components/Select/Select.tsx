@@ -233,7 +233,8 @@ export const apiDataToSelect = ({
     return data.map((itemData: any) => {
         let aux = {};
 
-        //Set aux key from a custom given key (accept string: myKey, myKey.mySubKey)
+        //Set aux key from a custom given key (accept string: myKey, myKey.mySubKey, myKey.mySubKey.mySubSubKey) ...
+        //In the same side send a valueHandler function or Object with functions => () => {} or {myKey: () => myKeyHandler()} or {myKey: {mySubKey: () => mySubKeyHandler()}} or ...
         // aux.key = i[key];
         const iKey = key.split('.').reduce((k, ki) => k[ki], itemData);    
         aux.key = iKey;
@@ -245,8 +246,13 @@ export const apiDataToSelect = ({
                 const valueToHandle = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
                 let iValue = "";
 
-                if(valueHandler && typeof valueHandler[valueItem] !== 'undefined'){
-                    iValue = valueHandler[valueItem](valueToHandle);
+                if(valueHandler){
+                    try {
+                        const actionToHandle = valueItem.split('.').reduce((v, vi) => v[vi], valueHandler);
+                        iValue = actionToHandle(valueToHandle);
+                    } catch (err) {
+                        iValue = valueToHandle;
+                    }
                 }else{
                     iValue =  valueToHandle !== null ? valueToHandle : unseted;
                 }
