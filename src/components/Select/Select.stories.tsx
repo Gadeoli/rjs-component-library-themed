@@ -64,7 +64,7 @@ const Template: Story<SelectProps> = (args) => {
             </form>
             
             <div style={{paddingTop: '500px'}}>
-            <Select 
+                <Select 
                     {...args}
                     name="myselect"
                     className="full"

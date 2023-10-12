@@ -25,7 +25,7 @@ import CardToggle from '../CardToggle';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
-import { SelectDrawerSearchActions } from '../../styled-components/Common/Common';
+import { Magnifier, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 
 const SelectAsync: FC<SelectAsyncProps> = ({
     name,
@@ -151,7 +151,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
     const [search, setSearch] = useState('');
     const [inputFocus, setInputFocus] = useState(false);
 
-    return (<StyledSelectDrawer className='cl-themed__select__drawer' theme={theme}>
+    return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
             <Input 
                 theme={theme} 
@@ -167,19 +167,19 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
                     }   
                 }
             }/>
-            
-            {isSearching ? (<StyledSearchLoadingContainer theme={theme}><Spinner size={2}/></StyledSearchLoadingContainer>) : null}
-            
-            <SelectDrawerSearchActions theme={theme} outline={inputFocus}>
-                {manualSearch ? (<Button action='button' type='success' onClick={() => {
+
+            {isSearching ? (<SelectDrawerSearchActions theme={theme}>
+                <Spinner size={20}/>
+            </SelectDrawerSearchActions>) : (<SelectDrawerSearchActions theme={theme}>
+                {manualSearch ? (<Button type='clean' onClick={() => {
                     onSearch(search);
-                }}>&#10003;</Button>) : ('')}
-                
-                <Button type='danger' action='button' onClick={() => {
+                }}><Span type='success'><Magnifier theme={theme} size={6} /></Span></Button>) : ('')}
+
+                {search ? (<Button type='clean' onClick={() => {
                     setSearch('')
                     if(manualSearch) onSearch('');
-                }}>&#10006;</Button>
-            </SelectDrawerSearchActions>
+                }}><Span type='danger'>&#10006;</Span></Button>) : ('')}
+            </SelectDrawerSearchActions>)}
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>

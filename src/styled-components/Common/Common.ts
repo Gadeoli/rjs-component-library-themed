@@ -455,6 +455,10 @@ export const Input = styled.input`
     &.full{
         width: 100%;
     }
+
+    &:focus {
+        outline-style: solid;
+    }
 `;
 
 export const Textarea = styled.textarea`
@@ -471,6 +475,10 @@ export const Textarea = styled.textarea`
 
     &.full{
         width: 100%;
+    }
+
+    &:focus {
+        outline-style: solid;
     }
 `;
 
@@ -635,6 +643,27 @@ export const CheckboxSquare = styled.div`
 /* End Checkbox Components */
 
 /* Select Component */
+export const Magnifier = styled.div<{size: number}>`
+    position:relative;
+    display:inline-block;
+    border-radius: 30px;
+    height: ${(props: any) => props.size}px;
+    width: ${(props: any) => props.size}px;
+    border: ${(props: any) => props.size / 3}px solid ${(props: any) => props.theme.text};
+    margin-right: 10px;
+
+    &:after {
+        content: "";
+        height: ${(props: any) => props.size / 3}px;
+        width: ${(props: any) => props.size}px;
+        background: ${(props: any) => props.theme.text};
+        position:absolute;
+        top: ${(props: any) => props.size + 1}px;
+        left: ${(props: any) => props.size - 1}px;
+        transform: rotate(45deg);
+    }
+`;
+
 export const SelectContainer = styled.div`
     position: relative;
     width: fit-content;
@@ -645,10 +674,10 @@ export const SelectContainer = styled.div`
     }
 `;
 
-export const SelectedResult = styled.div`
+export const SelectedResult = styled.div<{outline: boolean}>`
     background-color: transparent;
     border: 0;
-    border: 1.5px solid ${(props: any) => props.theme.border};
+    border: 1.5px solid ${(props: any) => props.outline ? props.theme.outline : props.theme.border};
     color: ${(props: any) => props.theme.text};
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
@@ -704,38 +733,31 @@ export const SelectDrawer = styled.div`
     select{
         display: none;
     }
-`;
 
-export const SearchLoadingContainer = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 30px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: ${props => props.theme.background};
-    opacity: 0.5;
+    &.focus{
+        border-color: ${(props: any) => props.theme.outline};
+    }
 `;
 
 export const SelectDrawerSearchContainer = styled.div`
     position: relative;
     display: flex;
-    overflow: hidden;
+    border: 1px solid transparent;
 `;
 
-export const SelectDrawerSearchActions = styled.div<{outline: boolean}>`
+export const SelectDrawerSearchActions = styled.div`
     display: flex;
     align-items: center;
-    margin-left: -6px;
-    border: 2px solid ${props => props.outline ? props.theme.outline : props.theme.border};
-    border-left: unset;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
     overflow: hidden;
     
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    padding-right: 0.5rem;
+
+    height: 100%;
+
     button{
         height: 100%;
         font-size: 60%;

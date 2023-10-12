@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
@@ -14,8 +14,7 @@ import {
     SelectDrawerItem as StyledSelectDrawerItem,
     SelectBtn as StyledSelectBtn,
     SelectDropSymbol as StyledSelectDropSymbol,
-    SelectSelectedOptions as StyledSelectSelectedOptions,
-    SearchLoadingContainer as StyledSearchLoadingContainer
+    SelectSelectedOptions as StyledSelectSelectedOptions
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
@@ -123,7 +122,7 @@ const Select: FC<SelectProps> = ({
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
-            toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
+            toggleTrigger={(trigger: any) => (<StyledSelectedResult outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
             fullToogle={true}
         >
@@ -159,7 +158,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     const [search, setSearch] = useState('');
     const [inputFocus, setInputFocus] = useState(false);
 
-    return (<StyledSelectDrawer className='cl-themed__select__drawer' theme={theme}>
+    return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
             <Input 
                 theme={theme} 
@@ -172,14 +171,15 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                     onSearch(e.target.value);
                 }
             }/>
-            {isSearching ? (<StyledSearchLoadingContainer theme={theme}><Spinner size={2}/></StyledSearchLoadingContainer>) : null}
-            <SelectDrawerSearchActions theme={theme} outline={inputFocus}>
-                <Button type='danger' action='button' onClick={() => {
+            
+            {isSearching ? (<SelectDrawerSearchActions theme={theme}>
+                <Spinner size={20}/>
+            </SelectDrawerSearchActions>) : (<SelectDrawerSearchActions theme={theme}>
+                {search ? (<Button type='clean' onClick={() => {
                     setSearch('');
                     onSearch('');
-                }}>&#10006;</Button>
-            </SelectDrawerSearchActions>
-            
+                }}><Span type='danger'>&#10006;</Span></Button>) : ('')}
+            </SelectDrawerSearchActions>)}
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>
