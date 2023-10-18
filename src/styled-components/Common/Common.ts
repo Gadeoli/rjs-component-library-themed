@@ -766,7 +766,7 @@ export const SelectDrawerSearchActions = styled.div`
 `;
 
 export const SelectDrawerItem = styled.button`
-    color: ${(props: any) => props.selected ? props.theme.body : props.theme.text};
+    color: ${(props: any) => props.selected ? props.theme.secondary_text : props.theme.text};
     background-color: ${(props: any) => props.selected ? props.theme.secondary : props.theme.body};
     padding: .25rem;
     border-radius: ${defaultRadius};
