@@ -459,6 +459,12 @@ export const Input = styled.input`
     &:focus {
         outline-style: solid;
     }
+
+    /* avoid autocomplete background-color */
+    &:-webkit-autofill { 
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: ${props => props.theme.text};
+    }
 `;
 
 export const Textarea = styled.textarea`
@@ -479,6 +485,12 @@ export const Textarea = styled.textarea`
 
     &:focus {
         outline-style: solid;
+    }
+
+    /* avoid autocomplete background-color */
+    &:-webkit-autofill { 
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: ${props => props.theme.text};
     }
 `;
 
