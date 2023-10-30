@@ -173,6 +173,10 @@ export const Card = styled.div`
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
+
+    &.reverse{
+        background-color: ${(props: any) => props.theme.body};
+    }
 `;
 
 export const CardContent = styled.div`
