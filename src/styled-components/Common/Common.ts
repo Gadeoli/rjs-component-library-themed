@@ -177,6 +177,10 @@ export const Card = styled.div`
     &.reverse{
         background-color: ${(props: any) => props.theme.body};
     }
+
+    &.clean{
+        background-color: transparent;
+    }
 `;
 
 export const CardContent = styled.div`
@@ -209,6 +213,14 @@ export const Container = styled.div`
     &.success{
         background-color: ${(props: any) => props.theme.success};
         color: ${(props: any) => props.theme.success_text};
+    }
+
+    &.reverse{
+        background-color: ${(props: any) => props.theme.body};
+    }
+
+    &.clean{
+        background-color: transparent;
     }
 `;
 
