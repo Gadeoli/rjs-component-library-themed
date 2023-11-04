@@ -578,6 +578,10 @@ export const ToggleLabel = styled.label`
 
         &:checked ~ .fill{
             background: ${(props: any) => props.colors.background};
+
+            &.reverse{
+                background: ${(props: any) => props.theme.background};
+            }
         }
 
         &:checked ~ .fill::after {
@@ -609,6 +613,10 @@ export const ToggleFill = styled.div`
     border-radius: ${(props: any) => props.sizes.borderRadius};
     background: ${(props: any) => props.colors.background};
     transition: background 0.2s;
+
+    &.reverse{
+        background: ${(props: any) => props.theme.background};
+    }
 
     /* Fill after is the circle */
     &:after{

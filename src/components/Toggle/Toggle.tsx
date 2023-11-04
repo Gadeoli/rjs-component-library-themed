@@ -22,7 +22,8 @@ const Toggle: FC<ToggleProps> = ({
     type,
     className,
     style,
-    children
+    children,
+    fillType
 }) => {
     const {theme} = useTheme();
     const id = uniqid();
@@ -46,6 +47,7 @@ const Toggle: FC<ToggleProps> = ({
     const classNamesFill = handleCssClassnames([
         'cl-themed__toogle__fill',
         'fill',
+        fillType ? fillType : "default",
         disabled ? 'disabled' : undefined,
     ]);
 
@@ -58,7 +60,7 @@ const Toggle: FC<ToggleProps> = ({
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
             <input name={name} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 
-            <StyledToggleFill className={classNamesFill} sizes={sizes} colors={colors} checked={checked} onClick={() => {
+            <StyledToggleFill theme={theme} className={classNamesFill} sizes={sizes} colors={colors} checked={checked} onClick={() => {
                 !disabled && onChange(checked ? uncheckedValue : checkedValue)
             }}>
                 <StyledToggleFillIcon className='fill-icon' sizes={sizes} checked={checked}>

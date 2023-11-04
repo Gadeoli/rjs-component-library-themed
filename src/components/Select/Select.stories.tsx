@@ -136,5 +136,10 @@ Default.argTypes = {
         type: {name: 'other', required: false},
         defaultValue: null,
         description: 'custom styles'
+    },
+    enableSearch: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'enable search input'
     }
 }

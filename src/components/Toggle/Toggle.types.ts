@@ -9,6 +9,7 @@ export interface ToggleProps {
     disabled?: boolean;
     onChange: MouseEventHandler<HTMLButtonElement>;
     type?: "danger" | "primary" | "secondary" | "success";
+    fillType?: "default" | "reverse";
     className?: string;
     style?: object;
     children?: React.ReactNode

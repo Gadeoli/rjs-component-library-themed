@@ -31,10 +31,11 @@ const Select: FC<SelectProps> = ({
     values,         
     handleValues,
     handleSelect,
+    enableSearch = false,
     isSearching = false,
     multiple,
     className,
-    inlineDrawer
+    inlineDrawer,
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
@@ -132,6 +133,7 @@ const Select: FC<SelectProps> = ({
                 theme={theme} 
                 values={values}
                 isSearching={isSearching} 
+                enableSearch={enableSearch}
                 onSelect={(v) => handleValues(handleOnSelect(v))}
                 onSearch={(s) => {
                     handleValues(handleOnSearch(s));
@@ -152,6 +154,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     onSelect, 
     onSearch, 
     isSearching = false,
+    enableSearch = false,
     theme,
     inlineDrawer
 }) => {
@@ -160,7 +163,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
 
     return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
-            <Input 
+            {enableSearch ? (<Input 
                 theme={theme} 
                 value={search} 
                 onBlur={() => setInputFocus(false)}
@@ -170,7 +173,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                     setSearch(e.target.value);
                     onSearch(e.target.value);
                 }
-            }/>
+            }/>) : ('')}
             
             {isSearching ? (<SelectDrawerSearchActions theme={theme}>
                 <Spinner size={20}/>

@@ -88,4 +88,9 @@ Default.argTypes = {
     onChange: {
         description: 'function to run on onchange event. this will recieve the value changed'
     },
+    fillType: {
+        type: {name: 'string', required: false},
+        defaultValue: "default",
+        description: 'invert the background-color (default = theme body | reverse = theme background)',
+    }
 }

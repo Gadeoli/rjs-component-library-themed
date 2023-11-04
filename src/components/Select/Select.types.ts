@@ -5,6 +5,7 @@ export interface SelectProps {
     handleValues:   (any) => any;//
     handleSelect?:  (any) => any;//
     isSearching?:   boolean;  
+    enableSearch?: boolean;
     multiple?: boolean;        //if allow to select multiple values
     styles?: object;
     className?: string;
@@ -24,6 +25,7 @@ export interface SelectDrawerProps {
     onSelect: (any) => any; 
     onSearch: (any) => any; 
     isSearching?:   boolean;  
+    enableSearch?: boolean;
     theme: object;
     inlineDrawer?: boolean; 
 }
