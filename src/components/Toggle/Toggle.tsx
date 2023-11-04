@@ -8,7 +8,7 @@ import {
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import uniqid from 'uniqid';
-import { transparentize } from 'polished';
+import { shade, transparentize } from 'polished';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
 const Toggle: FC<ToggleProps> = ({
@@ -37,7 +37,7 @@ const Toggle: FC<ToggleProps> = ({
     const checked = checkedValue === value
     const colors = {
         cicle: theme[type || "secondary"],
-        background: theme.body
+        background: fillType === 'reverse' ? shade(0.15, theme.body) : shade(0.15, theme.background)
     }
     const classNamesToggle = handleCssClassnames([
         'cl-themed__toogle',

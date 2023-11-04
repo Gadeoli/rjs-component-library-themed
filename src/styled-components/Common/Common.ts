@@ -589,7 +589,7 @@ export const ToggleLabel = styled.label`
             background: ${(props: any) => props.colors.background};
 
             &.reverse{
-                background: ${(props: any) => props.theme.background};
+                background: ${(props: any) => props.colors.background};
             }
         }
 
@@ -623,10 +623,6 @@ export const ToggleFill = styled.div`
     background: ${(props: any) => props.colors.background};
     transition: background 0.2s;
 
-    &.reverse{
-        background: ${(props: any) => props.theme.background};
-    }
-
     /* Fill after is the circle */
     &:after{
         content: '';
@@ -636,7 +632,7 @@ export const ToggleFill = styled.div`
         width: ${(props: any) => props.sizes.height};
         height: ${(props: any) => props.sizes.height};
         background: ${(props: any) => props.colors.cicle};
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
         border-radius: ${(props: any) => props.sizes.borderRadius};
         transition: transform 0.2s;
     }
@@ -811,8 +807,8 @@ export const SelectDrawerSearchActions = styled.div`
 `;
 
 export const SelectDrawerItem = styled.button`
-    color: ${(props: any) => props.selected ? props.theme.secondary_text : props.theme.text};
-    background-color: ${(props: any) => props.selected ? props.theme.secondary : props.theme.body};
+    color: ${(props: any) => props.selected ? props.theme.primary_text : props.theme.text};
+    background-color: ${(props: any) => props.selected ? props.theme.primary : props.theme.body};
     padding: .25rem;
     border-radius: ${defaultRadius};
     cursor: pointer;
