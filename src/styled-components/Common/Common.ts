@@ -4,7 +4,8 @@ import { darken, rgba } from 'polished';
 import { deviceMax } from '../../components/device';
 
 const defaultRadius = '.25rem';
-const defaultShadow = "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;";
+const defaultShadow = "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px";
+const discreetShadow = "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px";
 
 export const ShineAnimation = keyframes`
     to {
@@ -33,7 +34,7 @@ export const Button = styled.button`
     cursor: ${(props: any) => props.loading ? 'default' : 'pointer'};
     
     :hover {
-        box-shadow: ${defaultShadow};
+        box-shadow: ${discreetShadow};
     }
 
     :disabled {
