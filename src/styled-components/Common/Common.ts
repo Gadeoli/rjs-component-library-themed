@@ -123,7 +123,8 @@ export const Card = styled.div<{themeMode: string}>`
     box-shadow: ${(props: any) => props.themeMode === 'light' ? defaultShadow : darkShadow};
     border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.theme.background};
-
+    box-sizing: border-box;
+    
     &.force-border{
         box-shadow: unset;
         border: 1px solid ${(props: any) => props.theme.border};
@@ -193,6 +194,7 @@ export const Card = styled.div<{themeMode: string}>`
 export const CardContent = styled.div`
     width: 100%;
     padding: .4rem .75rem;
+    box-sizing: border-box;
 `;
 
 export const Container = styled.div`
