@@ -369,7 +369,7 @@ export const SpinnerRipple = styled.div<{size: number, customColor: string}>`
         border: ${(props: any) => props.size * 0.05}px solid ${(props: any) => props.theme.text};
         opacity: 1;
         border-radius: 50%;
-        animation: ${props => SpinnerRippleAnimation(props.size)} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        animation: ${(props: any) => SpinnerRippleAnimation(props.size)} 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     }
 
     &.danger div{
@@ -418,27 +418,27 @@ export const SpinnerView = styled.div<{size: number, customColor: string}>`
         width: ${(props: any) => props.size * 0.075}px;
         height: ${(props: any) => props.size * 0.2}px;
         border-radius: 20%;
-        background: ${props => props.theme.text};
+        background: ${(props: any) => props.theme.text};
     }
 
     &.danger div:after{
-        background: ${props => props.theme.danger};
+        background: ${(props: any) => props.theme.danger};
     }
 
     &.primary div:after{
-        background: ${props => props.theme.primary};
+        background: ${(props: any) => props.theme.primary};
     }
 
     &.secondary div:after{
-        background: ${props => props.theme.secondary};
+        background: ${(props: any) => props.theme.secondary};
     }
 
     &.success div:after{
-        background: ${props => props.theme.success};
+        background: ${(props: any) => props.theme.success};
     }
 
     &.custom div:after{
-        background: ${props => props.theme.customColor};
+        background: ${(props: any) => props.theme.customColor};
     }
 
     div:nth-child(1) {

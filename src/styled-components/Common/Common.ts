@@ -4,8 +4,9 @@ import { darken, rgba } from 'polished';
 import { deviceMax } from '../../components/device';
 
 const defaultRadius = '.25rem';
-const defaultShadow = "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px";
-const discreetShadow = "rgba(0, 0, 0, 0.2) 0px 18px 50px -10px";
+const defaultShadow = "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px";
+const darkShadow = "rgba(0, 0, 0, 0.15) 0px 3px 3px 0px";
+const discreetShadow = "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px";
 
 export const ShineAnimation = keyframes`
     to {
@@ -117,11 +118,16 @@ export const BlinkerAnimation = keyframes`
     }
 `;
 
-export const Card = styled.div`
+export const Card = styled.div<{themeMode: string}>`
     width: 100%;
-    box-shadow: ${defaultShadow};
+    box-shadow: ${(props: any) => props.themeMode === 'light' ? defaultShadow : darkShadow};
     border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.theme.background};
+
+    &.force-border{
+        box-shadow: unset;
+        border: 1px solid ${(props: any) => props.theme.border};
+    }
 
     &.loading-effect-card{
         h2, h3, h4, p, span, image, div.loading-effect{
@@ -185,7 +191,7 @@ export const Card = styled.div`
 `;
 
 export const CardContent = styled.div`
-    width: 100;
+    width: 100%;
     padding: .4rem .75rem;
 `;
 
@@ -480,7 +486,7 @@ export const Input = styled.input`
     /* avoid autocomplete background-color */
     &:-webkit-autofill { 
         -webkit-background-clip: text;
-        -webkit-text-fill-color: ${props => props.theme.text};
+        -webkit-text-fill-color: ${(props: any) => props.theme.text};
     }
 `;
 
@@ -507,7 +513,7 @@ export const Textarea = styled.textarea`
     /* avoid autocomplete background-color */
     &:-webkit-autofill { 
         -webkit-background-clip: text;
-        -webkit-text-fill-color: ${props => props.theme.text};
+        -webkit-text-fill-color: ${(props: any) => props.theme.text};
     }
 `;
 
@@ -546,7 +552,7 @@ export const RadioContainer = styled.div`
 
 export const RadioCircle = styled.div`
     width: ${(props: any) => props.size || '1rem'};
-    height: ${props => props.size || '1rem'};
+    height: ${(props: any) => props.size || '1rem'};
     border: 1px solid ${(props: any) => props.colors.selected};
     border-radius: ${(props: any) => props.size || '1rem'};
     background-color: ${(props: any) => props.selected ? props.colors.selected : props.colors.unselect};
@@ -852,7 +858,7 @@ export const SelectDropSymbol = styled.div`
         width: 0.5rem;
         height: 3px;
         transition: all 0.5s;
-        background-color: ${props => props.theme.border};
+        background-color: ${(props: any) => props.theme.border};
     }
 
     &::before{
@@ -878,7 +884,7 @@ export const TabsContent = styled.div`
     width: 100%;
     height: auto;
     min-height: 250px;
-    background: ${props => props.theme.background};
+    background: ${(props: any) => props.theme.background};
     border-radius: ${defaultRadius};
 `;
 
@@ -887,7 +893,7 @@ export const TabsNav = styled.ul`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border-bottom: 1px solid ${props => props.theme.border};
+    border-bottom: 1px solid ${(props: any) => props.theme.border};
     border-top-right-radius: ${defaultRadius};
     overflow: auto;
     li:first-child{
@@ -905,14 +911,14 @@ export const TabsNavItem = styled.li<{active: boolean}>`
     text-align: center;
     cursor: pointer;
     transition: all 0.4s ease-in-out;
-    border: 1px solid ${props => props.theme.border};
+    border: 1px solid ${(props: any) => props.theme.border};
     display: flex;
     justify-content: center;
     align-items: center;
 
     &.active{
-        border-color: ${props => props.theme.secondary};
-        color: ${props => props.theme.secondary};
+        border-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary};
     }
 
     &.emphasis-active{
@@ -926,7 +932,7 @@ export const TabsNavItem = styled.li<{active: boolean}>`
 export const TabsBody = styled.div`
     min-height: 150px;
     padding: .4rem .75rem;
-    border: 1px solid ${props => props.theme.border};
+    border: 1px solid ${(props: any) => props.theme.border};
     border-radius: ${defaultRadius};
     border-top-left-radius: unset;
     margin-top: -1px; //fix doble border (its border and the nav border)
@@ -936,7 +942,7 @@ export const MultiFormContent = styled.div`
     width: 100%;
     height: auto;
     min-height: 250px;
-    background: ${props => props.theme.background};
+    background: ${(props: any) => props.theme.background};
 `;
 
 export const MultiFormBody = styled.div`
@@ -977,19 +983,19 @@ export const MultiFormNavItemKey = styled.div`
 
     /* disabled */
     border: 1px solid;
-    border-color: ${props => props.theme.disabled};
-    color: ${props => props.theme.disabled_text};
+    border-color: ${(props: any) => props.theme.disabled};
+    color: ${(props: any) => props.theme.disabled_text};
     background-color: unset;
 
     &.completed, &.current{
         background-color: unset;
-        color: ${props => props.theme.secondary};
-        border-color: ${props => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary};
+        border-color: ${(props: any) => props.theme.secondary};
     }
 
     &.current{
-        color: ${props => props.theme.secondary_text};
-        background-color: ${props => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
+        background-color: ${(props: any) => props.theme.secondary};
     }
 `;
 
@@ -1000,10 +1006,10 @@ export const MultiFormNavItemDivisor = styled.div`
     margin-right: 1.5rem;
 
     /* disabled */
-    background-color: ${props => props.theme.disabled};
+    background-color: ${(props: any) => props.theme.disabled};
 
     &.completed{
-        background-color: ${props => props.theme.secondary};
+        background-color: ${(props: any) => props.theme.secondary};
     }
 
     @media ${deviceMax.tablet}{
@@ -1015,23 +1021,23 @@ export const MultiFormNavItemDivisor = styled.div`
 
 export const MultiFormNavItemLabel = styled.div`
     /* disabled */
-    color: ${props => props.theme.disabled_text};
+    color: ${(props: any) => props.theme.disabled_text};
 
     * { 
-        color: ${props => props.theme.disabled_text};
+        color: ${(props: any) => props.theme.disabled_text};
     }
 
     &.completed, &.current{
-        color: ${props => props.theme.text};
+        color: ${(props: any) => props.theme.text};
     }
 
     &.completed *, &.current *{
-        color: ${props => props.theme.text};
+        color: ${(props: any) => props.theme.text};
     }
 `;
 
 export const LoadingContainer = styled.div<{align: string}>`
-    text-align: ${props => props.align};
+    text-align: ${(props: any) => props.align};
 `;
 /* End Select Component */
 
@@ -1053,7 +1059,7 @@ export const Tooltip = styled.div<{show: boolean}>`
     //pointer
     &:before{
         content: '';
-        display: ${props => props.show ? 'block' : 'none'};
+        display: ${(props: any) => props.show ? 'block' : 'none'};
         position: absolute;
         top: 0;
         left: 0;
@@ -1073,11 +1079,11 @@ export const TooltipContext = styled.div`
 
 export const TooltipContent = styled.div<{position?: string, type?: string, show: boolean}>`
     position: absolute;
-    display: ${props => props.show ? 'block' : 'none'};
+    display: ${(props: any) => props.show ? 'block' : 'none'};
     padding: .4rem .75rem;
     border-radius: ${defaultRadius};
     min-width: 25px;
-    min-height: ${props => props.position === 'left' || props.position === 'right' ? '20px' : '14px'};
+    min-height: ${(props: any) => props.position === 'left' || props.position === 'right' ? '20px' : '14px'};
 
     //pointer
     :before{

@@ -143,14 +143,14 @@ const TriggerContainer = styled.div``;
 
 const ToggleContainer = styled.div<{full: boolean}>`
     z-index: 1;
-    width: ${props => props.full ? "100%" : "auto"};
+    width: ${(props: any) => props.full ? "100%" : "auto"};
     position: absolute;
     box-sizing: border-box;
-    display: ${props => props.show ? 'block' : 'none'};
-    top:    ${props => props.position.top};
-    bottom: ${props => props.position.bottom};
-    left:   ${props => props.position.left};
-    right:  ${props => props.position.right};
+    display: ${(props: any) => props.show ? 'block' : 'none'};
+    top:    ${(props: any) => props.position.top};
+    bottom: ${(props: any) => props.position.bottom};
+    left:   ${(props: any) => props.position.left};
+    right:  ${(props: any) => props.position.right};
 
     &.full{
         width: 100%;

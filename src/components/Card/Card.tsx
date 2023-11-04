@@ -4,11 +4,12 @@ import { Card as StyledCard } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
-const Card: FC<CardProps> = ({children, className, loading, type, style}) => {
-    const {theme} = useTheme();
+const Card: FC<CardProps> = ({children, className, loading, type, style, forceBorder = false}) => {
+    const {theme, mode} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__card',
         type,
+        forceBorder ? 'force-border' : undefined,
         loading ? 'loading-effect-card' : undefined,
         className
     ]);
@@ -16,6 +17,7 @@ const Card: FC<CardProps> = ({children, className, loading, type, style}) => {
     return (<StyledCard 
         className={classNames} 
         theme={theme} 
+        themeMode={mode}
         style={style} 
     >
         {children}

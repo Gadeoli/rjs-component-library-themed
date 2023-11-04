@@ -46,5 +46,10 @@ Default.argTypes = {
     },
     children: {
         description: 'ReactNode'
-    }
+    },
+    forceBorder: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'remove box shadow and use only border'
+    },
 }

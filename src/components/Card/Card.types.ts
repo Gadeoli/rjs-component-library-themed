@@ -4,4 +4,5 @@ export interface CardProps {
     type?: "clean" | "reverse" | "danger" | "primary" | "secondary" | "success";
     className?: string;
     style?: object;
+    forceBorder?: boolean;
 }
