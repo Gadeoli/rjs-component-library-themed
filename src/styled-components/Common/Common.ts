@@ -4,7 +4,7 @@ import { darken, rgba } from 'polished';
 import { deviceMax } from '../../components/device';
 
 const defaultRadius = '.25rem';
-const defaultShadow = "rgba(0, 0, 0, 0.08) 0px 1px 4px";
+const defaultShadow = "box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;";
 
 export const ShineAnimation = keyframes`
     to {
