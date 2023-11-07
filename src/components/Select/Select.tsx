@@ -36,6 +36,8 @@ const Select: FC<SelectProps> = ({
     multiple,
     className,
     inlineDrawer,
+    toggleX=null,
+    toggleY=null
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
@@ -126,6 +128,8 @@ const Select: FC<SelectProps> = ({
             toggleTrigger={(trigger: any) => (<StyledSelectedResult outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
             fullToogle={true}
+            xOverride={toggleX}
+            yOverride={toggleY}
         >
             <SelectDrawer
                 name={name}

@@ -6,7 +6,6 @@ import Span from "../Span";
 import { SelectProps } from "./Select.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData, candyData } from "../../data";
-import Input from "../Input";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -141,5 +140,15 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'enable search input'
+    },
+    toggleX: {
+        type: {name: 'string', required: false},
+        defaultValue: null,
+        description: 'set the drawer position in the x axis top | bottom (default auto - not 100 working)'
+    },
+    toggleY: {
+        type: {name: 'string', required: false},
+        defaultValue: null,
+        description: 'set the drawer position in the y axis left | right (default auto - not 100 working)'
     }
 }
