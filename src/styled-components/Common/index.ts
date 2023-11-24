@@ -1,13 +1,4 @@
 export { 
-    // DEFAULT STYLE VARS
-    defaultRadius,
-    defaultShadow,
-    darkShadow,
-    discreetShadow,
-    defaultXPM,
-    defaultYPM,
-    // END DEFAULT STYLE VARS
-    
     Body,
     BodyContent,
     Button,
