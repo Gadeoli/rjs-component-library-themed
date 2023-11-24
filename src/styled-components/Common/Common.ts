@@ -3,10 +3,12 @@ import { shade } from 'polished';
 import { darken, rgba } from 'polished';
 import { deviceMax } from '../../components/device';
 
-const defaultRadius = '.25rem';
-const defaultShadow = "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px";
-const darkShadow = "rgba(0, 0, 0, 0.15) 0px 3px 3px 0px";
-const discreetShadow = "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px";
+export const defaultRadius = '.25rem';
+export const defaultShadow = "rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px";
+export const darkShadow = "rgba(0, 0, 0, 0.15) 0px 3px 3px 0px";
+export const discreetShadow = "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px";
+export const defaultYPM = '.4rem';
+export const defaultXPM = '.75rem';
 
 export const ShineAnimation = keyframes`
     to {
@@ -27,7 +29,7 @@ export const BodyContent = styled.div`
 
 export const Button = styled.button`
     margin: 0;
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     transition: background-color .4s ease-in-out;
     border: 1px solid;
@@ -193,7 +195,7 @@ export const Card = styled.div<{themeMode: string}>`
 
 export const CardContent = styled.div`
     width: 100%;
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     box-sizing: border-box;
 `;
 
@@ -475,7 +477,7 @@ export const Input = styled.input`
     box-sizing: border-box;
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
 
     &.full{
         width: 100%;
@@ -502,7 +504,7 @@ export const Textarea = styled.textarea`
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     min-height: 10rem;
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
 
     &.full{
         width: 100%;
@@ -723,7 +725,7 @@ export const SelectedResult = styled.div<{outline: boolean}>`
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
     box-sizing: border-box;
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     cursor: pointer;
     display: flex;
     flex-wrap: wrap;
@@ -765,7 +767,7 @@ export const SelectDrawer = styled.div`
     margin: 0;
     padding: 0;
     margin-top: .5rem;
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     background-color: ${(props: any) => props.theme.background};
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: 4px;  
@@ -904,7 +906,7 @@ export const TabsNav = styled.ul`
 `;
 
 export const TabsNavItem = styled.li<{active: boolean}>`
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     list-style: none;
     text-align: center;
     cursor: pointer;
@@ -920,7 +922,7 @@ export const TabsNavItem = styled.li<{active: boolean}>`
     }
 
     &.emphasis-active{
-        padding: .5rem .75rem;
+        padding: .5rem ${defaultXPM};
         margin-top: -4px; //fix bigger padding
         border-top-left-radius: ${defaultRadius};
         border-top-right-radius: ${defaultRadius};
@@ -929,7 +931,7 @@ export const TabsNavItem = styled.li<{active: boolean}>`
 
 export const TabsBody = styled.div`
     min-height: 150px;
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: ${defaultRadius};
     border-top-left-radius: unset;
@@ -1078,7 +1080,7 @@ export const TooltipContext = styled.div`
 export const TooltipContent = styled.div<{position?: string, type?: string, show: boolean}>`
     position: absolute;
     display: ${(props: any) => props.show ? 'block' : 'none'};
-    padding: .4rem .75rem;
+    padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     min-width: 25px;
     min-height: ${(props: any) => props.position === 'left' || props.position === 'right' ? '20px' : '14px'};
