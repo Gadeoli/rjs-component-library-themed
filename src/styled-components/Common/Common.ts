@@ -113,6 +113,12 @@ export const Button = styled.button`
         min-height: 20px;
         border-color: ${(props: any) => props.theme.border};
     }
+
+    &.composite{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }   
 `;
 
 export const BlinkerAnimation = keyframes`
