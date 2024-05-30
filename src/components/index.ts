@@ -5,6 +5,8 @@ export { default as CardToggle } from './CardToggle';
 export { default as Checkbox } from './Checkbox';
 export { default as CheckboxMulti } from './CheckboxMulti';
 export { default as Container } from './Container';
+export { default as ContainerReverseYPM } from './ContainerReverseYPM';
+export { default as ContainerReverseXPM } from './ContainerReverseXPM';
 export { default as ImageContainer } from './ImageContainer';
 export { default as FormGroup } from './FormGroup';
 export { default as GlobalStyle } from './GlobalStyle';

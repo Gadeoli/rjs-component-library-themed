@@ -5,6 +5,8 @@ export {
     Card,
     CardContent,
     Container,
+    ContainerReverseYPM,
+    ContainerReverseXPM,
     DirectionContainer,
     CheckboxContainer,
     CheckboxSquare,

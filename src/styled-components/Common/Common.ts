@@ -242,6 +242,16 @@ export const Container = styled.div`
     }
 `;
 
+export const ContainerReverseYPM = styled.div`
+    margin-top: -${() => defaultYPM};
+    margin-bottom: -${() => defaultYPM};
+`;
+
+export const ContainerReverseXPM = styled.div`
+    margin-left: -${() => defaultXPM};
+    margin-right: -${() => defaultXPM};
+`;
+
 export const ImageContainer = styled.div`
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: ${defaultRadius};
