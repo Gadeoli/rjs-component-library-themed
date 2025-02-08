@@ -2,15 +2,6 @@
 
 (A test for now) A reactjs component library with a custom theme support by default. It's just a light / dark support with possibility to choose and change colors from both themes. Font (font family) and font size are present, but not fully implemented yet.
 
-## How to maintain
-
-1. Clone  
-2. NVM use 16.14.2 (node 16.14.2 / npm 8.5.0)  
-3. npm i  
-4. make changes  
-5. git add / git commit / git push  
-6. npm run publish (custom command)  
-
 ## Components
 
 ThemeHandler    
@@ -165,3 +156,12 @@ function App() {
   );
 }
 ```
+
+## How to maintain
+
+1. Clone  
+2. NVM use 16.14.2 (node 16.14.2 / npm 8.5.0)  
+3. npm i  
+4. make changes  
+5. git add / git commit / git push  
+6. npm run publish (custom command)
