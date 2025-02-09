@@ -10,7 +10,7 @@ import { fruitData, candyData } from "../../data";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Select",
-} as ComponentMeta<typeof Select>;
+} as Meta<typeof Select>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<SelectProps> = (args) => {

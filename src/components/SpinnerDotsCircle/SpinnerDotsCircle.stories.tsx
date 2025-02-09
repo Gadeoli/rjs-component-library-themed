@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import SpinnerDotsCircle from './SpinnerDotsCircle';
 import Card from "../Card";
 import CardContent from "../CardContent";
@@ -8,10 +8,10 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/SpinnerDotsCircle",
-} as ComponentMeta<typeof SpinnerDotsCircle>;
+} as Meta<typeof SpinnerDotsCircle>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SpinnerDotsCircle> = (args) => <Card>
+const Template: StoryFn<typeof SpinnerDotsCircle> = (args) => <Card>
     <CardContent>
         <Span>Card - CardContent - SpinnerDotsCircle</Span><br/>
         <SpinnerDotsCircle {...args} />

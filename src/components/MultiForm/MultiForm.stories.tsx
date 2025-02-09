@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useCallback, useEffect} from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import MultiForm from './MultiForm';
 import Card from "../Card";
 import CardContent from "../CardContent";
@@ -8,10 +8,10 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/MultiForm",
-} as ComponentMeta<typeof MultiForm>;
+} as Meta<typeof MultiForm>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof MultiForm> = (args) => {
+const Template: StoryFn<typeof MultiForm> = (args) => {
     const [currentStep, setCurrentStep] = useState(1); 
     
     const steps = useMemo(() => {
@@ -65,7 +65,7 @@ Default.args = {
 
 Default.argTypes = {
     steps: {
-        type: {name: 'other', required: true},
+        type: {name: 'string', required: true},
         defaultValue: [],
         description: 'A array os objects. This will mount the steps and the respective body/content'
     },
@@ -95,7 +95,7 @@ Default.argTypes = {
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        type: {name: 'string', required: false},
         defaultValue: null,
         description: 'custom styles'
     }

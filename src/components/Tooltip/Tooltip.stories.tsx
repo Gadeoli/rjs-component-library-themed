@@ -9,7 +9,7 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Tooltip",
-} as ComponentMeta<typeof Tooltip>;
+} as Meta<typeof Tooltip>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<TooltipProps> = (args) => {

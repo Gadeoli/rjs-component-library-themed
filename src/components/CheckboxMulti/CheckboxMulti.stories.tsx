@@ -9,10 +9,10 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/CheckboxMulti",
-} as ComponentMeta<typeof CheckboxMulti>;
+} as Meta<typeof CheckboxMulti>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-// const Template: ComponentStory<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
+// const Template: StoryFn<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
 const Template: Story<CheckboxMultiProps> = (args) => {
     const [vs, setVs] = useState()
 

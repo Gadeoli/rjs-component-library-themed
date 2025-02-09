@@ -1,5 +1,5 @@
 import React, {useState, useMemo, useCallback, useEffect} from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Tabs from './Tabs';
 import Card from "../Card";
 import CardContent from "../CardContent";
@@ -8,10 +8,10 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Tabs",
-} as ComponentMeta<typeof Tabs>;
+} as Meta<typeof Tabs>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Tabs> = (args) => {
+const Template: StoryFn<typeof Tabs> = (args) => {
     const [activeTab, setActiveTab] = useState(1); 
     
     const tabs = useMemo(() => {

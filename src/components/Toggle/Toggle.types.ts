@@ -1,7 +1,7 @@
 import React, { MouseEventHandler } from "react";
 
 export interface ToggleProps {
-    name: string;
+    name: string | null | undefined;
     value: any;
     checkedValue: any;
     uncheckedValue: any;

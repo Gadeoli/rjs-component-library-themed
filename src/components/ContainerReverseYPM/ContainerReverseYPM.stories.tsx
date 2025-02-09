@@ -1,15 +1,15 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import ContainerReverseYPM from './ContainerReverseYPM';
 import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/ContainerReverseYPM",
-} as ComponentMeta<typeof ContainerReverseYPM>;
+} as Meta<typeof ContainerReverseYPM>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ContainerReverseYPM> = (args) => <ContainerReverseYPM {...args} />;
+const Template: StoryFn<typeof ContainerReverseYPM> = (args) => <ContainerReverseYPM {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});

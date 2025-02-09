@@ -28,7 +28,7 @@ export const BodyContent = styled.div`
     padding: 1.25rem 1rem;
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{loading: boolean | undefined}>`
     margin: 0;
     padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
@@ -589,7 +589,10 @@ export const RadioCircle = styled.div`
 /* End Radio Components */
 
 /* Toogle Components */
-export const ToggleLabel = styled.label`
+export const ToggleLabel = styled.label<{
+    sizes: {height: number | string, width: number | string, borderRadius: number | string}, 
+    colors: {background: string},
+}>`
     width: ${(props: any) => props.sizes.width};
     height: ${(props: any) => props.sizes.height};
     border-radius: ${(props: any) => props.sizes.borderRadius};
@@ -623,7 +626,10 @@ export const ToggleLabel = styled.label`
     }
 `;
 
-export const ToggleFillIcon = styled.div`
+export const ToggleFillIcon = styled.div<{
+    sizes: {main: number}
+    checked: boolean | number
+}>`
     position: absolute;
     z-index: 2;
     top: 1px; 
@@ -633,7 +639,11 @@ export const ToggleFillIcon = styled.div`
     }
 `;
 
-export const ToggleFill = styled.div`
+export const ToggleFill = styled.div<{
+    sizes: {height: number | string, width: number | string, borderRadius: number | string}, 
+    colors: {background: string, cicle: string},
+    checked: boolean | number
+}>`
     /* Fill is the background bar */
     position: relative;
     width: ${(props: any) => props.sizes.width};

@@ -9,7 +9,7 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Textarea",
-} as ComponentMeta<typeof Textarea>;
+} as Meta<typeof Textarea>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<TextareaProps> = (args) => {

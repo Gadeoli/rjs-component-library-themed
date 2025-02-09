@@ -11,7 +11,7 @@ import FormGroup from "../FormGroup";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Input",
-} as ComponentMeta<typeof Input>;
+} as Meta<typeof Input>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<InputProps> = (args) => {

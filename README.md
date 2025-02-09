@@ -160,7 +160,7 @@ function App() {
 ## How to maintain
 
 1. Clone  
-2. NVM use 16.14.2 (node 16.14.2 / npm 8.5.0)  
+2. NVM use 22.13.1 (node 22.13.1 / npm 10.9.2)  
 3. npm i  
 4. make changes  
 5. git add / git commit / git push  

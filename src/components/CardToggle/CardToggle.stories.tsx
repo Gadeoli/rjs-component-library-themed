@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import CardToggle from './CardToggle';
 import Span from "../Span";
 import Button from "../Button";
@@ -7,10 +7,10 @@ import Button from "../Button";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/CardToggle",
-} as ComponentMeta<typeof CardToggle>;
+} as Meta<typeof CardToggle>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof CardToggle> = (args) => <CardToggle 
+const Template: StoryFn<typeof CardToggle> = (args) => <CardToggle 
     {...args}
     toggleTrigger={(trigger: any) => (<Button onClick={() => trigger()}>triggerMe</Button>)}
 />;

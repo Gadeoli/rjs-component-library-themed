@@ -1,21 +1,20 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Button from './Button';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Button",
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-// const Template: ComponentStory<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: StoryFn<typeof Button> = (args) => <Button {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "",
+    type: "primary",
     className: "",
     loading: false,
     disabled: false,
@@ -42,7 +41,7 @@ Default.argTypes = {
         description: 'full;'
     },
     style: {
-        type: {name: 'other', required: false},
+        type: {name: 'string', required: false},
         defaultValue: null,
         description: 'custom styles'
     },

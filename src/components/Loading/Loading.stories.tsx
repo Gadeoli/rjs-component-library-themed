@@ -1,14 +1,14 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Loading from './Loading';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Loading",
-} as ComponentMeta<typeof Loading>;
+} as Meta<typeof Loading>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Loading> = (args) => <Loading {...args} />;
+const Template: StoryFn<typeof Loading> = (args) => <Loading {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});

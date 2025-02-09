@@ -58,7 +58,7 @@ const Toggle: FC<ToggleProps> = ({
 
     return (<StyledToggleContainer className={classNamesToggle} style={style}>
         <StyledToggleLabel theme={theme} htmlFor={id} sizes={sizes} colors={colors}>
-            <input name={name} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
+            <input name={name || ''} type="checkbox" id={id} checked={checked} onChange={() => {}}/>
 
             <StyledToggleFill theme={theme} className={classNamesFill} sizes={sizes} colors={colors} checked={checked} onClick={() => {
                 !disabled && onChange(checked ? uncheckedValue : checkedValue)

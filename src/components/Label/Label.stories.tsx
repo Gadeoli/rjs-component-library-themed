@@ -9,7 +9,7 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Label",
-} as ComponentMeta<typeof Label>;
+} as Meta<typeof Label>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<LabelProps> = (args) => {

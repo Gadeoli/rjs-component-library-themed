@@ -1,15 +1,15 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import ImageContainer from './ImageContainer';
 import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/ImageContainer",
-} as ComponentMeta<typeof ImageContainer>;
+} as Meta<typeof ImageContainer>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof ImageContainer> = (args) => <ImageContainer {...args} />;
+const Template: StoryFn<typeof ImageContainer> = (args) => <ImageContainer {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});

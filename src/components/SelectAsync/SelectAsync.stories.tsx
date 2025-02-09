@@ -12,7 +12,7 @@ import Input from "../Input";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/SelectAsync",
-} as ComponentMeta<typeof SelectAsync>;
+} as Meta<typeof SelectAsync>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: Story<SelectAsyncProps> = (args) => {

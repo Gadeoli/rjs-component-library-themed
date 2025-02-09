@@ -9,10 +9,10 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/RadioMulti",
-} as ComponentMeta<typeof RadioMulti>;
+} as Meta<typeof RadioMulti>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-// const Template: ComponentStory<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
+// const Template: StoryFn<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
 const Template: Story<RadioMultiProps> = (args) => {
     const [v, setV] = useState({key: 1, value: 'apple'})
 

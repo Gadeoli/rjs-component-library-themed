@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Card from './Card';
 import { CardContent } from "../../styled-components/Common/Common";
 import Span from "../Span";
@@ -7,16 +7,16 @@ import Span from "../Span";
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/Card",
-} as ComponentMeta<typeof Card>;
+} as Meta<typeof Card>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Card> = (args) => <Card {...args} />;
+const Template: StoryFn<typeof Card> = (args) => <Card {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "",
+    type: "primary",
     loading: false,
     className: "",
     style: {},
@@ -35,7 +35,7 @@ Default.argTypes = {
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        type: {name: 'string', required: false},
         defaultValue: null,
         description: 'custom styles'
     },

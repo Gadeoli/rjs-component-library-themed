@@ -1,15 +1,15 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import FormGroup from './FormGroup';
 import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/FormGroup",
-} as ComponentMeta<typeof FormGroup>;
+} as Meta<typeof FormGroup>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof FormGroup> = (args) => <FormGroup {...args} />;
+const Template: StoryFn<typeof FormGroup> = (args) => <FormGroup {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});
