@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Story, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Select, { apiDataToSelect } from './Select';
 import Card from "../Card";
 import Span from "../Span";
@@ -13,7 +13,7 @@ export default {
 } as Meta<typeof Select>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<SelectProps> = (args) => {
+const Template: StoryFn<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
     const [value, setValue] = useState();
 

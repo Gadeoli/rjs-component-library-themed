@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentMeta, Story } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Textarea from './Textarea';
 import { TextareaProps } from "./Textarea.types";
 import Card from "../Card";
@@ -12,7 +12,7 @@ export default {
 } as Meta<typeof Textarea>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<TextareaProps> = (args) => {
+const Template: StoryFn<TextareaProps> = (args) => {
     const [value, setValue] = useState();
 
     return( <Card>

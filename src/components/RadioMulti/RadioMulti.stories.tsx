@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { ComponentMeta, Story } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import RadioMulti from './RadioMulti';
 import Card from "../Card";
 import { CardContent } from "../../styled-components/Common/Common";
@@ -13,7 +13,7 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 // const Template: StoryFn<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
-const Template: Story<RadioMultiProps> = (args) => {
+const Template: StoryFn<RadioMultiProps> = (args) => {
     const [v, setV] = useState({key: 1, value: 'apple'})
 
     return(<Card><CardContent>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentMeta, Story } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Label from './Label';
 import { LabelProps } from "./Label.types";
 import Card from "../Card";
@@ -12,7 +12,7 @@ export default {
 } as Meta<typeof Label>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<LabelProps> = (args) => {
+const Template: StoryFn<LabelProps> = (args) => {
     return( <Card>
         <CardContent>
             <Label {...args}>{args.children}</Label>

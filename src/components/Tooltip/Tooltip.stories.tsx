@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentMeta, Story } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Tooltip from './Tooltip';
 import { TooltipProps } from "./Tooltip.types";
 import Card from "../Card";
@@ -12,7 +12,7 @@ export default {
 } as Meta<typeof Tooltip>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<TooltipProps> = (args) => {
+const Template: StoryFn<TooltipProps> = (args) => {
     const [value, setValue] = useState();
 
     return( <Card>

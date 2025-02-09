@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentMeta, Story } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import Input from './Input';
 import { InputProps } from "./Input.types";
 import Card from "../Card";
@@ -14,7 +14,7 @@ export default {
 } as Meta<typeof Input>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<InputProps> = (args) => {
+const Template: StoryFn<InputProps> = (args) => {
     const [value, setValue] = useState();
 
     return( <Card>

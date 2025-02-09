@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Story, ComponentMeta } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import SelectAsync, { handleValuesAsync } from './SelectAsync';
 // import { apiDataToSelect } from '../Select';
 import Card from "../Card";
@@ -15,7 +15,7 @@ export default {
 } as Meta<typeof SelectAsync>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: Story<SelectAsyncProps> = (args) => {
+const Template: StoryFn<SelectAsyncProps> = (args) => {
     const [vs, setVs] = useState<any>([]);
     const [selectSearching, setSelectSearching] = useState(false);
 
