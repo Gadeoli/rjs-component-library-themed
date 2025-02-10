@@ -49,7 +49,7 @@ Default.argTypes = {
         defaultValue: null,
         description: 'custom styles. This field is not required'
     },
-    $customColor: {
+    customColor: {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: ''

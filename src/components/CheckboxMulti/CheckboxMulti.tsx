@@ -44,7 +44,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
         }else{
             if(!checkedValues.length) return false
 
-            const aux = checkedValues.filter(i => i.key === key)
+            const aux = checkedValues.filter((i: any) => i.key === key)
 
             return aux && aux.length 
         }

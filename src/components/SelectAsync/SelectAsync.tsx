@@ -74,7 +74,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     }
 
     const handleOnSearch = (search: string) => {
-        let selected = values.filter((elF: any) => elF.selected === true).map(elM => elM.key);
+        let selected = values.filter((elF: any) => elF.selected === true).map((elM: any) => elM.key);
 
         if(!multiple){
             selected = selected && selected.length ? selected[0] : null;
