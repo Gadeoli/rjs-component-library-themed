@@ -37,19 +37,19 @@ const CardToggle : FC<CardToggleProps> = ({
     }
 
     /** Main control */
-    const mainContainerRef = useRef();
+    const mainContainerRef = useRef(null);
     useOnClickOutside(mainContainerRef, (e: any) => clickOutSideAction(e));
     const clickOutSideAction = (e: any) => {
         if(toggle){
             handleToggle(false);
         }
     }
-    useOnPressKey(mainContainerRef, 27, clickOutSideAction);
+    useOnPressKey(27, clickOutSideAction);
     /** Main control */
 
     /** Toggle Position Control */
     const windowSize = useWindowSize();
-    const toggleContainerRef = useRef();
+    const toggleContainerRef = useRef(null);
     const toggleSize = useElementSize(toggleContainerRef);
 
     const wWidth = windowSize.width;
@@ -62,7 +62,7 @@ const CardToggle : FC<CardToggleProps> = ({
     /** Toggle Position Control */
 
     /** Trigger Position Control */
-    const triggerContainerRef = useRef();
+    const triggerContainerRef = useRef(null);
     const triggerSize = useElementSize(triggerContainerRef);
     const gHeight = triggerSize.height; // g of gatilho (trigger in PT_BR)
     /** Trigger Position Control */
@@ -99,7 +99,7 @@ const CardToggle : FC<CardToggleProps> = ({
             const {top, bottom} = handleAbsoluteY();
 
             setPosition({
-                left, right,
+                left: left + "", right: right + "",
                 top, bottom
             });
         }
@@ -119,9 +119,10 @@ const CardToggle : FC<CardToggleProps> = ({
         <ToggleContainer
             className={'cl-themed__card-toggle__toggle'}
             ref={toggleContainerRef} 
-            show={toggle} 
-            full={fullToogle}
-            position={{
+            
+            $show={toggle} 
+            $full={fullToogle}
+            $position={{
                 top: position.top,
                 bottom: position.bottom, 
                 left: position.left,
@@ -141,16 +142,25 @@ const MainCointainer = styled.div`
 
 const TriggerContainer = styled.div``;
 
-const ToggleContainer = styled.div<{full: boolean}>`
+const ToggleContainer = styled.div<{
+    $full: boolean, 
+    $show: boolean | string, 
+    $position: {
+        top: number | string, 
+        bottom: number | string, 
+        left: number | string, 
+        right: number | string
+    }
+}>`
     z-index: 1;
-    width: ${(props: any) => props.full ? "100%" : "auto"};
+    width: ${(props: any) => props.$full ? "100%" : "auto"};
     position: absolute;
     box-sizing: border-box;
-    display: ${(props: any) => props.show ? 'block' : 'none'};
-    top:    ${(props: any) => props.position.top};
-    bottom: ${(props: any) => props.position.bottom};
-    left:   ${(props: any) => props.position.left};
-    right:  ${(props: any) => props.position.right};
+    display: ${(props: any) => props.$show ? 'block' : 'none'};
+    top:    ${(props: any) => props.$position.top};
+    bottom: ${(props: any) => props.$position.bottom};
+    left:   ${(props: any) => props.$position.left};
+    right:  ${(props: any) => props.$position.right};
 
     &.full{
         width: 100%;

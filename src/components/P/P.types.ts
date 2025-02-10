@@ -6,5 +6,5 @@ export interface PProps {
     style?: object;
     children: React.ReactNode;
     loading?: boolean;
-    onClick?: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLParagraphElement>;
 }

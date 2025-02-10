@@ -7,9 +7,7 @@ import Label from "./Label";
 const compName = "Label"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Label>label para o input XPTO</Label>
         </App4Test>);

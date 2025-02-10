@@ -106,19 +106,14 @@ Default.argTypes = {
         description: 'The text when no values selected'
     },
     values: {
-        type: {name: 'array', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: ''
+        description: 'This field is not required'
     },
     handleValues: {
-        type: {name: 'any', required: true},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed'
-    },
-    handleSearch: {
-        type: {name: 'any', required: false},
-        defaultValue: '',
-        description: 'function to run on onsearch event. this will recieve the search value'
+        description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed. This field is required'
     },
     isSearching: {
         type: {name: 'boolean', required: false},
@@ -130,11 +125,6 @@ Default.argTypes = {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'full;'
-    },
-    style: {
-        type: {name: 'other', required: false},
-        defaultValue: null,
-        description: 'custom styles'
     },
     enableSearch: {
         type: {name: 'boolean', required: false},

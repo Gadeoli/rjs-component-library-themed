@@ -15,7 +15,7 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<InputProps> = (args) => {
-    const [value, setValue] = useState();
+    const [value, setValue] = useState('');
 
     return( <Card>
         <CardContent>
@@ -24,7 +24,7 @@ const Template: StoryFn<InputProps> = (args) => {
                 <Input 
                     {...args}
                     value={value}
-                    onChange={(e) => setValue(e.target.value) }
+                    onChange={(e: any) => setValue(e.target.value) }
                 />
             </FormGroup>
             

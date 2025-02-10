@@ -5,7 +5,6 @@ import {
     CheckboxContainer as StyledCheckboxContainer
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
-import uniqid from 'uniqid';
 import Span from '../Span';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
@@ -24,7 +23,6 @@ const Checkbox: FC<CheckboxProps> = ({
     children
 }) => {
     const {theme} = useTheme();
-    const id = uniqid();
     const colors = {
         checked: theme[type || "secondary"],
         unchecked: theme.body
@@ -39,11 +37,20 @@ const Checkbox: FC<CheckboxProps> = ({
     return (<StyledCheckboxContainer className={classNames} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
-        <input type="checkbox" name={name} checked={checked ? true : undefined}/>
-        <StyledCheckboxSquare className={`cl-themed__checkbox__square ${disabled ? 'disabled' : ''}`} checked={checked} size={size} colors={colors}>
+        <input type="checkbox" name={name} checked={checked ? true : false} onChange={() => {}}/>
+
+        <StyledCheckboxSquare 
+            className={`cl-themed__checkbox__square ${disabled ? 'disabled' : ''}`} 
+            
+            $checked={checked} 
+            $size={size + ""} 
+            $colors={colors}
+        >
             {children}
         </StyledCheckboxSquare>
+        
         {text ? <Span className="cl-themed__checkbox__text">{text}</Span> : null}
+    
     </StyledCheckboxContainer>)
 }
 

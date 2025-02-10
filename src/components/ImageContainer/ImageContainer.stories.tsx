@@ -1,7 +1,6 @@
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import ImageContainer from './ImageContainer';
-import Span from "../Span";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -20,7 +19,7 @@ Default.args = {
     height: "300px",
     opacityEffect: false,
     loading: false,
-    type: "",
+    type: "primary",
     className: "",
     style: {},
 }   
@@ -63,8 +62,8 @@ Default.argTypes = {
         description: 'full;'
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     }
 }

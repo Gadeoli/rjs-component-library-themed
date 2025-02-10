@@ -12,7 +12,15 @@ export interface MultiFormProps {
     body: React.ReactNode;
 }
 
-interface MultiFormObjProps{
-    header: React.ReactNode;
+interface MultiFormObjProps {
+    header: (arg0?: any) => React.ReactNode | string | number;
     disabled?: boolean;
+}
+
+export interface ContextProps {
+    next: () => any; 
+    canNext: boolean,
+    prev: () => any;
+    canPrev: boolean;
+    currentStep: number;
 }

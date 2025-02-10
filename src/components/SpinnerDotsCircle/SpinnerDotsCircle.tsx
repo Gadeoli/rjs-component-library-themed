@@ -18,7 +18,7 @@ const SpinnerDotsCircle: FC<SpinnerDotsCircleProps> = ({size, type, className, s
         size={size}
         className={classNames}
         style={style}
-        customColor={customColor}
+        $customColor={customColor}
     >
         <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
     </StyledSpinnerDotsCircle>);

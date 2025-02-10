@@ -11,6 +11,6 @@ export interface CheckboxProps {
     text?: string;
     className?: string;
     style?: object;
-    onChange: MouseEventHandler<HTMLButtonElement>;
+    onChange: any;
     children?: React.ReactNode
 }

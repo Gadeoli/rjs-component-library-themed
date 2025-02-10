@@ -14,7 +14,7 @@ export interface TabsProps {
 
 interface TabsObjProps{
     key: any;
-    header: React.ReactNode;
+    header: (arg0?: any) => React.ReactNode | string | number;
     disabled?: boolean;
     active: boolean;
 }

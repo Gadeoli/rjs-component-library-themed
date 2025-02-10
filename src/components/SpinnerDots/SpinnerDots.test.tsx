@@ -7,8 +7,7 @@ import SpinnerDots from "./SpinnerDots";
 const compName = "SpinnerDots"
 
 describe(compName, () => {
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <SpinnerDots size={60} type="danger" />
         </App4Test>);

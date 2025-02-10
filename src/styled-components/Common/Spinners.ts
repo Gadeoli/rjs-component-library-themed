@@ -104,7 +104,7 @@ export const SpinnerViewAnimation = keyframes`
     }
 `;
 
-export const Spinner = styled.div<{size: number, customColor: string}>`
+export const Spinner = styled.div<{size: number, $customColor?: string}>`
     display: inline-block;
     position: relative;
     width: ${(props: any) => props.size}px;
@@ -144,8 +144,8 @@ export const Spinner = styled.div<{size: number, customColor: string}>`
     }
 
     &.custom div{
-        border: ${(props: any) => props.size * 0.07}px solid ${(props: any) => props.customColor} !important;
-        border-color: ${(props: any) => props.customColor} transparent transparent transparent !important;
+        border: ${(props: any) => props.size * 0.07}px solid ${(props: any) => props.$customColor} !important;
+        border-color: ${(props: any) => props.$customColor} transparent transparent transparent !important;
     }
 
     div:nth-child(1) {
@@ -159,7 +159,7 @@ export const Spinner = styled.div<{size: number, customColor: string}>`
     }
 `;
 
-export const SpinnerCoin = styled.div<{size: number, customColor: string}>`
+export const SpinnerCoin = styled.div<{size: number, $customColor?: string}>`
     display: inline-block;
     transform: translateZ(1px);
 
@@ -204,7 +204,7 @@ export const SpinnerCoin = styled.div<{size: number, customColor: string}>`
     }
 `;
 
-export const SpinnerDots = styled.div<{size: number, customColor: string}>`
+export const SpinnerDots = styled.div<{size: number, $customColor?: string}>`
     display: inline-block;
     position: relative;
     width: ${(props: any) => props.size}px;
@@ -258,7 +258,7 @@ export const SpinnerDots = styled.div<{size: number, customColor: string}>`
     }
 `;
 
-export const SpinnerDotsCircle = styled.div<{size: number, customColor: string}>`
+export const SpinnerDotsCircle = styled.div<{size: number, $customColor?: string}>`
     display: inline-block;
     position: relative;
     width: ${(props: any) => props.size}px;
@@ -358,7 +358,7 @@ export const SpinnerDotsCircle = styled.div<{size: number, customColor: string}>
     }
 `;
 
-export const SpinnerRipple = styled.div<{size: number, customColor: string}>`
+export const SpinnerRipple = styled.div<{size: number, $customColor?: string}>`
     display: inline-block;
     position: relative;
     width: ${(props: any) => props.size}px;
@@ -397,7 +397,7 @@ export const SpinnerRipple = styled.div<{size: number, customColor: string}>`
     }
 `;
 
-export const SpinnerView = styled.div<{size: number, customColor: string}>`
+export const SpinnerView = styled.div<{size: number, $customColor?: string}>`
     color: official;
     display: inline-block;
     position: relative;

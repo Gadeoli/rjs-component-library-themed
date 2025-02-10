@@ -7,8 +7,7 @@ import SpinnerCoin from "./SpinnerCoin";
 const compName = "SpinnerCoin"
 
 describe(compName, () => {
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <SpinnerCoin size={60} type="danger" />
         </App4Test>);

@@ -7,9 +7,7 @@ import ContainerReverseXPM from "./ContainerReverseXPM";
 const compName = "ContainerReverseXPM"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <ContainerReverseXPM>abc</ContainerReverseXPM>
         </App4Test>);

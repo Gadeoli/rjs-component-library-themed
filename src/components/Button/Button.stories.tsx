@@ -20,7 +20,7 @@ Default.args = {
     disabled: false,
     style: {},
     onClick: () => {console.log('hey')},
-    children: <span>abc</span>
+    children: 'abc'
 }   
 
 Default.argTypes = {

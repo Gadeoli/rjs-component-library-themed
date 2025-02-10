@@ -44,7 +44,7 @@ const Loading: FC<LoadingProps> = ({text, timeout, cursor, className, type, styl
         }
     });
 
-    return (<LoadingContainer align={align} className={`cl-themed__loading`}>
+    return (<LoadingContainer $align={align} className={`cl-themed__loading`}>
         <Span 
             className={classNamesLText} 
             style={style}  

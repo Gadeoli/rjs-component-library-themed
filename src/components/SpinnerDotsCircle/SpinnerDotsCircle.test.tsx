@@ -7,8 +7,7 @@ import SpinnerDotsCircle from "./SpinnerDotsCircle";
 const compName = "SpinnerDotsCircle"
 
 describe(compName, () => {
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <SpinnerDotsCircle size={60} type="danger" />
         </App4Test>);

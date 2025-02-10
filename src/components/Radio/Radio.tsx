@@ -32,11 +32,11 @@ const Radio: FC<RadioProps> = ({
         className
     ]);
 
-    return <StyledRadioContainer colors={colors} className={classNames} onClick={() => !disabled && onChange(value)} style={style}>
-        <StyledRadioCircle className='cl-themed__radio__circle' selected={selected} size={size} colors={colors}>
+    return <StyledRadioContainer className={classNames} onClick={() => !disabled && onChange(value)} style={style}>
+        <StyledRadioCircle className='cl-themed__radio__circle' $selected={selected} $size={size} $colors={colors}>
             <span >{selected && children}</span>
         </StyledRadioCircle>
-        <Span className='cl-themed__radio__text spacer ml-1' theme={theme}>{text}</Span>
+        <Span className='cl-themed__radio__text spacer ml-1'>{text}</Span>
     </StyledRadioContainer>
 }
 

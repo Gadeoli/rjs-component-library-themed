@@ -9,10 +9,10 @@ const loading = false;
 
 describe(compName, () => {
     test(`Renders the ${compName} component`, () => {
-
-    render(<App4Test>
-        <Card loading={loading} type="danger">
-            <span>{!loading ? "abc" : ""}</span>
-        </Card>
-    </App4Test>);});
+        render(<App4Test>
+            <Card loading={loading} type="danger">
+                <span>{!loading ? "abc" : ""}</span>
+            </Card>
+        </App4Test>);
+    });
 });

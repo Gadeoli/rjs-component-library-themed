@@ -20,7 +20,7 @@ const Template: StoryFn<RadioMultiProps> = (args) => {
         <RadioMulti 
             {...args}
             selectedValue={v}
-            onChange={(value) => {
+            onChange={(value: any) => {
                 setV(value.key)
                 console.log(value)
             }}
@@ -43,14 +43,14 @@ Default.args = {
 
 Default.argTypes = {
     values: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'Array of objects (same as checkedvalue)',
+        description: 'Array of objects (same as checkedvalue). This field is not required',
     },
     selectedValue: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: "a ONLY object {key: 1, value: 'abc'}",
+        description: "a ONLY object {key: 1, value: 'abc'}. This field is not required",
     },
     size: {
         type: {name: 'string', required: false},
@@ -79,9 +79,9 @@ Default.argTypes = {
         description: 'full'
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     },
     onChange: {
         description: 'function to run on onchange event. this will recieve the value changed'

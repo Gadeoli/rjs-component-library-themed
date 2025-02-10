@@ -14,7 +14,7 @@ const Template: StoryFn<typeof TitleH1> = (args) => <TitleH1 {...args}>Main Titl
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "",
+    type: "primary",
     className: "",
     style: {},
     loading: false
@@ -37,8 +37,8 @@ Default.argTypes = {
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     }
 }

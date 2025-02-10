@@ -4,12 +4,10 @@ import { render } from "@testing-library/react"
 import App4Test from "../Test/App4Test";
 import GlobalStyle from "./GlobalStyle";
 
-const compName = "Body"
+const compName = "GlobalStyle"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <GlobalStyle />
         </App4Test>);

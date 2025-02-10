@@ -7,8 +7,7 @@ import Span from "./Span";
 const compName = "Span"
 
 describe(compName, () => {
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Span type="danger">abc</Span>
         </App4Test>);

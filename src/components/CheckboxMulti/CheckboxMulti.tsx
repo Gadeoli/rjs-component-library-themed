@@ -4,6 +4,7 @@ import {
 } from '../../styled-components/Common';
 import Checkbox from '../Checkbox';
 import { CheckboxMultiProps } from './CheckboxMulti.types';
+import uniqid from 'uniqid';
 
 const CheckboxMulti: FC<CheckboxMultiProps> = ({
     checkedValues,  
@@ -17,6 +18,8 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
     size,
     className
 }) => {
+    const name = uniqid();
+
     const handleChange = (value: any) => {
         if(single){
             onChange(value)
@@ -48,10 +51,11 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
     }
 
     return (<StyledDirectionContainer className='cl-themed__multi-checkbox' direction={direction}>
-        {values && values.length && values.map((i) => {
+        {values && values.length && values.map((i: {key: any, value: any}) => {
             const thisValueIsChecked = hangleIsCheckedValue(i.key)
     
             return (<Checkbox
+                name={name}
                 key={i.key}
                 checkedValue={i.key}
                 uncheckedValue={''}

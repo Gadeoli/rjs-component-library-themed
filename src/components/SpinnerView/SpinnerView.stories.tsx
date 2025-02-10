@@ -45,11 +45,11 @@ Default.argTypes = {
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     },
-    customColor: {
+    $customColor: {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: ''

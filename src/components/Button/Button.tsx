@@ -19,8 +19,7 @@ const Button: FC<ButtonProps> = ({children, disabled, onClick, className, loadin
         theme={theme} 
         onClick={onClick} 
         style={style} 
-        type={action} 
-        loading={loading}
+        type={action}
     >
         {!loading && children}
     </StyledButton>);

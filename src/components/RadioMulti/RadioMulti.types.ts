@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 
 export interface RadioMultiProps {
     onChange: MouseEventHandler<HTMLButtonElement>;       // A useState-set-function or similar to control the value outsite (on father component)       

@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useCallback, useEffect} from "react";
+import React, { useState, useMemo } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import Tabs from './Tabs';
 import Card from "../Card";
@@ -18,17 +18,17 @@ const Template: StoryFn<typeof Tabs> = (args) => {
         return [
             {
                 key: 1,
-                header: (<Span>abc</Span>),
+                header: () => (<Span>abc</Span>),
                 active: activeTab === 1
             },
             {
                 key: 2,
-                header: (<Span>def</Span>),
+                header: () => (<Span>def</Span>),
                 active: activeTab === 2
             },
             {
                 key: 3,
-                header: (<Span>ghi</Span>),
+                header: () => (<Span>ghi</Span>),
                 disabled: true,
                 active: activeTab === 3
             }
@@ -68,14 +68,9 @@ Default.args = {
 
 Default.argTypes = {
     tabs: {
-        type: {name: 'other', required: true},
+        table: { type: { summary: 'any'} },
         defaultValue: [],
-        description: 'A array os objects. This will mount the tabs and the respective body/content'
-    },
-    onSelect: {
-        type: {name: 'other', required: true},
-        defaultValue: [],
-        description: 'The function triggered when the tab is selected'
+        description: 'A array os objects. This will mount the tabs and the respective body/content. This field is required'
     },
     loading: {
         type: {name: 'boolean', required: false},
@@ -98,8 +93,8 @@ Default.argTypes = {
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     }
 }

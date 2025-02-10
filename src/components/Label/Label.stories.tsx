@@ -16,8 +16,6 @@ const Template: StoryFn<LabelProps> = (args) => {
     return( <Card>
         <CardContent>
             <Label {...args}>{args.children}</Label>
-            
-
             <br/> <br/> <Span>Card - CardContent - Label</Span>
         </CardContent>
     </Card>)
@@ -47,19 +45,14 @@ Default.argTypes = {
         defaultValue: false,
         description: 'Add a * after label text'
     },
-    text: {
-        type: {name: 'string', required: true},
-        defaultValue: '',
-        description: ''
-    },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     }
 }

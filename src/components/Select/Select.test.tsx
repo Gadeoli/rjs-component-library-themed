@@ -12,9 +12,7 @@ const vs = [
 ];
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Select
                 name="myselect"
@@ -22,8 +20,10 @@ describe(compName, () => {
                 emptyText={'select something here...'} 
                 values={vs} 
                 handleValues={({selected, values}) => {
-                    // console.log(selected, values)
+                    console.log(selected, values)
                 }}
+                toggleX="left"
+                toggleY="bottom"
             />
         </App4Test>);
     })

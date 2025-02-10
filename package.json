@@ -14,8 +14,8 @@
     "prebuild": "rm -rf dist",
     "rollup": "npm run prebuild && rollup -c",
     "test": "jest",
-    "sb": "npm run build-sb && storybook dev -p 6006",
-    "build-sb": "storybook build"
+    "sb": "npm run build-sb && storybook dev -p 6006 --disable-telemetry",
+    "build-sb": "storybook build --disable-telemetry"
   },
   "keywords": [
     "reactjs",
@@ -35,11 +35,7 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@storybook/addon-actions": "^8.5.3",
     "@storybook/addon-essentials": "^8.5.3",
-    "@storybook/addon-interactions": "^8.5.3",
-    "@storybook/addon-links": "^8.5.3",
-    "@storybook/addon-onboarding": "^8.5.3",
     "@storybook/addon-webpack5-compiler-swc": "^2.0.0",
     "@storybook/blocks": "^8.5.3",
     "@storybook/preset-scss": "^1.0.3",
@@ -73,7 +69,8 @@
     "style-loader": "^4.0.0",
     "styled-components": "^6.1.15",
     "typescript": "^5.7.3",
-    "uniqid": "^5.4.0"
+    "uniqid": "^5.4.0",
+    "webpack-bundle-analyzer": "^4.10.2"
   },
   "peerDependencies": {
     "@gadeoli/js-helpers-library": ">=0.2.0",

@@ -7,9 +7,7 @@ import CardContent from "./CardContent";
 const compName = "CardContent"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <CardContent>abc</CardContent>
         </App4Test>);

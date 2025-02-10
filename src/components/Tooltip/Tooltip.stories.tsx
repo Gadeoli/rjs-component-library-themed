@@ -55,9 +55,9 @@ Default.argTypes = {
         description: 'full'
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     },
     children: {
         description: 'ReactNode'

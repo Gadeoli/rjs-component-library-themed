@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { InputProps } from './Input.types';
 import { Input as StyledInput } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
+import { InputProps } from './Input.types';
 
 const Input: FC<InputProps> = ({
     name, 
@@ -28,8 +28,8 @@ const Input: FC<InputProps> = ({
     ]);
 
     return (<StyledInput 
-        id={id}
         name={name}
+        id={id}
         className={classNames} 
         disabled={disabled}
         theme={theme} 

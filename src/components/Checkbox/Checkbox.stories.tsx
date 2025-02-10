@@ -20,7 +20,7 @@ const Template: StoryFn<CheckboxProps> = (args) => {
         <Checkbox 
             {...args}
             value={value}
-            onChange={(value) => {
+            onChange={(value: any) => {
                 setValue(value);
                 console.log('changed: ', value);
             } }
@@ -40,31 +40,32 @@ Default.args = {
     size: '.75rem',
     disabled: false,
     text: 'My checkbox',
-    type: '',
+    type: 'primary',
     className: '',
     style: {},
 }   
 
 Default.argTypes = {
     name: {
-        type: {name: 'string', required: true},
+        table: { type: { summary: 'any'} },
+        // type: {name: 'string', required: true},
         defaultValue: '',
-        description: 'Checkbox name'
+        description: 'Checkbox name. This field is required'
     },
     value: {
-        type: {name: 'any', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: 'checkedValue or uncheckedValue'
+        description: 'checkedValue or uncheckedValue. This field is not required'
     },
     checkedValue: {
-        type: {name: 'other', required: true},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: 'value === checkedValue => checked',
+        description: 'value === checkedValue => checked. This field is not required',
     },
     uncheckedValue: {
-        type: {name: 'other', required: true},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: 'value === uncheckedValue => unchecked',
+        description: 'value === uncheckedValue => unchecked. This field is not required',
     },
     size: {
         type: {name: 'string', required: false},
@@ -93,9 +94,9 @@ Default.argTypes = {
         description: 'full;'
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     },
     onChange: {
         description: 'function to run on onchange event. this will recieve the value changed'

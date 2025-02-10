@@ -16,7 +16,6 @@ const Template: StoryFn<typeof Card> = (args) => <Card {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "primary",
     loading: false,
     className: "",
     style: {},

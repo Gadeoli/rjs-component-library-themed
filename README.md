@@ -41,6 +41,14 @@ Tooltip
 [source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)  
 [source III - Spinners](https://loading.io/css/)
 
+## ToDO
+
+- Upgrade stories 
+
+## Release Notes
+
+- 0.2.0: Upgrad dependencies; MultiForm' & Tabs' header changed;
+
 ## Testing
 
 ```

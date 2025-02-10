@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface LoadingProps {
     cursor?: boolean;
     timeout?: number;

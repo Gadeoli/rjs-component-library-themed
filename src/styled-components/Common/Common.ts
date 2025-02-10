@@ -28,14 +28,14 @@ export const BodyContent = styled.div`
     padding: 1.25rem 1rem;
 `;
 
-export const Button = styled.button<{loading: boolean | undefined}>`
+export const Button = styled.button`
     margin: 0;
     padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     transition: background-color .4s ease-in-out;
     border: 1px solid;
     color: ${(props: any) => props.theme.text};
-    cursor: ${(props: any) => props.loading ? 'default' : 'pointer'};
+    cursor: pointer;
     
     :hover {
         box-shadow: ${discreetShadow};
@@ -112,6 +112,7 @@ export const Button = styled.button<{loading: boolean | undefined}>`
         min-width: 50px;
         min-height: 20px;
         border-color: ${(props: any) => props.theme.border};
+        cursor: default;
     }
 
     &.composite{
@@ -127,9 +128,9 @@ export const BlinkerAnimation = keyframes`
     }
 `;
 
-export const Card = styled.div<{themeMode: string}>`
+export const Card = styled.div<{$themeMode: string}>`
     width: 100%;
-    box-shadow: ${(props: any) => props.themeMode === 'light' ? defaultShadow : darkShadow};
+    box-shadow: ${(props: any) => props.$themeMode === 'light' ? defaultShadow : darkShadow};
     border-radius: ${defaultRadius};
     background-color: ${(props: any) => props.theme.background};
     box-sizing: border-box;
@@ -252,7 +253,7 @@ export const ContainerReverseXPM = styled.div`
     margin-right: -${() => defaultXPM};
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<{height: string | number, width: string | number}>`
     border: 1px solid ${(props: any) => props.theme.border};
     border-radius: ${defaultRadius};
     height: ${(props: any) => props.height || '10rem'};
@@ -440,9 +441,9 @@ export const TitleH1 = styled.h1`
     }
 `;
 
-export const TitleHn = styled.h2`
+export const TitleHn = styled.h2<{$n?: number}>`
     color: ${(props: any) => props.theme.text};
-    font-size: ${(props: any) => (props.n > 1 ? (props.theme.fontSize.subtitle * (1 - (0.1 * (props.n - 1)))).toFixed(3) : props.theme.fontSize.subtitle) + "rem"};
+    font-size: ${(props: any) => (props.$n > 1 ? (props.theme.fontSize.subtitle * (1 - (0.1 * (props.$n - 1)))).toFixed(3) : props.theme.fontSize.subtitle) + "rem"};
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -539,7 +540,7 @@ export const Textarea = styled.textarea`
 `;
 
 //A component with flex children direction choise (row or column)
-export const DirectionContainer = styled.div`
+export const DirectionContainer = styled.div<{direction?: string}>`
     display: flex;
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
@@ -571,19 +572,23 @@ export const RadioContainer = styled.div`
     }
 `;
 
-export const RadioCircle = styled.div`
-    width: ${(props: any) => props.size || '1rem'};
-    height: ${(props: any) => props.size || '1rem'};
-    border: 1px solid ${(props: any) => props.colors.selected};
-    border-radius: ${(props: any) => props.size || '1rem'};
-    background-color: ${(props: any) => props.selected ? props.colors.selected : props.colors.unselect};
+export const RadioCircle = styled.div<{
+    $colors: {selected: string, unselect: string}, 
+    $selected: boolean, 
+    $size?: string
+}>`
+    width: ${(props: any) => props.$size || '1rem'};
+    height: ${(props: any) => props.$size || '1rem'};
+    border: 1px solid ${(props: any) => props.$colors.selected};
+    border-radius: ${(props: any) => props.$size || '1rem'};
+    background-color: ${(props: any) => props.$selected ? props.$colors.selected : props.$colors.unselect};
     justify-content: center;
     align-items: center;
     padding: 2px;
     margin-right: .5rem;
 
     span{
-        color: ${(props: any) => props.colors.unselect};;
+        color: ${(props: any) => props.$colors.unselect};;
     }
 `;
 /* End Radio Components */
@@ -591,7 +596,7 @@ export const RadioCircle = styled.div`
 /* Toogle Components */
 export const ToggleLabel = styled.label<{
     sizes: {height: number | string, width: number | string, borderRadius: number | string}, 
-    colors: {background: string},
+    $colors: {background: string},
 }>`
     width: ${(props: any) => props.sizes.width};
     height: ${(props: any) => props.sizes.height};
@@ -608,10 +613,10 @@ export const ToggleLabel = styled.label<{
         display: none;
 
         &:checked ~ .fill{
-            background: ${(props: any) => props.colors.background};
+            background: ${(props: any) => props.$colors.background};
 
             &.reverse{
-                background: ${(props: any) => props.colors.background};
+                background: ${(props: any) => props.$colors.background};
             }
         }
 
@@ -641,7 +646,7 @@ export const ToggleFillIcon = styled.div<{
 
 export const ToggleFill = styled.div<{
     sizes: {height: number | string, width: number | string, borderRadius: number | string}, 
-    colors: {background: string, cicle: string},
+    $colors: {background: string, cicle: string},
     checked: boolean | number
 }>`
     /* Fill is the background bar */
@@ -649,7 +654,7 @@ export const ToggleFill = styled.div<{
     width: ${(props: any) => props.sizes.width};
     height: ${(props: any) => props.sizes.height};
     border-radius: ${(props: any) => props.sizes.borderRadius};
-    background: ${(props: any) => props.colors.background};
+    background: ${(props: any) => props.$colors.background};
     transition: background 0.2s;
 
     /* Fill after is the circle */
@@ -660,7 +665,7 @@ export const ToggleFill = styled.div<{
         left: 0;
         width: ${(props: any) => props.sizes.height};
         height: ${(props: any) => props.sizes.height};
-        background: ${(props: any) => props.colors.cicle};
+        background: ${(props: any) => props.$colors.cicle};
         box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
         border-radius: ${(props: any) => props.sizes.borderRadius};
         transition: transform 0.2s;
@@ -694,12 +699,16 @@ export const CheckboxContainer = styled.div`
     }
 `;
 
-export const CheckboxSquare = styled.div`
-    width: ${(props: any) => props.size || '.75rem'};
-    height: ${(props: any) => props.size || '.75rem'};
-    border: 1px solid ${(props: any) => props.colors.checked};
+export const CheckboxSquare = styled.div<{
+    $colors: {checked: string, unchecked: string}, 
+    $checked: boolean, 
+    $size: string
+}>`
+    width: ${(props: any) => props.$size || '.75rem'};
+    height: ${(props: any) => props.$size || '.75rem'};
+    border: 1px solid ${(props: any) => props.$colors.checked};
     border-radius: ${defaultRadius};
-    background-color: ${(props: any) => props.checked ? props.colors.checked : props.colors.unchecked};
+    background-color: ${(props: any) => props.$checked ? props.$colors.checked : props.$colors.unchecked};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -744,10 +753,10 @@ export const SelectContainer = styled.div`
     }
 `;
 
-export const SelectedResult = styled.div<{outline: boolean}>`
+export const SelectedResult = styled.div<{$outline?: boolean}>`
     background-color: transparent;
     border: 0;
-    border: 1.5px solid ${(props: any) => props.outline ? props.theme.outline : props.theme.border};
+    border: 1.5px solid ${(props: any) => props.$outline ? props.theme.outline : props.theme.border};
     color: ${(props: any) => props.theme.text};
     outline-color: ${(props: any) => props.theme.outline};
     border-radius: ${defaultRadius};
@@ -835,7 +844,7 @@ export const SelectDrawerSearchActions = styled.div`
     }
 `;
 
-export const SelectDrawerItem = styled.button`
+export const SelectDrawerItem = styled.button<{selected?: boolean}>`
     color: ${(props: any) => props.selected ? props.theme.primary_text : props.theme.text};
     background-color: ${(props: any) => props.selected ? props.theme.primary : props.theme.body};
     padding: .25rem;
@@ -846,19 +855,19 @@ export const SelectDrawerItem = styled.button`
     margin-left: 0;
 `
 
-export const SelectBtn = styled.button`
+export const SelectBtn = styled.button<{width?: number, $bgcolor: string}>`
     width: ${(props: any) => props.width + 'px'};
     height: ${(props: any) => props.width + 'px'};
-    background-color: ${(props: any) => props.bgcolor};
-    border: 1px solid ${(props: any) => props.bgcolor};
+    background-color: ${(props: any) => props.$bgcolor};
+    border: 1px solid ${(props: any) => props.$bgcolor};
     border-radius: ${defaultRadius};
     text-align: center;
     cursor: pointer;
     color: ${(props: any) => shade(0.15, props.color)};
 
     :hover{
-        border: 1px solid ${(props: any) => shade(0.15, props.bgcolor)};
-        background-color: ${(props: any) => shade(0.15, props.bgcolor)};
+        border: 1px solid ${(props: any) => shade(0.15, props.$bgcolor)};
+        background-color: ${(props: any) => shade(0.15, props.$bgcolor)};
     }
 `;
 
@@ -932,7 +941,7 @@ export const TabsNav = styled.ul`
     }
 `;
 
-export const TabsNavItem = styled.li<{active: boolean}>`
+export const TabsNavItem = styled.li`
     padding: ${defaultYPM} ${defaultXPM};
     list-style: none;
     text-align: center;
@@ -1063,12 +1072,12 @@ export const MultiFormNavItemLabel = styled.div`
     }
 `;
 
-export const LoadingContainer = styled.div<{align: string}>`
-    text-align: ${(props: any) => props.align};
+export const LoadingContainer = styled.div<{$align: string}>`
+    text-align: ${(props: any) => props.$align};
 `;
 /* End Select Component */
 
-export const Tooltip = styled.div<{show: boolean}>`
+export const Tooltip = styled.div<{$show: boolean}>`
     position: relative;
     width: fit-content;
 
@@ -1086,7 +1095,7 @@ export const Tooltip = styled.div<{show: boolean}>`
     //pointer
     &:before{
         content: '';
-        display: ${(props: any) => props.show ? 'block' : 'none'};
+        display: ${(props: any) => props.$show ? 'block' : 'none'};
         position: absolute;
         top: 0;
         left: 0;
@@ -1104,13 +1113,13 @@ export const Tooltip = styled.div<{show: boolean}>`
 export const TooltipContext = styled.div`
 `;
 
-export const TooltipContent = styled.div<{position?: string, type?: string, show: boolean}>`
+export const TooltipContent = styled.div<{$position?: string, type?: string, $show: boolean}>`
     position: absolute;
-    display: ${(props: any) => props.show ? 'block' : 'none'};
+    display: ${(props: any) => props.$show ? 'block' : 'none'};
     padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     min-width: 25px;
-    min-height: ${(props: any) => props.position === 'left' || props.position === 'right' ? '20px' : '14px'};
+    min-height: ${(props: any) => props.$position === 'left' || props.$position === 'right' ? '20px' : '14px'};
 
     //pointer
     :before{

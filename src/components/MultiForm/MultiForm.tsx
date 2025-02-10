@@ -4,7 +4,16 @@ import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import Spinner from '../Spinner';
-import { MultiFormBody, MultiFormContent, MultiFormNav, MultiFormNavContainer, MultiFormNavItem, MultiFormNavItemDivisor, MultiFormNavItemKey, MultiFormNavItemLabel } from '../../styled-components/Common/Common';
+import { 
+    MultiFormBody, 
+    MultiFormContent, 
+    MultiFormNav, 
+    MultiFormNavContainer, 
+    MultiFormNavItem, 
+    MultiFormNavItemDivisor, 
+    MultiFormNavItemKey, 
+    MultiFormNavItemLabel 
+} from '../../styled-components/Common/Common';
 
 /**
  * steps: [{children: <>Step 1</>}]
@@ -14,7 +23,6 @@ const MultiForm: FC<MultiFormProps> = ({
     steps, 
     body,
     noneText, 
-    // onChange, 
     spinnerSize, 
     current,
     loading, 
@@ -52,9 +60,9 @@ const MultiForm: FC<MultiFormProps> = ({
                                 tCurrent ? 'current' : '',
                             ]);
 
-                            return (<MultiFormNavItem className={classNamesTItem} theme={theme}>
+                            return (<MultiFormNavItem key={k} className={classNamesTItem} theme={theme}>
                                 <MultiFormNavItemKey theme={theme} className={classNamesTItemParts}>{!tCompleted ? tPosition : <>&#10004;</>}</MultiFormNavItemKey>
-                                <MultiFormNavItemLabel theme={theme} className={classNamesTItemParts}>{s.header}</MultiFormNavItemLabel>
+                                <MultiFormNavItemLabel theme={theme} className={classNamesTItemParts}>{s.header()}</MultiFormNavItemLabel>
                                 {hasDivisor ? (<MultiFormNavItemDivisor theme={theme} className={classNamesTItemParts}/>) : ('')}
                             </MultiFormNavItem>); 
                         })}

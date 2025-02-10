@@ -11,8 +11,8 @@ const ToggleStory = (args: any) => {
         <Toggle 
             {...args}
             value={value}
-            onChange={(cValue) => {
-                console.log(cValue);
+            onChange={(cValue: any) => {
+                // console.log(cValue);
                 setValue(cValue);
             }}
         />    

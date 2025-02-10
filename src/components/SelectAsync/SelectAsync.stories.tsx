@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import SelectAsync, { handleValuesAsync } from './SelectAsync';
 // import { apiDataToSelect } from '../Select';
@@ -7,7 +7,6 @@ import Span from "../Span";
 import { SelectAsyncProps } from "./SelectAsync.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData } from "../../data";
-import Input from "../Input";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -47,6 +46,7 @@ const Template: StoryFn<SelectAsyncProps> = (args) => {
                     values={vs} 
                     multiple={false}
                     handleValues={({selected, values}) => {
+                        console.log(selected);
                         setVs(values);
                     }}
                     handleSelect={(s) => handleSelectSearchCall(s)}
@@ -82,19 +82,14 @@ Default.argTypes = {
         description: 'The text when no values selected'
     },
     values: {
-        type: {name: 'array', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: ''
+        description: 'A array of values. This field is not required'
     },
     handleValues: {
-        type: {name: 'any', required: true},
+        table: { type: { summary: 'any'} },
         defaultValue: '',
-        description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed'
-    },
-    handleSearch: {
-        type: {name: 'any', required: false},
-        defaultValue: '',
-        description: 'function to run on onsearch event. this will recieve the search value'
+        description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed. This field is required'
     },
     isSearching: {
         type: {name: 'boolean', required: false},
@@ -107,9 +102,9 @@ Default.argTypes = {
         defaultValue: '',
         description: 'full;'
     },
-    style: {
-        type: {name: 'other', required: false},
+    styles: {
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     }
 }

@@ -41,7 +41,7 @@ const Tabs: FC<TabsProps> = ({
                             t.active && emphasisActive ? 'emphasis-active' : '',
                         ]);
 
-                        return (<TabsNavItem onClick={() => {onChange(t.key)}} className={classNamesTItem} theme={theme} active={t.active} key={t.key}>{t.header}</TabsNavItem>); 
+                        return (<TabsNavItem onClick={() => {onChange(t.key)}} className={classNamesTItem} theme={theme} key={t.key}>{t.header()}</TabsNavItem>); 
                     })}
                 </TabsNav>
                 <TabsBody theme={theme}>

@@ -7,8 +7,7 @@ import Spinner from "./Spinner";
 const compName = "Spinner"
 
 describe(compName, () => {
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Spinner size={60} type="danger" />
         </App4Test>);

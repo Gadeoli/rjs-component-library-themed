@@ -33,10 +33,10 @@ const Tooltip: FC<TooltipProps> = ({
         className={classNames} 
         style={style}
         ref={toolRef}
-        show={show}
+        $show={show}
     >
         <StyledTooltipContext className="cl-themed__tooltip--context">{!loading && children}</StyledTooltipContext>
-        {!loading ? <StyledTooltipContent theme={theme} className={`cl-themed__tooltip--content ${position} ${type}`} show={show} position={position} type={type}>
+        {!loading ? <StyledTooltipContent theme={theme} className={`cl-themed__tooltip--content ${position} ${type}`} $show={show} $position={position} type={type}>
             {tipcontent}
         </StyledTooltipContent> : null}
     </StyledTooltip>);

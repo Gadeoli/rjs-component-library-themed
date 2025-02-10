@@ -78,8 +78,7 @@ const App4Test = (props: HandlerTestProps) => {
                     <Card style={styles.card}>
                         <CardContent style={styles.card.content}>
                             <Span style={styles.toggle.text}>Current theme: {mode}</Span>
-                            <Toggle 
-                                name={null}
+                            <Toggle
                                 value={mode}
                                 checkedValue={lightThemeKey}
                                 uncheckedValue={darkThemeKey}

@@ -18,7 +18,7 @@ const SpinnerRipple: FC<SpinnerRippleProps> = ({size, type, className, style, cu
         size={size}
         className={classNames}
         style={style}
-        customColor={customColor}
+        $customColor={customColor}
     >
         <div></div><div></div>
     </StyledSpinnerRipple>);

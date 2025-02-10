@@ -7,9 +7,7 @@ import ImageContainer from "./ImageContainer";
 const compName = "ImageContainer";
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <ImageContainer width="300px" height="300px" type="danger" alt={'image test'}/>
         </App4Test>);

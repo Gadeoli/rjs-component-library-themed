@@ -1,57 +1,110 @@
-import React, {useState, useMemo, useCallback, useEffect} from "react";
+import React, {useState, useMemo, createContext, useContext} from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import MultiForm from './MultiForm';
 import Card from "../Card";
 import CardContent from "../CardContent";
 import Span from "../Span";
+import { MultiFormProps, ContextProps } from "./MultiForm.types";
+import Button from "../Button";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
     title: "RjsComponentLibraryThemed/MultiForm",
 } as Meta<typeof MultiForm>;
 
+const defaultContextValues = {
+    prev: () => {},
+    canPrev: false,
+    next: () => {},
+    canNext: false,
+    currentStep: 1
+}
+
+const StepFormContext = createContext<ContextProps>(defaultContextValues);
+const { Provider } = StepFormContext;
+
+const ABCBody = () => {
+    const {next, canNext} = useContext(StepFormContext)
+
+    return <>
+        <>ABC</>
+        <Button disabled={!canNext} type='secondary' onClick={() => next()}>{'>>'}</Button>
+    </>
+}
+
+const DEFBody = () => {
+    const {next, canNext, prev, canPrev} = useContext(StepFormContext)
+
+    return <>
+        <Button disabled={!canPrev} type='secondary' onClick={() => prev()}>{'<<'}</Button>
+        <>DEF</>
+        <Button disabled={!canNext} type='secondary' onClick={() => next()}>{'>>'}</Button>
+    </>
+}
+
+const GHIBody = () => {
+    const {next, canNext, prev, canPrev} = useContext(StepFormContext)
+
+    return <>
+        <Button disabled={!canPrev} type='secondary' onClick={() => prev()}>{'<<'}</Button>
+        <>GHI</>
+        <Button disabled={!canNext} type='secondary' onClick={() => next()}>{'>>'}</Button>
+    </>
+}
+
+const JKLBody = () => {
+    const {prev, canPrev} = useContext(StepFormContext)
+
+    return <>
+        <Button disabled={!canPrev} type='secondary' onClick={() => prev()}>{'<<'}</Button>
+        <>JKL</>
+    </>
+}
+
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof MultiForm> = (args) => {
-    const [currentStep, setCurrentStep] = useState(1); 
+const Template: StoryFn<MultiFormProps> = (args) => {
+    const [currentStep, setCurrentStep] = useState(1);     
     
     const steps = useMemo(() => {
         return [
-            {
-                header: (<Span>abc</Span>)
-            },
-            {
-                header: (<Span>def</Span>)
-            },
-            {
-                header: (<Span>ghi</Span>)
-            },
-            {
-                header: (<Span>jkl</Span>)
-            }
-        ]
+            {header: () => <Span>abc</Span>},
+            {header: () => <Span>def</Span>},
+            {header: () => <Span>ghi</Span>},
+            {header: () => <Span>jkl</Span>}
+        ];
     }, []);
 
     const body = useMemo(() => {
         switch (currentStep) {
-            case 1: return (<>ABC</>);
-            case 2: return (<>DEF</>);
-            case 3: return (<>GHI</>);
-            case 3: return (<>JKL</>);
+            case 1: return (<ABCBody/>);
+            case 2: return (<DEFBody/>);
+            case 3: return (<GHIBody/>);
+            case 4: return (<JKLBody/>);
             default: return (<>MNO</>);
         }
     }, [currentStep]);
-    
+
+    const next = () => setCurrentStep(currentStep + 1);
+    const prev = () => setCurrentStep(currentStep - 1);
+    const canNext = currentStep < steps.length;
+    const canPrev = currentStep > 1;
+
     return (<Card><CardContent>
-        <MultiForm 
-            loading={false}
-            steps={steps}
-            noneText="No content to display"
-            // onChange={(key: any) => {
-            //     setCurrentStep(key);
-            // }}
-            current={currentStep}
-            body={body}
-        />
+        <Provider value={{
+            next,
+            prev,
+            canNext,
+            canPrev,
+            currentStep
+        }}>
+            <MultiForm
+                loading={false}
+                steps={steps}
+                noneText={"No content to display"}
+                current={currentStep}
+                body={body}
+            />
+        </Provider>
     </CardContent></Card>);
 };
 
@@ -69,20 +122,10 @@ Default.argTypes = {
         defaultValue: [],
         description: 'A array os objects. This will mount the steps and the respective body/content'
     },
-    onSelect: {
-        type: {name: 'other', required: true},
-        defaultValue: [],
-        description: 'The function triggered when the tab is selected'
-    },
     loading: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: ''
-    },
-    emphasisActive: {
-        type: {name: 'boolean', required: false},
-        defaultValue: false,
-        description: 'Make the active tab a little bigger (more padding)'
     },
     spinnerSize: {
         type: {name: 'number', required: false},

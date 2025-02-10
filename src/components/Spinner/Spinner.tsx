@@ -18,7 +18,7 @@ const Spinner: FC<SpinnerProps> = ({size, type, className, style, customColor}) 
         size={size}
         className={classNames}
         style={style}
-        customColor={customColor}
+        $customColor={customColor}
     >
         <div></div><div></div><div></div><div></div>
     </StyledSpinner>);

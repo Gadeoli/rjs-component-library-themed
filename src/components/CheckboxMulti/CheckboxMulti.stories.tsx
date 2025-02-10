@@ -16,15 +16,13 @@ export default {
 const Template: StoryFn<CheckboxMultiProps> = (args) => {
     const [vs, setVs] = useState()
 
-    console.log(vs);
-
     return(<Card><CardContent>
         <CheckboxMulti 
             {...args}
             checkedValues={vs}
-            onChange={(values) => {
+            onChange={(values: any) => {
                 setVs(values);
-                // console.log('changed: ', values);
+                console.log('changed: ', values);
             }}
         />    
         <br/> <Span>Card - CardContent - CheckboxMulti</Span>
@@ -63,9 +61,9 @@ Default.argTypes = {
         description: 'The checkbox square size',
     },
     values: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'Array of key values',
+        description: 'Array of key values. This field is not required',
     },
     disabled: {
         type: {name: 'boolean', required: false},
@@ -89,9 +87,9 @@ Default.argTypes = {
         description: 'Same checkbox'
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'Same checkbox'
+        description: 'Same checkbox. This field is not required'
     },
     onChange: {
         description: 'function to run on onchange event. this will recieve the value changed'

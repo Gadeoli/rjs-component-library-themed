@@ -7,8 +7,7 @@ import SpinnerView from "./SpinnerView";
 const compName = "SpinnerView"
 
 describe(compName, () => {
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <SpinnerView size={60} type="danger" />
         </App4Test>);

@@ -17,7 +17,7 @@ const Card: FC<CardProps> = ({children, className, loading, type, style, forceBo
     return (<StyledCard 
         className={classNames} 
         theme={theme} 
-        themeMode={mode}
+        $themeMode={mode}
         style={style} 
     >
         {children}

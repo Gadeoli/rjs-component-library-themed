@@ -2,9 +2,8 @@ export interface SelectAsyncProps {
     name: string;
     emptyText: string;         //a text to show when none value is selected
     values: Array<object>;     //an array of obj {key: k, value: v, selected: true}
-    selectedValues: Array<object>;
-    handleValues:   (any) => any;//
-    handleSelect?:  (any) => any;//
+    handleValues:   (arg0: any) => any;//
+    handleSelect?:  (arg0: any) => any;//
     isSearching?:   boolean;  
     manualSearch?: boolean;
     multiple?: boolean;        //if allow to select multiple values
@@ -13,18 +12,24 @@ export interface SelectAsyncProps {
     inlineDrawer?: boolean; 
 }
 
+export interface SelectValueProps {
+    key: any,
+    value: any,
+    selected?: boolean
+}
+
 export interface DrawerItemProps {
     theme: object;
-    item: object;
-    handleSelect: (any) => any;    
+    item: SelectValueProps;
+    handleSelect: (arg0: any) => any;    
 }
 
 export interface SelectAsyncDrawerProps {
     multiple?: boolean;
     name: string;
     values: Array<object>; 
-    onSelect: (any) => any; 
-    onSearch: (any) => any; 
+    onSelect: (arg0: any) => any; 
+    onSearch: (arg0: any) => any; 
     manualSearch?: boolean;
     isSearching?:   boolean;  
     theme: object;

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { 
     SelectAsyncProps, 
     DrawerItemProps,
@@ -15,8 +15,7 @@ import {
     SelectDrawerItem as StyledSelectDrawerItem,
     SelectBtn as StyledSelectBtn,
     SelectDropSymbol as StyledSelectDropSymbol,
-    SelectSelectedOptions as StyledSelectSelectedOptions,
-    SearchLoadingContainer as StyledSearchLoadingContainer
+    SelectSelectedOptions as StyledSelectSelectedOptions
 } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
@@ -26,6 +25,7 @@ import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
 import { Magnifier, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
+import uniqid from 'uniqid';
 
 const SelectAsync: FC<SelectAsyncProps> = ({
     name,
@@ -91,9 +91,9 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     const renderSelected = () => {
         const selected = [...values].filter((i: any) => i.selected);
         const selections = selected && selected.length ? selected.map((sel: any) => <StyledSelectedResultItem theme={theme} key={sel.key}>
-            <Span theme={theme}>{sel.value}</Span> 
+            <Span>{sel.value}</Span> 
             
-            <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={(e) => {
+            <StyledSelectBtn width={20} color={theme.danger} $bgcolor={theme.body} onClick={(e) => {
                 e.stopPropagation()
                 handleValues(handleOnSelect(sel.key))
             }}>&#10006;</StyledSelectBtn>
@@ -103,7 +103,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
             <div>
                 {selected && selected.length ? 
                     (<>{selections}</>) : 
-                    (<Span theme={theme}>{emptyText}</Span>)
+                    (<Span>{emptyText}</Span>)
                 }
             </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
@@ -150,11 +150,13 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
 }) => {
     const [search, setSearch] = useState('');
     const [inputFocus, setInputFocus] = useState(false);
+    const id = uniqid();
 
     return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
-            <Input 
-                theme={theme} 
+            <Input
+                name={id}
+                type='text'
                 value={search} 
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
@@ -183,7 +185,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>
-            {values.map((v, i) => {
+            {values.map((v: any, i: any) => {
                 // Dont use seleted on option tag. Instead use value prop on select tag
                 // return <option value={v.key} key={i} selected={v.selected ? true : undefined}>{v.value}</option>
                 return <option value={v.key} key={i}>{v.value}</option>
@@ -191,7 +193,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
         </select>
         
         <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens spacer mt-1 ${inlineDrawer ? 'inline-options' : ''}`}>
-            {values.map((v) => {
+            {values.map((v: any) => {
                 return v.selected || !v.hide ? (<DrawerItem 
                     handleSelect={(k) => onSelect(k)} 
                     item={v} 

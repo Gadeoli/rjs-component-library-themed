@@ -7,9 +7,7 @@ import FormGroup from "./FormGroup";
 const compName = "FormGroup"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <FormGroup>abc</FormGroup>
         </App4Test>);

@@ -7,9 +7,7 @@ import Container from "./Container";
 const compName = "Container"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Container type="danger">abc</Container>
         </App4Test>);

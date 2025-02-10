@@ -21,7 +21,7 @@ const Template: StoryFn<TextareaProps> = (args) => {
                 {...args}
                 value={value}
                 name="mytextarea"
-                onChange={(value) => {
+                onChange={(value: any) => {
                     setValue(value);
                     console.log(value)
                 } }

@@ -17,8 +17,8 @@ describe(compName, () => {
                 checkedValues={vs}  
                 single={true}  
                 values={data}
-                onChange={(values) => {
-                    // console.log(values)
+                onChange={(values: any) => {
+                    console.log(values)
                 }}
             />
         </App4Test>);

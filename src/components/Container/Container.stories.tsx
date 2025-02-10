@@ -15,7 +15,6 @@ const Template: StoryFn<typeof Container> = (args) => <Container {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    type: "",
     className: "",
     style: {},
     children: <Span>Container (Simple Div) - Span</Span>
@@ -33,9 +32,9 @@ Default.argTypes = {
         description: 'full;'
     },
     style: {
-        type: {name: 'other', required: false},
+        table: { type: { summary: 'any'} },
         defaultValue: null,
-        description: 'custom styles'
+        description: 'custom styles. This field is not required'
     },
     children: {
         description: 'ReactNode'

@@ -7,9 +7,7 @@ import ContainerReverseYPM from "./ContainerReverseYPM";
 const compName = "ContainerReverseYPM"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <ContainerReverseYPM>abc</ContainerReverseYPM>
         </App4Test>);

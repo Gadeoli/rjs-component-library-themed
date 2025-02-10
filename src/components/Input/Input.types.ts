@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 
 export interface InputProps {
     onChange: MouseEventHandler<HTMLButtonElement>;

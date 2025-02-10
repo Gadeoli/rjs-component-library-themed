@@ -15,7 +15,7 @@ const TitleHn: FC<TitleHnProps> = ({n, children, className, loading, type, style
     ]);
 
     return (<StyledTitleHn
-        n={n}
+        $n={n}
         className={classNames} 
         theme={theme} 
         style={style}  

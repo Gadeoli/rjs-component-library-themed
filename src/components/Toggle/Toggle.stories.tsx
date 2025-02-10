@@ -17,7 +17,7 @@ export default {
             <Toggle 
                 {...args}
                 value={value}
-                onChange={(value) => {
+                onChange={(cValue: any) => {
                     console.log(cValue);
                     setValue(cValue);
                 }}

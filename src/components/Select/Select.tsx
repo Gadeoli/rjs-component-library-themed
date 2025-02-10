@@ -2,7 +2,8 @@ import React, { FC, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
-    SelectDrawerProps
+    SelectDrawerProps,
+    SelectValueProps
 } from './Select.types';
 import { 
     SelectContainer as StyledSelectContainer,
@@ -24,6 +25,7 @@ import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
 import { SelectDrawerSearchActions } from '../../styled-components/Common/Common';
+import uniqid from 'uniqid';
 
 const Select: FC<SelectProps> = ({
     name,
@@ -36,8 +38,8 @@ const Select: FC<SelectProps> = ({
     multiple,
     className,
     inlineDrawer,
-    toggleX=null,
-    toggleY=null
+    toggleX=undefined,
+    toggleY=undefined
 }) => {
     const {theme} = useTheme()
     const [showDrawer, setShowDrawer] = useState(false)
@@ -103,9 +105,9 @@ const Select: FC<SelectProps> = ({
     const renderSelected = () => {
         const selected = [...values].filter(i => i.selected);
         const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
-            <Span theme={theme}>{sel.value}</Span> 
+            <Span>{sel.value}</Span> 
             
-            <StyledSelectBtn width={20} color={theme.danger} bgcolor={theme.body} onClick={(e) => {
+            <StyledSelectBtn width={20} color={theme.danger} $bgcolor={theme.body} onClick={(e) => {
                 e.stopPropagation()
                 handleValues(handleOnSelect(sel.key))
             }}>&#10006;</StyledSelectBtn>
@@ -115,7 +117,7 @@ const Select: FC<SelectProps> = ({
             <div>
                 {selected && selected.length ? 
                     (<>{selections}</>) : 
-                    (<Span theme={theme}>{emptyText}</Span>)
+                    (<Span>{emptyText}</Span>)
                 }
             </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
@@ -125,7 +127,7 @@ const Select: FC<SelectProps> = ({
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
-            toggleTrigger={(trigger: any) => (<StyledSelectedResult outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
+            toggleTrigger={(trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
             fullToogle={true}
             xOverride={toggleX}
@@ -164,11 +166,13 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
 }) => {
     const [search, setSearch] = useState('');
     const [inputFocus, setInputFocus] = useState(false);
-
+    const id = uniqid();
+    
     return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
-            {enableSearch ? (<Input 
-                theme={theme} 
+            {enableSearch ? (<Input
+                name={id}
+                type='text'
                 value={search} 
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
@@ -190,7 +194,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
         </StyledSelectDrawerSearchContainer>
         
         <select name={name} multiple={multiple ? true : undefined}>
-            {values.map((v, i) => {
+            {values.map((v: any, i: any) => {
                 // Dont use seleted on option tag. Instead use value prop on select tag
                 // return <option value={v.key} key={i} selected={v.selected ? true : undefined}>{v.value}</option>
                 return <option value={v.key} key={i}>{v.value}</option>
@@ -198,7 +202,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
         </select>
         
         <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens spacer mt-1 ${inlineDrawer ? 'inline-options' : ''}`}>
-            {values.map((v) => {
+            {values.map((v: any) => {
                 return v.selected || !v.hide ? (<DrawerItem 
                     handleSelect={(k) => onSelect(k)} 
                     item={v} 
@@ -238,7 +242,11 @@ export const apiDataToSelect = ({
     unseted?: string;
 }) => {
     return data.map((itemData: any) => {
-        let aux = {};
+        let aux: SelectValueProps = {
+            key: null,
+            value: null,
+            selected: false
+        };
 
         //Set aux key from a custom given key (accept string: myKey, myKey.mySubKey, myKey.mySubKey.mySubSubKey) ...
         //In the same side send a valueHandler function or Object with functions => () => {} or {myKey: () => myKeyHandler()} or {myKey: {mySubKey: () => mySubKeyHandler()}} or ...
@@ -250,12 +258,12 @@ export const apiDataToSelect = ({
             aux.value = value.map((valueItem, valueIndex) => {
                 const hasDelimiter = value.length > 1 && valueIndex + 1 !== value.length;
                 
-                const valueToHandle = valueItem.split('.').reduce((v, vi) => v[vi], itemData);
+                const valueToHandle = valueItem.split('.').reduce((v: any, vi: any) => v[vi], itemData);
                 let iValue = "";
 
                 if(valueHandler){
                     try {
-                        const actionToHandle = valueItem.split('.').reduce((v, vi) => v[vi], valueHandler);
+                        const actionToHandle = valueItem.split('.').reduce((v: any, vi: any) => v[vi], valueHandler);
                         iValue = actionToHandle(valueToHandle);
                     } catch (err) {
                         iValue = valueToHandle;
@@ -267,7 +275,7 @@ export const apiDataToSelect = ({
                 return  `${iValue} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
             })
         }else{
-            const valueToHandle = value.split('.').reduce((v, vi) => v[vi], itemData);
+            const valueToHandle = value.split('.').reduce((v: any, vi: any) => v[vi], itemData);
 
             if(valueHandler && typeof valueHandler !== 'undefined'){
                 aux.value = valueHandler(valueToHandle);

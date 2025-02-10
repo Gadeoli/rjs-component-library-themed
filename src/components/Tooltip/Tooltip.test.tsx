@@ -7,9 +7,7 @@ import Tooltip from "./Tooltip";
 const compName = "Button"
 
 describe(compName, () => {
-    
-        test(`Renders the ${compName} component`, () => {
-
+    test(`Renders the ${compName} component`, () => {
         render(<App4Test>
             <Tooltip
                 tipcontent={"abc"}

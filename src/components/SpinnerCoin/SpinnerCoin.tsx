@@ -18,7 +18,7 @@ const SpinnerCoin: FC<SpinnerCoinProps> = ({size, type, className, style, custom
         size={size}
         className={classNames}
         style={style}
-        customColor={customColor}
+        $customColor={customColor}
     >
         <div></div>
     </StyledSpinnerCoin>);
