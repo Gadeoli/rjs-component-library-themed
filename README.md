@@ -6,7 +6,7 @@
 
 ThemeHandler    
 Button   
-Card && CardContent && CardToggle  
+Card && CardContent && CardToggle   
 Checkbox  
 CheckboxMulti  
 Container  
@@ -15,18 +15,18 @@ ImageContainer
 Input  
 Label  
 Loading  
-MultiForm
+MultiForm  
 P  
 Radio  
-RadioMulti  
+RadioMulti   
 Select  
-SelectAsync   
+SelectAsync    
 Span   
 Spinner  
 SpinnerCoin  
 SpinnerDots  
-SpinnerDotsCircle  
-SpinnerRipple  
+SpinnerDotsCircle   
+SpinnerRipple   
 SpinnerView   
 Tabs  
 Textarea    
@@ -158,8 +158,10 @@ function App() {
       </ThemeContext.Consumer>
 
       <Button onClick={() => console.log('hey')} disabled={false}>
-        <Span>ABC</Span>
-      </Button> 
+        ABC
+      </Button>
+
+      <Span>ABC</Span> 
     </div>
   );
 }
