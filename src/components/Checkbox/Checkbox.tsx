@@ -13,7 +13,7 @@ const Checkbox: FC<CheckboxProps> = ({
     checkedValue,
     uncheckedValue,
     onChange,
-    size,
+    size='0.75rem',
     text,
     type,
     value,

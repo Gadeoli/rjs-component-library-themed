@@ -13,7 +13,7 @@ const Radio: FC<RadioProps> = ({
     style,
     onChange,
     selectedValue,
-    size,
+    size='0.75rem',
     text,
     value,
     type,
