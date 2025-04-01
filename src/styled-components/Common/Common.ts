@@ -264,9 +264,17 @@ export const ImageContainer = styled.div<{height: string | number, width: string
     align-items: center;
     overflow: hidden;
 
+    &.fill img{
+        max-width: unset;
+        max-height: unset;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     img{
-        flex-shrink: 0;
-        width: ${(props: any) => props.width};
+        width: auto;
+        height: auto;
         max-width: 100%;
         max-height: 100%;
 

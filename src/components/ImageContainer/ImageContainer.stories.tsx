@@ -15,9 +15,10 @@ export const Default = Template.bind({});
 
 Default.args = {
     src: "https://avatars.githubusercontent.com/u/29583897?v=4",
-    width: "300px",
-    height: "300px",
+    width: "200px",
+    height: "200px",
     opacityEffect: false,
+    fill: false,
     loading: false,
     type: "primary",
     className: "",
@@ -55,6 +56,11 @@ Default.argTypes = {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'danger | primary | secondary | success'
+    },
+    fill: {
+        type: {name: 'boolean', required: false},
+        defaultValue: '',
+        description: 'if the image need to be forced fill-container/centralized'
     },
     className: {
         type: {name: 'string', required: false},
