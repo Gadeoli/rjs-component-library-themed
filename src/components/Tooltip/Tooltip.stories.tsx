@@ -19,11 +19,11 @@ const Template: StoryFn<TooltipProps> = (args) => {
         <CardContent>
             <Tooltip
                 {...args}
-                tipcontent={<></>}
+                tipcontent={<><Span>abc</Span></>}
             >
                 <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
             </Tooltip>
-            <br/> <br/> <Span>Card - CardContent - Tooltip</Span>
+            <br/> <br/> <Span>Card - CardContent - Tooltip [content: Span]</Span>
         </CardContent>
     </Card>)
 };
@@ -33,7 +33,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     position: "bottom",
-    type: "default",
+    type: "success",
     onBlur: () => {console.log("tooltip blured")},
     onFocus: () => {console.log("tooltip focused")}
 }   

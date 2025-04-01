@@ -1122,7 +1122,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
     min-height: ${(props: any) => props.$position === 'left' || props.$position === 'right' ? '20px' : '14px'};
 
     //pointer
-    :before{
+    &:before{
         content: '';
         position: absolute;
         width: 0;
@@ -1135,7 +1135,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         left: calc(100% + 15px);
         top: 2px;
 
-        :before{
+        &:before{
             top: 5px;
             left: -9px;
             
@@ -1149,7 +1149,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         right: calc(100% + 15px);
         top: 2px;
 
-        :before{
+        &:before{
             top: 5px;
             right: -9px;
             
@@ -1163,7 +1163,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         bottom: calc(100% + 15px);
         left: 2px;
 
-        :before{
+        &:before{
             bottom: -9px;
             left: 6px;
             
@@ -1177,7 +1177,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         top: calc(100% + 15px);
         left: 2px;
 
-        :before{
+        &:before{
             top: -9px;
             left: 6px;
             
