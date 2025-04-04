@@ -620,7 +620,7 @@ export const ToggleLabel = styled.label<{
     input{
         display: none;
 
-        &:checked ~ &.fill{
+        &:checked ~ .fill{
             background: ${(props: any) => props.$colors.background};
 
             &.reverse{
@@ -628,11 +628,11 @@ export const ToggleLabel = styled.label<{
             }
         }
 
-        &:checked ~ &.fill::after {
+        &:checked ~ .fill::after {
             transform: translateX(${(props: any) => props.sizes.height});
         }
 
-        &:checked ~ &.fill-icon{
+        &:checked ~ .fill-icon{
             top: 1px;
             left: 2px;
         }
