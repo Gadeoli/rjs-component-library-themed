@@ -37,11 +37,11 @@ export const Button = styled.button`
     color: ${(props: any) => props.theme.text};
     cursor: pointer;
     
-    :hover {
+    &:hover {
         box-shadow: ${discreetShadow};
     }
 
-    :disabled {
+    &:disabled {
         opacity: 0.6;
         cursor: default;
     }
@@ -58,7 +58,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.danger};
         color: ${(props: any) => props.theme.danger_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.danger)};
         }
     }
@@ -73,7 +73,7 @@ export const Button = styled.button`
         border-color: none;
         box-shadow: none;
 
-        :hover{
+        &:hover{
             border-color: ${(props: any) => props.theme.link};
         }
     }
@@ -83,7 +83,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.primary};
         color: ${(props: any) => props.theme.primary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.primary)};
         }
     }
@@ -93,7 +93,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.secondary};
         color: ${(props: any) => props.theme.secondary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.secondary)};
         }
     }
@@ -103,7 +103,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.success};
         color: ${(props: any) => props.theme.success_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
@@ -160,7 +160,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.danger};
         color: ${(props: any) => props.theme.danger_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.danger)};
         }
     }
@@ -169,7 +169,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.primary};
         color: ${(props: any) => props.theme.primary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.primary)};
         }
     }
@@ -178,7 +178,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.secondary};
         color: ${(props: any) => props.theme.secondary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.secondary)};
         }
     }
@@ -187,7 +187,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.success};
         color: ${(props: any) => props.theme.success_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
@@ -346,7 +346,7 @@ export const Span = styled.span`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             text-decoration: underline;
         }
     }
@@ -386,7 +386,7 @@ export const P = styled.p`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.link)};
         }
     }
@@ -425,7 +425,7 @@ export const TitleH1 = styled.h1`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.link)};
         }
     }
@@ -464,7 +464,7 @@ export const TitleHn = styled.h2<{$n?: number}>`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.link)};
         }
     }
@@ -553,7 +553,7 @@ export const DirectionContainer = styled.div<{direction?: string}>`
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
 
-    .cl-themed__checkbox, .cl-themed__radio{
+    &.cl-themed__checkbox, &.cl-themed__radio{
         margin-bottom: .5rem;
         margin-right: .75rem;
     }
@@ -613,14 +613,14 @@ export const ToggleLabel = styled.label<{
     cursor: pointer;
     position: relative;
 
-    .disabled{
+    &.disabled{
         opacity: 0.6;
     }
 
     input{
         display: none;
 
-        &:checked ~ .fill{
+        &:checked ~ &.fill{
             background: ${(props: any) => props.$colors.background};
 
             &.reverse{
@@ -628,11 +628,11 @@ export const ToggleLabel = styled.label<{
             }
         }
 
-        &:checked ~ .fill::after {
+        &:checked ~ &.fill::after {
             transform: translateX(${(props: any) => props.sizes.height});
         }
 
-        &::checked ~ fill-icon{
+        &:checked ~ &.fill-icon{
             top: 1px;
             left: 2px;
         }
@@ -873,7 +873,7 @@ export const SelectBtn = styled.button<{width?: number, $bgcolor: string}>`
     cursor: pointer;
     color: ${(props: any) => shade(0.15, props.color)};
 
-    :hover{
+    &:hover{
         border: 1px solid ${(props: any) => shade(0.15, props.$bgcolor)};
         background-color: ${(props: any) => shade(0.15, props.$bgcolor)};
     }

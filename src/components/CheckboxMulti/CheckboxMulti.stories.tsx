@@ -24,6 +24,7 @@ const Template: StoryFn<CheckboxMultiProps> = (args) => {
                 setVs(values);
                 console.log('changed: ', values);
             }}
+            style={{marginBottom: '2px'}}
         />    
         <br/> <Span>Card - CardContent - CheckboxMulti</Span>
     </CardContent></Card>)
