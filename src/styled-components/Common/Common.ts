@@ -596,7 +596,7 @@ export const RadioCircle = styled.div<{
     margin-right: .5rem;
 
     span{
-        color: ${(props: any) => props.$colors.unselect};;
+        color: ${(props: any) => props.$colors.unselect};
     }
 `;
 /* End Radio Components */
