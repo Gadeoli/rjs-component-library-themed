@@ -5,6 +5,7 @@ import { TooltipProps } from "./Tooltip.types";
 import Card from "../Card";
 import { CardContent } from "../../styled-components/Common/Common";
 import Span from "../Span";
+import ContainerReverseColor from "../ContainerReverseColor";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -19,7 +20,8 @@ const Template: StoryFn<TooltipProps> = (args) => {
         <CardContent>
             <Tooltip
                 {...args}
-                tipcontent={<><Span>abc</Span></>}
+                tipcontent={<ContainerReverseColor><Span type="secondary">abc</Span></ContainerReverseColor>}
+                type="secondary"
             >
                 <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
             </Tooltip>

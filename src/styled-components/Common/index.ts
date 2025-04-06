@@ -5,6 +5,7 @@ export {
     Card,
     CardContent,
     Container,
+    ContainerReverseColor,
     ContainerReverseYPM,
     ContainerReverseXPM,
     DirectionContainer,

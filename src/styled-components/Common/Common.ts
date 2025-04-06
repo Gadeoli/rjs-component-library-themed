@@ -1,6 +1,10 @@
 import  styled, { keyframes } from 'styled-components';
-import { shade } from 'polished';
-import { darken, rgba } from 'polished';
+import { 
+    darken, 
+    invert,
+    rgba, 
+    shade
+} from 'polished';
 import { deviceMax } from '../../components/device';
 import {
     defaultRadius,
@@ -240,6 +244,32 @@ export const Container = styled.div`
 
     &.clean{
         background-color: transparent;
+    }
+`;
+
+export const ContainerReverseColor = styled.div`
+    span, p, h1, h2, h3, h4, h5, h6{
+        color: ${(props: any) => invert(props.theme.text)} !important;
+
+        &.primary{
+            color: ${(props: any) => props.theme.primary_text} !important;
+        }
+
+        &.secondary{
+            color: ${(props: any) => props.theme.secondary_text} !important;
+        }
+
+        &.danger{
+            color: ${(props: any) => props.theme.danger_text} !important;
+        }
+
+        &.success{
+            color: ${(props: any) => props.theme.success_text} !important;
+        }
+
+        &.disabled{
+            color: ${(props: any) => props.theme.disabled_text} !important;
+        }
     }
 `;
 
