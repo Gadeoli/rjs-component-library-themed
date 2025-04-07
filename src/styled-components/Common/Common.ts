@@ -603,6 +603,7 @@ export const RadioContainer = styled.div`
     align-items: center;
     flex-direction: row;
     cursor: pointer;
+    margin-bottom: 2px;
 
     &.disabled{
         cursor: default;
