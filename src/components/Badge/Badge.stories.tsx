@@ -43,7 +43,7 @@ Default.argTypes = {
         description: ''
     },
     style: {
-        type: {name: 'other', required: false},
+        type: {name: 'string', required: false},
         defaultValue: null,
         description: 'custom styles'
     }
