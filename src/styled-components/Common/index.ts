@@ -1,4 +1,5 @@
 export { 
+    Badge,
     Body,
     BodyContent,
     Button,

@@ -1,14 +1,14 @@
 import React from 'react';
 import { StoryFn, Meta } from "@storybook/react";
-import Span from './Span';
+import Badge from './Badge';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "RjsComponentLibraryThemed/Span",
-} as Meta<typeof Span>;
+    title: "RjsComponentLibraryThemed/Badge",
+} as Meta<typeof Badge>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof Span> = (args) => <Span {...args}>abc</Span>;
+const Template: StoryFn<typeof Badge> = (args) => <Badge {...args}>abc</Badge>;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const Default = Template.bind({});

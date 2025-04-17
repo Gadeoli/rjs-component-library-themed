@@ -6,6 +6,7 @@ import Card from "../Card";
 import { CardContent } from "../../styled-components/Common/Common";
 import Span from "../Span";
 import ContainerReverseColor from "../ContainerReverseColor";
+import { AbsoluteContainer } from "../Test/styled";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -25,7 +26,17 @@ const Template: StoryFn<TooltipProps> = (args) => {
             >
                 <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
             </Tooltip>
-            <br/> <br/> <Span>Card - CardContent - Tooltip [content: Span]</Span>
+            <br/> <br/> <Span>Card - CardContent - Tooltip [content: Span] && Tooltip (the edge test - the bottom tooltip content can't be out of screen)</Span>
+
+            <AbsoluteContainer top="0px" right="0px">
+                <Tooltip
+                    {...args}
+                    tipcontent={<ContainerReverseColor><Span type="secondary">abc abcabcabcabcabcabcabc abc abc abc abc abcabcabcabcabc</Span></ContainerReverseColor>}
+                    type="secondary"
+                >
+                    <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
+                </Tooltip>
+            </AbsoluteContainer>
         </CardContent>
     </Card>)
 };

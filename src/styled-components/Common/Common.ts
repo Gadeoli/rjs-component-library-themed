@@ -405,6 +405,56 @@ export const Span = styled.span`
     }
 `;
 
+export const Badge = styled.span`
+    color: ${(props: any) => props.theme.text};
+    background-color: ${(props: any) => props.theme.background};
+    font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
+    min-height: 10px;
+    min-width: 30px;
+    padding: 2px 4px;
+    border-radius: ${defaultRadius};
+
+    &.danger{
+        color: ${(props: any) => props.theme.danger_text};
+        background-color: ${(props: any) => props.theme.danger};
+    }
+
+    &.link{
+        color: ${(props: any) => invert(props.theme.link)};
+        background-color: ${(props: any) => props.theme.link};
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    &.primary{
+        color: ${(props: any) => props.theme.primary_text};
+        background-color: ${(props: any) => props.theme.primary};
+    }
+
+    &.secondary{
+        color: ${(props: any) => props.theme.secondary_text};
+        background-color: ${(props: any) => props.theme.secondary};
+    }
+
+    &.success{
+        color: ${(props: any) => props.theme.success_text};
+        background-color: ${(props: any) => props.theme.success};
+    }
+
+    &.blink{
+        animation: ${BlinkerAnimation} .7s linear infinite;
+    }
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 50px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+`;
+
 export const P = styled.p`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text + "rem"};
@@ -1152,7 +1202,11 @@ export const Tooltip = styled.div<{$show: boolean}>`
 export const TooltipContext = styled.div`
 `;
 
-export const TooltipContent = styled.div<{$position?: string, type?: string, $show: boolean}>`
+export const TooltipContent = styled.div<{
+    $position?: string, 
+    type?: string, 
+    $show: boolean
+}>`
     position: absolute;
     display: ${(props: any) => props.$show ? 'block' : 'none'};
     padding: ${defaultYPM} ${defaultXPM};
@@ -1223,6 +1277,30 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
             border-top: unset; 
             border-left-color: transparent;
             border-right-color: transparent;
+        }
+    }
+
+    &.bottom, &.top{
+        &.fix-right{
+            left: auto;
+            right: 0;
+            transform: translateX(0);
+
+            &:before{
+                left: auto;
+                right: 6px;
+            }
+        }
+
+        &.fix-left{
+            left: 0;
+            right: auto;
+            transform: translateX(0);
+            
+            &:before{
+                left: auto;
+                right: 0;
+            }
         }
     }
 
