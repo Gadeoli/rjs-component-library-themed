@@ -3,7 +3,8 @@ import {
     darken, 
     invert,
     rgba, 
-    shade
+    shade,
+    transparentize
 } from 'polished';
 import { deviceMax } from '../../components/device';
 import {
@@ -369,6 +370,11 @@ export const Span = styled.span`
     min-height: 10px;
     min-width: 30px;
 
+    &.full{
+        display: block;
+        width: 100%;
+    }
+
     &.danger{
         color: ${(props: any) => props.theme.danger};
     }
@@ -458,6 +464,10 @@ export const Badge = styled.span`
 export const P = styled.p`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text + "rem"};
+
+    &.full{
+        width: 100%;
+    }
 
     &.danger{
         color: ${(props: any) => props.theme.danger};
@@ -598,6 +608,14 @@ export const Input = styled.input`
         -webkit-background-clip: text;
         -webkit-text-fill-color: ${(props: any) => props.theme.text};
     }
+
+    &::placeholder {
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+
+    &::-ms-input-placeholder { /* Edge 12 -18 */
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
 `;
 
 export const Textarea = styled.textarea`
@@ -624,6 +642,14 @@ export const Textarea = styled.textarea`
     &:-webkit-autofill { 
         -webkit-background-clip: text;
         -webkit-text-fill-color: ${(props: any) => props.theme.text};
+    }
+
+    &::placeholder {
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+
+    &::-ms-input-placeholder { /* Edge 12 -18 */
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
     }
 `;
 
@@ -968,7 +994,11 @@ export const SelectSelectedOptions = styled.div`
     & > div{
         display: flex;
     }
-`
+
+    span.empty-txt{
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+`;
 
 export const SelectDropSymbol = styled.div`
     position: relative;

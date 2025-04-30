@@ -113,11 +113,11 @@ const Select: FC<SelectProps> = ({
             }}>&#10006;</StyledSelectBtn>
         </StyledSelectedResultItem>) : '';
 
-        return (<StyledSelectSelectedOptions>
+        return (<StyledSelectSelectedOptions theme={theme}>
             <div>
                 {selected && selected.length ? 
                     (<>{selections}</>) : 
-                    (<Span>{emptyText}</Span>)
+                    (<Span className='empty-txt'>{emptyText}</Span>)
                 }
             </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
