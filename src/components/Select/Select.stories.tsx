@@ -15,7 +15,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
-    const [value, setValue] = useState();
+    const [vsMulti, setVsMulti] = useState([...fruitData]);
 
     const aux = apiDataToSelect({
         data: candyData, 
@@ -24,6 +24,9 @@ const Template: StoryFn<SelectProps> = (args) => {
     });
     const [candies, setCandies] = useState(aux);
     const [candie, setCandie] = useState();
+
+    const [candiesMulti, setCandiesMulti] = useState(aux);
+    const [candieMulti, setCandieMulti] = useState();
 
     return( <Card>
         <CardContent>
@@ -60,6 +63,26 @@ const Template: StoryFn<SelectProps> = (args) => {
                     }}
                     inlineDrawer={true}
                 />
+
+                <br />
+
+                <Select 
+                    {...args}
+                    name="myselect3"
+                    className="full"
+                    emptyText={'select something here (multivalue)...'} 
+                    multiple={true}
+                    values={vsMulti} 
+                    handleValues={({selected, values}) => {
+                        setVsMulti(values);
+                    }}
+                    handleSelect={(s) => {
+                        // console.log(s)
+                    }}
+                    inlineDrawer={false}
+                />
+
+                
             </form>
             
             <div style={{paddingTop: '500px'}}>

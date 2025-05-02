@@ -890,7 +890,7 @@ export const SelectedResultItem = styled.span`
     background-color: ${(props: any) => props.theme.body};
     color: ${(props: any) => props.theme.text};
     border-radius: ${defaultRadius};
-    margin-right: .1rem;
+    margin: 1px 0.1rem 1px 0;
     display: flex;
     align-items: center;
 
@@ -993,6 +993,7 @@ export const SelectSelectedOptions = styled.div`
 
     & > div{
         display: flex;
+        flex-wrap: wrap;
     }
 
     span.empty-txt{
