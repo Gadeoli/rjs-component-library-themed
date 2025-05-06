@@ -41,6 +41,7 @@ Default.args = {
     id:"myinput",
     name:"myinput",
     type: "text",
+    autocomplete: "off",
     placeholder: "",
     disabled: false,
     loading: false
@@ -76,6 +77,11 @@ Default.argTypes = {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'full;'
+    },
+    autocomplete: {
+        type: {name: 'string', required: false},
+        defaultValue: 'off',
+        description: ''
     },
     disabled: {
         type: {name: 'boolean', required: false},

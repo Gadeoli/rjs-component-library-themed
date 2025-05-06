@@ -14,7 +14,7 @@ const Input: FC<InputProps> = ({
     loading, 
     id, 
     placeholder, 
-    autocomplete, 
+    autocomplete="off", 
     onChange, 
     onBlur, 
     onFocus, 
