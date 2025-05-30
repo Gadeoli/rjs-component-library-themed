@@ -629,9 +629,12 @@ export const Textarea = styled.textarea`
     border-radius: ${defaultRadius};
     min-height: 10rem;
     padding: ${defaultYPM} ${defaultXPM};
+    line-height: 1.5;
+    text-align: justify;
 
     &.full{
         width: 100%;
+        resize: vertical;
     }
 
     &:focus {
