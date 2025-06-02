@@ -688,6 +688,10 @@ export const RadioContainer = styled.div`
         cursor: default;
         opacity: 0.6;
     }
+
+    .cl-themed__radio__text{
+        width: fit-content;
+    }
 `;
 
 export const RadioCircle = styled.div<{
