@@ -198,6 +198,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
                     handleSelect={(k) => onSelect(k)} 
                     item={v} 
                     theme={theme} 
+                    inlineDrawer={inlineDrawer}
                     key={v.key}/>
                 ) : null
             })}
@@ -208,9 +209,10 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
 const DrawerItem: FC<DrawerItemProps> = ({
     theme, 
     item,
+    inlineDrawer,
     handleSelect
 }) => {
-    return <StyledSelectDrawerItem type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
+    return <StyledSelectDrawerItem className={`${inlineDrawer ? 'inline-options' : ''}`} type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
 export const handleValuesAsync = (props: HandleSelectAsyncProps) => {

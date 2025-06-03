@@ -207,6 +207,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                     handleSelect={(k) => onSelect(k)} 
                     item={v} 
                     theme={theme} 
+                    inlineDrawer={inlineDrawer}
                     key={v.key}/>
                 ) : null
             })}
@@ -217,9 +218,10 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
 const DrawerItem: FC<DrawerItemProps> = ({
     theme, 
     item,
+    inlineDrawer,
     handleSelect
 }) => {
-    return <StyledSelectDrawerItem type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
+    return <StyledSelectDrawerItem type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
 export default Select;

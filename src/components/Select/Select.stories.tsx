@@ -6,6 +6,9 @@ import Span from "../Span";
 import { SelectProps } from "./Select.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData, candyData } from "../../data";
+import CardToggle from "../CardToggle";
+import Button from "../Button";
+import Container from "../Container";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -24,6 +27,7 @@ const Template: StoryFn<SelectProps> = (args) => {
     });
     const [candies, setCandies] = useState(aux);
     const [candie, setCandie] = useState();
+    const multiplierSels = ['abc', 'def', 'ghi'];
 
     const [candiesMulti, setCandiesMulti] = useState(aux);
     const [candieMulti, setCandieMulti] = useState();
@@ -48,21 +52,34 @@ const Template: StoryFn<SelectProps> = (args) => {
 
                 <br />
 
-                <Select 
-                    {...args}
-                    name="myselect2"
-                    className="full"
-                    emptyText={'select something here...'} 
-                    values={candies} 
-                    handleValues={({selected, values}) => {
-                        setCandies(values);
-                        setCandie(selected);
-                    }}
-                    handleSelect={(s) => {
-                        // console.log(s)
-                    }}
-                    inlineDrawer={true}
-                />
+                <CardToggle
+                    // parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
+                    toggleTrigger={(trigger: any) => (<Button onClick={() => trigger()}>OPEN SELECT</Button>)}
+                    className={'full'}
+                    fullToogle={true}
+                    xOverride='left'
+                    yOverride='bottom'
+                >
+                    {multiplierSels.map(sel => (
+                        <Container>
+                            <Select 
+                                {...args}
+                                name="myselect2"
+                                className="full"
+                                emptyText={'select something here...'} 
+                                values={candies} 
+                                handleValues={({selected, values}) => {
+                                    setCandies(values);
+                                    setCandie(selected);
+                                }}
+                                handleSelect={(s) => {
+                                    // console.log(s)
+                                }}
+                                inlineDrawer={true}
+                            />
+                        </Container>
+                    ))}
+                </CardToggle>
 
                 <br />
 

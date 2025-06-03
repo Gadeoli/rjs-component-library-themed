@@ -351,7 +351,7 @@ export const ImageContainer = styled.div<{height: string | number, width: string
 
 export const Label = styled.label`
     color: ${(props: any) => props.theme.text};
-    font-size: ${(props: any) => (props.theme.fontSize.text * 0.75)+"rem"};
+    font-size: ${(props: any) => (props.theme.fontSize.text * 0.85)+"rem"};
     min-height: 10px;
     min-width: 30px;
     margin-bottom: 5px;
@@ -663,7 +663,7 @@ export const DirectionContainer = styled.div<{direction?: string}>`
     cursor: pointer;
 
     &.cl-themed__checkbox, &.cl-themed__radio{
-        margin-bottom: .5rem;
+        margin-bottom: .75rem;
         margin-right: .75rem;
     }
 `;
@@ -681,8 +681,8 @@ export const RadioContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
+    margin-bottom: 4px;
     cursor: pointer;
-    margin-bottom: 2px;
 
     &.disabled{
         cursor: default;
@@ -912,6 +912,7 @@ export const SelectDrawerContainer = styled.div`
     width: 100%;
     max-height: 350px;
     overflow-y: auto;
+    overflow-x: hidden;
 
     &.inline-options{
         display: flex;
@@ -973,8 +974,12 @@ export const SelectDrawerItem = styled.button<{selected?: boolean}>`
     border-radius: ${defaultRadius};
     cursor: pointer;
     border: none;
-    margin: .2rem;
-    margin-left: 0;
+    margin: .2rem .2rem .4rem 0;
+
+    &.inline-options{
+        width: 100%;
+        text-align: left;
+    }
 `
 
 export const SelectBtn = styled.button<{width?: number, $bgcolor: string}>`
