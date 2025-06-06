@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Input from './Input';
-import { InputProps } from "./Input.types";
+import Range from './Range';
+import { RangeProps } from "./Range.types";
 import Card from "../Card";
 import Span from "../Span";
 import Label from "../Label";
@@ -10,26 +10,25 @@ import FormGroup from "../FormGroup";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "RjsComponentLibraryThemed/Input",
-} as Meta<typeof Input>;
+    title: "RjsComponentLibraryThemed/Range",
+} as Meta<typeof Range>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<InputProps> = (args) => {
-    const [value, setValue] = useState('');
+const Template: StoryFn<RangeProps> = (args) => {
+    const [value, setValue] = useState(20);
 
     return( <Card>
         <CardContent>
             <FormGroup>
-                <Label htmlFor="myinput">myinput label</Label>
-                <Input 
+                <Label htmlFor="myRange">myRange label</Label>
+                <Range 
                     {...args}
                     value={value}
                     onChange={(e: any) => setValue(e.target.value) }
                 />
             </FormGroup>
             
-
-            <br/> <br/> <Span>Card - CardContent - FormGroup - Label + Input</Span>
+            <br/> <br/> <Span>Card - CardContent - FormGroup - Label + Range</Span>
         </CardContent>
     </Card>)
 };
@@ -38,11 +37,9 @@ const Template: StoryFn<InputProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    id:"myinput",
-    name:"myinput",
-    type: "text",
-    autocomplete: "off",
-    placeholder: "",
+    id:"myRange",
+    name:"myRange",
+    type: "secondary",
     disabled: false,
     loading: false
 }   
@@ -51,17 +48,17 @@ Default.argTypes = {
     id: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'Input id'
+        description: 'Range id'
     },
     name: {
         type: {name: 'string', required: true},
         defaultValue: '',
-        description: 'Input name'
+        description: 'Range name'
     },
     type: {
         type: {name: 'string', required: false},
-        defaultValue: '',
-        description: 'text | number | password | hidden'
+        defaultValue: 'primary',
+        description: 'primary | secondary | error | danger'
     },
     loading: {
         type: {name: 'boolean', required: false},
@@ -69,29 +66,24 @@ Default.argTypes = {
         description: 'Loading effect, if true add a class: loading-effect to component'
     },
     value: {
-        type: {name: 'string', required: false},
-        defaultValue: '',
-        description: 'text | number | password | hidden'
+        type: {name: 'number', required: false},
+        defaultValue: 0,
+        description: ''
     },
     min: {
         type: {name: 'number', required: false},
-        defaultValue: '',
-        description: 'used when type number'
+        defaultValue: 0,
+        description: ''
     },
     max: {
         type: {name: 'number', required: false},
-        defaultValue: '',
-        description: 'used when type number'
+        defaultValue: 100,
+        description: ''
     },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'full;'
-    },
-    autocomplete: {
-        type: {name: 'string', required: false},
-        defaultValue: 'off',
-        description: ''
     },
     disabled: {
         type: {name: 'boolean', required: false},
@@ -101,14 +93,5 @@ Default.argTypes = {
     },
     onChange: {
         description: 'function to run on onchange event. this will recieve the event'
-    },
-    onFocus: {
-        description: 'not required. function to run on onfocus event. this will recieve the event'
-    },
-    onBlur: {
-        description: 'not required. function to run on onblur event. this will recieve the event'
-    },
-    onKeyDown: {
-        description: 'not required. function to run on keydown event. this will recieve the event'
-    },
+    }
 }

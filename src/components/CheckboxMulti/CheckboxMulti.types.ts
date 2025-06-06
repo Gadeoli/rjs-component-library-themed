@@ -8,5 +8,6 @@ export interface CheckboxMultiProps {
     single?: boolean;       //If true only one checkbox can be selected
     style?: object;
     size?: string;
-    className?: string
+    className?: string;
+    checkedIcon?: boolean;
 }

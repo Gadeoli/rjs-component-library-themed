@@ -39,6 +39,7 @@ Default.args = {
     className: '',
     direction: 'column',
     style: {},
+    selectedIcon: false,
 }   
 
 Default.argTypes = {
@@ -61,6 +62,12 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: '',
+        size: { control: 'radio' }
+    },
+    selectedIcon: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Show the html check symbol when selected',
         size: { control: 'radio' }
     },
     direction: {

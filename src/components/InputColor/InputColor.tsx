@@ -1,34 +1,34 @@
 import React, { FC } from 'react';
-import { Input as StyledInput } from '../../styled-components/Common';
+import { InputColor as StyledInputColor } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
-import { InputProps } from './Input.types';
+import { InputColorProps } from './InputColor.types';
 
-const Input: FC<InputProps> = ({
+const InputColor: FC<InputColorProps> = ({
     name, 
     disabled, 
     value, 
-    type, 
     className, 
     style, 
     loading, 
     id, 
-    placeholder, 
     autocomplete="off", 
     onChange, 
     onBlur, 
     onFocus, 
     onKeyDown,
+    width='2.5rem',
+    height='2rem',
     ...rest
 }) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
-        'cl-themed__input',
+        'cl-themed__input-color',
         loading ? 'loading-effect' : undefined,
         className
     ]);
 
-    return (<StyledInput 
+    return (<StyledInputColor 
         name={name}
         id={id}
         className={classNames} 
@@ -40,11 +40,12 @@ const Input: FC<InputProps> = ({
         onFocus={(e: any) => onFocus && onFocus(e)}
         onKeyDown={(e: any) => onKeyDown && onKeyDown(e)}
         style={style} 
-        type={type} 
-        placeholder={placeholder}
         autoComplete={autocomplete}
+        width={width}
+        height={height}
         {...rest}
+        type='color'
     />);
 }
 
-export default Input;
+export default InputColor;

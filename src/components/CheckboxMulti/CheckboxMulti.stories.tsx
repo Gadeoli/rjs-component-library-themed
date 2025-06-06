@@ -24,7 +24,6 @@ const Template: StoryFn<CheckboxMultiProps> = (args) => {
                 setVs(values);
                 console.log('changed: ', values);
             }}
-            style={{marginBottom: '2px'}}
         />    
         <br/> <Span>Card - CardContent - CheckboxMulti</Span>
     </CardContent></Card>)
@@ -41,7 +40,8 @@ Default.args = {
         {key: 'banana',     value: 'Banana'},
         {key: 'watermelon', value: 'watermelon'},
         {key: 'orange',     value: 'Orange'},
-    ]
+    ],
+    checkedIcon: false
 }   
 
 Default.argTypes = {
@@ -70,6 +70,12 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'Disable click && add opacity style',
+        size: { control: 'radio' }
+    },
+    checkedIcon: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Show the html check symbol when checked',
         size: { control: 'radio' }
     },
     direction: {

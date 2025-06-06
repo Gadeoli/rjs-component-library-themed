@@ -10,4 +10,5 @@ export interface RadioMultiProps {
     size?: string;
     type?: "danger" | "primary" | "secondary" | "success";
     disabled?: boolean;
+    selectedIcon?: boolean;
 }

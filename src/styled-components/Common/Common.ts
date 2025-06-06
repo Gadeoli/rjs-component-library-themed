@@ -618,6 +618,85 @@ export const Input = styled.input`
     }
 `;
 
+export const InputColor = styled.input`
+    border: 1px solid ${(props: any) => props.theme.border};
+    border-radius: ${defaultRadius};
+    outline: ${(props: any) => props.theme.outline};
+    background-color: ${(props: any) => props.theme.background};
+    cursor: pointer;
+    width: ${(props: any) => props.width};
+    height: ${(props: any) => props.height};
+
+    &::-webkit-color-swatch-wrapper{
+        padding: 2px;
+        border-radius: ${defaultRadius};
+        border: none;
+    }
+
+    &::-webkit-color-swatch{
+        border-radius: ${defaultRadius};
+        border: none;
+    }
+`;
+
+export const Range = styled.input<{$colors: any, theme: any, step:number, $progress: number}>`
+    -webkit-appearance: none;
+    appearance: none; 
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border-radius: 15px;
+    height: 6px;
+    background: ${props => `linear-gradient(to right, ${props.$colors.active} ${props.$progress}%, ${props.$colors.background} ${props.$progress}%)`};
+    width: 200px;
+
+    &::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        appearance: none; 
+        height: 15px;
+        width: 15px;
+        background-color: ${props => props.$colors.active};
+        border-radius: 50%;
+        border: none;
+        transition: .2s ease-in-out;
+
+        &:hover{
+            box-shadow: 0 0 0 10px ${props => props.$colors.handler1};
+        }
+    }
+
+    &::-moz-range-thumb{
+        height: 15px;
+        width: 15px;
+        background-color: ${props => props.theme.primary};
+        border-radius: 50%;
+        border: none;
+        transition: .2s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 0 10px ${props => props.$colors.handler1};
+        }
+    }
+
+    &:active{
+        &::-webkit-slider-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+        &::-moz-range-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+    }
+    
+    &:focus{
+        &::-webkit-slider-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+        &::-moz-range-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+    }
+`;
+
 export const Textarea = styled.textarea`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
@@ -681,7 +760,7 @@ export const RadioContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
     cursor: pointer;
 
     &.disabled{
@@ -704,13 +783,15 @@ export const RadioCircle = styled.div<{
     border: 1px solid ${(props: any) => props.$colors.selected};
     border-radius: ${(props: any) => props.$size || '1rem'};
     background-color: ${(props: any) => props.$selected ? props.$colors.selected : props.$colors.unselect};
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 2px;
     margin-right: .5rem;
 
-    span{
+    div.selected-icon{
         color: ${(props: any) => props.$colors.unselect};
+        margin-top: -1px;
     }
 `;
 /* End Radio Components */
@@ -806,6 +887,7 @@ export const CheckboxContainer = styled.div`
     flex-direction: row;
     align-items: flex-end;
     cursor: pointer;
+    margin-bottom: 0.25rem;
 
     input{
         display: none;
@@ -839,6 +921,11 @@ export const CheckboxSquare = styled.div<{
     &.disabled{
         cursor: default;
         opacity: 0.6;
+    }
+
+    div.checked-icon{
+        color: ${(props: any) => props.$colors.unchecked};
+        margin-top: -1px;
     }
 `;
 /* End Checkbox Components */

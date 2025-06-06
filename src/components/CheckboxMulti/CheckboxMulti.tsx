@@ -16,7 +16,8 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
     disabled,
     type,
     size,
-    className
+    className,
+    checkedIcon=false
 }) => {
     const name = uniqid();
 
@@ -67,6 +68,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
                 style={style}
                 size={size || '16px'}
                 className={className}
+                checkedIcon={checkedIcon}
             />)
         })}
     </StyledDirectionContainer>)

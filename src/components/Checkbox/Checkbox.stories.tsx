@@ -43,6 +43,7 @@ Default.args = {
     type: 'primary',
     className: '',
     style: {},
+    checkedIcon: false
 }   
 
 Default.argTypes = {
@@ -76,6 +77,12 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'Click disabled and styled effects add',
+        size: { control: 'radio' }
+    },
+    checkedIcon: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Show the html check symbol when checked',
         size: { control: 'radio' }
     },
     text: {

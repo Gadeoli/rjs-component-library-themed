@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Input from './Input';
-import { InputProps } from "./Input.types";
+import InputColor from './InputColor';
+import { InputColorProps } from "./InputColor.types";
 import Card from "../Card";
 import Span from "../Span";
 import Label from "../Label";
@@ -10,26 +10,25 @@ import FormGroup from "../FormGroup";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "RjsComponentLibraryThemed/Input",
-} as Meta<typeof Input>;
+    title: "RjsComponentLibraryThemed/InputColor",
+} as Meta<typeof InputColor>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<InputProps> = (args) => {
+const Template: StoryFn<InputColorProps> = (args) => {
     const [value, setValue] = useState('');
 
     return( <Card>
         <CardContent>
             <FormGroup>
-                <Label htmlFor="myinput">myinput label</Label>
-                <Input 
+                <Label htmlFor="myInputColor">myInputColor label</Label>
+                <InputColor 
                     {...args}
                     value={value}
                     onChange={(e: any) => setValue(e.target.value) }
                 />
             </FormGroup>
-            
 
-            <br/> <br/> <Span>Card - CardContent - FormGroup - Label + Input</Span>
+            <br/> <br/> <Span>Card - CardContent - FormGroup - Label + InputColor</Span>
         </CardContent>
     </Card>)
 };
@@ -38,30 +37,25 @@ const Template: StoryFn<InputProps> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    id:"myinput",
-    name:"myinput",
-    type: "text",
+    id:"myInputColor",
+    name:"myInputColor",
     autocomplete: "off",
-    placeholder: "",
     disabled: false,
-    loading: false
+    loading: false,
+    width: '2.5rem',
+    height: '2rem'
 }   
 
 Default.argTypes = {
     id: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'Input id'
+        description: 'InputColor id'
     },
     name: {
         type: {name: 'string', required: true},
         defaultValue: '',
-        description: 'Input name'
-    },
-    type: {
-        type: {name: 'string', required: false},
-        defaultValue: '',
-        description: 'text | number | password | hidden'
+        description: 'InputColor name'
     },
     loading: {
         type: {name: 'boolean', required: false},
@@ -73,15 +67,15 @@ Default.argTypes = {
         defaultValue: '',
         description: 'text | number | password | hidden'
     },
-    min: {
-        type: {name: 'number', required: false},
-        defaultValue: '',
-        description: 'used when type number'
+    width: {
+        type: {name: 'string', required: false},
+        defaultValue: '2.5rem',
+        description: "The input' width",
     },
-    max: {
-        type: {name: 'number', required: false},
-        defaultValue: '',
-        description: 'used when type number'
+    height: {
+        type: {name: 'string', required: false},
+        defaultValue: '2rem',
+        description: "The input' height",
     },
     className: {
         type: {name: 'string', required: false},

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { CheckboxProps } from './Checkbox.types';
 import { 
     CheckboxSquare as StyledCheckboxSquare,
@@ -20,7 +20,8 @@ const Checkbox: FC<CheckboxProps> = ({
     style,
     className,
     disabled,
-    children
+    children,
+    checkedIcon=false
 }) => {
     const {theme} = useTheme();
     const colors = {
@@ -34,6 +35,8 @@ const Checkbox: FC<CheckboxProps> = ({
         className
     ]);
 
+    const showCheckedIcon = useMemo(() => checkedIcon && checked && !children, [checkedIcon, checked, children]); 
+
     return (<StyledCheckboxContainer className={classNames} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
@@ -46,7 +49,8 @@ const Checkbox: FC<CheckboxProps> = ({
             $size={size + ""} 
             $colors={colors}
         >
-            {children}
+            {showCheckedIcon && (<div className='checked-icon'>&#10003;</div>)}
+            {!showCheckedIcon && children}
         </StyledCheckboxSquare>
         
         {text ? <Span className="cl-themed__checkbox__text">{text}</Span> : null}

@@ -12,5 +12,6 @@ export interface CheckboxProps {
     className?: string;
     style?: object;
     onChange: any;
-    children?: React.ReactNode
+    children?: React.ReactNode;
+    checkedIcon?: boolean;
 }

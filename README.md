@@ -11,13 +11,16 @@ Checkbox
 CheckboxMulti  
 Container  
 FormGroup  
-ImageContainer    
+ImageContainer   
+ImageEditor   
 Input  
+InputColor  
 Label  
 Loading  
 MultiForm  
 P  
 Radio  
+Range  
 RadioMulti   
 Select  
 SelectAsync    
@@ -39,7 +42,8 @@ Tooltip
 
 [source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)  
 [source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)  
-[source III - Spinners](https://loading.io/css/)
+[source III - Spinners](https://loading.io/css/)  
+[source IV - Range](https://codepen.io/ibaslogic/pen/zYMJZaQ)  
 
 ## ToDO
 
