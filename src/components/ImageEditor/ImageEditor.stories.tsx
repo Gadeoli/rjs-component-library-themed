@@ -25,7 +25,7 @@ const Template: StoryFn<typeof ImageEditor> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    onSaveImage: (file: File) => console.log(file),
+    onSaveImage: ({src, e}) => console.log({src, e}),
     loading: false,
     className: "",
     style: {},

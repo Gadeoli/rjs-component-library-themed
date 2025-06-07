@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useMemo, useState } from 'react';
 import { ImageEditorProps } from './ImageEditor.types';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
@@ -34,8 +34,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
         saturate: 'Saturate',
         grayscale: 'Grayscale',
         reset: 'Reset photo',
-        flipHorizontal: 'Flip photo horizontally',
-        flipVertical: 'Flip photo vertically',
+        flipHorizontal: 'Flip horizontally',
+        flipVertical: 'Flip vertically',
         zoom: 'Zoom',
         draw: 'Draw',
         pan: 'Pan', //Mover / Arrastar
@@ -88,7 +88,6 @@ const ImageEditor: FC<ImageEditorProps> = ({
         handlePointerUp,
         handlePointerMove,
         handleWheel,
-        downloadImage,
         resetFilters,
     } = usePhotoEditor({ file });
 
@@ -108,108 +107,44 @@ const ImageEditor: FC<ImageEditorProps> = ({
         zoom
     ]);
 
+    //state
+    const [showSubActions, setShowSubActions] = useState(false);
+    //state - end
+
+    const handleSubActionContainer = ({action} : {action: string;}) => {
+        if(action === 'draw'){
+            setShowSubActions(!showSubActions);
+        }else{
+            setShowSubActions(false);
+        }
+    }
+
     return (<Container type='clean' className={classNames} style={style}>
-            {imageSrc && (
-                <CanvasContainer>
-                    <Canvas
-                        style={{
-                            width: 'auto',
-                            height: 'auto',
-                            maxHeight: '22rem',
-                            maxWidth: '36rem',
-                            touchAction: 'none',
-                        }}
-                        ref={canvasRef}
-                        onPointerDown={handlePointerDown}
-                        onPointerMove={handlePointerMove}
-                        onPointerUp={handlePointerUp}
-                        onWheel={handleWheel}
-                    />
-                </CanvasContainer>
-            )}
-
-            <Controls>
-                <Action>
-                    <Button style={{fontSize: '70%'}} onClick={(e: any) => onSaveImage({src: imageSrc, e})}>
-                        &#10003;
-                    </Button>
-                </Action>  
-
-                <CardToggle
-                    className='' 
-                    yOverride='bottom'
-                    xOverride='left'
-                    toggleTrigger={(trigger: any) => (<Action>
-                        <Button onClick={() => trigger()}>&equiv;</Button>
-                    </Action>)} 
-                >
-                    <Card>
-                        <CardContent>
-                            {rangeActions.map((ac, k) => (<Action key={k}>
-                                <Range
-                                    name={ac.name}
-                                    min={ac.min}
-                                    max={ac.max}
-                                    value={ac.value}
-                                    onChange={(e: any) => ac.onChange(Number(e.target.value))}
-                                    step={ac.step}
-                                />
-                                <Label>{labels[ac.name]}</Label>
-                            </Action>))}
-                        </CardContent>
-                    </Card>
-                </CardToggle>
-
-                <Action>
-                    <Button onClick={resetFilters}>
-                        &#8635;
-                    </Button>
-                </Action>              
-
-                <SiblingsActions>
-                    <Action>
-                        <Checkbox
-                            name='flipHorizontal'
-                            type='primary' 
-                            checkedValue={true}
-                            uncheckedValue={false}
-                            value={flipHorizontal}
-                            onChange={(v: boolean) => setFlipHorizontal(v)}
-                            disabled={loading}
-                            text={labels.flipHorizontal}
-                            checkedIcon={true}
-                        />
-                    </Action>
-
-                    <Action>
-                        <Checkbox
-                            name='flipVertical'
-                            type='primary' 
-                            checkedValue={true}
-                            uncheckedValue={false}
-                            value={flipVertical}
-                            onChange={(v: boolean) => setFlipVertical(v)}
-                            disabled={loading}
-                            text={labels.flipVertical}
-                            checkedIcon={true}
-                        />
-                    </Action>
-                </SiblingsActions>
-                
-                <Action>
-                    <RadioMulti
-                        type='primary'
-                        selectedValue={action}
-                        values={radioActions}
-                        onChange={(sel: any) => setAction(sel.key)}
-                        selectedIcon={true}
-                    />
-                </Action>
-
-                {action == 'draw' && (<SubActionContainer theme={theme}>
+        {imageSrc && (<CanvasContainer>
+            <Canvas
+                style={{
+                    width: 'auto',
+                    height: 'auto',
+                    maxHeight: '22rem',
+                    maxWidth: '36rem',
+                    touchAction: 'none',
+                }}
+                ref={canvasRef}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onWheel={handleWheel}
+            />
+            <SubActionContainer theme={theme} show={showSubActions}>
+                <Button className='sub-action-minimaze' onClick={() => setShowSubActions(false)}>
+                    &#128469;
+                </Button>
+                {action == 'draw' && (<SubAction>
                     <InputColor 
+                        name="draw-color"
                         onChange={(e: any) => setLineColor(e.target.value)} 
                         value={lineColor} 
+                        style={{marginRight: '0.25rem'}}
                     />
                     <Input 
                         name={'line_width'}
@@ -220,10 +155,92 @@ const ImageEditor: FC<ImageEditorProps> = ({
                         max={100}
                         style={{marginTop: '4px'}}
                     />
-                </SubActionContainer>)}
-            </Controls>
-        </Container>
-    );
+                </SubAction>)}
+            </SubActionContainer>
+        </CanvasContainer>)}
+
+        {(imageSrc || 1 === 1) && (<Controls theme={theme}>
+            <Action>
+                <Button style={{fontSize: '70%'}} onClick={(e: any) => onSaveImage({src: imageSrc, e})}>{/* canvas.toDataURL(file?.type); */}
+                    &#10003;
+                </Button>
+            </Action>  
+
+            <CardToggle
+                className='' 
+                yOverride='top'
+                xOverride='left'
+                toggleTrigger={(trigger: any) => (<Action>
+                    <Button onClick={() => trigger()}>&equiv;</Button>
+                </Action>)} 
+            >
+                <Card>
+                    <CardContent>
+                        {rangeActions.map((ac, k) => (<Action key={k}>
+                            <Range
+                                name={ac.name}
+                                min={ac.min}
+                                max={ac.max}
+                                value={ac.value}
+                                onChange={(e: any) => ac.onChange(Number(e.target.value))}
+                                step={ac.step}
+                            />
+                            <Label>{labels[ac.name]}</Label>
+                        </Action>))}
+                    </CardContent>
+                </Card>
+            </CardToggle>
+
+            <Action>
+                <Button onClick={resetFilters}>
+                    &#8635;
+                </Button>
+            </Action>              
+
+            <SiblingsActions>
+                <Action>
+                    <Checkbox
+                        name='flipHorizontal'
+                        type='primary' 
+                        checkedValue={true}
+                        uncheckedValue={false}
+                        value={flipHorizontal}
+                        onChange={(v: boolean) => setFlipHorizontal(v)}
+                        disabled={loading}
+                        text={labels.flipHorizontal}
+                        checkedIcon={true}
+                    />
+                </Action>
+
+                <Action>
+                    <Checkbox
+                        name='flipVertical'
+                        type='primary' 
+                        checkedValue={true}
+                        uncheckedValue={false}
+                        value={flipVertical}
+                        onChange={(v: boolean) => setFlipVertical(v)}
+                        disabled={loading}
+                        text={labels.flipVertical}
+                        checkedIcon={true}
+                    />
+                </Action>
+            </SiblingsActions>
+            
+            <Action>
+                <RadioMulti
+                    type='primary'
+                    selectedValue={action}
+                    values={radioActions}
+                    onChange={(sel: any) => {
+                        setAction(sel.key);
+                        handleSubActionContainer({action: sel.key});
+                    }}
+                    selectedIcon={true}
+                />
+            </Action>
+        </Controls>)}
+    </Container>);
 }
 
 export default ImageEditor;
@@ -231,6 +248,9 @@ export default ImageEditor;
 const CanvasContainer = styled.div`
     background-color: ${props => props.theme.background};
     box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
 `;
 
 const Canvas = styled.canvas`
@@ -239,29 +259,47 @@ const Canvas = styled.canvas`
 
 const Controls = styled.div`
     width: 100%;
-    padding: ${defaultYPM} ${defaultXPM};
+    padding-top: ${defaultYPM};
+    padding-bottom: ${defaultYPM};
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     border-bottom-left-radius: ${defaultRadius};
     border-bottom-right-radius: ${defaultRadius};
+    background-color: ${props => props.theme.background};
 `;
 
 const SiblingsActions = styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.5rem;
-    margin-right: 1rem;
+    margin-bottom: 0.25rem;
 `;
 
-const SubActionContainer = styled.div`
+const SubActionContainer = styled.div<{show: boolean}>`
+    display: ${props => props.show ? 'flex' : 'none'};
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: ${props => props.theme.background};
+    padding-top: 2rem;
+
+    button.sub-action-minimaze{
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+    }
+`;
+
+const SubAction = styled.div`
     display: flex;
-    flex-direction: column;
-    border: 1px solid ${props => props.theme.border};
-    border-radius: ${defaultRadius};
+    align-items: center;
     padding: ${defaultYPM} ${defaultXPM};
 `;
 
 const Action = styled.div`
     margin-bottom: 0.5rem;
     margin-right: 1rem;
+    position: relative;
 `;

@@ -201,17 +201,6 @@ export const usePhotoEditor = ({
         });
     };
 
-    const downloadImage = () => {
-        const canvas = canvasRef.current;
-        
-        if (canvas && file) {
-            const link = document.createElement('a');
-            link.download = file.name;
-            link.href = canvas.toDataURL(file?.type);
-            link.click();
-        }
-    };
-
     /**
      * Generates a string representing the current filter settings.
      *
@@ -422,8 +411,6 @@ export const usePhotoEditor = ({
         handlePointerMove,
         /** Function to handle wheel events for zooming. */
         handleWheel,
-        /** Function to download the edited image. */
-        downloadImage,
         /** Function to generate the edited image file. */
         generateEditedFile,
         /** Function to reset filters and styles to default. */
