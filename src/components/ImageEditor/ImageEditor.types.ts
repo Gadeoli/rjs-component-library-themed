@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ImageEditorProps {
     /**
      * The image source.
@@ -79,22 +81,27 @@ export interface ImageEditorActionsProps {
 }
 
 export interface ImageEditorTranslationsProps {
-    brushColor: string;
-    brushWidth: string;
-    brightness: string;
-    contrast: string;
-    draw: string;
-    flip: string;
-    grayscale: string;
-    horizontal: string;
-    pan: string;
-    reset: string;
-    rotate: string;
-    saturate: string;
-    save: string;
-    vertical: string;
-    zoom: string;
+    brushColor: ImageEditorLabelProps;
+    brushWidth: ImageEditorLabelProps;
+    brightness: ImageEditorLabelProps;
+    contrast: ImageEditorLabelProps;
+    draw: ImageEditorLabelProps;
+    flip: ImageEditorLabelProps;
+    grayscale: ImageEditorLabelProps;
+    horizontal: ImageEditorLabelProps;
+    pan: ImageEditorLabelProps;
+    reset: ImageEditorLabelProps;
+    rotate: ImageEditorLabelProps;
+    saturate: ImageEditorLabelProps;
+    save: ImageEditorLabelProps;
+    vertical: ImageEditorLabelProps;
+    zoom: ImageEditorLabelProps;
 }
+
+export interface ImageEditorLabelProps {
+    txt: string;
+    icon?: React.ReactNode;
+};
 
 export interface UseImageEditorProps {
     src?: string;
@@ -124,6 +131,6 @@ interface UseImageEditorLineProps {
 };
 
 interface UseImageEditorActionsProps {
-    mode: 'pan' | 'draw' | 'flip';
+    mode: 'pan' | 'draw' | 'flip' | 'write';
     line: UseImageEditorLineProps;
 };

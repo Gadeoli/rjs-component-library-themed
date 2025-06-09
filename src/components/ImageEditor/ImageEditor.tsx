@@ -29,22 +29,22 @@ const ImageEditor: FC<ImageEditorProps> = ({
         drawing: true,
     },
     labels = {
-        brightness: 'Brightness',
-        brushColor: 'Brush color',
-        brushWidth: 'Brush width',
-        contrast: 'Contrast',
-        controls: 'Controls',
-        draw: 'Draw',
-        flip: 'Flip',
-        grayscale: 'Grayscale',
-        horizontal: 'Horizontally',
-        pan: 'Pan', //Mover / Arrastar
-        reset: 'Reset',
-        rotate: 'Rotate',
-        saturate: 'Saturate',
-        save: 'Save',
-        vertical: 'Vertically',
-        zoom: 'Zoom',
+        brightness: {txt: 'Brightness'},
+        brushColor: {txt: 'Brush color'},
+        brushWidth: {txt: 'Brush width'},
+        contrast: {txt: 'Contrast'},
+        controls: {txt: 'Controls'},
+        draw: {txt: 'Draw'},
+        flip: {txt: 'Flip'},
+        grayscale: {txt: 'Grayscale'},
+        horizontal: {txt: 'Horizontally'},
+        pan: {txt: 'Pan'}, //Mover / Arrastar
+        reset: {txt: 'Reset'},
+        rotate: {txt: 'Rotate'},
+        saturate: {txt: 'Saturate'},
+        save: {txt: 'Save'},
+        vertical: {txt: 'Vertically'},
+        zoom: {txt: 'Zoom'}
     },
     loading,
     className,
@@ -59,9 +59,9 @@ const ImageEditor: FC<ImageEditorProps> = ({
     ]);
 
     const radioActionValues = [
-        {key: 'pan', value: labels['pan']},
-        {key: 'draw', value: labels['draw']},
-        {key: 'flip', value: labels['flip']},
+        {key: 'pan', value: labels['pan'].txt},
+        {key: 'draw', value: labels['draw'].txt},
+        {key: 'flip', value: labels['flip'].txt},
     ];
 
     const {
@@ -164,6 +164,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
                         min={2}
                         max={100}
                     />
+                    {/*  
+                    // Not fully implemented
                     <Checkbox
                         name='line-style'
                         type='primary' 
@@ -176,6 +178,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
                         checkedIcon={true}
                         style={{marginLeft: '0.5rem'}}
                     />
+                    */}
                 </SubAction>) : action === 'flip' ? (<SubAction>
                     <SiblingsActions>
                         <Action>
@@ -187,7 +190,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
                                 value={flipHorizontal}
                                 onChange={(v: boolean) => setFlipHorizontal(v)}
                                 disabled={loading}
-                                text={labels.horizontal}
+                                text={labels.horizontal.txt}
                                 checkedIcon={true}
                             />
                         </Action>
@@ -201,7 +204,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
                                 value={flipVertical}
                                 onChange={(v: boolean) => setFlipVertical(v)}
                                 disabled={loading}
-                                text={labels.vertical}
+                                text={labels.vertical.txt}
                                 checkedIcon={true}
                             />
                         </Action>
@@ -210,7 +213,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
             </SubActionContainer>
         </CanvasContainer>)}
 
-        {(imageSrc || 1 === 1) && (<Controls theme={theme}>
+        {imageSrc && (<Controls theme={theme}>
             <Action>
                 <Button style={{fontSize: '70%'}} onClick={ async (e: any) => {
                     // onSaveImage({src: imageSrc, e})
@@ -240,7 +243,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
                                 onChange={(e: any) => ac.onChange(Number(e.target.value))}
                                 step={ac.step}
                             />
-                            <Label>{labels[ac.name]}</Label>
+                            <Label>{labels[ac.name].txt}</Label>
                         </Action>))}
                     </CardContent>
                 </Card>

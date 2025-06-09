@@ -44,33 +44,33 @@ Tooltip
 [source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)  
 [source III - Spinners](https://loading.io/css/)  
 [source IV - Range](https://codepen.io/ibaslogic/pen/zYMJZaQ)  
-[source IV - Image Editor](https://www.npmjs.com/package/react-photo-editor)    
+[source IV - Image Editor](https://www.npmjs.com/package/react-photo-editor) | 'no extra actions implemented'   
 
 ## ToDO
 
-- Upgrade stories 
+- Upgrade stories  
 
 ## Release Notes
 
-- 0.2.0: Upgrad dependencies; MultiForm' & Tabs' header changed;
+- 0.2.0: Upgrad dependencies; MultiForm' & Tabs' header changed;  
 
 ## Testing
 
 ```
-npm run test
+npm run test  
 ```
 
 ## Storybook ( not properly configured )
 
 ```
-npm run sb
+npm run sb  
 ```
 
 ## Installing
 
 ```
-//install (remember to check the peer dependencies)
-npm i @gadeoli/rjs-component-library-themed
+//install (remember to check the peer dependencies)  
+npm i @gadeoli/rjs-component-library-themed  
 ```
 
 ```

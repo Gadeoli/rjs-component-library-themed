@@ -73,22 +73,22 @@ Default.argTypes = {
     labels: {
         table: { type: { summary: 'any'} },
         defaultValue: {
-            brightness: 'Brightness',
-            brushColor: 'Brush color',
-            brushWidth: 'Brush width',
-            contrast: 'Contrast',
-            controls: 'Controls',
-            draw: 'Draw',
-            flip: 'Flip',
-            grayscale: 'Grayscale',
-            horizontal: 'Horizontally',
-            pan: 'Pan', //Mover / Arrastar
-            reset: 'Reset',
-            rotate: 'Rotate',
-            saturate: 'Saturate',
-            save: 'Save',
-            vertical: 'Vertically',
-            zoom: 'Zoom',
+            brightness: {txt: 'Brightness'},
+            brushColor: {txt: 'Brush color'},
+            brushWidth: {txt: 'Brush width'},
+            contrast: {txt: 'Contrast'},
+            controls: {txt: 'Controls'},
+            draw: {txt: 'Draw'},
+            flip: {txt: 'Flip'},
+            grayscale: {txt: 'Grayscale'},
+            horizontal: {txt: 'Horizontally'},
+            pan: {txt: 'Pan'}, //Mover / Arrastar
+            reset: {txt: 'Reset'},
+            rotate: {txt: 'Rotate'},
+            saturate: {txt: 'Saturate'},
+            save: {txt: 'Save'},
+            vertical: {txt: 'Vertically'},
+            zoom: {txt: 'Zoom'}
         },
         description: 'Labels for buttons, actions'
     },

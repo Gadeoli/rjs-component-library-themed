@@ -45,7 +45,7 @@ export const usePhotoEditor = ({
     const [panStart, setPanStart] = useState<{ x: number; y: number } | null>(null);
     const [offsetX, setOffsetX] = useState(0);
     const [offsetY, setOffsetY] = useState(0);
-    const [action, setAction] = useState<'draw' | 'pan' | 'flip'>(actions.mode);
+    const [action, setAction] = useState<'draw' | 'pan' | 'flip' | 'write'>(actions.mode);
     const [drawStart, setDrawStart] = useState<{ x: number; y: number } | null>(null);
     //## drawing on the canvas.
     const [lineColor, setLineColor] = useState<string>(actions.line.color);
@@ -86,9 +86,9 @@ export const usePhotoEditor = ({
 
             path.forEach((point, index) => {
                 if (index === 0) {
-                context.moveTo(point.x, point.y);
+                    context.moveTo(point.x, point.y);
                 } else {
-                context.lineTo(point.x, point.y);
+                    context.lineTo(point.x, point.y);
                 }
             });
             context.stroke();
