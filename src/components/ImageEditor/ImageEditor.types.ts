@@ -79,19 +79,21 @@ export interface ImageEditorActionsProps {
 }
 
 export interface ImageEditorTranslationsProps {
-    rotate: string;
-    brightness: string;
-    contrast: string;
-    saturate: string;
-    grayscale: string;
-    reset: string;
-    flipHorizontal: string;
-    flipVertical: string;
-    zoom: string;
-    draw: string;
-    pan: string;
     brushColor: string;
     brushWidth: string;
+    brightness: string;
+    contrast: string;
+    draw: string;
+    flip: string;
+    grayscale: string;
+    horizontal: string;
+    pan: string;
+    reset: string;
+    rotate: string;
+    saturate: string;
+    save: string;
+    vertical: string;
+    zoom: string;
 }
 
 export interface UseImageEditorProps {
@@ -118,9 +120,10 @@ interface UseImageEditorPositionsProps {
 interface UseImageEditorLineProps {
     color: string;
     width: number;
+    style: 'hand-free' | 'straight';
 };
 
 interface UseImageEditorActionsProps {
-    mode: 'pan' | 'draw';
+    mode: 'pan' | 'draw' | 'flip';
     line: UseImageEditorLineProps;
 };

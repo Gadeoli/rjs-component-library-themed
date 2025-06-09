@@ -8,7 +8,7 @@ export interface CheckboxProps {
     size?: string;
     type?: "danger" | "primary" | "secondary" | "success";
     disabled?: boolean; 
-    text?: string;
+    text?: string | React.ReactNode;
     className?: string;
     style?: object;
     onChange: any;

@@ -38,20 +38,7 @@ Default.args = {
         drawing: true,
     },
     labels = {
-        rotate: 'Rotate',
-        brightness: 'Brightness',
-        contrast: 'Contrast',
-        saturate: 'Saturate',
-        grayscale: 'Grayscale',
-        reset: 'Reset photo',
-        flipHorizontal: 'Flip photo horizontally',
-        flipVertical: 'Flip photo vertically',
-        zoomIn: 'Zoom in',
-        zoomOut: 'Zoom out',
-        draw: 'Draw',
-        pan: 'Pan',
-        brushColor: 'Choose brush color',
-        brushWidth: 'Choose brush width',
+        ...
     }
     */
 }   
@@ -77,18 +64,22 @@ Default.argTypes = {
     labels: {
         table: { type: { summary: 'any'} },
         defaultValue: {
-            rotate: 'Rotate',
             brightness: 'Brightness',
+            brushColor: 'Brush color',
+            brushWidth: 'Brush width',
             contrast: 'Contrast',
-            saturate: 'Saturate',
-            grayscale: 'Grayscale',
-            reset: 'Reset photo',
-            flipHorizontal: 'Flip photo horizontally',
-            flipVertical: 'Flip photo vertically',
-            zoom: 'Zoom',
+            controls: 'Controls',
             draw: 'Draw',
-            brushColor: 'Choose brush color',
-            brushWidth: 'Choose brush width',
+            flip: 'Flip',
+            grayscale: 'Grayscale',
+            horizontal: 'Horizontally',
+            pan: 'Pan', //Mover / Arrastar
+            reset: 'Reset',
+            rotate: 'Rotate',
+            saturate: 'Saturate',
+            save: 'Save',
+            vertical: 'Vertically',
+            zoom: 'Zoom',
         },
         description: 'Labels for buttons, actions'
     },

@@ -28,19 +28,22 @@ const ImageEditor: FC<ImageEditorProps> = ({
         drawing: true,
     },
     labels = {
-        rotate: 'Rotate',
         brightness: 'Brightness',
+        brushColor: 'Brush color',
+        brushWidth: 'Brush width',
         contrast: 'Contrast',
-        saturate: 'Saturate',
-        grayscale: 'Grayscale',
-        reset: 'Reset photo',
-        flipHorizontal: 'Flip horizontally',
-        flipVertical: 'Flip vertically',
-        zoom: 'Zoom',
+        controls: 'Controls',
         draw: 'Draw',
+        flip: 'Flip',
+        grayscale: 'Grayscale',
+        horizontal: 'Horizontally',
         pan: 'Pan', //Mover / Arrastar
-        brushColor: 'Choose brush color',
-        brushWidth: 'Choose brush width',
+        reset: 'Reset',
+        rotate: 'Rotate',
+        saturate: 'Saturate',
+        save: 'Save',
+        vertical: 'Vertically',
+        zoom: 'Zoom',
     },
     loading,
     className,
@@ -54,9 +57,10 @@ const ImageEditor: FC<ImageEditorProps> = ({
         className
     ]);
 
-    const radioActions = [
+    const radioActionValues = [
         {key: 'pan', value: labels['pan']},
         {key: 'draw', value: labels['draw']},
+        {key: 'flip', value: labels['flip']},
     ];
 
     const {
@@ -84,6 +88,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
         lineColor,
         setLineWidth,
         lineWidth,
+        setLineStyle,
+        lineStyle,
         handlePointerDown,
         handlePointerUp,
         handlePointerMove,
@@ -111,11 +117,13 @@ const ImageEditor: FC<ImageEditorProps> = ({
     const [showSubActions, setShowSubActions] = useState(false);
     //state - end
 
-    const handleSubActionContainer = ({action} : {action: string;}) => {
-        if(action === 'draw'){
-            setShowSubActions(!showSubActions);
-        }else{
+    const handleSubActionContainer = ({selAction} : {selAction: string;}) => {
+        const actionsWithSub = ['draw', 'flip'];
+
+        if(!actionsWithSub.includes(selAction) || (action === selAction && showSubActions)){
             setShowSubActions(false);
+        }else{
+            setShowSubActions(true);
         }
     }
 
@@ -125,8 +133,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
                 style={{
                     width: 'auto',
                     height: 'auto',
-                    maxHeight: '22rem',
-                    maxWidth: '36rem',
+                    maxHeight: '26rem',
+                    maxWidth: '70%',
                     touchAction: 'none',
                 }}
                 ref={canvasRef}
@@ -135,11 +143,11 @@ const ImageEditor: FC<ImageEditorProps> = ({
                 onPointerUp={handlePointerUp}
                 onWheel={handleWheel}
             />
-            <SubActionContainer theme={theme} show={showSubActions}>
-                <Button className='sub-action-minimaze' onClick={() => setShowSubActions(false)}>
+            <SubActionContainer theme={theme} $show={showSubActions}>
+                <Button type='clean' className='sub-action-minimaze' onClick={() => setShowSubActions(false)}>
                     &#128469;
                 </Button>
-                {action == 'draw' && (<SubAction>
+                {action === 'draw' ? (<SubAction>
                     <InputColor 
                         name="draw-color"
                         onChange={(e: any) => setLineColor(e.target.value)} 
@@ -153,9 +161,50 @@ const ImageEditor: FC<ImageEditorProps> = ({
                         value={lineWidth}
                         min={2}
                         max={100}
-                        style={{marginTop: '4px'}}
                     />
-                </SubAction>)}
+                    <Checkbox
+                        name='line-style'
+                        type='primary' 
+                        checkedValue={'hand-free'}
+                        uncheckedValue={'straight'}
+                        value={lineStyle}
+                        onChange={(v: any) => setLineStyle(v)}
+                        disabled={loading}
+                        text={<>&#9997;</>}
+                        checkedIcon={true}
+                        style={{marginLeft: '0.5rem'}}
+                    />
+                </SubAction>) : action === 'flip' ? (<SubAction>
+                    <SiblingsActions>
+                        <Action>
+                            <Checkbox
+                                name='flipHorizontal'
+                                type='primary' 
+                                checkedValue={true}
+                                uncheckedValue={false}
+                                value={flipHorizontal}
+                                onChange={(v: boolean) => setFlipHorizontal(v)}
+                                disabled={loading}
+                                text={labels.horizontal}
+                                checkedIcon={true}
+                            />
+                        </Action>
+
+                        <Action>
+                            <Checkbox
+                                name='flipVertical'
+                                type='primary' 
+                                checkedValue={true}
+                                uncheckedValue={false}
+                                value={flipVertical}
+                                onChange={(v: boolean) => setFlipVertical(v)}
+                                disabled={loading}
+                                text={labels.vertical}
+                                checkedIcon={true}
+                            />
+                        </Action>
+                    </SiblingsActions>
+                </SubAction>) : ('')}
             </SubActionContainer>
         </CanvasContainer>)}
 
@@ -192,51 +241,25 @@ const ImageEditor: FC<ImageEditorProps> = ({
             </CardToggle>
 
             <Action>
-                <Button onClick={resetFilters}>
+                <Button onClick={() => {
+                    resetFilters();
+                    setShowSubActions(false);
+                }}>
                     &#8635;
                 </Button>
             </Action>              
-
-            <SiblingsActions>
-                <Action>
-                    <Checkbox
-                        name='flipHorizontal'
-                        type='primary' 
-                        checkedValue={true}
-                        uncheckedValue={false}
-                        value={flipHorizontal}
-                        onChange={(v: boolean) => setFlipHorizontal(v)}
-                        disabled={loading}
-                        text={labels.flipHorizontal}
-                        checkedIcon={true}
-                    />
-                </Action>
-
-                <Action>
-                    <Checkbox
-                        name='flipVertical'
-                        type='primary' 
-                        checkedValue={true}
-                        uncheckedValue={false}
-                        value={flipVertical}
-                        onChange={(v: boolean) => setFlipVertical(v)}
-                        disabled={loading}
-                        text={labels.flipVertical}
-                        checkedIcon={true}
-                    />
-                </Action>
-            </SiblingsActions>
             
             <Action>
                 <RadioMulti
                     type='primary'
                     selectedValue={action}
-                    values={radioActions}
+                    values={radioActionValues}
                     onChange={(sel: any) => {
                         setAction(sel.key);
-                        handleSubActionContainer({action: sel.key});
+                        handleSubActionContainer({selAction: sel.key});
                     }}
                     selectedIcon={true}
+                    style={{marginRight: '.75rem'}}
                 />
             </Action>
         </Controls>)}
@@ -275,15 +298,15 @@ const SiblingsActions = styled.div`
     margin-bottom: 0.25rem;
 `;
 
-const SubActionContainer = styled.div<{show: boolean}>`
-    display: ${props => props.show ? 'flex' : 'none'};
+const SubActionContainer = styled.div<{$show: boolean}>`
+    display: ${props => props.$show ? 'flex' : 'none'};
     justify-content: center;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     background-color: ${props => props.theme.background};
-    padding-top: 2rem;
+    padding-top: 1rem;
 
     button.sub-action-minimaze{
         position: absolute;
@@ -302,4 +325,9 @@ const Action = styled.div`
     margin-bottom: 0.5rem;
     margin-right: 1rem;
     position: relative;
+
+    .cl-themed__radio-multi{
+        flex-wrap: wrap;
+        max-height: 5rem;
+    }
 `;

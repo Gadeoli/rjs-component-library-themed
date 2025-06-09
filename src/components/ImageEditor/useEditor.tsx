@@ -18,8 +18,9 @@ export const usePhotoEditor = ({
     actions = {
         mode: 'pan',
         line: {
-            color: '#000',
-            width: 12
+            color: '#000000',
+            width: 12,
+            style: 'hand-free'
         },
     }
 }: UseImageEditorProps) => {
@@ -44,11 +45,12 @@ export const usePhotoEditor = ({
     const [panStart, setPanStart] = useState<{ x: number; y: number } | null>(null);
     const [offsetX, setOffsetX] = useState(0);
     const [offsetY, setOffsetY] = useState(0);
-    const [action, setAction] = useState<'draw' | 'pan'>(actions.mode);
+    const [action, setAction] = useState<'draw' | 'pan' | 'flip'>(actions.mode);
     const [drawStart, setDrawStart] = useState<{ x: number; y: number } | null>(null);
     //## drawing on the canvas.
     const [lineColor, setLineColor] = useState<string>(actions.line.color);
     const [lineWidth, setLineWidth] = useState<number>(actions.line.width);
+    const [lineStyle, setLineStyle] = useState<'hand-free' | 'straight'>(actions.line.style);
     //State - end    
 
     // Effect to update the image source when the file changes.
@@ -242,13 +244,15 @@ export const usePhotoEditor = ({
             setDrawStart({ x, y });
 
             drawingPathsRef.current.push({ path: [{ x, y }], color: lineColor, width: lineWidth });
-        } else {
+        } else if (action === 'pan') {
             setIsDragging(true);
             
             const initialX = event.clientX - (flipHorizontal ? -offsetX : offsetX);
             const initialY = event.clientY - (flipVertical ? -offsetY : offsetY);
             
             setPanStart({ x: initialX, y: initialY });
+        } else {
+            //nothing
         }
     };
 
@@ -330,6 +334,7 @@ export const usePhotoEditor = ({
         setZoom(positions.zoom);
         setLineColor(actions.line.color);
         setLineWidth(actions.line.width);
+        setLineStyle('hand-free');
         drawingPathsRef.current = [];
         setOffsetX(0);
         setOffsetY(0);
@@ -375,6 +380,8 @@ export const usePhotoEditor = ({
         lineColor,
         /** Current line width. */
         lineWidth,
+        /** Current line style - hand-free or straight - default: hand-free */
+        lineStyle,
         /** Function to set the brightness level. */
         setBrightness,
         /** Function to set the contrast level. */
@@ -423,5 +430,7 @@ export const usePhotoEditor = ({
         setLineColor,
         /** Function to set the line width. */
         setLineWidth,
+        /** Function to set the line style */
+        setLineStyle
     };
 };
