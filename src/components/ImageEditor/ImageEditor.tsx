@@ -16,9 +16,10 @@ import Card from '../Card';
 import CardContent from '../CardContent';
 import { defaultRadius, defaultXPM, defaultYPM } from '../../styles';
 import InputColor from '../InputColor';
+import { transparentize } from 'polished';
 
 const ImageEditor: FC<ImageEditorProps> = ({
-    file,
+    src,
     onSaveImage,
     actions = {
         colorEditing: true,
@@ -95,7 +96,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
         handlePointerMove,
         handleWheel,
         resetFilters,
-    } = usePhotoEditor({ file });
+        generateEditedImage
+    } = usePhotoEditor({ src });
 
     const rangeActions = useMemo(() => [
         {name: 'brightness', value: brightness, min: 0, max: 200, step: 1, onChange: (v: number) => setBrightness(v)},
@@ -210,7 +212,11 @@ const ImageEditor: FC<ImageEditorProps> = ({
 
         {(imageSrc || 1 === 1) && (<Controls theme={theme}>
             <Action>
-                <Button style={{fontSize: '70%'}} onClick={(e: any) => onSaveImage({src: imageSrc, e})}>{/* canvas.toDataURL(file?.type); */}
+                <Button style={{fontSize: '70%'}} onClick={ async (e: any) => {
+                    // onSaveImage({src: imageSrc, e})
+                    const editedSrc = await generateEditedImage();
+                    onSaveImage({src: editedSrc, e});
+                }}>
                     &#10003;
                 </Button>
             </Action>  
@@ -305,7 +311,7 @@ const SubActionContainer = styled.div<{$show: boolean}>`
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: ${props => props.theme.background};
+    background-color: ${props => transparentize(0.2, props.theme.background)};
     padding-top: 1rem;
 
     button.sub-action-minimaze{

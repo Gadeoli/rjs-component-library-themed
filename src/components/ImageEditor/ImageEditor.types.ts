@@ -1,14 +1,14 @@
 export interface ImageEditorProps {
     /**
-     * The input image file to be edited.
+     * The image source.
      */
-    file: File | undefined;
+    src: string | undefined;
 
     actions: ImageEditorActionsProps;
 
     /**
      * Function invoked when the edited image is saved.
-     * @param image - The edited image file.
+     * @param image - The edited image src.
      */
     onSaveImage: (props: ImageOnSaveProps) => void;
 
@@ -97,7 +97,7 @@ export interface ImageEditorTranslationsProps {
 }
 
 export interface UseImageEditorProps {
-    file?: File;
+    src?: string;
     scales?: UseImageEditorScalesProps;
     positions?: UseImageEditorPositionsProps;
     actions?: UseImageEditorActionsProps;

@@ -9,15 +9,24 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof ImageEditor> = (args) => {
-    const [file, setFile] = useState();
+    const [src, setSrc] = useState();
+    const [savedSrc, setSavedSrc] = useState();
 
     return (<div>
-        <input type="file" multiple={false} onChange={(e: any) => {
+        <input  type="file" 
+                multiple={false}
+                style={{marginBottom: '20px'}} 
+                onChange={(e: any) => {
             if (e.target.files && e.target.files.length > 0) {
-                setFile(e.target.files[0]);
+                const reader = new FileReader();
+                reader.onload = () => setSrc(reader.result);
+                reader.readAsDataURL(e.target.files[0]);
             }
         }}/>
-        <ImageEditor {...{...args, file}} />
+
+        <ImageEditor {...{...args, src}} onSaveImage={(props : any) => setSavedSrc(props.src)}/>
+
+        <img src={savedSrc} alt='saved img - preview' style={{width: '300px', marginTop: '40px'}}/>
     </div>)
 };
 
@@ -44,8 +53,8 @@ Default.args = {
 }   
 
 Default.argTypes = {
-    file: {
-        description: 'file img'
+    src: {
+        description: 'img src'
     },
     onSaveImage: {
         description: 'function to run on onchange event. this will recieve the event'

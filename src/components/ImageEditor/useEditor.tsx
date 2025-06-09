@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { UseImageEditorProps } from "./ImageEditor.types";
 
 export const usePhotoEditor = ({
-    file,
+    src,
     scales = {
         brightness: 100,
         contrast: 100,
@@ -53,24 +53,16 @@ export const usePhotoEditor = ({
     const [lineStyle, setLineStyle] = useState<'hand-free' | 'straight'>(actions.line.style);
     //State - end    
 
-    // Effect to update the image source when the file changes.
+    // Effect to update the image source when the src changes.
     useEffect(() => {
-        if (file) {
-            const fileSrc = URL.createObjectURL(file);
-            setImageSrc(fileSrc);
-
-            // Clean up the object URL when the component unmounts or file changes.
-            return () => {
-                URL.revokeObjectURL(fileSrc);
-            };
-        }
-    }, [file]);
+        setImageSrc(src ? src : '');
+    }, [src]);
 
     // Effect to apply transformations and filters whenever relevant state changes.
     useEffect(() => {
         applyFilter();
     }, [
-        file,
+        src,
         imageSrc,
         rotate,
         flipHorizontal,
@@ -165,41 +157,19 @@ export const usePhotoEditor = ({
     };
 
     /**
-     * Generates a file from the canvas content.
-     * @returns {Promise<File | null>} A promise that resolves with the edited file or null if the canvas is not available.
+     * Generates a image source from the canvas content.
+     * @returns {Promise<string | null>} A promise that resolves with the edited image src or null if the canvas is not available.
      */
-    const generateEditedFile = (): Promise<File | null> => {
+    const generateEditedImage = (): Promise<string | null> => {
         return new Promise((resolve) => {
             const canvas = canvasRef.current;
             
-            if (!canvas || !file) {
+            if (!canvas || !src) {
                 resolve(null);
                 return;
             }
 
-            const fileExtension = (file.name.split('.').pop() || '').toLowerCase();
-            let mimeType;
-            
-            switch (fileExtension) {
-                case 'jpg':
-                case 'jpeg':
-                    mimeType = 'image/jpeg';
-                    break;
-                case 'png':
-                    mimeType = 'image/png';
-                break;
-                default:
-                    mimeType = 'image/png';
-            }
-
-            canvas.toBlob((blob) => {
-                if (blob) {
-                    const newFile = new File([blob], file.name, { type: blob.type });
-                    resolve(newFile);
-                } else {
-                    resolve(null);
-                }
-            }, mimeType);
+            resolve(canvas.toDataURL());
         });
     };
 
@@ -418,8 +388,8 @@ export const usePhotoEditor = ({
         handlePointerMove,
         /** Function to handle wheel events for zooming. */
         handleWheel,
-        /** Function to generate the edited image file. */
-        generateEditedFile,
+        /** Function to generate the edited image src. */
+        generateEditedImage,
         /** Function to reset filters and styles to default. */
         resetFilters,
         /** Function to apply filters and transformations. */
