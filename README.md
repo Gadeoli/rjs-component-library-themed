@@ -52,7 +52,7 @@ Tooltip
 
 ## Release Notes
 
-- 0.2.0: Upgrad dependencies; MultiForm' & Tabs' header changed;  
+- 0.2.0: Upgraded dependencies; MultiForm' & Tabs' header changed;  
 
 ## Testing
 
