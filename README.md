@@ -44,7 +44,7 @@ Tooltip
 [source II](https://dev.to/siddharthvenkatesh/component-library-setup-with-react-typescript-and-rollup-onj)  
 [source III - Spinners](https://loading.io/css/)  
 [source IV - Range](https://codepen.io/ibaslogic/pen/zYMJZaQ)  
-[source IV - Image Editor](https://www.npmjs.com/package/react-photo-editor) | 'no extra actions implemented'   
+[source V - Image Editor](https://www.npmjs.com/package/react-photo-editor) | 'no extra actions implemented'   
 
 ## ToDO
 
