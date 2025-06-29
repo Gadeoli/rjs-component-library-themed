@@ -14,7 +14,7 @@ const Template: StoryFn<typeof ImageContainer> = (args) => <ImageContainer {...a
 export const Default = Template.bind({});
 
 Default.args = {
-    src: "https://avatars.githubusercontent.com/u/29583897?v=4",
+    src: "",
     width: "200px",
     height: "200px",
     opacityEffect: false,

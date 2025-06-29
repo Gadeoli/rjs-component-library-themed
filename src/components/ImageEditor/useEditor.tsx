@@ -22,6 +22,11 @@ export const usePhotoEditor = ({
             width: 12,
             style: 'hand-free'
         },
+        text: {
+            color: "#FFEF00",
+            font: 'Arial',
+            fontSize: 12
+        }
     }
 }: UseImageEditorProps) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -51,6 +56,11 @@ export const usePhotoEditor = ({
     const [lineColor, setLineColor] = useState<string>(actions.line.color);
     const [lineWidth, setLineWidth] = useState<number>(actions.line.width);
     const [lineStyle, setLineStyle] = useState<'hand-free' | 'straight'>(actions.line.style);
+    //## text on the canvas.
+    const [texts, setTexts] = useState([]);
+    const [textColor, setTextColor] = useState<string>(actions.text.color);
+    const [textFont, setTextFont] = useState<string>(actions.text.font);
+    const [textFontSize, setTextFontSize] = useState<number>(actions.text.fontSize);
     //State - end    
 
     // Effect to update the image source when the src changes.
@@ -312,6 +322,9 @@ export const usePhotoEditor = ({
         setIsDragging(false);
         setAction('pan');
         applyFilter();
+        setTextColor(actions.text.color);
+        setTextFont(actions.text.font);
+        setTextFontSize(actions.text.fontSize);
     };
 
     // Expose the necessary state and handlers for external use.

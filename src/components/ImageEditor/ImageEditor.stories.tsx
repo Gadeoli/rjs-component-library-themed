@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import ImageEditor from './ImageEditor';
 
@@ -9,8 +9,30 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<typeof ImageEditor> = (args) => {
-    const [src, setSrc] = useState();
-    const [savedSrc, setSavedSrc] = useState();
+    const [src, setSrc] = useState<string>();
+    const [savedSrc, setSavedSrc] = useState(null);
+
+    const handleFetchImage = async (url: string) => {
+        try {
+            const response = await fetch(url);
+
+            if (!response.ok) throw new Error('Failed to fetch image');
+
+            const blob = await response.blob();
+            const imageObjectUrl = URL.createObjectURL(blob);
+            
+            setSrc(imageObjectUrl);
+        } catch (err) {
+            console.error(err);
+            alert('Error fetching image.');
+        }
+    };
+
+    useEffect(() => {
+        if(args.testSrcUrl){
+            handleFetchImage(args.testSrcUrl);
+        }
+    }, [args.testSrcUrl]);
 
     return (<div>
         <input  type="file" 
@@ -38,6 +60,7 @@ Default.args = {
     loading: false,
     className: "",
     style: {},
+    testSrcUrl: '',
     /*
     actions: {
         colorEditing: true,
@@ -55,6 +78,11 @@ Default.args = {
 Default.argTypes = {
     src: {
         description: 'img src'
+    },
+    testSrcUrl: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: 'initial image for tests;'
     },
     onSaveImage: {
         description: 'function to run on onchange event. this will recieve the event'
@@ -88,7 +116,8 @@ Default.argTypes = {
             saturate: {txt: 'Saturate'},
             save: {txt: 'Save'},
             vertical: {txt: 'Vertically'},
-            zoom: {txt: 'Zoom'}
+            zoom: {txt: 'Zoom'},
+            write: {txt: 'Write'}
         },
         description: 'Labels for buttons, actions'
     },

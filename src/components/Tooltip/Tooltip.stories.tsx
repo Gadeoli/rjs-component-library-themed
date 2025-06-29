@@ -28,7 +28,7 @@ const Template: StoryFn<TooltipProps> = (args) => {
             </Tooltip>
             <br/> <br/> <Span>Card - CardContent - Tooltip [content: Span] && Tooltip (the edge test - the bottom tooltip content can't be out of screen)</Span>
 
-            <AbsoluteContainer top="0px" right="0px">
+            <AbsoluteContainer $top="0px" $right="0px">
                 <Tooltip
                     {...args}
                     tipcontent={<ContainerReverseColor><Span type="secondary">abc abcabcabcabcabcabcabc abc abc abc abc abcabcabcabcabc</Span></ContainerReverseColor>}

@@ -99,7 +99,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
             }}>&#10006;</StyledSelectBtn>
         </StyledSelectedResultItem>) : '';
 
-        return (<StyledSelectSelectedOptions>
+        return (<StyledSelectSelectedOptions theme={theme}>
             <div>
                 {selected && selected.length ? 
                     (<>{selections}</>) : 

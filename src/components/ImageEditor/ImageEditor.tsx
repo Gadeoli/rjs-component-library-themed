@@ -27,6 +27,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
         rotate: true,
         zoom: true,
         drawing: true,
+        text: true,
     },
     labels = {
         brightness: {txt: 'Brightness'},
@@ -44,7 +45,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
         saturate: {txt: 'Saturate'},
         save: {txt: 'Save'},
         vertical: {txt: 'Vertically'},
-        zoom: {txt: 'Zoom'}
+        zoom: {txt: 'Zoom'},
+        write: {txt: 'Write'}
     },
     loading,
     className,
@@ -62,6 +64,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
         {key: 'pan', value: labels['pan'].txt},
         {key: 'draw', value: labels['draw'].txt},
         {key: 'flip', value: labels['flip'].txt},
+        {key: 'write', value: labels['write'].txt}
     ];
 
     const {
@@ -96,7 +99,8 @@ const ImageEditor: FC<ImageEditorProps> = ({
         handlePointerMove,
         handleWheel,
         resetFilters,
-        generateEditedImage
+        generateEditedImage,
+        
     } = usePhotoEditor({ src });
 
     const rangeActions = useMemo(() => [
@@ -120,7 +124,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
     //state - end
 
     const handleSubActionContainer = ({selAction} : {selAction: string;}) => {
-        const actionsWithSub = ['draw', 'flip'];
+        const actionsWithSub = ['draw', 'flip', 'write'];
 
         if(!actionsWithSub.includes(selAction) || (action === selAction && showSubActions)){
             setShowSubActions(false);
@@ -209,6 +213,21 @@ const ImageEditor: FC<ImageEditorProps> = ({
                             />
                         </Action>
                     </SiblingsActions>
+                </SubAction>) : action === 'write' ? (<SubAction>
+                    <InputColor 
+                        name="draw-color"
+                        onChange={(e: any) => setText(e.target.value)} 
+                        value={lineColor} 
+                        style={{marginRight: '0.25rem'}}
+                    />
+                    <Input 
+                        name={'line_width'}
+                        type='number'
+                        onChange={(e: any) => setLineWidth(Number(e.target.value))}
+                        value={lineWidth}
+                        min={2}
+                        max={100}
+                    />
                 </SubAction>) : ('')}
             </SubActionContainer>
         </CanvasContainer>)}

@@ -60,8 +60,8 @@ const Template: StoryFn<SelectProps> = (args) => {
                     xOverride='left'
                     yOverride='bottom'
                 >
-                    {multiplierSels.map(sel => (
-                        <Container>
+                    {multiplierSels.map((sel, k) => (
+                        <Container key={k}>
                             <Select 
                                 {...args}
                                 name="myselect2"
