@@ -61,7 +61,11 @@ Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number | password | hidden'
+        control: {
+            type: 'select'
+        },
+        options: ['text', 'number', 'password', 'hidden'],
+        description: ''
     },
     loading: {
         type: {name: 'boolean', required: false},
@@ -71,7 +75,11 @@ Default.argTypes = {
     value: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number | password | hidden'
+        control: {
+            type: 'select'
+        },
+        options: ['text', 'number', 'password', 'hidden'],
+        description: ''
     },
     min: {
         type: {name: 'number', required: false},

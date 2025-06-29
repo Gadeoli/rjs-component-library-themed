@@ -12,7 +12,7 @@ CheckboxMulti
 Container  
 FormGroup  
 ImageContainer   
-ImageEditor (not fully implemented yet)   
+//ImageEditor (not fully implemented yet)   
 Input  
 InputColor  
 Label  

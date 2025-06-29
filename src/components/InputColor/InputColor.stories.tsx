@@ -65,7 +65,11 @@ Default.argTypes = {
     value: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number | password | hidden'
+        control: {
+            type: 'select'
+        },
+        options: ['text', 'number', 'password', 'hidden'],
+        description: ''
     },
     width: {
         type: {name: 'string', required: false},

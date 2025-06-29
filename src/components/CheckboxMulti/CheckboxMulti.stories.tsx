@@ -81,7 +81,11 @@ Default.argTypes = {
     direction: {
         type: {name: 'string', required: false},
         defaultValue: 'column',
-        description: 'column | row'
+        control: {
+            type: 'select'
+        },
+        options: ['column', 'row'],
+        description: ''
     },
     type: {
         type: {name: 'string', required: false},

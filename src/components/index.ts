@@ -10,7 +10,7 @@ export { default as ContainerReverseColor } from './ContainerReverseColor';
 export { default as ContainerReverseYPM } from './ContainerReverseYPM';
 export { default as ContainerReverseXPM } from './ContainerReverseXPM';
 export { default as ImageContainer } from './ImageContainer';
-export { default as ImageEditor } from './ImageEditor';
+// export { default as ImageEditor } from './ImageEditor';
 export { default as FormGroup } from './FormGroup';
 export { default as GlobalStyle } from './GlobalStyle';
 export { default as Input } from './Input';

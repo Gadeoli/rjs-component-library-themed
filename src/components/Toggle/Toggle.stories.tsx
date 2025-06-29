@@ -55,7 +55,11 @@ export default {
         type: {
             type: {name: 'string', required: false},
             defaultValue: 'primary',
-            description: 'danger | primary | secondary | success'
+            control: {
+                type: 'select'
+            },
+            options: ['danger', 'primary', 'secondary', '', 'success'],
+            description: ''
         },
         className: {
             type: {name: 'string', required: false},

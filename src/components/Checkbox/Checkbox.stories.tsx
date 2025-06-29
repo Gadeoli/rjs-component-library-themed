@@ -92,8 +92,12 @@ Default.argTypes = {
     },
     type: {
         type: {name: 'string', required: false},
+        control: {
+            type: 'select'
+        },
+        options: ['danger', 'primary', 'secondary', 'success'],
         defaultValue: 'primary',
-        description: 'danger | primary | secondary | success'
+        description: ''
     },
     className: {
         type: {name: 'string', required: false},

@@ -45,8 +45,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
         saturate: {txt: 'Saturate'},
         save: {txt: 'Save'},
         vertical: {txt: 'Vertically'},
-        zoom: {txt: 'Zoom'},
-        write: {txt: 'Write'}
+        zoom: {txt: 'Zoom'}
     },
     loading,
     className,
@@ -63,8 +62,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
     const radioActionValues = [
         {key: 'pan', value: labels['pan'].txt},
         {key: 'draw', value: labels['draw'].txt},
-        {key: 'flip', value: labels['flip'].txt},
-        {key: 'write', value: labels['write'].txt}
+        {key: 'flip', value: labels['flip'].txt}
     ];
 
     const {
@@ -124,7 +122,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
     //state - end
 
     const handleSubActionContainer = ({selAction} : {selAction: string;}) => {
-        const actionsWithSub = ['draw', 'flip', 'write'];
+        const actionsWithSub = ['draw', 'flip'];
 
         if(!actionsWithSub.includes(selAction) || (action === selAction && showSubActions)){
             setShowSubActions(false);
@@ -183,6 +181,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
                         style={{marginLeft: '0.5rem'}}
                     />
                     */}
+                    {/* test */}
                 </SubAction>) : action === 'flip' ? (<SubAction>
                     <SiblingsActions>
                         <Action>
@@ -213,21 +212,6 @@ const ImageEditor: FC<ImageEditorProps> = ({
                             />
                         </Action>
                     </SiblingsActions>
-                </SubAction>) : action === 'write' ? (<SubAction>
-                    <InputColor 
-                        name="draw-color"
-                        onChange={(e: any) => setText(e.target.value)} 
-                        value={lineColor} 
-                        style={{marginRight: '0.25rem'}}
-                    />
-                    <Input 
-                        name={'line_width'}
-                        type='number'
-                        onChange={(e: any) => setLineWidth(Number(e.target.value))}
-                        value={lineWidth}
-                        min={2}
-                        max={100}
-                    />
                 </SubAction>) : ('')}
             </SubActionContainer>
         </CanvasContainer>)}
@@ -253,17 +237,21 @@ const ImageEditor: FC<ImageEditorProps> = ({
             >
                 <Card>
                     <CardContent>
-                        {rangeActions.map((ac, k) => (<Action key={k}>
-                            <Range
-                                name={ac.name}
-                                min={ac.min}
-                                max={ac.max}
-                                value={ac.value}
-                                onChange={(e: any) => ac.onChange(Number(e.target.value))}
-                                step={ac.step}
-                            />
-                            <Label>{labels[ac.name].txt}</Label>
-                        </Action>))}
+                        {rangeActions.map((ac, k) => {
+                            const keyParam = ac.name as keyof typeof labels;
+
+                            return (<Action key={k}>
+                                <Range
+                                    name={ac.name}
+                                    min={ac.min}
+                                    max={ac.max}
+                                    value={ac.value}
+                                    onChange={(e: any) => ac.onChange(Number(e.target.value))}
+                                    step={ac.step}
+                                />
+                                <Label>{labels[keyParam].txt}</Label>
+                            </Action>)
+                        })}
                     </CardContent>
                 </Card>
             </CardToggle>

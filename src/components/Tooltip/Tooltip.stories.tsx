@@ -55,12 +55,20 @@ Default.argTypes = {
     position: {
         type: {name: 'string', required: false},
         defaultValue: 'bottom',
-        description: 'top|bottom|left|right'
+        control: {
+            type: 'select'
+        },
+        options: ['top', 'bottom', 'left', 'right'],
+        description: ''
     },
     type: {
         type: {name: 'string', required: false},
         defaultValue: 'default',
-        description: 'default | danger | link | primary | secondary | success'
+        control: {
+            type: 'select'
+        },
+        options: ['default', 'danger', 'link', 'primary', 'secondary', 'success'],
+        description: ''
     },
     className: {
         type: {name: 'string', required: false},

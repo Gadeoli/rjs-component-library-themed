@@ -96,7 +96,6 @@ export interface ImageEditorTranslationsProps {
     save: ImageEditorLabelProps;
     vertical: ImageEditorLabelProps;
     zoom: ImageEditorLabelProps;
-    write: ImageEditorLabelProps;
 }
 
 export interface ImageEditorLabelProps {
@@ -138,7 +137,7 @@ interface UseImageEditorTextProps {
 };
 
 interface UseImageEditorActionsProps {
-    mode: 'pan' | 'draw' | 'flip' | 'write';
+    mode: 'pan' | 'draw' | 'flip';
     line: UseImageEditorLineProps;
     text: UseImageEditorTextProps;
 };
