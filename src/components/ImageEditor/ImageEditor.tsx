@@ -60,9 +60,9 @@ const ImageEditor: FC<ImageEditorProps> = ({
     ]);
 
     const radioActionValues = [
-        {key: 'pan', value: labels['pan'].txt},
         {key: 'draw', value: labels['draw'].txt},
-        {key: 'flip', value: labels['flip'].txt}
+        {key: 'flip', value: labels['flip'].txt},
+        {key: 'pan', value: labels['pan'].txt},
     ];
 
     const {
