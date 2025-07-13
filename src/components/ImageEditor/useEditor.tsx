@@ -16,7 +16,7 @@ export const usePhotoEditor = ({
         rotate: 0,
     },
     actions = {
-        mode: 'pan',
+        mode: 'draw',
         line: {
             color: '#000000',
             width: 12,
@@ -24,7 +24,7 @@ export const usePhotoEditor = ({
         },
         text: {
             color: "#FFEF00",
-            font: 'Arial',
+            font: 'Times New Roman',
             fontSize: 12
         }
     }
@@ -37,6 +37,9 @@ export const usePhotoEditor = ({
 
     //state
     const [imageSrc, setImageSrc] = useState<string>('');
+    const [action, setAction] = useState<'draw' | 'pan' | 'flip' | 'write'>(actions.mode);
+    const [history, setHistory] = useState();
+    //filters
     const [brightness, setBrightness] = useState(scales.brightness);
     const [contrast, setContrast] = useState(scales.contrast);
     const [saturate, setSaturate] = useState(scales.saturate);
@@ -50,14 +53,12 @@ export const usePhotoEditor = ({
     const [panStart, setPanStart] = useState<{ x: number; y: number } | null>(null);
     const [offsetX, setOffsetX] = useState(0);
     const [offsetY, setOffsetY] = useState(0);
-    const [action, setAction] = useState<'draw' | 'pan' | 'flip' | 'write'>(actions.mode);
     const [drawStart, setDrawStart] = useState<{ x: number; y: number } | null>(null);
     //## drawing on the canvas.
     const [lineColor, setLineColor] = useState<string>(actions.line.color);
     const [lineWidth, setLineWidth] = useState<number>(actions.line.width);
     const [lineStyle, setLineStyle] = useState<'hand-free' | 'straight'>(actions.line.style);
-    //## text on the canvas.
-    const [texts, setTexts] = useState([]);
+    //## write on the canvas.
     const [textColor, setTextColor] = useState<string>(actions.text.color);
     const [textFont, setTextFont] = useState<string>(actions.text.font);
     const [textFontSize, setTextFontSize] = useState<number>(actions.text.fontSize);
@@ -293,6 +294,8 @@ export const usePhotoEditor = ({
      * Handles the wheel event for zooming in and out.
      */
     const handleWheel = (event: React.WheelEvent<HTMLCanvasElement>) => {
+        if(action !== 'pan') return;
+        
         if (event.deltaY < 0) {
             handleZoomIn();
         } else {
@@ -320,7 +323,7 @@ export const usePhotoEditor = ({
         setOffsetY(0);
         setPanStart(null);
         setIsDragging(false);
-        setAction('pan');
+        setAction('draw');
         applyFilter();
         setTextColor(actions.text.color);
         setTextFont(actions.text.font);
@@ -365,6 +368,12 @@ export const usePhotoEditor = ({
         lineWidth,
         /** Current line style - hand-free or straight - default: hand-free */
         lineStyle,
+        /** Current text color */
+        textColor,
+        /** Current text font */
+        textFont,
+        /** Current text font size */
+        textFontSize,
         /** Function to set the brightness level. */
         setBrightness,
         /** Function to set the contrast level. */
@@ -414,6 +423,12 @@ export const usePhotoEditor = ({
         /** Function to set the line width. */
         setLineWidth,
         /** Function to set the line style */
-        setLineStyle
+        setLineStyle,
+        /** Function to set the text color */
+        setTextColor,
+        /** Function to set the text font */
+        setTextFont,
+        /** Function to set the text font size */
+        setTextFontSize
     };
 };

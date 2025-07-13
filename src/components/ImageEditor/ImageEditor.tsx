@@ -1,7 +1,7 @@
-import React, { FC, useMemo, useState } from 'react';
-import { ImageEditorProps } from './ImageEditor.types';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+import { ImageEditorProps, UseImageEditorProps } from './ImageEditor.types';
 import { useTheme } from '../ThemeHandler';
-import { handleCssClassnames } from '@gadeoli/js-helpers-library';
+import { handleCssClassnames, justNumbersAndLetters } from '@gadeoli/js-helpers-library';
 import Container from '../Container';
 import styled from 'styled-components';
 import { usePhotoEditor } from './useEditor';
@@ -17,6 +17,7 @@ import CardContent from '../CardContent';
 import { defaultRadius, defaultXPM, defaultYPM } from '../../styles';
 import InputColor from '../InputColor';
 import { transparentize } from 'polished';
+import Select from '../Select';
 
 const ImageEditor: FC<ImageEditorProps> = ({
     src,
@@ -28,6 +29,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
         zoom: true,
         drawing: true,
         text: true,
+        write: true
     },
     labels = {
         brightness: {txt: 'Brightness'},
@@ -45,7 +47,9 @@ const ImageEditor: FC<ImageEditorProps> = ({
         saturate: {txt: 'Saturate'},
         save: {txt: 'Save'},
         vertical: {txt: 'Vertically'},
-        zoom: {txt: 'Zoom'}
+        zoom: {txt: 'Zoom'},
+        write: {txt: 'Write'},
+        emptySelect: {txt: 'No options selected'}
     },
     loading,
     className,
@@ -61,10 +65,12 @@ const ImageEditor: FC<ImageEditorProps> = ({
 
     const radioActionValues = [
         {key: 'draw', value: labels['draw'].txt},
+        {key: 'write', value: labels['write'].txt},
         {key: 'flip', value: labels['flip'].txt},
         {key: 'pan', value: labels['pan'].txt},
     ];
 
+    const usePhotoEditorProps = usePhotoEditor({ src });
     const {
         canvasRef,
         imageSrc,
@@ -78,28 +84,17 @@ const ImageEditor: FC<ImageEditorProps> = ({
         setGrayscale,
         rotate,
         setRotate,
-        flipHorizontal,
-        setFlipHorizontal,
-        flipVertical,
-        setFlipVertical,
         zoom,
         setZoom,
         action,
         setAction,
-        setLineColor,
-        lineColor,
-        setLineWidth,
-        lineWidth,
-        setLineStyle,
-        lineStyle,
         handlePointerDown,
         handlePointerUp,
         handlePointerMove,
         handleWheel,
         resetFilters,
         generateEditedImage,
-        
-    } = usePhotoEditor({ src });
+    } = usePhotoEditorProps;
 
     const rangeActions = useMemo(() => [
         {name: 'brightness', value: brightness, min: 0, max: 200, step: 1, onChange: (v: number) => setBrightness(v)},
@@ -122,7 +117,7 @@ const ImageEditor: FC<ImageEditorProps> = ({
     //state - end
 
     const handleSubActionContainer = ({selAction} : {selAction: string;}) => {
-        const actionsWithSub = ['draw', 'flip'];
+        const actionsWithSub = ['draw', 'flip', 'write'];
 
         if(!actionsWithSub.includes(selAction) || (action === selAction && showSubActions)){
             setShowSubActions(false);
@@ -151,68 +146,12 @@ const ImageEditor: FC<ImageEditorProps> = ({
                 <Button type='clean' className='sub-action-minimaze' onClick={() => setShowSubActions(false)}>
                     &#128469;
                 </Button>
-                {action === 'draw' ? (<SubAction>
-                    <InputColor 
-                        name="draw-color"
-                        onChange={(e: any) => setLineColor(e.target.value)} 
-                        value={lineColor} 
-                        style={{marginRight: '0.25rem'}}
-                    />
-                    <Input 
-                        name={'line_width'}
-                        type='number'
-                        onChange={(e: any) => setLineWidth(Number(e.target.value))}
-                        value={lineWidth}
-                        min={2}
-                        max={100}
-                    />
-                    {/*  
-                    // Not fully implemented
-                    <Checkbox
-                        name='line-style'
-                        type='primary' 
-                        checkedValue={'hand-free'}
-                        uncheckedValue={'straight'}
-                        value={lineStyle}
-                        onChange={(v: any) => setLineStyle(v)}
-                        disabled={loading}
-                        text={<>&#9997;</>}
-                        checkedIcon={true}
-                        style={{marginLeft: '0.5rem'}}
-                    />
-                    */}
-                    {/* test */}
-                </SubAction>) : action === 'flip' ? (<SubAction>
-                    <SiblingsActions>
-                        <Action>
-                            <Checkbox
-                                name='flipHorizontal'
-                                type='primary' 
-                                checkedValue={true}
-                                uncheckedValue={false}
-                                value={flipHorizontal}
-                                onChange={(v: boolean) => setFlipHorizontal(v)}
-                                disabled={loading}
-                                text={labels.horizontal.txt}
-                                checkedIcon={true}
-                            />
-                        </Action>
-
-                        <Action>
-                            <Checkbox
-                                name='flipVertical'
-                                type='primary' 
-                                checkedValue={true}
-                                uncheckedValue={false}
-                                value={flipVertical}
-                                onChange={(v: boolean) => setFlipVertical(v)}
-                                disabled={loading}
-                                text={labels.vertical.txt}
-                                checkedIcon={true}
-                            />
-                        </Action>
-                    </SiblingsActions>
-                </SubAction>) : ('')}
+                {   
+                    action === 'draw' ? (<ActionDrawOptions usePhotoEditorProps={usePhotoEditorProps} loading={loading} />) : 
+                    action === 'write' ? (<ActionWriteOptions usePhotoEditorProps={usePhotoEditorProps} loading={loading} labels={labels} />) : 
+                    action === 'flip' ? (<ActionFlipOptions usePhotoEditorProps={usePhotoEditorProps} loading={loading} labels={labels}/>) : 
+                    ('')
+                }
             </SubActionContainer>
         </CanvasContainer>)}
 
@@ -283,6 +222,140 @@ const ImageEditor: FC<ImageEditorProps> = ({
 }
 
 export default ImageEditor;
+
+const ActionDrawOptions: FC<{usePhotoEditorProps: any, loading: boolean | undefined}> = ({usePhotoEditorProps, loading}) => {
+    const {
+        lineColor,
+        setLineColor,
+        lineWidth,
+        setLineWidth,
+        lineStyle,
+        setLineStyle,
+    } = usePhotoEditorProps;
+
+    return <SubAction>
+        <InputColor 
+            name="draw-color"
+            onChange={(e: any) => setLineColor(e.target.value)} 
+            value={lineColor} 
+            style={{marginRight: '0.25rem'}}
+        />
+        <Input 
+            name={'line_width'}
+            type='number'
+            onChange={(e: any) => setLineWidth(Number(e.target.value))}
+            value={lineWidth}
+            min={2}
+            max={100}
+        />
+        {<Checkbox
+            name='line-style'
+            type='primary' 
+            checkedValue={'hand-free'}
+            uncheckedValue={'straight'}
+            value={lineStyle}
+            onChange={(v: any) => setLineStyle(v)}
+            disabled={loading}
+            text={<>&#9997;</>}
+            checkedIcon={true}
+            style={{marginLeft: '0.5rem'}}
+        />}
+    </SubAction>;
+}
+
+const ActionWriteOptions: FC<{usePhotoEditorProps: any, loading: boolean | undefined, labels: any}> = ({usePhotoEditorProps, loading, labels}) => {
+    const {
+        textColor,
+        setTextColor,
+        textFont,
+        setTextFont,
+        textFontSize,
+        setTextFontSize
+    } = usePhotoEditorProps;
+
+    const [fonts, setFonts] = useState<{key: string, value: string, selected: boolean | undefined}[]>([
+        {key: 'Arial', value: 'Arial'},
+        {key: 'Times New Roman', value: 'Times New Roman'},
+        {key: 'Verdana', value: 'Verdana'},
+        {key: 'Georgia', value: 'Georgia'},
+        {key: 'Courier New', value: 'Courier New'},
+    ].map(f => ({
+        ...f,
+        selected: f === textFont
+    })));
+
+    return <SubAction>
+        <InputColor 
+            name="draw-color"
+            onChange={(e: any) => setTextColor(e.target.value)} 
+            value={textColor} 
+            style={{marginRight: '0.25rem'}}
+        />
+        <Input 
+            name={'line_width'}
+            type='number'
+            onChange={(e: any) => setTextFontSize(Number(e.target.value))}
+            value={textFontSize}
+            min={2}
+            max={100}
+            style={{marginRight: '0.25rem'}}
+        />
+        <Select
+            name="text-font"
+            className="full"
+            emptyText={labels.emptySelect.txt} 
+            values={fonts} 
+            handleValues={({selected, values}) => {
+                setFonts(values);
+                setTextFont(selected)
+            }}
+            handleSelect={(s) => {
+                // console.log(s)
+            }}
+            inlineDrawer={true}
+        />
+    </SubAction>;
+}
+
+const ActionFlipOptions: FC<{usePhotoEditorProps: any, loading: boolean | undefined, labels: any}> = ({usePhotoEditorProps, loading, labels}) => {
+    const {
+        flipHorizontal,
+        setFlipHorizontal,
+        flipVertical,
+        setFlipVertical
+    } = usePhotoEditorProps;
+
+    return <SubAction>
+        <SiblingsActions>
+            <Action>
+                <Checkbox
+                    name='flipHorizontal'
+                    type='primary' 
+                    checkedValue={true}
+                    uncheckedValue={false}
+                    value={flipHorizontal}
+                    onChange={(v: boolean) => setFlipHorizontal(v)}
+                    disabled={loading}
+                    text={labels.horizontal.txt}
+                    checkedIcon={true}
+                />
+            </Action>
+            <Action>
+                <Checkbox
+                    name='flipVertical'
+                    type='primary' 
+                    checkedValue={true}
+                    uncheckedValue={false}
+                    value={flipVertical}
+                    onChange={(v: boolean) => setFlipVertical(v)}
+                    disabled={loading}
+                    text={labels.vertical.txt}
+                    checkedIcon={true}
+                />
+            </Action>
+        </SiblingsActions>
+    </SubAction>;
+}
 
 const CanvasContainer = styled.div`
     background-color: ${props => props.theme.background};

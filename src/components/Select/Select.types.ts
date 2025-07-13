@@ -10,8 +10,8 @@ export interface SelectProps {
     styles?: object;
     className?: string;
     inlineDrawer?: boolean; 
-    toggleX: "left" | "right";
-    toggleY: "top" | "bottom";
+    toggleX?: "left" | "right";
+    toggleY?: "top" | "bottom";
 }
 
 export interface SelectValueProps {
