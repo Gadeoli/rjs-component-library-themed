@@ -1339,6 +1339,7 @@ export const TooltipContent = styled.div<{
 }>`
     position: absolute;
     display: ${(props: any) => props.$show ? 'block' : 'none'};
+    z-index: ${(props: any) => props.$show ? 1000000 : 'unset'};
     padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     min-width: 25px;
