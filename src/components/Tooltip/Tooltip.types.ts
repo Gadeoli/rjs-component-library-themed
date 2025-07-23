@@ -7,6 +7,7 @@ export interface TooltipProps {
     tipcontent: any;
     position?: "top" | "bottom" | "left" | "right";
     type?: "default" | "danger" | "link" | "primary" | "secondary" | "success";
+    index?: number; 
     className?: string;
     style?: object;
     loading?: boolean;

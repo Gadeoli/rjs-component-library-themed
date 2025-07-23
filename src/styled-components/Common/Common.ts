@@ -1335,11 +1335,12 @@ export const TooltipContext = styled.div`
 export const TooltipContent = styled.div<{
     $position?: string, 
     type?: string, 
-    $show: boolean
+    $show: boolean,
+    $index: number
 }>`
     position: absolute;
     display: ${(props: any) => props.$show ? 'block' : 'none'};
-    z-index: ${(props: any) => props.$show ? 1000000 : 'unset'};
+    z-index: ${(props: any) => props.$index};
     padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     min-width: 25px;

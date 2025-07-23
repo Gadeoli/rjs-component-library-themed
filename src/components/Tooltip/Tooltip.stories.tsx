@@ -33,6 +33,7 @@ const Template: StoryFn<TooltipProps> = (args) => {
                     {...args}
                     tipcontent={<ContainerReverseColor><Span type="secondary">abc abcabcabcabcabcabcabc abc abc abc abc abcabcabcabcabc</Span></ContainerReverseColor>}
                     type="secondary"
+                    index={1}
                 >
                     <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
                 </Tooltip>
@@ -69,6 +70,11 @@ Default.argTypes = {
         },
         options: ['default', 'danger', 'link', 'primary', 'secondary', 'success'],
         description: ''
+    },
+    index: {
+        type: {name: 'number', required: false},
+        defaultValue: 100,
+        description: 'z-index for the tip'
     },
     className: {
         type: {name: 'string', required: false},

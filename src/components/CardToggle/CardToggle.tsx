@@ -13,7 +13,8 @@ const CardToggle : FC<CardToggleProps> = ({
     xOverride,
     yOverride,
     parentToggleStateControl,
-    fullToogle = false
+    fullToogle = false,
+    index=1000
 }) => {
     const [toggle, setToggle] = useState(true);
     const [position, setPosition] = useState({
@@ -122,6 +123,7 @@ const CardToggle : FC<CardToggleProps> = ({
             
             $show={toggle} 
             $full={fullToogle}
+            $index={index}
             $position={{
                 top: position.top,
                 bottom: position.bottom, 
@@ -150,9 +152,10 @@ const ToggleContainer = styled.div<{
         bottom: number | string, 
         left: number | string, 
         right: number | string
-    }
+    },
+    $index: number
 }>`
-    z-index: 1;
+    z-index: ${props => props.$index};
     width: ${(props: any) => props.$full ? "100%" : "auto"};
     position: absolute;
     box-sizing: border-box;

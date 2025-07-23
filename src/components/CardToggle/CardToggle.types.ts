@@ -8,4 +8,5 @@ export interface CardToggleProps {
     yOverride?: "top" | "bottom";
     parentToggleStateControl?: any;
     fullToogle?: boolean;
+    index?:number;
 }

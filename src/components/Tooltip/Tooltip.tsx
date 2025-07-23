@@ -16,6 +16,7 @@ const Tooltip: FC<TooltipProps> = ({
     tipcontent,
     className, 
     style, 
+    index=1000,
     loading
 }) => {
     const {theme} = useTheme();
@@ -49,7 +50,7 @@ const Tooltip: FC<TooltipProps> = ({
         $show={show}
     >
         <StyledTooltipContext className="cl-themed__tooltip--context">{!loading && children}</StyledTooltipContext>
-        {!loading ? <StyledTooltipContent ref={contentRef} theme={theme} className={`cl-themed__tooltip--content ${position} ${type} ${fixStyleClass}`} $show={show} $position={position} type={type}>
+        {!loading ? <StyledTooltipContent $index={index} ref={contentRef} theme={theme} className={`cl-themed__tooltip--content ${position} ${type} ${fixStyleClass}`} $show={show} $position={position} type={type}>
             {tipcontent}
         </StyledTooltipContent> : null}
     </StyledTooltip>);
