@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { CardToggleProps } from './CardToggle.types';
-import { useElementSize, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
+import { useElementSize, useGhostInFirstRender, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
 import styled from 'styled-components';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 
@@ -16,7 +16,8 @@ const CardToggle : FC<CardToggleProps> = ({
     fullToogle = false,
     index=1000
 }) => {
-    const [toggle, setToggle] = useState(true);
+    const initialVisible = useGhostInFirstRender();
+    const [toggle, setToggle] = useState(false);
     const [position, setPosition] = useState({
         left: '0px', right: 'unset',
         top: '0px', bottom: 'unset'
@@ -26,6 +27,13 @@ const CardToggle : FC<CardToggleProps> = ({
         'cl-themed__card-toggle',
         className
     ]);
+
+    const classNamesToggleContainer = useMemo(() => {
+        return handleCssClassnames([
+            'cl-themed__card-toggle__toggle',
+            !initialVisible ? 'initial-visible' : ''
+        ])
+    }, [initialVisible]);
     
     const handleToggle = (t: boolean) => {
         setToggle(t);
@@ -118,7 +126,7 @@ const CardToggle : FC<CardToggleProps> = ({
         </TriggerContainer>
         
         <ToggleContainer
-            className={'cl-themed__card-toggle__toggle'}
+            className={classNamesToggleContainer}
             ref={toggleContainerRef} 
             
             $show={toggle} 
@@ -167,5 +175,12 @@ const ToggleContainer = styled.div<{
 
     &.full{
         width: 100%;
+    }
+
+    &.initial-visible{
+        display: block !important;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
     }
 `;
