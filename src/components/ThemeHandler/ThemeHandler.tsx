@@ -73,10 +73,10 @@ const ThemeHandler: FC<ThemeHandlerProps> = ({children}) => {
         setMode: (mode: string) => {            
             if(mode === lightThemeKey){
                 setThemeModePersisted(lightThemeKey);
-                setThemePersisted(themeLightPersisted);
+                setThemePersisted({ ...themeLightPersisted });
             }else{
                 setThemeModePersisted(darkThemeKey);
-                setThemePersisted(themeDarkPersisted);
+                setThemePersisted({ ...themeDarkPersisted });
             }
         },
         setVersion: (version: string) => {   
