@@ -24,6 +24,7 @@ const Template: StoryFn<RadioMultiProps> = (args) => {
                 setV(value.key)
                 console.log(value)
             }}
+            direction="row"
         />    
         <br/><Span>Card - CardContent - RadioMulti</Span>
     </CardContent></Card>)

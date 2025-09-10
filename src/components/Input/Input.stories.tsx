@@ -44,7 +44,8 @@ Default.args = {
     autocomplete: "off",
     placeholder: "",
     disabled: false,
-    loading: false
+    loading: false,
+    readOnly: false,
 }   
 
 Default.argTypes = {
@@ -71,6 +72,11 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'Loading effect, if true add a class: loading-effect to component'
+    },
+    readOnly: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Lock input change'
     },
     value: {
         type: {name: 'string', required: false},

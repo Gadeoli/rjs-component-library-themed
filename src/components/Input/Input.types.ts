@@ -13,6 +13,7 @@ export interface InputProps {
     className?: string;
     style?: object;
     loading?: boolean;
+    readOnly?: boolean;
     placeholder?: string;
     autocomplete?: string;
     min?: number;

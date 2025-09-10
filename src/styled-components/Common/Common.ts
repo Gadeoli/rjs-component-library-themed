@@ -587,7 +587,7 @@ export const FormGroup = styled.div`
 export const Input = styled.input`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
-    background-color: transparent;
+    background-color: ${(props: any) => !props.readOnly ? 'transparent' : props.theme.disabled};
     border: 0;
     border: 1.5px solid ${(props: any) => props.theme.border};
     box-sizing: border-box;
@@ -762,6 +762,7 @@ export const RadioContainer = styled.div`
     flex-direction: row;
     margin-bottom: 0.25rem;
     cursor: pointer;
+    margin-right: ${defaultXPM};
 
     &.disabled{
         cursor: default;

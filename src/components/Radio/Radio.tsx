@@ -40,7 +40,7 @@ const Radio: FC<RadioProps> = ({
             {showSelectedIcon && (<div className='selected-icon'>&#10003;</div>)}
             {!showSelectedIcon && children}
         </StyledRadioCircle>
-        <Span className='cl-themed__radio__text spacer ml-1'>{text}</Span>
+        <Span className='cl-themed__radio__text'>{text}</Span>
     </StyledRadioContainer>
 }
 

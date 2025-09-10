@@ -206,7 +206,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
             })}
         </select>
         
-        <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens spacer mt-1 ${inlineDrawer ? 'inline-options' : ''}`}>
+        <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens ${inlineDrawer ? 'inline-options' : ''}`}>
             {values.map((v: any) => {
                 return v.selected || !v.hide ? (<DrawerItem 
                     handleSelect={(k) => onSelect(k)} 
