@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import { 
     SelectAsyncProps, 
     DrawerItemProps,
@@ -26,6 +26,7 @@ import Button from '../Button';
 import Spinner from '../Spinner';
 import { Magnifier, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
+import { CardToggleHandle } from '../CardToggle/CardToggle.types';
 
 const SelectAsync: FC<SelectAsyncProps> = ({
     name,
@@ -37,14 +38,21 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     manualSearch = true,
     multiple,
     className,
-    inlineDrawer
+    inlineDrawer,
+    closeDrawerOnSelect,
 }) => {
-    const {theme} = useTheme()
-    const [showDrawer, setShowDrawer] = useState(false)
+    const {theme} = useTheme();
+    const [showDrawer, setShowDrawer] = useState(false);
+    const drawerBehaviourOnSelect = useMemo(() => {
+            return  closeDrawerOnSelect ? closeDrawerOnSelect : 
+                    multiple ? 'off' : 
+                    'on';
+    }, [multiple, closeDrawerOnSelect]);
     const classNamesSelectContainer = handleCssClassnames([
         'cl-themed__select',
         className
     ]);
+    const cardToggleRef = useRef<CardToggleHandle>(null);
     const [search, setSearch] = useState<string>('');
 
     const handleOnSelect = (selected : any) => {
@@ -112,6 +120,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
 
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
+            ref={cardToggleRef}
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
@@ -124,7 +133,12 @@ const SelectAsync: FC<SelectAsyncProps> = ({
                 values={values}
                 isSearching={isSearching}
                 manualSearch={manualSearch} 
-                onSelect={(v) => handleValues(handleOnSelect(v))}
+                onSelect={(v) => {
+                    handleValues(handleOnSelect(v));
+                    if(drawerBehaviourOnSelect === 'on'){
+                        cardToggleRef.current?.toggle();
+                    }
+                }}
                 onSearch={(s) => {
                     handleValues(handleOnSearch(s));
                     if(typeof handleSelect !== 'undefined'){

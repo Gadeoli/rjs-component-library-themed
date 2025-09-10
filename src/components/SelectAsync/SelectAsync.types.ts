@@ -10,6 +10,7 @@ export interface SelectAsyncProps {
     styles?: object;
     className?: string;
     inlineDrawer?: boolean; 
+    closeDrawerOnSelect?: 'on' | 'off';
 }
 
 export interface SelectValueProps {
