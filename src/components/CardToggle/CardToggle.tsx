@@ -1,21 +1,25 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
-import { CardToggleProps } from './CardToggle.types';
+import React, { FC, ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { CardToggleHandle, CardToggleProps } from './CardToggle.types';
 import { useElementSize, useGhostInFirstRender, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
 import styled from 'styled-components';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
+import { forwardRef } from 'react';
 
-const CardToggle : FC<CardToggleProps> = ({
-    toggleTrigger, 
-    toggleUpper,
-    initialToggle = false, 
-    children, 
-    className,
-    xOverride,
-    yOverride,
-    parentToggleStateControl,
-    fullToogle = false,
-    index=1000
-}) => {
+const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProps> = (
+    {
+        toggleTrigger, 
+        toggleUpper,
+        initialToggle = false, 
+        children, 
+        className,
+        xOverride,
+        yOverride,
+        parentToggleStateControl,
+        fullToogle = false,
+        index=1000
+    }, 
+    ref
+) => {
     const initialVisible = useGhostInFirstRender();
     const [toggle, setToggle] = useState(false);
     const [position, setPosition] = useState({
@@ -54,6 +58,10 @@ const CardToggle : FC<CardToggleProps> = ({
         }
     }
     useOnPressKey(27, clickOutSideAction);
+    useImperativeHandle(ref, () => ({
+        toggle: () => handleToggle(!toggle)
+    }));
+
     /** Main control */
 
     /** Toggle Position Control */
@@ -143,6 +151,8 @@ const CardToggle : FC<CardToggleProps> = ({
         </ToggleContainer>
     </MainCointainer>);
 }
+
+export const CardToggle = forwardRef(CardToggleBase);
 
 export default CardToggle;
 

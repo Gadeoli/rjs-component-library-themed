@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useMemo, useRef, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
@@ -20,7 +20,7 @@ import {
 import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import Input from '../Input';
-import CardToggle from '../CardToggle';
+import CardToggle, { CardToggleHandle } from '../CardToggle';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
@@ -38,15 +38,22 @@ const Select: FC<SelectProps> = ({
     multiple,
     className,
     inlineDrawer,
+    closeDrawerOnSelect,
     toggleX=undefined,
     toggleY=undefined
 }) => {
-    const {theme} = useTheme()
-    const [showDrawer, setShowDrawer] = useState(false)
+    const {theme} = useTheme();
+    const [showDrawer, setShowDrawer] = useState(false);
+    const drawerBehaviourOnSelect = useMemo(() => {
+        return  closeDrawerOnSelect ? closeDrawerOnSelect : 
+                multiple ? 'off' : 
+                'on';
+    }, [multiple, closeDrawerOnSelect]);
     const classNamesSelectContainer = handleCssClassnames([
         'cl-themed__select',
         className
     ]);
+    const cardToggleRef = useRef<CardToggleHandle>(null);
 
     const handleOnSelect = (selected : any) => {
         if(!multiple){
@@ -126,8 +133,11 @@ const Select: FC<SelectProps> = ({
 
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
+            ref={cardToggleRef}
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
-            toggleTrigger={(trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
+            toggleTrigger={
+                (trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
+            }
             className={'full'}
             fullToogle={true}
             xOverride={toggleX}
@@ -140,7 +150,12 @@ const Select: FC<SelectProps> = ({
                 values={values}
                 isSearching={isSearching} 
                 enableSearch={enableSearch}
-                onSelect={(v) => handleValues(handleOnSelect(v))}
+                onSelect={(v) => {
+                    handleValues(handleOnSelect(v));
+                    if(drawerBehaviourOnSelect === 'on'){
+                        cardToggleRef.current?.toggle();
+                    }
+                }}
                 onSearch={(s) => {
                     handleValues(handleOnSearch(s));
                     if(typeof handleSelect !== 'undefined'){
@@ -165,7 +180,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     inlineDrawer
 }) => {
     const [search, setSearch] = useState('');
-    const [inputFocus, setInputFocus] = useState(false);
+    const [, setInputFocus] = useState(false);
     const id = uniqid();
     
     return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>

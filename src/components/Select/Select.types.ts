@@ -10,6 +10,7 @@ export interface SelectProps {
     styles?: object;
     className?: string;
     inlineDrawer?: boolean; 
+    closeDrawerOnSelect?: 'on' | 'off';
     toggleX?: "left" | "right";
     toggleY?: "top" | "bottom";
 }
@@ -36,5 +37,5 @@ export interface SelectDrawerProps {
     isSearching?:   boolean;  
     enableSearch?: boolean;
     theme: object;
-    inlineDrawer?: boolean; 
+    inlineDrawer?: boolean;
 }

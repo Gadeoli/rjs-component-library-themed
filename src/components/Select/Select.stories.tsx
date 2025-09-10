@@ -48,6 +48,7 @@ const Template: StoryFn<SelectProps> = (args) => {
                         // console.log(s)
                     }}
                     inlineDrawer={true}
+                    closeDrawerOnSelect='off'
                 />
 
                 <br />
@@ -138,6 +139,18 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'If true is allowed to select more than one option',
+        size: { control: 'radio' }
+    },
+    closeDrawerOnSelect: {
+        type: {name: 'string', required: false},
+        defaultValue: null,
+        description: "(on | off) If not setted the default value will be 'on' to single select and 'off' to multiple",
+        size: { control: 'radio' }
+    },
+    inlineDrawer: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Control how the draw itens are showed',
         size: { control: 'radio' }
     },
     emptyText: {
