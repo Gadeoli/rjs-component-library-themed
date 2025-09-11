@@ -1,26 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef, ForwardRefRenderFunction } from 'react';
 import { Input as StyledInput } from '../../styled-components/Common';
 import { useTheme } from '../ThemeHandler';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import { InputProps } from './Input.types';
 
-const Input: FC<InputProps> = ({
-    name, 
-    disabled, 
-    value, 
-    type, 
-    className, 
-    style, 
-    loading, 
-    id, 
-    placeholder, 
-    autocomplete="off", 
-    onChange, 
-    onBlur, 
-    onFocus, 
-    onKeyDown,
-    ...rest
-}) => {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+    {
+        name, 
+        disabled, 
+        value, 
+        type, 
+        className, 
+        style, 
+        loading, 
+        id, 
+        placeholder, 
+        autocomplete="off", 
+        onChange, 
+        onBlur, 
+        onFocus, 
+        onKeyDown,
+        ...rest
+    },
+    ref
+) => {
     const {theme} = useTheme();
     const classNames = handleCssClassnames([
         'cl-themed__input',
@@ -29,6 +32,7 @@ const Input: FC<InputProps> = ({
     ]);
 
     return (<StyledInput 
+        ref={ref}
         name={name}
         id={id}
         className={classNames} 
@@ -46,5 +50,7 @@ const Input: FC<InputProps> = ({
         {...rest}
     />);
 }
+
+const Input = forwardRef(InputBase);
 
 export default Input;

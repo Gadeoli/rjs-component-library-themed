@@ -39,4 +39,9 @@ Default.argTypes = {
         defaultValue: 100,
         description: 'z-index for the content'
     },
+    forceRefresh: {
+        type: {name: 'number', required: false},
+        defaultValue: false,
+        description: 'force trigger and content size recalculation (fix wrong content position when it is variable)'
+    },
 }

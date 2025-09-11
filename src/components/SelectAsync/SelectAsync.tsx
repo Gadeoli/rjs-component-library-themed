@@ -21,12 +21,12 @@ import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import Input from '../Input';
 import CardToggle from '../CardToggle';
+import { CardToggleHandle } from '../CardToggle/CardToggle.types';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
 import { Magnifier, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
-import { CardToggleHandle } from '../CardToggle/CardToggle.types';
 
 const SelectAsync: FC<SelectAsyncProps> = ({
     name,

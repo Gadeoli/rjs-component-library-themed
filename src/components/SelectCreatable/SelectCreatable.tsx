@@ -4,7 +4,7 @@ import {
     DrawerItemProps,
     SelectDrawerProps,
     SelectValueProps
-} from './Select.types';
+} from '../Select/Select.types';
 import { 
     SelectContainer as StyledSelectContainer,
     SelectedResult as StyledSelectedResult,
@@ -27,10 +27,14 @@ import Button from '../Button';
 import Spinner from '../Spinner';
 import { SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
+import styled from 'styled-components';
+import { defaultXPM } from '../../styles';
+import { SelectCreatableProps } from './SelectCreatable.types';
 
-const Select: FC<SelectProps> = ({
+const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     name,
-    emptyText,      
+    emptyText, 
+    createText,
     values,         
     handleValues,
     handleSelect,
@@ -44,7 +48,7 @@ const Select: FC<SelectProps> = ({
     toggleY=undefined
 }) => {
     const {theme} = useTheme();
-    const [showDrawer, setShowDrawer] = useState(false);
+    const [showDrawer, setShowDrawer] = useState(false);    
     const drawerBehaviourOnSelect = useMemo(() => {
         return  closeDrawerOnSelect ? closeDrawerOnSelect : 
                 multiple ? 'off' : 
@@ -55,8 +59,13 @@ const Select: FC<SelectProps> = ({
         className
     ]);
     const cardToggleRef = useRef<CardToggleHandle>(null);
+    const creationInputRef = useRef<HTMLInputElement>(null);
+    const [creation, setCreation] = useState('');
+    const [toggleCounter, setToggleCounter] = useState(1);
 
     const handleOnSelect = (selected : any) => {
+        setToggleCounter(toggleCounter + 1);
+        
         if(!multiple){
             const prev = values.filter(v => v.key === selected && v?.selected === true);
 
@@ -112,7 +121,9 @@ const Select: FC<SelectProps> = ({
 
     const renderSelected = () => {
         const selected = [...values].filter(i => i.selected);
-        const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
+        const hasSel = selected && selected.length;
+
+        const selections = hasSel ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
             <Span>{sel.value}</Span> 
             
             <StyledSelectBtn width={20} color={theme.danger} $bgcolor={theme.body} onClick={(e) => {
@@ -123,10 +134,17 @@ const Select: FC<SelectProps> = ({
 
         return (<StyledSelectSelectedOptions theme={theme}>
             <div>
-                {selected && selected.length ? 
-                    (<>{selections}</>) : 
-                    (<Span className='empty-txt'>{emptyText}</Span>)
-                }
+                {hasSel ? (<>{selections}</>) : ''}
+                {((!selected || !selected.length) && !showDrawer) && (<Span className='empty-txt'>{emptyText}</Span>)}
+                {showDrawer && <CreationInput 
+                    ref={creationInputRef}
+                    type='text'
+                    name={`${name}-input-create`}
+                    onChange={(e: any) => {
+                        setCreation(e.target.value);
+                    }}
+                    value={creation}
+                />}
             </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
         </StyledSelectSelectedOptions>);
@@ -135,12 +153,19 @@ const Select: FC<SelectProps> = ({
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
             ref={cardToggleRef}
-            parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
+            parentToggleStateControl={(toggleStatus: boolean) => {
+                setShowDrawer(toggleStatus);
+                setTimeout(() => {
+                    setCreation('');
+                    creationInputRef.current?.focus();
+                }, 200);
+            }}
             toggleTrigger={
                 (trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
             }
             className={'full'}
             fullToogle={true}
+            forceRefresh={toggleCounter}
             xOverride={toggleX}
             yOverride={toggleY}
         >
@@ -240,76 +265,13 @@ const DrawerItem: FC<DrawerItemProps> = ({
     return <StyledSelectDrawerItem type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
-export default Select;
+const CreationInput = styled(Input)`
+    border: none;
+    min-width: 150px;
+    margin-right: ${defaultXPM};
+    max-width: 100%;
+    padding: 0;
+    outline: 0 !important;
+`;
 
-export const apiDataToSelect = ({
-    data=[],
-    key,
-    value,
-    valueHandler,
-    selected,
-    delimiter='-',
-    unseted='NoN'
-} : {
-    data: any;
-    key: string;
-    value: any;
-    valueHandler?: any;
-    selected?: any;
-    delimiter?: string;
-    unseted?: string;
-}) => {
-    return data.map((itemData: any) => {
-        let aux: SelectValueProps = {
-            key: null,
-            value: null,
-            selected: false
-        };
-
-        //Set aux key from a custom given key (accept string: myKey, myKey.mySubKey, myKey.mySubKey.mySubSubKey) ...
-        //In the same side send a valueHandler function or Object with functions => () => {} or {myKey: () => myKeyHandler()} or {myKey: {mySubKey: () => mySubKeyHandler()}} or ...
-        // aux.key = i[key];
-        const iKey = key.split('.').reduce((k, ki) => k[ki], itemData);    
-        aux.key = iKey;
-
-        if(Array.isArray(value)){
-            aux.value = value.map((valueItem, valueIndex) => {
-                const hasDelimiter = value.length > 1 && valueIndex + 1 !== value.length;
-                
-                const valueToHandle = valueItem.split('.').reduce((v: any, vi: any) => v[vi], itemData);
-                let iValue = "";
-
-                if(valueHandler){
-                    try {
-                        const actionToHandle = valueItem.split('.').reduce((v: any, vi: any) => v[vi], valueHandler);
-                        iValue = actionToHandle(valueToHandle);
-                    } catch (err) {
-                        iValue = valueToHandle;
-                    }
-                }else{
-                    iValue =  valueToHandle !== null ? valueToHandle : unseted;
-                }
-
-                return  `${iValue} ${hasDelimiter ? ' ' + delimiter + ' ' : ''}`; 
-            })
-        }else{
-            const valueToHandle = value.split('.').reduce((v: any, vi: any) => v[vi], itemData);
-
-            if(valueHandler && typeof valueHandler !== 'undefined'){
-                aux.value = valueHandler(valueToHandle);
-            }else{
-                aux.value = valueToHandle !== null ? valueToHandle : unseted;
-            }
-        }
-
-        if(selected){
-            if(Array.isArray(selected)){
-                aux.selected = selected.includes(iKey)
-            }else{
-                aux.selected = selected === iKey
-            }
-        }
-
-        return aux;
-    });
-};
+export default SelectCreatable;

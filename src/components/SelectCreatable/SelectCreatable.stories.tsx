@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
-import Select, { apiDataToSelect } from './Select';
+import { apiDataToSelect } from '../Select';
+import SelectCreatable from ".";
 import Card from "../Card";
 import Span from "../Span";
 import { SelectProps } from "./Select.types";
@@ -12,13 +13,12 @@ import Container from "../Container";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-    title: "RjsComponentLibraryThemed/Select",
-} as Meta<typeof Select>;
+    title: "RjsComponentLibraryThemed/SelectCreatable",
+} as Meta<typeof SelectCreatable>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
-    const [vsMulti, setVsMulti] = useState([...fruitData]);
 
     const aux = apiDataToSelect({
         data: candyData, 
@@ -26,16 +26,12 @@ const Template: StoryFn<SelectProps> = (args) => {
         value: ['name', 'extra.color']
     });
     const [candies, setCandies] = useState(aux);
-    const [candie, setCandie] = useState();
     const multiplierSels = ['abc', 'def', 'ghi'];
-
-    const [candiesMulti, setCandiesMulti] = useState(aux);
-    const [candieMulti, setCandieMulti] = useState();
 
     return( <Card>
         <CardContent>
             <form>
-                <Select 
+                <SelectCreatable 
                     {...args}
                     name="myselect"
                     className="full"
@@ -47,80 +43,12 @@ const Template: StoryFn<SelectProps> = (args) => {
                     handleSelect={(s) => {
                         // console.log(s)
                     }}
-                    inlineDrawer={true}
-                />
-
-                <br />
-
-                <CardToggle
-                    // parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
-                    toggleTrigger={(trigger: any) => (<Button onClick={() => trigger()}>OPEN SELECT</Button>)}
-                    className={'full'}
-                    fullToogle={true}
-                    xOverride='left'
-                    yOverride='bottom'
-                >
-                    {multiplierSels.map((sel, k) => (
-                        <Container key={k}>
-                            <Select 
-                                {...args}
-                                name="myselect2"
-                                className="full"
-                                emptyText={'select something here...'} 
-                                values={candies} 
-                                handleValues={({selected, values}) => {
-                                    setCandies(values);
-                                    setCandie(selected);
-                                }}
-                                handleSelect={(s) => {
-                                    // console.log(s)
-                                }}
-                                inlineDrawer={true}
-                            />
-                        </Container>
-                    ))}
-                </CardToggle>
-
-                <br />
-
-                <Select 
-                    {...args}
-                    name="myselect3"
-                    className="full"
-                    emptyText={'select something here (multivalue)...'} 
                     multiple={true}
-                    values={vsMulti} 
-                    handleValues={({selected, values}) => {
-                        setVsMulti(values);
-                    }}
-                    handleSelect={(s) => {
-                        // console.log(s)
-                    }}
-                    inlineDrawer={false}
-                />
-
-                
-            </form>
-            
-            <div style={{paddingTop: '500px'}}>
-                <Select 
-                    {...args}
-                    name="myselect"
-                    className="full"
-                    emptyText={'select something here...'} 
-                    values={vs} 
-                    handleValues={({selected, values}) => {
-                        setVs(values);
-                    }}
-                    handleSelect={(s) => {
-                        // console.log(s)
-                    }}
                     inlineDrawer={true}
                 />
+            </form>
 
-            </div>
-
-            <br/> <br/> <Span>Card - CardContent - Select</Span>
+            <br/> <br/> <Span>Card - CardContent - Select Creatable</Span>
         </CardContent>
     </Card>)
 };
