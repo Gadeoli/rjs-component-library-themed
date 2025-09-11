@@ -4,12 +4,10 @@ import { apiDataToSelect } from '../Select';
 import SelectCreatable from ".";
 import Card from "../Card";
 import Span from "../Span";
-import { SelectProps } from "./Select.types";
+import { SelectProps } from "../Select/Select.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData, candyData } from "../../data";
-import CardToggle from "../CardToggle";
-import Button from "../Button";
-import Container from "../Container";
+import { SelectCreatableProps } from "./SelectCreatable.types";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -17,7 +15,7 @@ export default {
 } as Meta<typeof SelectCreatable>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<SelectProps> = (args) => {
+const Template: StoryFn<SelectProps & SelectCreatableProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
 
     const aux = apiDataToSelect({
@@ -25,8 +23,6 @@ const Template: StoryFn<SelectProps> = (args) => {
         key: 'id', 
         value: ['name', 'extra.color']
     });
-    const [candies, setCandies] = useState(aux);
-    const multiplierSels = ['abc', 'def', 'ghi'];
 
     return( <Card>
         <CardContent>

@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
@@ -28,16 +28,18 @@ import Spinner from '../Spinner';
 import { SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
 import styled from 'styled-components';
-import { defaultXPM } from '../../styles';
-import { SelectCreatableProps } from './SelectCreatable.types';
+import { defaultXPM, defaultYPM } from '../../styles';
+import { SelectCreatableDrawerProps, SelectCreatableProps } from './SelectCreatable.types';
 
 const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     name,
-    emptyText, 
-    createText,
+    emptyText='None option to select', 
+    createText='Create',
     values,         
     handleValues,
     handleSelect,
+    handleCreateKey,
+    handleCreateValue,
     enableSearch = false,
     isSearching = false,
     multiple,
@@ -59,8 +61,8 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
         className
     ]);
     const cardToggleRef = useRef<CardToggleHandle>(null);
-    const creationInputRef = useRef<HTMLInputElement>(null);
-    const [creation, setCreation] = useState('');
+    const customOptionInputRef = useRef<HTMLInputElement>(null);
+    const [customOption, setCustomOption] = useState('');
     const [toggleCounter, setToggleCounter] = useState(1);
 
     const handleOnSelect = (selected : any) => {
@@ -119,6 +121,37 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
         }
     }
 
+    const handleOnCreate = (value : string) => {
+        setToggleCounter(toggleCounter + 1);
+
+        const newKey = handleCreateKey ? handleCreateKey(value) : value;
+        const newValue = handleCreateValue ? handleCreateValue(value) : value;
+        
+        const check = values.filter((i: any) => i.key === newKey);
+
+        if(check && check.length) return; //dont include duplicated keys...
+
+        const newOp = {
+            key: newKey,
+            value: newValue,
+            selected: true
+        };
+
+        if(!multiple){
+            return {
+                selected: newKey,
+                values: [newOp].concat([...values].map(i => ({...i, selected: false})))
+            }
+        }else{
+            const aux = [newOp].concat([...values].map(i => ({...i, selected: i.selected ? true : false}))); //dont use !i.selected because selected maybe is not set
+
+            return {
+                selected: [...aux].filter(elF => elF.selected === true).map(elM => { return elM.key }),
+                values: aux
+            }
+        }
+    }
+
     const renderSelected = () => {
         const selected = [...values].filter(i => i.selected);
         const hasSel = selected && selected.length;
@@ -136,18 +169,25 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
             <div>
                 {hasSel ? (<>{selections}</>) : ''}
                 {((!selected || !selected.length) && !showDrawer) && (<Span className='empty-txt'>{emptyText}</Span>)}
-                {showDrawer && <CreationInput 
-                    ref={creationInputRef}
+                {showDrawer && <CustomOptionInput 
+                    ref={customOptionInputRef}
                     type='text'
                     name={`${name}-input-create`}
                     onChange={(e: any) => {
-                        setCreation(e.target.value);
+                        setCustomOption(e.target.value);
                     }}
-                    value={creation}
+                    value={customOption}
                 />}
             </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
         </StyledSelectSelectedOptions>);
+    }
+
+    const resetCustomOptionInput = () => {
+        setTimeout(() => {
+            setCustomOption('');
+            customOptionInputRef.current?.focus();
+        }, 100);
     }
 
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
@@ -155,10 +195,7 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
             ref={cardToggleRef}
             parentToggleStateControl={(toggleStatus: boolean) => {
                 setShowDrawer(toggleStatus);
-                setTimeout(() => {
-                    setCreation('');
-                    creationInputRef.current?.focus();
-                }, 200);
+                resetCustomOptionInput();
             }}
             toggleTrigger={
                 (trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
@@ -188,27 +225,53 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                         handleSelect(s);
                     }
                 }}
+                onCreate={(v) => {
+                    handleValues(handleOnCreate(v));
+                    resetCustomOptionInput();
+                    if(drawerBehaviourOnSelect === 'on'){
+                        cardToggleRef.current?.toggle();
+                    }
+                }}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
+                createText={createText}
+                customOption={{
+                    ref: customOptionInputRef,
+                    value: customOption,
+                    handleCreateKey: handleCreateKey   
+                }}
             />
         </CardToggle>
     </StyledSelectContainer>);
 }
 
-const SelectDrawer: FC<SelectDrawerProps> = ({
+const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
     multiple,
     name,
     values, 
     onSelect, 
     onSearch, 
+    onCreate,
     isSearching = false,
     enableSearch = false,
     theme,
-    inlineDrawer
+    inlineDrawer,
+    createText,
+    customOption
 }) => {
     const [search, setSearch] = useState('');
     const [, setInputFocus] = useState(false);
     const id = uniqid();
-    
+    const hasCustomOp = useMemo(() => {
+        return customOption.value && customOption.value.length > 0 ? true : false;
+    }, [customOption.value]);
+    const [invalidateCustomOp, setInvalidateCustomOp] = useState(false); 
+
+    useEffect(() => {
+        const key = customOption.handleCreateKey ? customOption.handleCreateKey(customOption.value) : customOption.value
+        const aux = values.filter((i: any) => i.key === key);
+        setInvalidateCustomOp(aux && aux.length > 0);
+    }, [customOption.value]); 
+
     return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
             {enableSearch ? (<Input
@@ -223,6 +286,16 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                     onSearch(e.target.value);
                 }
             }/>) : ('')}
+
+            {hasCustomOp ? (<Button 
+                className='full' 
+                onClick={() => onCreate(customOption.value)} 
+                style={{textAlign: 'left', margin: `${defaultYPM} 0`}}
+                disabled={invalidateCustomOp}
+                type={invalidateCustomOp ? 'danger' : 'primary'}
+            >
+                {createText}: {customOption.value}
+            </Button>) : ''}
             
             {isSearching ? (<SelectDrawerSearchActions theme={theme}>
                 <Spinner size={20}/>
@@ -265,7 +338,7 @@ const DrawerItem: FC<DrawerItemProps> = ({
     return <StyledSelectDrawerItem type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
-const CreationInput = styled(Input)`
+const CustomOptionInput = styled(Input)`
     border: none;
     min-width: 150px;
     margin-right: ${defaultXPM};

@@ -1032,6 +1032,7 @@ export const SelectDrawer = styled.div`
 export const SelectDrawerSearchContainer = styled.div`
     position: relative;
     display: flex;
+    flex-direction: column;
     border: 1px solid transparent;
 `;
 
