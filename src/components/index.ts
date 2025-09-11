@@ -23,6 +23,7 @@ export { default as RadioMulti } from './RadioMulti';
 export { default as Range } from './Range';
 export { default as Select, apiDataToSelect } from './Select';
 export { default as SelectAsync, handleValuesAsync } from './SelectAsync';
+export { default as SelectCreatable } from './SelectCreatable';
 export { default as Span } from './Span';
 export { default as Spinner } from './Spinner';
 export { default as SpinnerCoin } from './SpinnerCoin';

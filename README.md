@@ -22,7 +22,8 @@ Radio
 Range  
 RadioMulti   
 Select  
-SelectAsync    
+SelectAsync   
+SelectCreatable  
 Span   
 Spinner  
 SpinnerCoin  
