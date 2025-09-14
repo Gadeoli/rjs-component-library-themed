@@ -30,6 +30,7 @@ import uniqid from 'uniqid';
 import styled from 'styled-components';
 import { defaultXPM, defaultYPM } from '../../styles';
 import { SelectCreatableDrawerProps, SelectCreatableProps } from './SelectCreatable.types';
+import { cookValuesSelectedSorted } from '../Select/Select';
 
 const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     name,
@@ -82,12 +83,23 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                 if(i.key !== selected){
                     return {...i}
                 }else{
-                    return {...i, selected: i.selected ? false : true} //dont use !i.selected because selected maybe is not set
+                    const newI = {...i};
+                    const mode = i.selected ? false : true //dont use !i.selected because selected maybe is not set
+
+                    newI.selected = mode;
+
+                    if(!mode){
+                        delete newI.selectedAt;
+                    }else{
+                        newI.selectedAt = new Date();
+                    }
+
+                    return newI;
                 }
             })
 
             return {
-                selected: [...aux].filter(elF => elF.selected === true).map(elM => { return elM.key }),
+                selected: cookValuesSelectedSorted([...aux]).map(el => el.key),
                 values: aux
             }
         }
@@ -131,11 +143,15 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
 
         if(check && check.length) return; //dont include duplicated keys...
 
-        const newOp = {
+        const newOp : SelectValueProps = {
             key: newKey,
             value: newValue,
             selected: true
         };
+
+        if(multiple){
+            newOp.selectedAt = new Date();
+        }
 
         if(!multiple){
             return {
@@ -153,7 +169,7 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     }
 
     const renderSelected = () => {
-        const selected = [...values].filter(i => i.selected);
+        const selected = cookValuesSelectedSorted([...values]);
         const hasSel = selected && selected.length;
 
         const selections = hasSel ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>

@@ -16,9 +16,10 @@ export interface SelectProps {
 }
 
 export interface SelectValueProps {
-    key: any,
-    value: any,
-    selected?: boolean
+    key: any;
+    value: any;
+    selected?: boolean;
+    selectedAt?: Date; 
 }
 
 export interface DrawerItemProps {

@@ -71,12 +71,23 @@ const Select: FC<SelectProps> = ({
                 if(i.key !== selected){
                     return {...i}
                 }else{
-                    return {...i, selected: i.selected ? false : true} //dont use !i.selected because selected maybe is not set
+                    const newI = {...i};
+                    const mode = i.selected ? false : true //dont use !i.selected because selected maybe is not set
+
+                    newI.selected = mode;
+
+                    if(!mode){
+                        delete newI.selectedAt;
+                    }else{
+                        newI.selectedAt = new Date();
+                    }
+
+                    return newI;
                 }
             })
-
+            
             return {
-                selected: [...aux].filter(elF => elF.selected === true).map(elM => { return elM.key }),
+                selected: cookValuesSelectedSorted([...aux]).map(el => el.key),
                 values: aux
             }
         }
@@ -111,7 +122,7 @@ const Select: FC<SelectProps> = ({
     }
 
     const renderSelected = () => {
-        const selected = [...values].filter(i => i.selected);
+        const selected = cookValuesSelectedSorted([...values]);
         const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
             <Span>{sel.value}</Span> 
             
@@ -241,6 +252,13 @@ const DrawerItem: FC<DrawerItemProps> = ({
 }
 
 export default Select;
+
+export const cookValuesSelectedSorted = (values : Array<SelectValueProps>) => {
+    return [...values]
+        .filter(el => el.selected)
+        .map((el, i) => ({ ...el, _idx: i }))
+        .sort((a, b) => (a.selectedAt?.getTime() ?? a._idx) - (b.selectedAt?.getTime() ?? b._idx));
+}
 
 export const apiDataToSelect = ({
     data=[],

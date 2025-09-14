@@ -1,7 +1,7 @@
 export interface SelectAsyncProps {
     name: string;
     emptyText: string;         //a text to show when none value is selected
-    values: Array<object>;     //an array of obj {key: k, value: v, selected: true}
+    values: Array<SelectValueProps>;     //an array of obj {key: k, value: v, selected: true}
     handleValues:   (arg0: any) => any;//
     handleSelect?:  (arg0: any) => any;//
     isSearching?:   boolean;  
@@ -14,9 +14,10 @@ export interface SelectAsyncProps {
 }
 
 export interface SelectValueProps {
-    key: any,
-    value: any,
-    selected?: boolean
+    key: any;
+    value: any;
+    selected?: boolean;
+    selectedAt?: Date;
 }
 
 export interface DrawerItemProps {

@@ -27,6 +27,7 @@ import Button from '../Button';
 import Spinner from '../Spinner';
 import { Magnifier, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
+import { cookValuesSelectedSorted } from '../Select/Select';
 
 const SelectAsync: FC<SelectAsyncProps> = ({
     name,
@@ -70,12 +71,23 @@ const SelectAsync: FC<SelectAsyncProps> = ({
                 if(i.key !== selected){
                     return {...i}
                 }else{
-                    return {...i, selected: i.selected ? false : true} //dont use !i.selected because selected maybe is not set
+                    const newI = {...i};
+                    const mode = i.selected ? false : true; //dont use !i.selected because selected maybe is not set
+
+                    newI.selected = mode;
+
+                    if(!mode){
+                        delete newI.selectedAt;
+                    }else{
+                        newI.selectedAt = new Date();
+                    }
+
+                    return newI;
                 }
             })
 
             return {
-                selected: [...aux].filter(elF => elF.selected === true).map(elM => { return elM.key }),
+                selected: cookValuesSelectedSorted([...aux]).map(elM => { return elM.key }),
                 values: aux
             }
         }
@@ -97,7 +109,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     }
 
     const renderSelected = () => {
-        const selected = [...values].filter((i: any) => i.selected);
+        const selected = cookValuesSelectedSorted([...values]);
         const selections = selected && selected.length ? selected.map((sel: any) => <StyledSelectedResultItem theme={theme} key={sel.key}>
             <Span>{sel.value}</Span> 
             
