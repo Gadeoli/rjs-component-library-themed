@@ -97,8 +97,6 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
     }
 
     const handleAbsoluteY = () => {
-        console.log({toggleSize, triggerSize, windowSize});
-
         if(yOverride){
             return yOverride === 'top' ?
                 {top: 'unset', bottom: `${gHeight + 5}px`} :
