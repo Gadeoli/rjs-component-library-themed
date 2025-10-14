@@ -1029,6 +1029,13 @@ export const SelectDrawer = styled.div`
     }
 `;
 
+export const SelectDrawerLoadingContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+`;
+
 export const SelectDrawerSearchContainer = styled.div`
     position: relative;
     display: flex;

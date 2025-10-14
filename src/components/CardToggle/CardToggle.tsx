@@ -97,7 +97,8 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
     }
 
     const handleAbsoluteY = () => {
-        // console.log({forceRefresh, tPositionY, tHeight, wHeight, gHeight});
+        console.log({toggleSize, triggerSize, windowSize});
+
         if(yOverride){
             return yOverride === 'top' ?
                 {top: 'unset', bottom: `${gHeight + 5}px`} :
@@ -111,6 +112,8 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
     }
     
     useEffect(() => {
+        if(!tPositionY && !tHeight) return;
+        
         if(!initialToggle || toggle){
             const {left, right} = handleAbsoluteX();
             const {top, bottom} = handleAbsoluteY();

@@ -6,6 +6,9 @@ export interface SelectAsyncProps {
     handleSelect?:  (arg0: any) => any;//
     isSearching?:   boolean;  
     manualSearch?: boolean;
+    enableInfiniteScroll?: boolean; //if true so use carefully: onFinishScroll + isSearching + hasMore
+    hasMore?: boolean;
+    onFinishScroll?: () => void; 
     multiple?: boolean;        //if allow to select multiple values
     styles?: object;
     className?: string;
@@ -21,6 +24,7 @@ export interface SelectValueProps {
 }
 
 export interface DrawerItemProps {
+    ref?: any;
     theme: object;
     item: SelectValueProps;
     inlineDrawer?: boolean;
@@ -34,7 +38,10 @@ export interface SelectAsyncDrawerProps {
     onSelect: (arg0: any) => any; 
     onSearch: (arg0: any) => any; 
     manualSearch?: boolean;
-    isSearching?:   boolean;  
+    isSearching?:   boolean;
+    enableInfiniteScroll?: boolean;
+    hasMore?: boolean;
+    onFinishScroll?: () => void;  
     theme: object;
     inlineDrawer?: boolean; 
 }

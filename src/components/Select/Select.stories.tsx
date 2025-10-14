@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import Select, { apiDataToSelect } from './Select';
 import Card from "../Card";
@@ -9,6 +9,7 @@ import { fruitData, candyData } from "../../data";
 import CardToggle from "../CardToggle";
 import Button from "../Button";
 import Container from "../Container";
+import P from "../P";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -32,6 +33,22 @@ const Template: StoryFn<SelectProps> = (args) => {
     const [candiesMulti, setCandiesMulti] = useState(aux);
     const [candieMulti, setCandieMulti] = useState();
 
+    const [isSearching, setIsSearching] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    
+    const handleInfiniteScroll = () => {
+        if(hasMore){
+            setIsSearching(true);
+
+            //fetch values
+            setTimeout(() => {
+                setIsSearching(false);
+                setHasMore(false);
+                console.log('"fetched" on scroll')
+            }, 2000);
+        }
+    }
+
     return( <Card>
         <CardContent>
             <form>
@@ -48,6 +65,28 @@ const Template: StoryFn<SelectProps> = (args) => {
                         // console.log(s)
                     }}
                     inlineDrawer={true}
+                />
+
+                <P style={{marginTop: '12px'}}>Infinite Scroll Select (not fetching real data. only log console)</P>
+                <Select 
+                    {...args}
+                    name="myselectInfiniteScrool"
+                    className="full"
+                    emptyText={'select something here...'} 
+                    values={vs} 
+                    handleValues={({selected, values}) => {
+                        setVs(values);
+                    }}
+                    handleSelect={(s) => {
+                        // console.log(s)
+                    }}
+                    
+                    inlineDrawer={true}
+
+                    enableInfiniteScroll={true}
+                    isSearching={isSearching}
+                    hasMore={hasMore}
+                    onFinishScroll={() => handleInfiniteScroll()}
                 />
 
                 <br />

@@ -1,12 +1,15 @@
 export interface SelectProps {
     name: string;
-    emptyText: string;         //a text to show when none value is selected
-    values: Array<SelectValueProps>;     //an array of obj {key: k, value: v, selected: true}
+    emptyText: string;  //a text to show when none value is selected
+    values: Array<SelectValueProps>; //an array of obj {key: k, value: v, selected: true}
     handleValues:   (arg0: any) => any;//
     handleSelect?:  (arg0: any) => any;//
-    isSearching?:   boolean;  
+    isSearching?:   boolean;
     enableSearch?: boolean;
-    multiple?: boolean;        //if allow to select multiple values
+    enableInfiniteScroll?: boolean; //if true so use carefully: onFinishScroll + isSearching + hasMore
+    hasMore?: boolean;
+    onFinishScroll?: () => void; 
+    multiple?: boolean; //if allow to select multiple values
     styles?: object;
     className?: string;
     inlineDrawer?: boolean; 
@@ -23,10 +26,11 @@ export interface SelectValueProps {
 }
 
 export interface DrawerItemProps {
+    ref?: any;
     theme: object;
     item: SelectValueProps;
     inlineDrawer?: boolean;
-    handleSelect: (arg0: any) => any;    
+    handleSelect: (arg0: any) => any;  
 }
 
 export interface SelectDrawerProps {
@@ -37,6 +41,9 @@ export interface SelectDrawerProps {
     onSearch: (arg0: any) => any; 
     isSearching?:   boolean;  
     enableSearch?: boolean;
+    enableInfiniteScroll?: boolean;
+    hasMore?: boolean;
+    onFinishScroll?: () => void;
     theme: object;
     inlineDrawer?: boolean;
 }

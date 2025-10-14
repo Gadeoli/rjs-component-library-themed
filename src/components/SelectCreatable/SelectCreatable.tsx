@@ -25,12 +25,13 @@ import { CardToggleHandle } from '../CardToggle/CardToggle.types';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
-import { SelectDrawerSearchActions } from '../../styled-components/Common/Common';
+import { SelectDrawerLoadingContainer, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
 import styled from 'styled-components';
 import { defaultXPM, defaultYPM } from '../../styles';
 import { SelectCreatableDrawerProps, SelectCreatableProps } from './SelectCreatable.types';
 import { cookValuesSelectedSorted } from '../Select/Select';
+import { useOnInfiniteScrollTrigger } from '@gadeoli/rjs-hooks-library';
 
 const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     name,
@@ -43,6 +44,9 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     handleCreateValue,
     enableSearch = false,
     isSearching = false,
+    enableInfiniteScroll,
+    hasMore,
+    onFinishScroll, //trigger function
     multiple,
     className,
     inlineDrawer,
@@ -229,6 +233,8 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                 values={values}
                 isSearching={isSearching} 
                 enableSearch={enableSearch}
+                enableInfiniteScroll={enableInfiniteScroll}
+                hasMore={hasMore}
                 onSelect={(v) => {
                     handleValues(handleOnSelect(v));
                     if(drawerBehaviourOnSelect === 'on'){
@@ -248,6 +254,7 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                         cardToggleRef.current?.toggle();
                     }
                 }}
+                onFinishScroll={onFinishScroll}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
                 createText={createText}
                 customOption={{
@@ -269,6 +276,9 @@ const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
     onCreate,
     isSearching = false,
     enableSearch = false,
+    enableInfiniteScroll=false,
+    hasMore=false,
+    onFinishScroll,
     theme,
     inlineDrawer,
     createText,
@@ -281,6 +291,12 @@ const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
         return customOption.value && customOption.value.length > 0 ? true : false;
     }, [customOption.value]);
     const [invalidateCustomOp, setInvalidateCustomOp] = useState(false); 
+
+    const lastItemDrawerRef = enableInfiniteScroll ? useOnInfiniteScrollTrigger(
+        hasMore,
+        isSearching,
+        onFinishScroll
+    ) : null;
 
     useEffect(() => {
         const key = customOption.handleCreateKey ? customOption.handleCreateKey(customOption.value) : customOption.value
@@ -332,8 +348,9 @@ const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
         </select>
         
         <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens ${inlineDrawer ? 'inline-options' : ''}`}>
-            {values.map((v: any) => {
+            {values.map((v: any, i: any) => {
                 return v.selected || !v.hide ? (<DrawerItem 
+                    ref={values.length === i + 1 && lastItemDrawerRef ? lastItemDrawerRef : null}
                     handleSelect={(k) => onSelect(k)} 
                     item={v} 
                     theme={theme} 
@@ -341,17 +358,19 @@ const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
                     key={v.key}/>
                 ) : null
             })}
+            {isSearching && hasMore && <SelectDrawerLoadingContainer><Spinner size={20} /></SelectDrawerLoadingContainer>}
         </StyledSelectDrawerContainer>   
     </StyledSelectDrawer>)
 }
 
 const DrawerItem: FC<DrawerItemProps> = ({
+    ref=null,
     theme, 
     item,
     inlineDrawer,
     handleSelect
 }) => {
-    return <StyledSelectDrawerItem type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
+    return <StyledSelectDrawerItem ref={ref} type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
 }
 
 const CustomOptionInput = styled(Input)`

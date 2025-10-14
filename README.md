@@ -6,7 +6,7 @@
 
 ThemeHandler    
 Button   
-Card && CardContent && CardToggle   
+Card && CardContent && CardToggle (Need to fix initial blink effect)   
 Checkbox  
 CheckboxMulti  
 Container  
