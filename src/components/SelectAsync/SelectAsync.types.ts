@@ -7,7 +7,7 @@ export interface SelectAsyncProps {
     isSearching?:   boolean;  
     manualSearch?: boolean;
     searchText?: string; //a text to show in search input
-    enableInfiniteScroll?: boolean; //if true so use carefully: onFinishScroll + isSearching + hasMore
+    enableInfiniteScroll?: boolean; //if true so use carefully: handleFinishScroll + isSearching + hasMore
     hasMore?: boolean;
     handleFinishScroll?: () => void; 
     multiple?: boolean;        //if allow to select multiple values

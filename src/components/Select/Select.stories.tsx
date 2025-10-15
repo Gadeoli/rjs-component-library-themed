@@ -86,7 +86,7 @@ const Template: StoryFn<SelectProps> = (args) => {
                     enableInfiniteScroll={true}
                     isSearching={isSearching}
                     hasMore={hasMore}
-                    onFinishScroll={() => handleInfiniteScroll()}
+                    handleFinishScroll={() => handleInfiniteScroll()}
                 />
 
                 <br />
