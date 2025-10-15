@@ -9,7 +9,7 @@ export interface SelectProps {
     searchText?: string; //a text to show in search input
     enableInfiniteScroll?: boolean; //if true so use carefully: onFinishScroll + isSearching + hasMore
     hasMore?: boolean;
-    onFinishScroll?: () => void; 
+    handleFinishScroll?: () => void; 
     multiple?: boolean; //if allow to select multiple values
     styles?: object;
     className?: string;

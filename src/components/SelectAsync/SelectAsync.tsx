@@ -36,12 +36,12 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     values,
     handleValues,
     handleSelect,
-    isSearching = false,
+    isSearching = false, //should be called loading. rename not allowed
     manualSearch = true,
     searchText,
     enableInfiniteScroll,
     hasMore,
-    onFinishScroll, //trigger function
+    handleFinishScroll,
     multiple,
     className,
     inlineDrawer,
@@ -164,7 +164,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
                         handleSelect(s);
                     }
                 }}
-                onFinishScroll={onFinishScroll}
+                onFinishScroll={handleFinishScroll}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
             />
         </CardToggle>

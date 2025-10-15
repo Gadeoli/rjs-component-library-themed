@@ -42,12 +42,12 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     handleSelect,
     handleCreateKey,
     handleCreateValue,
-    isSearching = false, //should be called loading
+    isSearching = false, //should be called loading. rename not allowed
     enableSearch = false,
     searchText,
     enableInfiniteScroll,
     hasMore,
-    onFinishScroll, //trigger function
+    handleFinishScroll,
     multiple,
     className,
     inlineDrawer,
@@ -256,7 +256,7 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                         cardToggleRef.current?.toggle();
                     }
                 }}
-                onFinishScroll={onFinishScroll}
+                onFinishScroll={handleFinishScroll}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
                 createText={createText}
                 customOption={{

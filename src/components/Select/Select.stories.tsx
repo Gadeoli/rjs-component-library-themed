@@ -206,16 +206,21 @@ Default.argTypes = {
         defaultValue: '',
         description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed. This field is required'
     },
+    handleSelect: {
+        table: { type: { summary: 'any'} },
+        defaultValue: '',
+        description: 'function to run on search event. This field is not required'
+    },
+    handleFinishScroll: {
+        table: { type: { summary: 'any'} },
+        defaultValue: '',
+        description: 'funtion to run when last item on drawer got visible'
+    },
     isSearching: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'If true show a loading content on search field',
         size: { control: 'radio' }
-    },
-    searchText: {
-        type: {name: 'string', required: false},
-        defaultValue: '',
-        description: ''
     },
     className: {
         type: {name: 'string', required: false},
@@ -226,6 +231,22 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'enable search input'
+    },
+    enableInfiniteScroll: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'enable infinite scroll. manual hasMore is necessary. Also set your handleFinishScroll Fn'
+    },
+    hasMore: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'use this to lock when `can` |` can not` load more when infinite scroll `on`',
+        size: { control: 'radio' }
+    },
+    searchText: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: "The text to use in input search' placeholder"
     },
     toggleX: {
         type: {name: 'string', required: false},

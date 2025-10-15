@@ -35,12 +35,12 @@ const Select: FC<SelectProps> = ({
     values,         
     handleValues,
     handleSelect,
-    isSearching = false, //should be called loading
+    isSearching = false, //should be called loading. rename not allowed
     enableSearch = false,
     searchText,
     enableInfiniteScroll,
     hasMore,
-    onFinishScroll, //trigger function
+    handleFinishScroll,
     multiple,
     className,
     inlineDrawer,
@@ -182,7 +182,7 @@ const Select: FC<SelectProps> = ({
                         handleSelect(s);
                     }
                 }}
-                onFinishScroll={onFinishScroll}
+                onFinishScroll={handleFinishScroll}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
             />
         </CardToggle>
