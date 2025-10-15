@@ -38,6 +38,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     handleSelect,
     isSearching = false,
     manualSearch = true,
+    searchText,
     enableInfiniteScroll,
     hasMore,
     onFinishScroll, //trigger function
@@ -148,6 +149,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
                 values={values}
                 isSearching={isSearching}
                 manualSearch={manualSearch}
+                searchText={searchText}
                 enableInfiniteScroll={enableInfiniteScroll} 
                 hasMore={hasMore}
                 onSelect={(v) => {
@@ -175,8 +177,9 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
     values, 
     onSelect, 
     onSearch, 
-    manualSearch,
     isSearching = false,
+    manualSearch,
+    searchText,
     enableInfiniteScroll=false,
     hasMore=false,
     onFinishScroll,
@@ -202,6 +205,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
                 className='full' 
+                placeholder={searchText || ''}
                 onChange={(e: any) => {
                     setSearch(e.target.value);
                     

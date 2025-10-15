@@ -6,6 +6,7 @@ export interface SelectProps {
     handleSelect?:  (arg0: any) => any;//
     isSearching?:   boolean;
     enableSearch?: boolean;
+    searchText?: string; //a text to show in search input
     enableInfiniteScroll?: boolean; //if true so use carefully: onFinishScroll + isSearching + hasMore
     hasMore?: boolean;
     onFinishScroll?: () => void; 
@@ -41,6 +42,7 @@ export interface SelectDrawerProps {
     onSearch: (arg0: any) => any; 
     isSearching?:   boolean;  
     enableSearch?: boolean;
+    searchText?: string; //a text to show in search input
     enableInfiniteScroll?: boolean;
     hasMore?: boolean;
     onFinishScroll?: () => void;

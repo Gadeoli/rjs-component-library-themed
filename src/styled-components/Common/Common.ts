@@ -1034,6 +1034,7 @@ export const SelectDrawerLoadingContainer = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 6px;
+    margin-bottom: 6px;
 `;
 
 export const SelectDrawerSearchContainer = styled.div`

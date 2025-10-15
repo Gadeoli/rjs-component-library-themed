@@ -35,8 +35,9 @@ const Select: FC<SelectProps> = ({
     values,         
     handleValues,
     handleSelect,
-    isSearching = false,
+    isSearching = false, //should be called loading
     enableSearch = false,
+    searchText,
     enableInfiniteScroll,
     hasMore,
     onFinishScroll, //trigger function
@@ -166,6 +167,7 @@ const Select: FC<SelectProps> = ({
                 values={values}
                 isSearching={isSearching} 
                 enableSearch={enableSearch}
+                searchText={searchText}
                 enableInfiniteScroll={enableInfiniteScroll}
                 hasMore={hasMore}
                 onSelect={(v) => {
@@ -195,6 +197,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     onSearch, 
     isSearching = false,
     enableSearch = false,
+    searchText,
     enableInfiniteScroll=false,
     hasMore=false,
     onFinishScroll,
@@ -220,6 +223,7 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
                 className='full' 
+                placeholder={searchText || ''}
                 onChange={(e: any) => {
                     setSearch(e.target.value);
                     onSearch(e.target.value);

@@ -42,8 +42,9 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     handleSelect,
     handleCreateKey,
     handleCreateValue,
+    isSearching = false, //should be called loading
     enableSearch = false,
-    isSearching = false,
+    searchText,
     enableInfiniteScroll,
     hasMore,
     onFinishScroll, //trigger function
@@ -233,6 +234,7 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                 values={values}
                 isSearching={isSearching} 
                 enableSearch={enableSearch}
+                searchText={searchText}
                 enableInfiniteScroll={enableInfiniteScroll}
                 hasMore={hasMore}
                 onSelect={(v) => {
@@ -276,6 +278,7 @@ const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
     onCreate,
     isSearching = false,
     enableSearch = false,
+    searchText,
     enableInfiniteScroll=false,
     hasMore=false,
     onFinishScroll,
@@ -312,7 +315,8 @@ const SelectDrawer: FC<SelectDrawerProps & SelectCreatableDrawerProps> = ({
                 value={search} 
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
-                className='full' 
+                className='full'
+                placeholder={searchText || ''} 
                 onChange={(e: any) => {
                     setSearch(e.target.value);
                     onSearch(e.target.value);

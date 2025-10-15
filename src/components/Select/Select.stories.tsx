@@ -212,6 +212,11 @@ Default.argTypes = {
         description: 'If true show a loading content on search field',
         size: { control: 'radio' }
     },
+    searchText: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: ''
+    },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
