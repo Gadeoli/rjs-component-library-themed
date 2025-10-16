@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useState } from 'react';
+import React, { FC, forwardRef, useMemo, useRef, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
@@ -264,15 +264,15 @@ const SelectDrawer: FC<SelectDrawerProps> = ({
     </StyledSelectDrawer>)
 }
 
-const DrawerItem: FC<DrawerItemProps> = ({
-    ref=null,
+
+const DrawerItem = forwardRef<HTMLButtonElement, DrawerItemProps>(({
     theme, 
     item,
     inlineDrawer,
     handleSelect
-}) => {
-    return <StyledSelectDrawerItem ref={ref} type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
-}
+} , ref) => {
+    return (<StyledSelectDrawerItem ref={ref} type='button' className={`${inlineDrawer ? 'inline-options' : ''}`} onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>);
+});
 
 export default Select;
 

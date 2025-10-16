@@ -27,7 +27,6 @@ export interface SelectValueProps {
 }
 
 export interface DrawerItemProps {
-    ref?: any;
     theme: object;
     item: SelectValueProps;
     inlineDrawer?: boolean;

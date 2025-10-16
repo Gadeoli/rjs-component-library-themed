@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef, useState } from 'react';
+import React, { FC, forwardRef, useMemo, useRef, useState } from 'react';
 import { 
     SelectAsyncProps, 
     DrawerItemProps,
@@ -253,15 +253,14 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
     </StyledSelectDrawer>)
 }
 
-const DrawerItem: FC<DrawerItemProps> = ({
-    ref=null,
+const DrawerItem = forwardRef<HTMLButtonElement, DrawerItemProps>(({
     theme, 
     item,
     inlineDrawer,
     handleSelect
-}) => {
-    return <StyledSelectDrawerItem ref={ref} className={`${inlineDrawer ? 'inline-options' : ''}`} type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
-}
+} , ref) => {
+    return (<StyledSelectDrawerItem ref={ref} className={`${inlineDrawer ? 'inline-options' : ''}`} type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>);
+});
 
 export const handleValuesAsync = (props: HandleSelectAsyncProps) => {
     // console.log(props);
