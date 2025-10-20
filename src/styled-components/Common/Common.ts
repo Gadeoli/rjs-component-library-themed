@@ -252,6 +252,7 @@ export const Jumbotron = styled.div`
     width: 100%;
     padding: calc(${defaultYPM} * 1.5) calc(${defaultXPM} * 1.5);
     border-radius: calc(${defaultRadius} * 1.5);
+    box-sizing: border-box;
     
     &.custom{
         background-color: ${(props: any) => props.color};
