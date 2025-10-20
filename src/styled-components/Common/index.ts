@@ -16,6 +16,7 @@ export {
     Input,
     InputColor,
     FormGroup,
+    Jumbotron,
     Label,
     LoadingContainer,
     Magnifier,

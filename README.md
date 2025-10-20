@@ -13,7 +13,8 @@ Container
 FormGroup  
 ImageContainer   
 Input  
-InputColor   
+InputColor
+Jumbotron     
 Label  
 Loading  
 MultiForm  

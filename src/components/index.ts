@@ -14,6 +14,7 @@ export { default as GlobalStyle } from './GlobalStyle';
 export { default as ImageContainer } from './ImageContainer';
 export { default as Input } from './Input';
 export { default as InputColor } from './InputColor';
+export { default as Jumbotron } from './Jumbotron';
 export { default as Label } from './Label';
 export { default as Loading } from './Loading';
 export { default as MultiForm } from './MultiForm';

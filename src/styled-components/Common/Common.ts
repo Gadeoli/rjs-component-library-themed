@@ -248,6 +248,37 @@ export const Container = styled.div`
     }
 `;
 
+export const Jumbotron = styled.div`
+    width: 100%;
+    padding: calc(${defaultYPM} * 1.5) calc(${defaultXPM} * 1.5);
+    border-radius: calc(${defaultRadius} * 1.5);
+    
+    &.custom{
+        background-color: ${(props: any) => props.color};
+        color: ${(props: any) => invert(props.color)};
+    }
+
+    &.danger{
+        background-color: ${(props: any) => props.theme.danger};
+        color: ${(props: any) => props.theme.danger_text};
+    }
+
+    &.primary{
+        background-color: ${(props: any) => props.theme.primary};
+        color: ${(props: any) => props.theme.primary_text};
+    }
+
+    &.secondary{
+        background-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
+    }
+
+    &.success{
+        background-color: ${(props: any) => props.theme.success};
+        color: ${(props: any) => props.theme.success_text};
+    }
+`;
+
 export const ContainerReverseColor = styled.div`
     span, p, h1, h2, h3, h4, h5, h6{
         color: ${(props: any) => invert(props.theme.text)} !important;
