@@ -43,6 +43,7 @@ export {
     TabsContent,
     TabsNav,
     TabsNavItem,
+    TabsNavItemContent,
     TabsBody,
     Textarea,
     TitleH1,

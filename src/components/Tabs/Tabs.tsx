@@ -14,10 +14,11 @@ import { TabsBody } from '../../styled-components/Common/Common';
 const Tabs: FC<TabsProps> = ({
     tabs, 
     maxWidth='150px',
+    scrollOrWrap='wrap',
     body,
     noneText, 
     onChange, 
-    spinnerSize, 
+    spinnerSize=15, 
     emphasisActive, 
     loading, 
     className, 
@@ -33,9 +34,9 @@ const Tabs: FC<TabsProps> = ({
         style={{width: '100%', ...style}}
         className={classNames}
     >
-        {loading ? (<Spinner size={spinnerSize || 3} />) : (<>
+        {loading ? (<Spinner size={spinnerSize} />) : (<>
             {tabs && tabs.length ? (<TabsContent>
-                <TabsNav className="nav" theme={theme}>
+                <TabsNav className={`nav ${scrollOrWrap}`} theme={theme}>
                     {tabs.map(t => {
                         const classNamesTItem = handleCssClassnames([
                             t.active ? 'active' : '',

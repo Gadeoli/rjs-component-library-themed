@@ -4,6 +4,7 @@ import Tabs from './Tabs';
 import Card from "../Card";
 import CardContent from "../CardContent";
 import Span from "../Span";
+import Tooltip from "../Tooltip";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -58,14 +59,13 @@ const Template: StoryFn<typeof Tabs> = (args) => {
     
     return (<Card><CardContent>
         <Tabs 
-            loading={false}
+            {...args}
             tabs={tabs}
             noneText="No content to display"
             onChange={(key: any) => {
                 setActiveTab(key);
             }}
-            emphasisActive={false}
-            body={body}
+            body={body}       
         />
     </CardContent></Card>);
 };
@@ -87,7 +87,16 @@ Default.argTypes = {
     maxWidth: {
         type: {name: 'string', required: false},
         defaultValue: '150px',
-        description: 'max tab item width'
+        description: 'tab nav item max width'
+    },
+    scrollOrWrap: {
+        type: {name: 'string', required: false},
+        defaultValue: 'wrap',
+        control: {
+            type: 'select'
+        },
+        options: ['scroll', 'wrap'],
+        description: 'tap nav behaviour on +100% width'
     },
     loading: {
         type: {name: 'boolean', required: false},

@@ -1190,10 +1190,17 @@ export const TabsNav = styled.ul`
     display: flex;
     align-items: stretch;
     justify-content: flex-start;
-    overflow-x: auto;
     border-bottom: 1px solid ${(props: any) => props.theme.border};
     border-top-right-radius: ${defaultRadius};
-    overflow: auto;
+
+    &.wrap{
+        flex-wrap: wrap;
+    }
+
+    &.scroll{
+        overflow-x: auto;
+    }
+
     li:first-child{
         border-top-left-radius: ${defaultRadius};
     }
