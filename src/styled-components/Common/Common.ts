@@ -1203,7 +1203,7 @@ export const TabsNav = styled.ul`
     }
 `;
 
-export const TabsNavItem = styled.li`
+export const TabsNavItem = styled.li<{$maxWidth: string}>`
     padding: ${defaultYPM} ${defaultXPM};
     list-style: none;
     text-align: center;
@@ -1214,6 +1214,7 @@ export const TabsNavItem = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: ${(props: any) => props.$maxWidth};
 
     &.active{
         border-color: ${(props: any) => props.theme.secondary};

@@ -84,6 +84,11 @@ Default.argTypes = {
         defaultValue: [],
         description: 'A array os objects. This will mount the tabs and the respective body/content. This field is required'
     },
+    maxWidth: {
+        type: {name: 'string', required: false},
+        defaultValue: '150px',
+        description: 'max tab item width'
+    },
     loading: {
         type: {name: 'boolean', required: false},
         defaultValue: false,

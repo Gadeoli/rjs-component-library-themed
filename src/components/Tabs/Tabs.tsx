@@ -13,6 +13,7 @@ import { TabsBody } from '../../styled-components/Common/Common';
  */
 const Tabs: FC<TabsProps> = ({
     tabs, 
+    maxWidth='150px',
     body,
     noneText, 
     onChange, 
@@ -41,7 +42,7 @@ const Tabs: FC<TabsProps> = ({
                             t.active && emphasisActive ? 'emphasis-active' : '',
                         ]);
 
-                        return (<TabsNavItem onClick={() => {onChange(t.key)}} className={classNamesTItem} theme={theme} key={t.key}>{t.header()}</TabsNavItem>); 
+                        return (<TabsNavItem $maxWidth={maxWidth} onClick={() => {onChange(t.key)}} className={classNamesTItem} theme={theme} key={t.key}>{t.header()}</TabsNavItem>); 
                     })}
                 </TabsNav>
                 <TabsBody theme={theme}>
