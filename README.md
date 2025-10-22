@@ -2,11 +2,12 @@
 
 (A test for now) A reactjs component library with a custom theme support by default. It's just a light / dark support with possibility to choose and change colors from both themes. Font (font family) and font size are present, but not fully implemented yet.
 
+
 ## Components
 
 ThemeHandler    
 Button   
-Card && CardContent && CardToggle (Need to fix initial blink effect)   
+Card && CardContent && CardToggle  
 Checkbox  
 CheckboxMulti  
 Container  
@@ -39,6 +40,7 @@ TitleHn
 Toggle  
 Tooltip  
 
+
 ## Sources
 
 [source I](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)  
@@ -46,13 +48,21 @@ Tooltip
 [source III - Spinners](https://loading.io/css/)  
 [source IV - Range](https://codepen.io/ibaslogic/pen/zYMJZaQ)  
 
+
 ## ToDO
 
 - Upgrade stories  
 
+
+## ToFix
+
+- CardToggle Initial Blink
+
+
 ## Release Notes
 
 - 0.2.0: Upgraded dependencies; MultiForm' & Tabs' header changed;  
+
 
 ## Testing
 
@@ -60,11 +70,13 @@ Tooltip
 npm run test  
 ```
 
+
 ## Storybook ( not properly configured )
 
 ```
 npm run sb  
 ```
+
 
 ## Installing
 
@@ -74,7 +86,7 @@ npm i @gadeoli/rjs-component-library-themed
 ```
 
 
-## How to maintain
+## How to maintain (Dev with bad memory)
 
 1. Clone  
 2. NVM use 22.13.1 (node 22.13.1 / npm 10.9.2)  

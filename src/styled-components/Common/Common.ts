@@ -1188,8 +1188,9 @@ export const TabsContent = styled.div`
 export const TabsNav = styled.ul`
     width: 99%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
+    overflow-x: auto;
     border-bottom: 1px solid ${(props: any) => props.theme.border};
     border-top-right-radius: ${defaultRadius};
     overflow: auto;
@@ -1207,8 +1208,9 @@ export const TabsNavItem = styled.li`
     list-style: none;
     text-align: center;
     cursor: pointer;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.2s ease-in;
     border: 1px solid ${(props: any) => props.theme.border};
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1219,10 +1221,8 @@ export const TabsNavItem = styled.li`
     }
 
     &.emphasis-active{
-        padding: .5rem ${defaultXPM};
-        margin-top: -4px; //fix bigger padding
-        border-top-left-radius: ${defaultRadius};
-        border-top-right-radius: ${defaultRadius};
+        border-width: 3px;
+        border-bottom-width: 1px;
     }
 `;
 

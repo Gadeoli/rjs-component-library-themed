@@ -31,6 +31,18 @@ const Template: StoryFn<typeof Tabs> = (args) => {
                 header: () => (<Span>ghi</Span>),
                 disabled: true,
                 active: activeTab === 3
+            },
+            {
+                key: 4,
+                header: () => (<Span>jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl </Span>),
+                disabled: true,
+                active: activeTab === 4
+            },
+            {
+                key: 5,
+                header: () => (<Span>jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl <br />jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl </Span>),
+                disabled: true,
+                active: activeTab === 5
             }
         ]
     }, [activeTab]);
