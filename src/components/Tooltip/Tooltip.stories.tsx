@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import Tooltip from './Tooltip';
 import { TooltipProps } from "./Tooltip.types";
@@ -7,6 +7,8 @@ import { CardContent } from "../../styled-components/Common/Common";
 import Span from "../Span";
 import ContainerReverseColor from "../ContainerReverseColor";
 import { AbsoluteContainer } from "../Test/styled";
+import { useTheme } from "../ThemeHandler";
+import Container from "../Container";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -16,6 +18,8 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<TooltipProps> = (args) => {
     const [value, setValue] = useState();
+    const containerRef = useRef(null);
+    const { theme } = useTheme();
 
     return( <Card>
         <CardContent>
@@ -24,7 +28,7 @@ const Template: StoryFn<TooltipProps> = (args) => {
                 tipcontent={<ContainerReverseColor><Span type="secondary">abc</Span></ContainerReverseColor>}
                 type="secondary"
             >
-                <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
+                <Span>xpto <br/> xpto <br/> xpto <br/> xpto<br/> xpto</Span>
             </Tooltip>
             <br/> <br/> <Span>Card - CardContent - Tooltip [content: Span] && Tooltip (the edge test - the bottom tooltip content can't be out of screen)</Span>
 
@@ -35,9 +39,27 @@ const Template: StoryFn<TooltipProps> = (args) => {
                     type="secondary"
                     index={1}
                 >
-                    <Span>xpto <br/> xptop <br/> xptop <br/> xptop<br/> xptop</Span>
+                    <Span>xpto <br/> xpty <br/> xpty <br/> xpty<br/> xpty</Span>
                 </Tooltip>
             </AbsoluteContainer>
+
+            <div style={{height: '200px'}} />
+
+            <div ref={containerRef} style={{height: '200px', background: theme.body, paddingTop: '100px', position: 'relative'}}>
+                <Tooltip
+                    {...args}
+                    parentRef={containerRef}
+                    tipcontent={<ContainerReverseColor><Span type="secondary">parent ref hack (parent' position need to be relative or absolute)</Span></ContainerReverseColor>}
+                    type="secondary"
+                    position="top"
+                >
+                    <Container type="success">
+                        <ContainerReverseColor>
+                            <Span type="success">I'm the tooltip? No, it's the parent</Span>
+                        </ContainerReverseColor>
+                    </Container>
+                </Tooltip>
+            </div>
         </CardContent>
     </Card>)
 };
@@ -80,6 +102,11 @@ Default.argTypes = {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'full'
+    },
+    parentRef: {
+        table: { type: { summary: 'any'} },
+        defaultValue: '',
+        description: 'use this to hack tooltip wrapper element and pass it to a parent element'
     },
     style: {
         table: { type: { summary: 'any'} },

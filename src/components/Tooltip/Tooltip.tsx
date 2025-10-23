@@ -14,6 +14,7 @@ const Tooltip: FC<TooltipProps> = ({
     type="default",
     children,
     tipcontent,
+    parentRef,
     className, 
     style, 
     index=1000,
@@ -24,6 +25,7 @@ const Tooltip: FC<TooltipProps> = ({
         'cl-themed__tooltip',
         type ? type : 'default',
         loading ? 'loading-effect' : undefined,
+        parentRef ? 'absolute' : undefined,
         className
     ]);
     const toolRef = useRef(null);
@@ -32,15 +34,24 @@ const Tooltip: FC<TooltipProps> = ({
     const [fixStyleClass, setFixStyleClass] = useState('');
 
     useEffect(() => {
-        if(show && contentRef.current){
-            const cPos = contentRef.current.getBoundingClientRect();
+        if(show){
+            const cPos =    parentRef?.current ?
+                            parentRef.current.getBoundingClientRect() :
+                            contentRef?.current ?
+                            contentRef.current.getBoundingClientRect() :
+                            null;
+
+            if(!cPos){
+                setFixStyleClass('');
+                return;
+            };
 
             if (cPos.right > window.innerWidth)setFixStyleClass('fix-right');
             else if (cPos.left < 0) setFixStyleClass('fix-left');
         }else{
             setFixStyleClass('');
         }
-    }, [show]);
+    }, [show, parentRef]);
 
     return (<StyledTooltip
         theme={theme} 

@@ -1361,6 +1361,10 @@ export const Tooltip = styled.div<{$show: boolean}>`
         animation: ${ShineAnimation} 1.5s linear infinite;
     }
 
+    &.absolute{
+        position: static !important;
+    }
+
     //pointer
     &:before{
         content: '';
