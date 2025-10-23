@@ -35,7 +35,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     size: '.75rem',
-    values: [{key: 1, value: 'apple'}, {key: 2, value: 'watermelon'}],
+    values: [{key: 1, value: 'apple'}, {key: 2, value: 'watermelon'}, {key: 3, value: 'lemon'}, {key: 4, value: 'strawberry'}],
     selectedValue: {key: 1, value: 'apple'}, 
     className: '',
     direction: 'column',

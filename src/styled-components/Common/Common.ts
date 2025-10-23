@@ -772,6 +772,7 @@ export const DirectionContainer = styled.div<{direction?: string}>`
     display: flex;
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
+    flex-wrap: wrap;
 
     &.cl-themed__checkbox, &.cl-themed__radio{
         margin-bottom: .75rem;
@@ -792,9 +793,9 @@ export const RadioContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 0.25rem;
     cursor: pointer;
-    margin-right: ${defaultXPM};
+    margin-bottom: 0.25rem;
+    margin-right: 12px;
 
     &.disabled{
         cursor: default;
@@ -921,6 +922,7 @@ export const CheckboxContainer = styled.div`
     align-items: flex-end;
     cursor: pointer;
     margin-bottom: 0.25rem;
+    margin-right: 12px;
 
     input{
         display: none;
