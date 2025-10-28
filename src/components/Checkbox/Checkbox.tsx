@@ -54,7 +54,11 @@ const CheckboxBase : ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> =
             name={name} 
             checked={checked ? true : false} 
             {...rest}
-            onChange={() => {}}//keep onchange after rest //override rest onchange //not allowed to change 
+            onChange={(e) => {
+                if (internalRef?.current) {
+                    onChange(e); // call the passed handler
+                }
+            }}
         />
 
         <StyledCheckboxSquare 
