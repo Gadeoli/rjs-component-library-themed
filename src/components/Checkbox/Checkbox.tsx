@@ -45,7 +45,7 @@ const CheckboxBase : ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> =
     const showCheckedIcon = useMemo(() => checkedIcon && checked && !children, [checkedIcon, checked, children]); 
 
     return (<StyledCheckboxContainer className={classNames} onClick={() => {
-        !disabled && onChange(checked ? uncheckedValue : checkedValue);
+        !disabled && !internalRef?.current && onChange(checked ? uncheckedValue : checkedValue);
         internalRef?.current?.click();
     }} style={style}>
         <input 
