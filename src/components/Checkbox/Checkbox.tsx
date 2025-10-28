@@ -46,9 +46,7 @@ const CheckboxBase : ForwardRefRenderFunction<HTMLInputElement, CheckboxProps> =
 
     return (<StyledCheckboxContainer className={classNames} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue);
-        if(internalRef && internalRef?.current){
-            internalRef?.current.click();
-        }
+        internalRef?.current?.click();
     }} style={style}>
         <input 
             ref={internalRef} 
