@@ -21,7 +21,8 @@ const Checkbox: FC<CheckboxProps> = ({
     className,
     disabled,
     children,
-    checkedIcon=false
+    checkedIcon=false,
+    ...rest
 }) => {
     const {theme} = useTheme();
     const colors = {
@@ -40,7 +41,7 @@ const Checkbox: FC<CheckboxProps> = ({
     return (<StyledCheckboxContainer className={classNames} onClick={() => {
         !disabled && onChange(checked ? uncheckedValue : checkedValue)
     }} style={style}>
-        <input type="checkbox" name={name} checked={checked ? true : false} onChange={() => {}}/>
+        <input type="checkbox" name={name} checked={checked ? true : false} onChange={() => {}} {...rest}/>
 
         <StyledCheckboxSquare 
             className={`cl-themed__checkbox__square ${disabled ? 'disabled' : ''}`} 
