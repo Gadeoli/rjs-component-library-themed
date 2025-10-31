@@ -1,6 +1,6 @@
 # RJS Component Library Themed
 
-(A test for now) A reactjs component library with a custom theme support by default. It's just a light / dark support with possibility to choose and change colors from both themes. Font (font family) and font size are present, but not fully implemented yet.
+(A test for now) A reactjs component library with a custom theme support by default. It's just a light / dark support with possibility to choose and change colors from both themes. Font (font family) and font size are present, but not fully implemented.
 
 
 ## Components
