@@ -1019,7 +1019,7 @@ export const SelectedResultItem = styled.span`
     background-color: ${(props: any) => props.theme.body};
     color: ${(props: any) => props.theme.text};
     border-radius: ${defaultRadius};
-    margin: 1px 0.1rem 1px 0;
+    margin: 0 0.4rem 4px 0;
     display: flex;
     align-items: center;
 
@@ -1105,7 +1105,7 @@ export const SelectDrawerItem = styled.button<{selected?: boolean}>`
     border-radius: ${defaultRadius};
     cursor: pointer;
     border: none;
-    margin: .2rem .2rem .4rem 0;
+    margin: 0 0.4rem 4px 0;
 
     &.inline-options{
         width: 100%;
