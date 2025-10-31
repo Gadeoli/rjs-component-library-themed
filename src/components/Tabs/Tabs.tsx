@@ -13,10 +13,12 @@ import { TabsBody } from '../../styled-components/Common/Common';
  */
 const Tabs: FC<TabsProps> = ({
     tabs, 
+    maxWidth='150px',
+    scrollOrWrap='wrap',
     body,
     noneText, 
     onChange, 
-    spinnerSize, 
+    spinnerSize=15, 
     emphasisActive, 
     loading, 
     className, 
@@ -32,16 +34,16 @@ const Tabs: FC<TabsProps> = ({
         style={{width: '100%', ...style}}
         className={classNames}
     >
-        {loading ? (<Spinner size={spinnerSize || 3} />) : (<>
+        {loading ? (<Spinner size={spinnerSize} />) : (<>
             {tabs && tabs.length ? (<TabsContent>
-                <TabsNav className="nav" theme={theme}>
+                <TabsNav className={`nav ${scrollOrWrap}`} theme={theme}>
                     {tabs.map(t => {
                         const classNamesTItem = handleCssClassnames([
                             t.active ? 'active' : '',
                             t.active && emphasisActive ? 'emphasis-active' : '',
                         ]);
 
-                        return (<TabsNavItem onClick={() => {onChange(t.key)}} className={classNamesTItem} theme={theme} key={t.key}>{t.header()}</TabsNavItem>); 
+                        return (<TabsNavItem $maxWidth={maxWidth} onClick={() => {onChange(t.key)}} className={classNamesTItem} theme={theme} key={t.key}>{t.header()}</TabsNavItem>); 
                     })}
                 </TabsNav>
                 <TabsBody theme={theme}>

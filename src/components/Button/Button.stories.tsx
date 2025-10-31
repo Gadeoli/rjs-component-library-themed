@@ -26,8 +26,11 @@ Default.args = {
 Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
-        defaultValue: 'primary',
-        description: 'clean | danger | link | primary | secondary | success'
+        control: {
+            type: 'select'
+        },
+        options: ['clean', 'danger', 'link', 'primary', 'secondary', 'success'],
+        defaultValue: 'primary'
     },
     disabled: {
         type: {name: 'boolean', required: false},

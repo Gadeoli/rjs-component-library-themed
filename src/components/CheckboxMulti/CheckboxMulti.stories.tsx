@@ -40,7 +40,8 @@ Default.args = {
         {key: 'banana',     value: 'Banana'},
         {key: 'watermelon', value: 'watermelon'},
         {key: 'orange',     value: 'Orange'},
-    ]
+    ],
+    checkedIcon: false
 }   
 
 Default.argTypes = {
@@ -71,10 +72,20 @@ Default.argTypes = {
         description: 'Disable click && add opacity style',
         size: { control: 'radio' }
     },
+    checkedIcon: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Show the html check symbol when checked',
+        size: { control: 'radio' }
+    },
     direction: {
         type: {name: 'string', required: false},
         defaultValue: 'column',
-        description: 'column | row'
+        control: {
+            type: 'select'
+        },
+        options: ['column', 'row'],
+        description: ''
     },
     type: {
         type: {name: 'string', required: false},

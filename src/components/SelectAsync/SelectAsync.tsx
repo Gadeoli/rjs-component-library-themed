@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, forwardRef, useMemo, useRef, useState } from 'react';
 import { 
     SelectAsyncProps, 
     DrawerItemProps,
@@ -21,11 +21,14 @@ import { useTheme } from '../ThemeHandler';
 import Span from '../Span';
 import Input from '../Input';
 import CardToggle from '../CardToggle';
+import { CardToggleHandle } from '../CardToggle/CardToggle.types';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import Button from '../Button';
 import Spinner from '../Spinner';
-import { Magnifier, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
+import { Magnifier, SelectDrawerLoadingContainer, SelectDrawerSearchActions } from '../../styled-components/Common/Common';
 import uniqid from 'uniqid';
+import { cookValuesSelectedSorted } from '../Select/Select';
+import { useOnInfiniteScrollTrigger } from '@gadeoli/rjs-hooks-library';
 
 const SelectAsync: FC<SelectAsyncProps> = ({
     name,
@@ -33,19 +36,29 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     values,
     handleValues,
     handleSelect,
-    isSearching = false,
+    isSearching = false, //should be called loading. rename not allowed
     manualSearch = true,
+    searchText,
+    enableInfiniteScroll,
+    hasMore,
+    handleFinishScroll,
     multiple,
     className,
-    inlineDrawer
+    inlineDrawer,
+    closeDrawerOnSelect,
 }) => {
-    const {theme} = useTheme()
-    const [showDrawer, setShowDrawer] = useState(false)
+    const {theme} = useTheme();
+    const [showDrawer, setShowDrawer] = useState(false);
+    const drawerBehaviourOnSelect = useMemo(() => {
+            return  closeDrawerOnSelect ? closeDrawerOnSelect : 
+                    multiple ? 'off' : 
+                    'on';
+    }, [multiple, closeDrawerOnSelect]);
     const classNamesSelectContainer = handleCssClassnames([
         'cl-themed__select',
         className
     ]);
-    const [search, setSearch] = useState<string>('');
+    const cardToggleRef = useRef<CardToggleHandle>(null);
 
     const handleOnSelect = (selected : any) => {
         if(!multiple){
@@ -62,12 +75,23 @@ const SelectAsync: FC<SelectAsyncProps> = ({
                 if(i.key !== selected){
                     return {...i}
                 }else{
-                    return {...i, selected: i.selected ? false : true} //dont use !i.selected because selected maybe is not set
+                    const newI = {...i};
+                    const mode = i.selected ? false : true; //dont use !i.selected because selected maybe is not set
+
+                    newI.selected = mode;
+
+                    if(!mode){
+                        delete newI.selectedAt;
+                    }else{
+                        newI.selectedAt = new Date();
+                    }
+
+                    return newI;
                 }
             })
 
             return {
-                selected: [...aux].filter(elF => elF.selected === true).map(elM => { return elM.key }),
+                selected: cookValuesSelectedSorted([...aux]).map(elM => { return elM.key }),
                 values: aux
             }
         }
@@ -89,7 +113,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     }
 
     const renderSelected = () => {
-        const selected = [...values].filter((i: any) => i.selected);
+        const selected = cookValuesSelectedSorted([...values]);
         const selections = selected && selected.length ? selected.map((sel: any) => <StyledSelectedResultItem theme={theme} key={sel.key}>
             <Span>{sel.value}</Span> 
             
@@ -99,11 +123,11 @@ const SelectAsync: FC<SelectAsyncProps> = ({
             }}>&#10006;</StyledSelectBtn>
         </StyledSelectedResultItem>) : '';
 
-        return (<StyledSelectSelectedOptions>
+        return (<StyledSelectSelectedOptions theme={theme}>
             <div>
                 {selected && selected.length ? 
                     (<>{selections}</>) : 
-                    (<Span>{emptyText}</Span>)
+                    (<Span className='empty-txt'>{emptyText}</Span>)
                 }
             </div>
             <StyledSelectDropSymbol theme={theme} className={showDrawer ? 'toggled' : ''}/>
@@ -112,6 +136,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
 
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
+            ref={cardToggleRef}
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
             toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
@@ -123,14 +148,23 @@ const SelectAsync: FC<SelectAsyncProps> = ({
                 theme={theme} 
                 values={values}
                 isSearching={isSearching}
-                manualSearch={manualSearch} 
-                onSelect={(v) => handleValues(handleOnSelect(v))}
+                manualSearch={manualSearch}
+                searchText={searchText}
+                enableInfiniteScroll={enableInfiniteScroll} 
+                hasMore={hasMore}
+                onSelect={(v) => {
+                    handleValues(handleOnSelect(v));
+                    if(drawerBehaviourOnSelect === 'on'){
+                        cardToggleRef.current?.toggle();
+                    }
+                }}
                 onSearch={(s) => {
                     handleValues(handleOnSearch(s));
                     if(typeof handleSelect !== 'undefined'){
                         handleSelect(s);
                     }
                 }}
+                onFinishScroll={handleFinishScroll}
                 inlineDrawer={inlineDrawer ? inlineDrawer : false}
             />
         </CardToggle>
@@ -143,14 +177,24 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
     values, 
     onSelect, 
     onSearch, 
-    manualSearch,
     isSearching = false,
+    manualSearch,
+    searchText,
+    enableInfiniteScroll=false,
+    hasMore=false,
+    onFinishScroll,
     theme,
     inlineDrawer
 }) => {
     const [search, setSearch] = useState('');
     const [inputFocus, setInputFocus] = useState(false);
     const id = uniqid();
+
+    const lastItemDrawerRef = enableInfiniteScroll ? useOnInfiniteScrollTrigger(
+        hasMore,
+        isSearching,
+        onFinishScroll
+    ) : null;
 
     return (<StyledSelectDrawer className={`cl-themed__select__drawer`} theme={theme}>
         <StyledSelectDrawerSearchContainer theme={theme} className='cl-themed__select__drawer__search'>
@@ -161,6 +205,7 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
                 onBlur={() => setInputFocus(false)}
                 onFocus={() => setInputFocus(true)}
                 className='full' 
+                placeholder={searchText || ''}
                 onChange={(e: any) => {
                     setSearch(e.target.value);
                     
@@ -192,26 +237,30 @@ const SelectDrawer: FC<SelectAsyncDrawerProps> = ({
             })}
         </select>
         
-        <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens spacer mt-1 ${inlineDrawer ? 'inline-options' : ''}`}>
-            {values.map((v: any) => {
+        <StyledSelectDrawerContainer className={`cl-themed__select__drawer__itens ${inlineDrawer ? 'inline-options' : ''}`}>
+            {values.map((v: any, i: any) => {
                 return v.selected || !v.hide ? (<DrawerItem 
+                    ref={values.length === i + 1 && lastItemDrawerRef ? lastItemDrawerRef : null}
                     handleSelect={(k) => onSelect(k)} 
                     item={v} 
                     theme={theme} 
+                    inlineDrawer={inlineDrawer}
                     key={v.key}/>
                 ) : null
             })}
+            {isSearching && hasMore && <SelectDrawerLoadingContainer><Spinner size={20} /></SelectDrawerLoadingContainer>}
         </StyledSelectDrawerContainer>   
     </StyledSelectDrawer>)
 }
 
-const DrawerItem: FC<DrawerItemProps> = ({
+const DrawerItem = forwardRef<HTMLButtonElement, DrawerItemProps>(({
     theme, 
     item,
+    inlineDrawer,
     handleSelect
-}) => {
-    return <StyledSelectDrawerItem type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>
-}
+} , ref) => {
+    return (<StyledSelectDrawerItem ref={ref} className={`${inlineDrawer ? 'inline-options' : ''}`} type='button' onClick={() => handleSelect(item.key)} selected={item.selected} theme={theme}>{item.value}</StyledSelectDrawerItem>);
+});
 
 export const handleValuesAsync = (props: HandleSelectAsyncProps) => {
     // console.log(props);

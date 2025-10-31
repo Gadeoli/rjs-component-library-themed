@@ -4,6 +4,7 @@ import Tabs from './Tabs';
 import Card from "../Card";
 import CardContent from "../CardContent";
 import Span from "../Span";
+import Tooltip from "../Tooltip";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -31,6 +32,18 @@ const Template: StoryFn<typeof Tabs> = (args) => {
                 header: () => (<Span>ghi</Span>),
                 disabled: true,
                 active: activeTab === 3
+            },
+            {
+                key: 4,
+                header: () => (<Span>jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl </Span>),
+                disabled: true,
+                active: activeTab === 4
+            },
+            {
+                key: 5,
+                header: () => (<Span>jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl <br />jkl jkl jkl jkl jkl jkl jkl jkl jkl jkl </Span>),
+                disabled: true,
+                active: activeTab === 5
             }
         ]
     }, [activeTab]);
@@ -46,14 +59,13 @@ const Template: StoryFn<typeof Tabs> = (args) => {
     
     return (<Card><CardContent>
         <Tabs 
-            loading={false}
+            {...args}
             tabs={tabs}
             noneText="No content to display"
             onChange={(key: any) => {
                 setActiveTab(key);
             }}
-            emphasisActive={false}
-            body={body}
+            body={body}       
         />
     </CardContent></Card>);
 };
@@ -71,6 +83,20 @@ Default.argTypes = {
         table: { type: { summary: 'any'} },
         defaultValue: [],
         description: 'A array os objects. This will mount the tabs and the respective body/content. This field is required'
+    },
+    maxWidth: {
+        type: {name: 'string', required: false},
+        defaultValue: '150px',
+        description: 'tab nav item max width'
+    },
+    scrollOrWrap: {
+        type: {name: 'string', required: false},
+        defaultValue: 'wrap',
+        control: {
+            type: 'select'
+        },
+        options: ['scroll', 'wrap'],
+        description: 'tap nav behaviour on +100% width'
     },
     loading: {
         type: {name: 'boolean', required: false},

@@ -1,29 +1,36 @@
 export interface SelectProps {
     name: string;
-    emptyText: string;         //a text to show when none value is selected
-    values: Array<SelectValueProps>;     //an array of obj {key: k, value: v, selected: true}
+    emptyText: string;  //a text to show when none value is selected
+    values: Array<SelectValueProps>; //an array of obj {key: k, value: v, selected: true}
     handleValues:   (arg0: any) => any;//
     handleSelect?:  (arg0: any) => any;//
-    isSearching?:   boolean;  
+    isSearching?:   boolean;
     enableSearch?: boolean;
-    multiple?: boolean;        //if allow to select multiple values
+    searchText?: string; //a text to show in search input
+    enableInfiniteScroll?: boolean; //if true so use carefully: handleFinishScroll + isSearching + hasMore
+    hasMore?: boolean;
+    handleFinishScroll?: () => void; 
+    multiple?: boolean; //if allow to select multiple values
     styles?: object;
     className?: string;
     inlineDrawer?: boolean; 
-    toggleX: "left" | "right";
-    toggleY: "top" | "bottom";
+    closeDrawerOnSelect?: 'on' | 'off';
+    toggleX?: "left" | "right";
+    toggleY?: "top" | "bottom";
 }
 
 export interface SelectValueProps {
-    key: any,
-    value: any,
-    selected?: boolean
+    key: any;
+    value: any;
+    selected?: boolean;
+    selectedAt?: Date; 
 }
 
 export interface DrawerItemProps {
     theme: object;
     item: SelectValueProps;
-    handleSelect: (arg0: any) => any;    
+    inlineDrawer?: boolean;
+    handleSelect: (arg0: any) => any;  
 }
 
 export interface SelectDrawerProps {
@@ -34,6 +41,10 @@ export interface SelectDrawerProps {
     onSearch: (arg0: any) => any; 
     isSearching?:   boolean;  
     enableSearch?: boolean;
+    searchText?: string; //a text to show in search input
+    enableInfiniteScroll?: boolean;
+    hasMore?: boolean;
+    onFinishScroll?: () => void;
     theme: object;
-    inlineDrawer?: boolean; 
+    inlineDrawer?: boolean;
 }

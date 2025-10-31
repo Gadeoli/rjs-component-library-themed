@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { RadioProps } from './Radio.types';
 import { 
     RadioCircle as StyledRadioCircle,
@@ -13,12 +13,13 @@ const Radio: FC<RadioProps> = ({
     style,
     onChange,
     selectedValue,
-    size,
+    size='0.75rem',
     text,
     value,
     type,
     disabled,
-    children
+    children,
+    selectedIcon=false
 }) => {
     const {theme} = useTheme();
     const colors = {
@@ -32,11 +33,14 @@ const Radio: FC<RadioProps> = ({
         className
     ]);
 
+    const showSelectedIcon = useMemo(() => selectedIcon && selected && !children, [selectedIcon, selected, children]); 
+
     return <StyledRadioContainer className={classNames} onClick={() => !disabled && onChange(value)} style={style}>
         <StyledRadioCircle className='cl-themed__radio__circle' $selected={selected} $size={size} $colors={colors}>
-            <span >{selected && children}</span>
+            {showSelectedIcon && (<div className='selected-icon'>&#10003;</div>)}
+            {!showSelectedIcon && children}
         </StyledRadioCircle>
-        <Span className='cl-themed__radio__text spacer ml-1'>{text}</Span>
+        <Span className='cl-themed__radio__text'>{text}</Span>
     </StyledRadioContainer>
 }
 

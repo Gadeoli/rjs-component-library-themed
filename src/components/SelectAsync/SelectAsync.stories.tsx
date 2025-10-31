@@ -7,6 +7,7 @@ import Span from "../Span";
 import { SelectAsyncProps } from "./SelectAsync.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData } from "../../data";
+import P from "../P";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -37,6 +38,12 @@ const Template: StoryFn<SelectAsyncProps> = (args) => {
 
     return( <Card>
         <CardContent>
+            <br />
+            
+            <P>Search fruits array: </P>
+
+            <br />
+
             <form>
                 <SelectAsync 
                     {...args}
@@ -46,7 +53,6 @@ const Template: StoryFn<SelectAsyncProps> = (args) => {
                     values={vs} 
                     multiple={false}
                     handleValues={({selected, values}) => {
-                        console.log(selected);
                         setVs(values);
                     }}
                     handleSelect={(s) => handleSelectSearchCall(s)}
@@ -76,6 +82,18 @@ Default.argTypes = {
         description: 'If true is allowed to select more than one option',
         size: { control: 'radio' }
     },
+    closeDrawerOnSelect: {
+        type: {name: 'string', required: false},
+        defaultValue: null,
+        description: "(on | off) If not setted the default value will be 'on' to single select and 'off' to multiple",
+        size: { control: 'radio' }
+    },
+    inlineDrawer: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Control how the draw itens are showed',
+        size: { control: 'radio' }
+    },
     emptyText: {
         type: {name: 'string', required: false},
         defaultValue: '',
@@ -91,11 +109,38 @@ Default.argTypes = {
         defaultValue: '',
         description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed. This field is required'
     },
+    handleSelect: {
+        table: { type: { summary: 'any'} },
+        defaultValue: '',
+        description: 'function to run on search event. This field is not required'
+    },
     isSearching: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'If true show a loading content on search field',
         size: { control: 'radio' }
+    },
+    manualSearch: {
+        type: {name: 'boolean', required: false},
+        defaultValue: true,
+        description: 'Use this to active manual search (handleSelect).',
+        size: { control: 'radio' }
+    },
+    enableInfiniteScroll: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'enable infinite scroll. manual hasMore is necessary. Also set your handleFinishScroll Fn'
+    },
+    hasMore: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'use this to lock when `can` |` can not` load more when infinite scroll `on`',
+        size: { control: 'radio' }
+    },
+    searchText: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: "The text to use in input search' placeholder"
     },
     className: {
         type: {name: 'string', required: false},

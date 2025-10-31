@@ -1,6 +1,11 @@
 import  styled, { keyframes } from 'styled-components';
-import { shade } from 'polished';
-import { darken, rgba } from 'polished';
+import { 
+    darken, 
+    invert,
+    rgba, 
+    shade,
+    transparentize
+} from 'polished';
 import { deviceMax } from '../../components/device';
 import {
     defaultRadius,
@@ -37,11 +42,11 @@ export const Button = styled.button`
     color: ${(props: any) => props.theme.text};
     cursor: pointer;
     
-    :hover {
+    &:hover {
         box-shadow: ${discreetShadow};
     }
 
-    :disabled {
+    &:disabled {
         opacity: 0.6;
         cursor: default;
     }
@@ -58,7 +63,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.danger};
         color: ${(props: any) => props.theme.danger_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.danger)};
         }
     }
@@ -73,7 +78,7 @@ export const Button = styled.button`
         border-color: none;
         box-shadow: none;
 
-        :hover{
+        &:hover{
             border-color: ${(props: any) => props.theme.link};
         }
     }
@@ -83,7 +88,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.primary};
         color: ${(props: any) => props.theme.primary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.primary)};
         }
     }
@@ -93,7 +98,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.secondary};
         color: ${(props: any) => props.theme.secondary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.secondary)};
         }
     }
@@ -103,7 +108,7 @@ export const Button = styled.button`
         border-color: ${(props: any) => props.theme.success};
         color: ${(props: any) => props.theme.success_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
@@ -160,7 +165,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.danger};
         color: ${(props: any) => props.theme.danger_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.danger)};
         }
     }
@@ -169,7 +174,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.primary};
         color: ${(props: any) => props.theme.primary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.primary)};
         }
     }
@@ -178,7 +183,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.secondary};
         color: ${(props: any) => props.theme.secondary_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.secondary)};
         }
     }
@@ -187,7 +192,7 @@ export const Card = styled.div<{$themeMode: string}>`
         background-color: ${(props: any) => props.theme.success};
         color: ${(props: any) => props.theme.success_text};
         
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.success)};
         }
     }
@@ -243,6 +248,64 @@ export const Container = styled.div`
     }
 `;
 
+export const Jumbotron = styled.div`
+    width: 100%;
+    padding: calc(${defaultYPM} * 1.5) calc(${defaultXPM} * 1.5);
+    border-radius: calc(${defaultRadius} * 1.5);
+    box-sizing: border-box;
+    
+    &.custom{
+        background-color: ${(props: any) => props.color};
+        color: ${(props: any) => invert(props.color)};
+    }
+
+    &.danger{
+        background-color: ${(props: any) => props.theme.danger};
+        color: ${(props: any) => props.theme.danger_text};
+    }
+
+    &.primary{
+        background-color: ${(props: any) => props.theme.primary};
+        color: ${(props: any) => props.theme.primary_text};
+    }
+
+    &.secondary{
+        background-color: ${(props: any) => props.theme.secondary};
+        color: ${(props: any) => props.theme.secondary_text};
+    }
+
+    &.success{
+        background-color: ${(props: any) => props.theme.success};
+        color: ${(props: any) => props.theme.success_text};
+    }
+`;
+
+export const ContainerReverseColor = styled.div`
+    span, p, h1, h2, h3, h4, h5, h6{
+        color: ${(props: any) => invert(props.theme.text)} !important;
+
+        &.primary{
+            color: ${(props: any) => props.theme.primary_text} !important;
+        }
+
+        &.secondary{
+            color: ${(props: any) => props.theme.secondary_text} !important;
+        }
+
+        &.danger{
+            color: ${(props: any) => props.theme.danger_text} !important;
+        }
+
+        &.success{
+            color: ${(props: any) => props.theme.success_text} !important;
+        }
+
+        &.disabled{
+            color: ${(props: any) => props.theme.disabled_text} !important;
+        }
+    }
+`;
+
 export const ContainerReverseYPM = styled.div`
     margin-top: -${() => defaultYPM};
     margin-bottom: -${() => defaultYPM};
@@ -264,9 +327,17 @@ export const ImageContainer = styled.div<{height: string | number, width: string
     align-items: center;
     overflow: hidden;
 
+    &.fill img{
+        max-width: unset;
+        max-height: unset;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     img{
-        flex-shrink: 0;
-        width: ${(props: any) => props.width};
+        width: auto;
+        height: auto;
         max-width: 100%;
         max-height: 100%;
 
@@ -312,7 +383,7 @@ export const ImageContainer = styled.div<{height: string | number, width: string
 
 export const Label = styled.label`
     color: ${(props: any) => props.theme.text};
-    font-size: ${(props: any) => (props.theme.fontSize.text * 0.75)+"rem"};
+    font-size: ${(props: any) => (props.theme.fontSize.text * 0.85)+"rem"};
     min-height: 10px;
     min-width: 30px;
     margin-bottom: 5px;
@@ -331,6 +402,11 @@ export const Span = styled.span`
     min-height: 10px;
     min-width: 30px;
 
+    &.full{
+        display: block;
+        width: 100%;
+    }
+
     &.danger{
         color: ${(props: any) => props.theme.danger};
     }
@@ -338,7 +414,7 @@ export const Span = styled.span`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             text-decoration: underline;
         }
     }
@@ -367,9 +443,63 @@ export const Span = styled.span`
     }
 `;
 
+export const Badge = styled.span`
+    color: ${(props: any) => props.theme.text};
+    background-color: ${(props: any) => props.theme.background};
+    font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
+    min-height: 10px;
+    min-width: 30px;
+    padding: 2px 4px;
+    border-radius: ${defaultRadius};
+
+    &.danger{
+        color: ${(props: any) => props.theme.danger_text};
+        background-color: ${(props: any) => props.theme.danger};
+    }
+
+    &.link{
+        color: ${(props: any) => invert(props.theme.link)};
+        background-color: ${(props: any) => props.theme.link};
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+
+    &.primary{
+        color: ${(props: any) => props.theme.primary_text};
+        background-color: ${(props: any) => props.theme.primary};
+    }
+
+    &.secondary{
+        color: ${(props: any) => props.theme.secondary_text};
+        background-color: ${(props: any) => props.theme.secondary};
+    }
+
+    &.success{
+        color: ${(props: any) => props.theme.success_text};
+        background-color: ${(props: any) => props.theme.success};
+    }
+
+    &.blink{
+        animation: ${BlinkerAnimation} .7s linear infinite;
+    }
+
+    &.loading-effect{
+        min-height: 20px;
+        min-width: 50px;
+        border-radius: 4px;
+        display: inline-block;
+    }
+`;
+
 export const P = styled.p`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text + "rem"};
+
+    &.full{
+        width: 100%;
+    }
 
     &.danger{
         color: ${(props: any) => props.theme.danger};
@@ -378,7 +508,7 @@ export const P = styled.p`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.link)};
         }
     }
@@ -417,7 +547,7 @@ export const TitleH1 = styled.h1`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.link)};
         }
     }
@@ -456,7 +586,7 @@ export const TitleHn = styled.h2<{$n?: number}>`
     &.link{
         color: ${(props: any) => props.theme.link};
 
-        :hover{
+        &:hover{
             background-color: ${(props: any) => shade(0.15, props.theme.link)};
         }
     }
@@ -489,7 +619,7 @@ export const FormGroup = styled.div`
 export const Input = styled.input`
     color: ${(props: any) => props.theme.text};
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
-    background-color: transparent;
+    background-color: ${(props: any) => !props.readOnly ? 'transparent' : props.theme.disabled};
     border: 0;
     border: 1.5px solid ${(props: any) => props.theme.border};
     box-sizing: border-box;
@@ -510,6 +640,93 @@ export const Input = styled.input`
         -webkit-background-clip: text;
         -webkit-text-fill-color: ${(props: any) => props.theme.text};
     }
+
+    &::placeholder {
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+
+    &::-ms-input-placeholder { /* Edge 12 -18 */
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+`;
+
+export const InputColor = styled.input`
+    border: 1px solid ${(props: any) => props.theme.border};
+    border-radius: ${defaultRadius};
+    outline: ${(props: any) => props.theme.outline};
+    background-color: ${(props: any) => props.theme.background};
+    cursor: pointer;
+    width: ${(props: any) => props.width};
+    height: ${(props: any) => props.height};
+
+    &::-webkit-color-swatch-wrapper{
+        padding: 2px;
+        border-radius: ${defaultRadius};
+        border: none;
+    }
+
+    &::-webkit-color-swatch{
+        border-radius: ${defaultRadius};
+        border: none;
+    }
+`;
+
+export const Range = styled.input<{$colors: any, theme: any, step:number, $progress: number}>`
+    -webkit-appearance: none;
+    appearance: none; 
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border-radius: 15px;
+    height: 6px;
+    background: ${props => `linear-gradient(to right, ${props.$colors.active} ${props.$progress}%, ${props.$colors.background} ${props.$progress}%)`};
+    width: 200px;
+
+    &::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        appearance: none; 
+        height: 15px;
+        width: 15px;
+        background-color: ${props => props.$colors.active};
+        border-radius: 50%;
+        border: none;
+        transition: .2s ease-in-out;
+
+        &:hover{
+            box-shadow: 0 0 0 10px ${props => props.$colors.handler1};
+        }
+    }
+
+    &::-moz-range-thumb{
+        height: 15px;
+        width: 15px;
+        background-color: ${props => props.theme.primary};
+        border-radius: 50%;
+        border: none;
+        transition: .2s ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 0 10px ${props => props.$colors.handler1};
+        }
+    }
+
+    &:active{
+        &::-webkit-slider-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+        &::-moz-range-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+    }
+    
+    &:focus{
+        &::-webkit-slider-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+        &::-moz-range-thumb{
+            box-shadow: 0 0 0 13px ${props => props.$colors.handler2};
+        }
+    }
 `;
 
 export const Textarea = styled.textarea`
@@ -523,9 +740,12 @@ export const Textarea = styled.textarea`
     border-radius: ${defaultRadius};
     min-height: 10rem;
     padding: ${defaultYPM} ${defaultXPM};
+    line-height: 1.5;
+    text-align: justify;
 
     &.full{
         width: 100%;
+        resize: vertical;
     }
 
     &:focus {
@@ -537,6 +757,14 @@ export const Textarea = styled.textarea`
         -webkit-background-clip: text;
         -webkit-text-fill-color: ${(props: any) => props.theme.text};
     }
+
+    &::placeholder {
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+
+    &::-ms-input-placeholder { /* Edge 12 -18 */
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
 `;
 
 //A component with flex children direction choise (row or column)
@@ -544,9 +772,10 @@ export const DirectionContainer = styled.div<{direction?: string}>`
     display: flex;
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
+    flex-wrap: wrap;
 
-    .cl-themed__checkbox, .cl-themed__radio{
-        margin-bottom: .5rem;
+    &.cl-themed__checkbox, &.cl-themed__radio{
+        margin-bottom: .75rem;
         margin-right: .75rem;
     }
 `;
@@ -565,10 +794,16 @@ export const RadioContainer = styled.div`
     align-items: center;
     flex-direction: row;
     cursor: pointer;
+    margin-bottom: 0.25rem;
+    margin-right: 12px;
 
     &.disabled{
         cursor: default;
         opacity: 0.6;
+    }
+
+    .cl-themed__radio__text{
+        width: fit-content;
     }
 `;
 
@@ -582,13 +817,15 @@ export const RadioCircle = styled.div<{
     border: 1px solid ${(props: any) => props.$colors.selected};
     border-radius: ${(props: any) => props.$size || '1rem'};
     background-color: ${(props: any) => props.$selected ? props.$colors.selected : props.$colors.unselect};
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 2px;
     margin-right: .5rem;
 
-    span{
-        color: ${(props: any) => props.$colors.unselect};;
+    div.selected-icon{
+        color: ${(props: any) => props.$colors.unselect};
+        margin-top: -1px;
     }
 `;
 /* End Radio Components */
@@ -605,7 +842,7 @@ export const ToggleLabel = styled.label<{
     cursor: pointer;
     position: relative;
 
-    .disabled{
+    &.disabled{
         opacity: 0.6;
     }
 
@@ -624,7 +861,7 @@ export const ToggleLabel = styled.label<{
             transform: translateX(${(props: any) => props.sizes.height});
         }
 
-        &::checked ~ fill-icon{
+        &:checked ~ .fill-icon{
             top: 1px;
             left: 2px;
         }
@@ -684,6 +921,8 @@ export const CheckboxContainer = styled.div`
     flex-direction: row;
     align-items: flex-end;
     cursor: pointer;
+    margin-bottom: 0.25rem;
+    margin-right: 12px;
 
     input{
         display: none;
@@ -717,6 +956,11 @@ export const CheckboxSquare = styled.div<{
     &.disabled{
         cursor: default;
         opacity: 0.6;
+    }
+
+    div.checked-icon{
+        color: ${(props: any) => props.$colors.unchecked};
+        margin-top: -1px;
     }
 `;
 /* End Checkbox Components */
@@ -775,7 +1019,7 @@ export const SelectedResultItem = styled.span`
     background-color: ${(props: any) => props.theme.body};
     color: ${(props: any) => props.theme.text};
     border-radius: ${defaultRadius};
-    margin-right: .1rem;
+    margin: 0 0.4rem 4px 0;
     display: flex;
     align-items: center;
 
@@ -790,6 +1034,7 @@ export const SelectDrawerContainer = styled.div`
     width: 100%;
     max-height: 350px;
     overflow-y: auto;
+    overflow-x: hidden;
 
     &.inline-options{
         display: flex;
@@ -818,9 +1063,18 @@ export const SelectDrawer = styled.div`
     }
 `;
 
+export const SelectDrawerLoadingContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+    margin-bottom: 6px;
+`;
+
 export const SelectDrawerSearchContainer = styled.div`
     position: relative;
     display: flex;
+    flex-direction: column;
     border: 1px solid transparent;
 `;
 
@@ -851,8 +1105,12 @@ export const SelectDrawerItem = styled.button<{selected?: boolean}>`
     border-radius: ${defaultRadius};
     cursor: pointer;
     border: none;
-    margin: .2rem;
-    margin-left: 0;
+    margin: 0 0.4rem 4px 0;
+
+    &.inline-options{
+        width: 100%;
+        text-align: left;
+    }
 `
 
 export const SelectBtn = styled.button<{width?: number, $bgcolor: string}>`
@@ -865,7 +1123,7 @@ export const SelectBtn = styled.button<{width?: number, $bgcolor: string}>`
     cursor: pointer;
     color: ${(props: any) => shade(0.15, props.color)};
 
-    :hover{
+    &:hover{
         border: 1px solid ${(props: any) => shade(0.15, props.$bgcolor)};
         background-color: ${(props: any) => shade(0.15, props.$bgcolor)};
     }
@@ -878,8 +1136,13 @@ export const SelectSelectedOptions = styled.div`
 
     & > div{
         display: flex;
+        flex-wrap: wrap;
     }
-`
+
+    span.empty-txt{
+        color: ${(props: any) => transparentize(0.6, props.theme.text)};
+    }
+`;
 
 export const SelectDropSymbol = styled.div`
     position: relative;
@@ -927,11 +1190,19 @@ export const TabsContent = styled.div`
 export const TabsNav = styled.ul`
     width: 99%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: flex-start;
     border-bottom: 1px solid ${(props: any) => props.theme.border};
     border-top-right-radius: ${defaultRadius};
-    overflow: auto;
+
+    &.wrap{
+        flex-wrap: wrap;
+    }
+
+    &.scroll{
+        overflow-x: auto;
+    }
+
     li:first-child{
         border-top-left-radius: ${defaultRadius};
     }
@@ -941,16 +1212,18 @@ export const TabsNav = styled.ul`
     }
 `;
 
-export const TabsNavItem = styled.li`
+export const TabsNavItem = styled.li<{$maxWidth: string}>`
     padding: ${defaultYPM} ${defaultXPM};
     list-style: none;
     text-align: center;
     cursor: pointer;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.2s ease-in;
     border: 1px solid ${(props: any) => props.theme.border};
+    flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: ${(props: any) => props.$maxWidth};
 
     &.active{
         border-color: ${(props: any) => props.theme.secondary};
@@ -958,10 +1231,8 @@ export const TabsNavItem = styled.li`
     }
 
     &.emphasis-active{
-        padding: .5rem ${defaultXPM};
-        margin-top: -4px; //fix bigger padding
-        border-top-left-radius: ${defaultRadius};
-        border-top-right-radius: ${defaultRadius};
+        border-width: 3px;
+        border-bottom-width: 1px;
     }
 `;
 
@@ -1092,6 +1363,10 @@ export const Tooltip = styled.div<{$show: boolean}>`
         animation: ${ShineAnimation} 1.5s linear infinite;
     }
 
+    &.absolute{
+        position: static !important;
+    }
+
     //pointer
     &:before{
         content: '';
@@ -1113,16 +1388,22 @@ export const Tooltip = styled.div<{$show: boolean}>`
 export const TooltipContext = styled.div`
 `;
 
-export const TooltipContent = styled.div<{$position?: string, type?: string, $show: boolean}>`
+export const TooltipContent = styled.div<{
+    $position?: string, 
+    type?: string, 
+    $show: boolean,
+    $index: number
+}>`
     position: absolute;
     display: ${(props: any) => props.$show ? 'block' : 'none'};
+    z-index: ${(props: any) => props.$index};
     padding: ${defaultYPM} ${defaultXPM};
     border-radius: ${defaultRadius};
     min-width: 25px;
     min-height: ${(props: any) => props.$position === 'left' || props.$position === 'right' ? '20px' : '14px'};
 
     //pointer
-    :before{
+    &:before{
         content: '';
         position: absolute;
         width: 0;
@@ -1135,7 +1416,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         left: calc(100% + 15px);
         top: 2px;
 
-        :before{
+        &:before{
             top: 5px;
             left: -9px;
             
@@ -1149,7 +1430,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         right: calc(100% + 15px);
         top: 2px;
 
-        :before{
+        &:before{
             top: 5px;
             right: -9px;
             
@@ -1163,7 +1444,7 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         bottom: calc(100% + 15px);
         left: 2px;
 
-        :before{
+        &:before{
             bottom: -9px;
             left: 6px;
             
@@ -1177,13 +1458,37 @@ export const TooltipContent = styled.div<{$position?: string, type?: string, $sh
         top: calc(100% + 15px);
         left: 2px;
 
-        :before{
+        &:before{
             top: -9px;
             left: 6px;
             
             border-top: unset; 
             border-left-color: transparent;
             border-right-color: transparent;
+        }
+    }
+
+    &.bottom, &.top{
+        &.fix-right{
+            left: auto;
+            right: 0;
+            transform: translateX(0);
+
+            &:before{
+                left: auto;
+                right: 6px;
+            }
+        }
+
+        &.fix-left{
+            left: 0;
+            right: auto;
+            transform: translateX(0);
+            
+            &:before{
+                left: auto;
+                right: 0;
+            }
         }
     }
 

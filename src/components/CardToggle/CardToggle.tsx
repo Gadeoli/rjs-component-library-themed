@@ -1,21 +1,28 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { CardToggleProps } from './CardToggle.types';
-import { useElementSize, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
+import React, { ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { CardToggleHandle, CardToggleProps } from './CardToggle.types';
+import { useElementSize, useGhostInFirstRender, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
 import styled from 'styled-components';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
+import { forwardRef } from 'react';
 
-const CardToggle : FC<CardToggleProps> = ({
-    toggleTrigger, 
-    toggleUpper,
-    initialToggle = false, 
-    children, 
-    className,
-    xOverride,
-    yOverride,
-    parentToggleStateControl,
-    fullToogle = false
-}) => {
-    const [toggle, setToggle] = useState(true);
+const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProps> = (
+    {
+        toggleTrigger, 
+        toggleUpper,
+        initialToggle = false, 
+        children, 
+        className,
+        xOverride,
+        yOverride,
+        parentToggleStateControl,
+        forceRefresh=1,
+        fullToogle = false,
+        index=1000
+    }, 
+    ref
+) => {
+    const initialVisible = useGhostInFirstRender();
+    const [toggle, setToggle] = useState(false);
     const [position, setPosition] = useState({
         left: '0px', right: 'unset',
         top: '0px', bottom: 'unset'
@@ -25,6 +32,13 @@ const CardToggle : FC<CardToggleProps> = ({
         'cl-themed__card-toggle',
         className
     ]);
+
+    const classNamesToggleContainer = useMemo(() => {
+        return handleCssClassnames([
+            'cl-themed__card-toggle__toggle',
+            !initialVisible ? 'initial-visible' : ''
+        ])
+    }, [initialVisible]);
     
     const handleToggle = (t: boolean) => {
         setToggle(t);
@@ -45,13 +59,16 @@ const CardToggle : FC<CardToggleProps> = ({
         }
     }
     useOnPressKey(27, clickOutSideAction);
+    useImperativeHandle(ref, () => ({
+        toggle: () => handleToggle(!toggle)
+    }));
+
     /** Main control */
 
     /** Toggle Position Control */
     const windowSize = useWindowSize();
     const toggleContainerRef = useRef(null);
-    const toggleSize = useElementSize(toggleContainerRef);
-
+    const toggleSize = useElementSize(toggleContainerRef, forceRefresh);
     const wWidth = windowSize.width;
     const tPositionX = toggleSize.position.x;
     const tWidth = toggleSize.width;
@@ -63,7 +80,7 @@ const CardToggle : FC<CardToggleProps> = ({
 
     /** Trigger Position Control */
     const triggerContainerRef = useRef(null);
-    const triggerSize = useElementSize(triggerContainerRef);
+    const triggerSize = useElementSize(triggerContainerRef, forceRefresh);
     const gHeight = triggerSize.height; // g of gatilho (trigger in PT_BR)
     /** Trigger Position Control */
 
@@ -80,7 +97,6 @@ const CardToggle : FC<CardToggleProps> = ({
     }
 
     const handleAbsoluteY = () => {
-        // console.log({tPositionY, tHeight, wHeight});
         if(yOverride){
             return yOverride === 'top' ?
                 {top: 'unset', bottom: `${gHeight + 5}px`} :
@@ -94,6 +110,8 @@ const CardToggle : FC<CardToggleProps> = ({
     }
     
     useEffect(() => {
+        if(!tPositionY && !tHeight) return;
+        
         if(!initialToggle || toggle){
             const {left, right} = handleAbsoluteX();
             const {top, bottom} = handleAbsoluteY();
@@ -103,7 +121,7 @@ const CardToggle : FC<CardToggleProps> = ({
                 top, bottom
             });
         }
-    }, [toggle]);
+    }, [toggle, forceRefresh]);
 
     useEffect(() => {
         //set toggle false here because if start the component
@@ -117,11 +135,12 @@ const CardToggle : FC<CardToggleProps> = ({
         </TriggerContainer>
         
         <ToggleContainer
-            className={'cl-themed__card-toggle__toggle'}
+            className={classNamesToggleContainer}
             ref={toggleContainerRef} 
             
             $show={toggle} 
             $full={fullToogle}
+            $index={index}
             $position={{
                 top: position.top,
                 bottom: position.bottom, 
@@ -133,6 +152,8 @@ const CardToggle : FC<CardToggleProps> = ({
         </ToggleContainer>
     </MainCointainer>);
 }
+
+export const CardToggle = forwardRef(CardToggleBase);
 
 export default CardToggle;
 
@@ -150,9 +171,10 @@ const ToggleContainer = styled.div<{
         bottom: number | string, 
         left: number | string, 
         right: number | string
-    }
+    },
+    $index: number
 }>`
-    z-index: 1;
+    z-index: ${props => props.$index};
     width: ${(props: any) => props.$full ? "100%" : "auto"};
     position: absolute;
     box-sizing: border-box;
@@ -164,5 +186,12 @@ const ToggleContainer = styled.div<{
 
     &.full{
         width: 100%;
+    }
+
+    &.initial-visible{
+        display: block !important;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
     }
 `;

@@ -20,7 +20,8 @@ export const Default = Template.bind({});
 
 Default.args = {
     children: <Span>MyToggleContent</Span>,
-    className: ''
+    className: '',
+    index: 1000
 }   
 
 Default.argTypes = {
@@ -32,5 +33,15 @@ Default.argTypes = {
     },
     className: {
         description: ".full (toogle set to 100% width) - className added do toggle container"
-    }
+    },
+    index: {
+        type: {name: 'number', required: false},
+        defaultValue: 100,
+        description: 'z-index for the content'
+    },
+    forceRefresh: {
+        type: {name: 'number', required: false},
+        defaultValue: false,
+        description: 'force trigger and content size recalculation (fix wrong content position when it is variable)'
+    },
 }

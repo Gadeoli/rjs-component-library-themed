@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Toggle from '../Toggle';
 import  ThemeHandler, { 
         ThemeContext, 
-        themeValuesPattern,
         darkThemeKey,
         lightThemeKey
 } from "../ThemeHandler";
@@ -10,71 +9,54 @@ import GlobalStyle from '../GlobalStyle';
 import Span from '../Span';
 import Card from '../Card';
 import { CardContent } from '../../styled-components/Common/Common';
-
-const myLightValues = {...themeValuesPattern};
-myLightValues.primary =       "#1D1E26";  
-myLightValues.primary_text =  "#FFF";
-myLightValues.secondary =     "#FCCC29";
-myLightValues.secondary_text ="#000";
-myLightValues.success =       "#ACF39D";
-myLightValues.success_text =  "#1D1E26";
-myLightValues.danger =        "#E85F5C";
-myLightValues.danger_text =   "#FFF";
-myLightValues.disabled =      "#DDD";
-myLightValues.disabled_text = "#DDD";
-myLightValues.background = "#FFFFFF";
-myLightValues.body =       "#F1F1F1";
-myLightValues.border =     "#F1F1F1",
-myLightValues.link =       "#0000EE";
-myLightValues.outline =    "#FF7F50";
-myLightValues.text =       "#333333";
-myLightValues.fonts.primary =   "comic sans";
-myLightValues.fonts.secondary = "comic sans";
-myLightValues.fontSize.title =      "2";
-myLightValues.fontSize.subtitle =   "1.5";
-myLightValues.fontSize.text =       "1";
-myLightValues.custom = {};
-
-const myDarkValues = {...themeValuesPattern};
-myDarkValues.primary =       "#121318";  
-myDarkValues.primary_text =  "#FFF";
-myDarkValues.secondary =     "#FCCC29";
-myDarkValues.secondary_text ="#000";
-myDarkValues.success =       "#ACF39D";
-myDarkValues.success_text =  "#1D1E26";
-myDarkValues.danger =        "#E85F5C";
-myDarkValues.danger_text =   "#FFF";
-myLightValues.disabled =     "#DDD";
-myLightValues.disabled_text ="#DDD";
-myDarkValues.background = "#1D1E26";
-myDarkValues.body =       "#333333";
-myDarkValues.border =     "#404040",
-myDarkValues.link =       "#0000EE";
-myDarkValues.outline =    "#FF7F50";
-myDarkValues.text =       "#FFFFFF";
-myDarkValues.fonts.primary =   "comic sans";
-myDarkValues.fonts.secondary = "comic sans";
-myDarkValues.fontSize.title =      "2";
-myDarkValues.fontSize.subtitle =   "1.5";
-myDarkValues.fontSize.text =       "1";
-myDarkValues.custom = {};
+import { getDefaultThemeValues } from './values';
 
 interface HandlerTestProps{
     children: React.ReactNode;
 };
 
+const ThemeInit = ({
+    version,
+    setVersion,
+
+    mode, 
+    setMode,
+
+    setLightValues,
+    setDarkValues
+} : any) => {    
+    const themeValues = getDefaultThemeValues();
+
+    //set initial theme
+    //and update current theme values after update theme (light, dark) values
+    useEffect(() => {
+        setMode(mode);
+    }, [version]);
+
+    //set theme values (simplest case)
+    //you can get values from store, from a api request, from both etc...
+    useEffect(() => {
+        const newVersion = !version ? 0 : version + 1;
+
+        setDarkValues(themeValues.dark);
+        setLightValues(themeValues.light);
+
+        setVersion(newVersion); //remember to update theme version after change values
+    }, []);
+
+    return (<GlobalStyle />);
+}
+
 const App4Test = (props: HandlerTestProps) => {
     return <ThemeHandler>
+        <ThemeContext.Consumer>{(props) => <ThemeInit {...props}/>}</ThemeContext.Consumer>
+
         <ThemeContext.Consumer>
-            {({mode, theme, setMode, setDarkValues, setLightValues}) => { 
-                setTimeout(() => {
-                    setDarkValues(myDarkValues);
-                    setLightValues(myLightValues);
-                    setMode(mode)
-                }, 200);
-                
+            {({
+                mode, 
+                setMode
+            }) => {    
                 return <>
-                    <GlobalStyle />
                     <Card style={styles.card}>
                         <CardContent style={styles.card.content}>
                             <Span style={styles.toggle.text}>Current theme: {mode}</Span>

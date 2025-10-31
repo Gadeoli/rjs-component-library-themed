@@ -41,9 +41,11 @@ Default.args = {
     id:"myinput",
     name:"myinput",
     type: "text",
+    autocomplete: "off",
     placeholder: "",
     disabled: false,
-    loading: false
+    loading: false,
+    readOnly: false,
 }   
 
 Default.argTypes = {
@@ -60,22 +62,50 @@ Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number | password | hidden'
+        control: {
+            type: 'select'
+        },
+        options: ['text', 'number', 'password', 'hidden'],
+        description: ''
     },
     loading: {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'Loading effect, if true add a class: loading-effect to component'
     },
+    readOnly: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Lock input change'
+    },
     value: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'text | number | password | hidden'
+        control: {
+            type: 'select'
+        },
+        options: ['text', 'number', 'password', 'hidden'],
+        description: ''
+    },
+    min: {
+        type: {name: 'number', required: false},
+        defaultValue: '',
+        description: 'used when type number'
+    },
+    max: {
+        type: {name: 'number', required: false},
+        defaultValue: '',
+        description: 'used when type number'
     },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',
         description: 'full;'
+    },
+    autocomplete: {
+        type: {name: 'string', required: false},
+        defaultValue: 'off',
+        description: ''
     },
     disabled: {
         type: {name: 'boolean', required: false},

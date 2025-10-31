@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import Select, { apiDataToSelect } from './Select';
 import Card from "../Card";
@@ -6,6 +6,10 @@ import Span from "../Span";
 import { SelectProps } from "./Select.types";
 import { CardContent } from "../../styled-components/Common/Common";
 import { fruitData, candyData } from "../../data";
+import CardToggle from "../CardToggle";
+import Button from "../Button";
+import Container from "../Container";
+import P from "../P";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -15,7 +19,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: StoryFn<SelectProps> = (args) => {
     const [vs, setVs] = useState([...fruitData]);
-    const [value, setValue] = useState();
+    const [vsMulti, setVsMulti] = useState([...fruitData]);
 
     const aux = apiDataToSelect({
         data: candyData, 
@@ -24,6 +28,26 @@ const Template: StoryFn<SelectProps> = (args) => {
     });
     const [candies, setCandies] = useState(aux);
     const [candie, setCandie] = useState();
+    const multiplierSels = ['abc', 'def', 'ghi'];
+
+    const [candiesMulti, setCandiesMulti] = useState(aux);
+    const [candieMulti, setCandieMulti] = useState();
+
+    const [isSearching, setIsSearching] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+    
+    const handleInfiniteScroll = () => {
+        if(hasMore){
+            setIsSearching(true);
+
+            //fetch values
+            setTimeout(() => {
+                setIsSearching(false);
+                setHasMore(false);
+                console.log('"fetched" on scroll')
+            }, 2000);
+        }
+    }
 
     return( <Card>
         <CardContent>
@@ -43,23 +67,78 @@ const Template: StoryFn<SelectProps> = (args) => {
                     inlineDrawer={true}
                 />
 
-                <br />
-
+                <P style={{marginTop: '12px'}}>Infinite Scroll Select (not fetching real data. only log console)</P>
                 <Select 
                     {...args}
-                    name="myselect2"
+                    name="myselectInfiniteScrool"
                     className="full"
                     emptyText={'select something here...'} 
-                    values={candies} 
+                    values={vs} 
                     handleValues={({selected, values}) => {
-                        setCandies(values);
-                        setCandie(selected);
+                        setVs(values);
                     }}
                     handleSelect={(s) => {
                         // console.log(s)
                     }}
+                    
                     inlineDrawer={true}
+
+                    enableInfiniteScroll={true}
+                    isSearching={isSearching}
+                    hasMore={hasMore}
+                    handleFinishScroll={() => handleInfiniteScroll()}
                 />
+
+                <br />
+
+                <CardToggle
+                    // parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
+                    toggleTrigger={(trigger: any) => (<Button onClick={() => trigger()}>OPEN SELECT</Button>)}
+                    className={'full'}
+                    fullToogle={true}
+                    xOverride='left'
+                    yOverride='bottom'
+                >
+                    {multiplierSels.map((sel, k) => (
+                        <Container key={k}>
+                            <Select 
+                                {...args}
+                                name="myselect2"
+                                className="full"
+                                emptyText={'select something here...'} 
+                                values={candies} 
+                                handleValues={({selected, values}) => {
+                                    setCandies(values);
+                                    setCandie(selected);
+                                }}
+                                handleSelect={(s) => {
+                                    // console.log(s)
+                                }}
+                                inlineDrawer={true}
+                            />
+                        </Container>
+                    ))}
+                </CardToggle>
+
+                <br />
+
+                <Select 
+                    {...args}
+                    name="myselect3"
+                    className="full"
+                    emptyText={'select something here (multivalue)...'} 
+                    multiple={true}
+                    values={vsMulti} 
+                    handleValues={({selected, values}) => {
+                        setVsMulti(values);
+                    }}
+                    handleSelect={(s) => {
+                        // console.log(s)
+                    }}
+                    inlineDrawer={false}
+                />
+
+                
             </form>
             
             <div style={{paddingTop: '500px'}}>
@@ -100,6 +179,18 @@ Default.argTypes = {
         description: 'If true is allowed to select more than one option',
         size: { control: 'radio' }
     },
+    closeDrawerOnSelect: {
+        type: {name: 'string', required: false},
+        defaultValue: null,
+        description: "(on | off) If not setted the default value will be 'on' to single select and 'off' to multiple",
+        size: { control: 'radio' }
+    },
+    inlineDrawer: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Control how the draw itens are showed',
+        size: { control: 'radio' }
+    },
     emptyText: {
         type: {name: 'string', required: false},
         defaultValue: '',
@@ -114,6 +205,16 @@ Default.argTypes = {
         table: { type: { summary: 'any'} },
         defaultValue: '',
         description: 'function to run on onchange event. this will recieve all values (selected will have selected param with true). you need to filter (map or something) when needed. This field is required'
+    },
+    handleSelect: {
+        table: { type: { summary: 'any'} },
+        defaultValue: '',
+        description: 'function to run on search event. This field is not required'
+    },
+    handleFinishScroll: {
+        table: { type: { summary: 'any'} },
+        defaultValue: '',
+        description: 'funtion to run when last item on drawer got visible'
     },
     isSearching: {
         type: {name: 'boolean', required: false},
@@ -130,6 +231,22 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'enable search input'
+    },
+    enableInfiniteScroll: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'enable infinite scroll. manual hasMore is necessary. Also set your handleFinishScroll Fn'
+    },
+    hasMore: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'use this to lock when `can` |` can not` load more when infinite scroll `on`',
+        size: { control: 'radio' }
+    },
+    searchText: {
+        type: {name: 'string', required: false},
+        defaultValue: '',
+        description: "The text to use in input search' placeholder"
     },
     toggleX: {
         type: {name: 'string', required: false},

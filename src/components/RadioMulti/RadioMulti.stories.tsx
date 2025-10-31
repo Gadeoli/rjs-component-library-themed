@@ -24,6 +24,7 @@ const Template: StoryFn<RadioMultiProps> = (args) => {
                 setV(value.key)
                 console.log(value)
             }}
+            direction="row"
         />    
         <br/><Span>Card - CardContent - RadioMulti</Span>
     </CardContent></Card>)
@@ -34,11 +35,12 @@ export const Default = Template.bind({});
 
 Default.args = {
     size: '.75rem',
-    values: [{key: 1, value: 'apple'}, {key: 2, value: 'watermelon'}],
+    values: [{key: 1, value: 'apple'}, {key: 2, value: 'watermelon'}, {key: 3, value: 'lemon'}, {key: 4, value: 'strawberry'}],
     selectedValue: {key: 1, value: 'apple'}, 
     className: '',
     direction: 'column',
     style: {},
+    selectedIcon: false,
 }   
 
 Default.argTypes = {
@@ -63,6 +65,12 @@ Default.argTypes = {
         description: '',
         size: { control: 'radio' }
     },
+    selectedIcon: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Show the html check symbol when selected',
+        size: { control: 'radio' }
+    },
     direction: {
         type: {name: 'string', required: false},
         defaultValue: 'column',
@@ -71,7 +79,10 @@ Default.argTypes = {
     type: {
         type: {name: 'string', required: false},
         defaultValue: '',
-        description: 'danger | primary | secondary | success'
+        control: {
+            type: 'select'
+        },
+        options: ['danger', 'primary', 'secondary', 'success']
     },
     className: {
         type: {name: 'string', required: false},

@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { TooltipProps } from './Tooltip.types';
 import { 
     Tooltip as StyledTooltip,
@@ -14,8 +14,10 @@ const Tooltip: FC<TooltipProps> = ({
     type="default",
     children,
     tipcontent,
+    parentRef,
     className, 
     style, 
+    index=1000,
     loading
 }) => {
     const {theme} = useTheme();
@@ -23,10 +25,33 @@ const Tooltip: FC<TooltipProps> = ({
         'cl-themed__tooltip',
         type ? type : 'default',
         loading ? 'loading-effect' : undefined,
+        parentRef ? 'absolute' : undefined,
         className
     ]);
-    const toolRef = useRef(null);  
+    const toolRef = useRef(null);
+    const contentRef = useRef<HTMLDivElement | null>(null);  
     const {show} = useHover(toolRef);
+    const [fixStyleClass, setFixStyleClass] = useState('');
+
+    useEffect(() => {
+        if(show){
+            const cPos =    parentRef?.current ?
+                            parentRef.current.getBoundingClientRect() :
+                            contentRef?.current ?
+                            contentRef.current.getBoundingClientRect() :
+                            null;
+
+            if(!cPos){
+                setFixStyleClass('');
+                return;
+            };
+
+            if (cPos.right > window.innerWidth)setFixStyleClass('fix-right');
+            else if (cPos.left < 0) setFixStyleClass('fix-left');
+        }else{
+            setFixStyleClass('');
+        }
+    }, [show, parentRef]);
 
     return (<StyledTooltip
         theme={theme} 
@@ -36,7 +61,7 @@ const Tooltip: FC<TooltipProps> = ({
         $show={show}
     >
         <StyledTooltipContext className="cl-themed__tooltip--context">{!loading && children}</StyledTooltipContext>
-        {!loading ? <StyledTooltipContent theme={theme} className={`cl-themed__tooltip--content ${position} ${type}`} $show={show} $position={position} type={type}>
+        {!loading ? <StyledTooltipContent $index={index} ref={contentRef} theme={theme} className={`cl-themed__tooltip--content ${position} ${type} ${fixStyleClass}`} $show={show} $position={position} type={type}>
             {tipcontent}
         </StyledTooltipContent> : null}
     </StyledTooltip>);

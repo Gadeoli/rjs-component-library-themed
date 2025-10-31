@@ -4,6 +4,8 @@ export interface TabsProps {
     className?: string;
     style?: object;
     tabs: Array<TabsObjProps>;
+    maxWidth?: string;
+    scrollOrWrap?: 'scroll' | 'wrap';
     noneText: string;
     spinnerSize?: number;
     loading: boolean; 
