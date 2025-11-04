@@ -822,6 +822,7 @@ export const RadioCircle = styled.div<{
     align-items: center;
     padding: 2px;
     margin-right: .5rem;
+    aspect-ratio: 1 / 1;
 
     div.selected-icon{
         color: ${(props: any) => props.$colors.unselect};
@@ -952,6 +953,7 @@ export const CheckboxSquare = styled.div<{
     justify-content: center;
     align-items: center;
     padding: 2px;
+    aspect-ratio: 1 / 1;
 
     &.disabled{
         cursor: default;
