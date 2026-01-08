@@ -2,6 +2,7 @@ export interface SelectCreatableProps {
     createText?: string; //a text to show when some value is typed     
     handleCreateKey?: (arg0: any) => any;
     handleCreateValue?: (arg0: any) => any;
+    disabled?: boolean;
 }
 
 export interface SelectCreatableDrawerProps {

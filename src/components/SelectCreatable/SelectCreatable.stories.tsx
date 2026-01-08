@@ -122,6 +122,11 @@ Default.argTypes = {
         description: 'If true show a loading content on search field',
         size: { control: 'radio' }
     },
+    disabled: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'disable select actions (open drawer)'
+    },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',

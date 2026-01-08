@@ -227,6 +227,11 @@ Default.argTypes = {
         defaultValue: '',
         description: 'full;'
     },
+    disabled: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'disable select actions (open drawer)'
+    },
     enableSearch: {
         type: {name: 'boolean', required: false},
         defaultValue: false,

@@ -42,6 +42,7 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
     handleSelect,
     handleCreateKey,
     handleCreateValue,
+    disabled = false,
     isSearching = false, //should be called loading. rename not allowed
     enableSearch = false,
     searchText,
@@ -219,8 +220,9 @@ const SelectCreatable: FC<SelectProps & SelectCreatableProps> = ({
                 resetCustomOptionInput();
             }}
             toggleTrigger={
-                (trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
+                (trigger: any) => (<StyledSelectedResult $outline={showDrawer} $disabled={disabled} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
             }
+            disabled={disabled}
             className={'full'}
             fullToogle={true}
             forceRefresh={toggleCounter}

@@ -999,8 +999,8 @@ export const SelectContainer = styled.div`
     }
 `;
 
-export const SelectedResult = styled.div<{$outline?: boolean}>`
-    background-color: transparent;
+export const SelectedResult = styled.div<{$outline?: boolean, $disabled?: boolean}>`
+    background-color: ${props => !props.$disabled ? 'transparent' : props.theme.disabled};
     border: 0;
     border: 1.5px solid ${(props: any) => props.$outline ? props.theme.outline : props.theme.border};
     color: ${(props: any) => props.theme.text};
@@ -1008,7 +1008,7 @@ export const SelectedResult = styled.div<{$outline?: boolean}>`
     border-radius: ${defaultRadius};
     box-sizing: border-box;
     padding: ${defaultYPM} ${defaultXPM};
-    cursor: pointer;
+    cursor: ${props => !props.$disabled ? 'pointer' : 'default'};
     display: flex;
     flex-wrap: wrap;
     align-items: center;

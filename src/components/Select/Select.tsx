@@ -35,6 +35,7 @@ const Select: FC<SelectProps> = ({
     values,         
     handleValues,
     handleSelect,
+    disabled = false,
     isSearching = false, //should be called loading. rename not allowed
     enableSearch = false,
     searchText,
@@ -153,10 +154,11 @@ const Select: FC<SelectProps> = ({
             ref={cardToggleRef}
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
             toggleTrigger={
-                (trigger: any) => (<StyledSelectedResult $outline={showDrawer} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
+                (trigger: any) => (<StyledSelectedResult $outline={showDrawer} $disabled={disabled} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)
             }
             className={'full'}
             fullToogle={true}
+            disabled={disabled}
             xOverride={toggleX}
             yOverride={toggleY}
         >

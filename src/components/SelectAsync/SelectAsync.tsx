@@ -36,6 +36,7 @@ const SelectAsync: FC<SelectAsyncProps> = ({
     values,
     handleValues,
     handleSelect,
+    disabled = false,
     isSearching = false, //should be called loading. rename not allowed
     manualSearch = true,
     searchText,
@@ -138,9 +139,10 @@ const SelectAsync: FC<SelectAsyncProps> = ({
         <CardToggle 
             ref={cardToggleRef}
             parentToggleStateControl={(toggleStatus: boolean) => setShowDrawer(toggleStatus)}
-            toggleTrigger={(trigger: any) => (<StyledSelectedResult className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
+            toggleTrigger={(trigger: any) => (<StyledSelectedResult $outline={showDrawer} $disabled={disabled} className='cl-themed__select__trigger' onClick={() => trigger()} theme={theme}>{renderSelected()}</StyledSelectedResult>)}
             className={'full'}
             fullToogle={true}
+            disabled={disabled}
         >
             <SelectDrawer
                 name={name}

@@ -2,6 +2,7 @@ export interface CardToggleProps {
     toggleTrigger: any;
     toggleUpper?: any;
     initialToggle?: boolean;
+    disabled?: boolean;
     children: React.ReactNode;
     className?: string;
     xOverride?: "left" | "right";

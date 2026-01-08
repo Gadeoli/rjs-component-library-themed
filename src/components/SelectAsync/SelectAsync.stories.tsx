@@ -142,6 +142,11 @@ Default.argTypes = {
         defaultValue: '',
         description: "The text to use in input search' placeholder"
     },
+    disabled: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'disable select actions (open drawer)'
+    },
     className: {
         type: {name: 'string', required: false},
         defaultValue: '',

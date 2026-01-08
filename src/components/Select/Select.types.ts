@@ -5,6 +5,7 @@ export interface SelectProps {
     handleValues:   (arg0: any) => any;//
     handleSelect?:  (arg0: any) => any;//
     isSearching?:   boolean;
+    disabled?: boolean;
     enableSearch?: boolean;
     searchText?: string; //a text to show in search input
     enableInfiniteScroll?: boolean; //if true so use carefully: handleFinishScroll + isSearching + hasMore

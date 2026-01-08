@@ -9,6 +9,7 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
     {
         toggleTrigger, 
         toggleUpper,
+        disabled=false,
         initialToggle = false, 
         children, 
         className,
@@ -131,7 +132,7 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
 
     return (<MainCointainer className={classNamesMainContainer} ref={mainContainerRef}>
         <TriggerContainer className="cl-themed__card-toggle__trigger" ref={triggerContainerRef}>
-            {toggleTrigger(() => handleToggle(!toggle) )}
+            {toggleTrigger(() => !disabled && handleToggle(!toggle) )}
         </TriggerContainer>
         
         <ToggleContainer
