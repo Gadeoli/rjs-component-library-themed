@@ -12,4 +12,5 @@ export interface RadioProps {
     type?: "danger" | "primary" | "secondary" | "success";
     children?: React.ReactNode;
     selectedIcon?: boolean;
+    full?:boolean;
 }

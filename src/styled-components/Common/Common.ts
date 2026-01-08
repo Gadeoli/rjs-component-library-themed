@@ -768,11 +768,13 @@ export const Textarea = styled.textarea`
 `;
 
 //A component with flex children direction choise (row or column)
-export const DirectionContainer = styled.div<{direction?: string}>`
+export const DirectionContainer = styled.div<{direction?: string, $full?: boolean}>`
     display: flex;
     flex-direction: ${(props: any) => props.direction === 'row' ? 'row' : 'column'};
     cursor: pointer;
     flex-wrap: wrap;
+    /* fit-content bs flex */
+    width: ${props => !props.$full ? 'fit-content' : 'unset'};
 
     &.cl-themed__checkbox, &.cl-themed__radio{
         margin-bottom: .75rem;
@@ -789,17 +791,22 @@ export const RadioMultiContainer = styled.div`
     cursor: pointer;
 `;
 
-export const RadioContainer = styled.div`
+export const RadioContainer = styled.div<{$full?: boolean}>`
     display: flex;
     align-items: center;
     flex-direction: row;
-    cursor: pointer;
     margin-bottom: 0.25rem;
     margin-right: 12px;
+    /* fit-content bs flex */
+    width: ${props => !props.$full ? 'fit-content' : 'unset'};
 
     &.disabled{
         cursor: default;
         opacity: 0.6;
+    }
+
+    span{
+        cursor: pointer;
     }
 
     .cl-themed__radio__text{
@@ -823,6 +830,7 @@ export const RadioCircle = styled.div<{
     padding: 2px;
     margin-right: .5rem;
     aspect-ratio: 1 / 1;
+    cursor: pointer;
 
     div.selected-icon{
         color: ${(props: any) => props.$colors.unselect};
@@ -917,13 +925,14 @@ export const ToggleContainer = styled.div`
 /* End Toogle Components */
 
 /* Checkbox Components */
-export const CheckboxContainer = styled.div`
+export const CheckboxContainer = styled.div<{$full?: boolean}>`
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    cursor: pointer;
     margin-bottom: 0.25rem;
     margin-right: 12px;
+    /* fit-content bs flex */
+    width: ${props => !props.$full ? 'fit-content' : 'unset'};
 
     input{
         display: none;
@@ -931,6 +940,7 @@ export const CheckboxContainer = styled.div`
 
     span{
         margin-left: .5rem;
+        cursor: pointer;
     }
 
     &.disabled{
@@ -954,7 +964,8 @@ export const CheckboxSquare = styled.div<{
     align-items: center;
     padding: 2px;
     aspect-ratio: 1 / 1;
-
+    cursor: pointer;
+    
     &.disabled{
         cursor: default;
         opacity: 0.6;

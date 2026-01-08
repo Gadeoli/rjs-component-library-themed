@@ -59,6 +59,12 @@ Default.argTypes = {
         defaultValue: '.75rem',
         description: 'Size in string with unity (px etc)',
     },
+    full: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Width with 100% from parent if true',
+        size: { control: 'radio' }
+    },
     disabled: {
         type: {name: 'boolean', required: false},
         defaultValue: false,

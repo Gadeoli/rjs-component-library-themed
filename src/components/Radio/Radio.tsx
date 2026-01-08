@@ -19,7 +19,8 @@ const Radio: FC<RadioProps> = ({
     type,
     disabled,
     children,
-    selectedIcon=false
+    selectedIcon=false,
+    full=false,
 }) => {
     const {theme} = useTheme();
     const colors = {
@@ -35,7 +36,7 @@ const Radio: FC<RadioProps> = ({
 
     const showSelectedIcon = useMemo(() => selectedIcon && selected && !children, [selectedIcon, selected, children]); 
 
-    return <StyledRadioContainer className={classNames} onClick={() => !disabled && onChange(value)} style={style}>
+    return <StyledRadioContainer $full={full} className={classNames} onClick={() => !disabled && onChange(value)} style={style}>
         <StyledRadioCircle className='cl-themed__radio__circle' $selected={selected} $size={size} $colors={colors}>
             {showSelectedIcon && (<div className='selected-icon'>&#10003;</div>)}
             {!showSelectedIcon && children}

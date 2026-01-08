@@ -17,7 +17,8 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
     type,
     size,
     className,
-    checkedIcon=false
+    checkedIcon=false,
+    full=false
 }) => {
     const name = uniqid();
 
@@ -51,7 +52,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
         }
     }
 
-    return (<StyledDirectionContainer className='cl-themed__multi-checkbox' direction={direction}>
+    return (<StyledDirectionContainer $full={full} className='cl-themed__multi-checkbox' direction={direction}>
         {values && values.length && values.map((i: {key: any, value: any}) => {
             const thisValueIsChecked = hangleIsCheckedValue(i.key)
     
@@ -69,6 +70,7 @@ const CheckboxMulti: FC<CheckboxMultiProps> = ({
                 size={size || '16px'}
                 className={className}
                 checkedIcon={checkedIcon}
+                full={full}
             />)
         })}
     </StyledDirectionContainer>)

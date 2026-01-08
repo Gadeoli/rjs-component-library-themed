@@ -10,4 +10,5 @@ export interface CheckboxMultiProps {
     size?: string;
     className?: string;
     checkedIcon?: boolean;
+    full?:boolean;
 }

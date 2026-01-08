@@ -13,7 +13,8 @@ const RadioMulti: FC<RadioMultiProps> = ({
     type,
     disabled,
     direction,
-    selectedIcon=false
+    selectedIcon=false,
+    full=false
 }) => {
     return <DirectionContainer className="cl-themed__radio-multi" direction={direction}>
         {values.map((i: any) => { 
@@ -29,6 +30,7 @@ const RadioMulti: FC<RadioMultiProps> = ({
                 className={className}
                 style={style}
                 selectedIcon={selectedIcon}
+                full={full}
             />)
         })}
     </DirectionContainer>

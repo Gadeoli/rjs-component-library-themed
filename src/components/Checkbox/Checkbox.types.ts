@@ -14,4 +14,5 @@ export interface CheckboxProps {
     onChange: any;
     children?: React.ReactNode;
     checkedIcon?: boolean;
+    full?: boolean;
 }

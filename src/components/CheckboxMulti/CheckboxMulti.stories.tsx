@@ -14,13 +14,14 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 // const Template: StoryFn<typeof App4Test> = (args) => <App4Test><Button {...args} /></App4Test>;
 const Template: StoryFn<CheckboxMultiProps> = (args) => {
-    const [vs, setVs] = useState()
+    const [vs, setVs] = useState([])
 
     return(<Card><CardContent>
         <CheckboxMulti 
             {...args}
             checkedValues={vs}
             onChange={(values: any) => {
+                // change single if want (single or mult selection)
                 setVs(values);
                 console.log('changed: ', values);
             }}
@@ -34,7 +35,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     checkedValues: {key: 'apple', value: 'Apple'},
-    single: true,
+    single: false,
     values: [
         {key: 'apple',      value: 'Apple'},
         {key: 'banana',     value: 'Banana'},
@@ -76,6 +77,12 @@ Default.argTypes = {
         type: {name: 'boolean', required: false},
         defaultValue: false,
         description: 'Show the html check symbol when checked',
+        size: { control: 'radio' }
+    },
+    full: {
+        type: {name: 'boolean', required: false},
+        defaultValue: false,
+        description: 'Width with 100% from parent if true',
         size: { control: 'radio' }
     },
     direction: {
