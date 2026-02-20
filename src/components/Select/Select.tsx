@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, useMemo, useRef, useState } from 'react';
+import React, { FC, forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import { 
     SelectProps, 
     DrawerItemProps,
@@ -51,6 +51,7 @@ const Select: FC<SelectProps> = ({
 }) => {
     const {theme} = useTheme();
     const [showDrawer, setShowDrawer] = useState(false);
+    const [refreshCardToggle, setRefreshCardToggle] = useState(1);
     const drawerBehaviourOnSelect = useMemo(() => {
         return  closeDrawerOnSelect ? closeDrawerOnSelect : 
                 multiple ? 'off' : 
@@ -149,6 +150,10 @@ const Select: FC<SelectProps> = ({
         </StyledSelectSelectedOptions>);
     }
 
+    useEffect(() => {
+        setRefreshCardToggle(refreshCardToggle + 1);
+    }, [values]);
+
     return (<StyledSelectContainer className={classNamesSelectContainer}>  
         <CardToggle 
             ref={cardToggleRef}
@@ -161,6 +166,7 @@ const Select: FC<SelectProps> = ({
             disabled={disabled}
             xOverride={toggleX}
             yOverride={toggleY}
+            forceRefresh={refreshCardToggle}
         >
             <SelectDrawer
                 name={name}

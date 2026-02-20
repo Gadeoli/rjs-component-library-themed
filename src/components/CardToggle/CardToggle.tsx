@@ -1,6 +1,6 @@
-import React, { ForwardRefRenderFunction, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, { ForwardRefRenderFunction, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { CardToggleHandle, CardToggleProps } from './CardToggle.types';
-import { useElementSize, useGhostInFirstRender, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
+import { useElementSize, useGhostInFirstRender, useInViewport, useOnClickOutside, useOnPressKey, useWindowSize } from '@gadeoli/rjs-hooks-library';
 import styled from 'styled-components';
 import { handleCssClassnames } from '@gadeoli/js-helpers-library';
 import { forwardRef } from 'react';
@@ -43,9 +43,11 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
     
     const handleToggle = (t: boolean) => {
         setToggle(t);
+
         if(toggleUpper){
             toggleUpper(t);
         }
+        
         if(parentToggleStateControl){
             parentToggleStateControl(t);
         }
@@ -53,12 +55,9 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
 
     /** Main control */
     const mainContainerRef = useRef(null);
+    const mainContainerInView = useInViewport(mainContainerRef, { threshold: 0 });
     useOnClickOutside(mainContainerRef, (e: any) => clickOutSideAction(e));
-    const clickOutSideAction = (e: any) => {
-        if(toggle){
-            handleToggle(false);
-        }
-    }
+    const clickOutSideAction = (e: any) => toggle ? handleToggle(false) : null;
     useOnPressKey(27, clickOutSideAction);
     useImperativeHandle(ref, () => ({
         toggle: () => handleToggle(!toggle)
@@ -85,7 +84,7 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
     const gHeight = triggerSize.height; // g of gatilho (trigger in PT_BR)
     /** Trigger Position Control */
 
-    const handleAbsoluteX = () => {
+    const handleAbsoluteX = useCallback(() => {
         if(xOverride){
             return xOverride === 'left' ?
                 {left: 0, right: 'unset'} :
@@ -95,9 +94,9 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
                     {left: 'unset', right: 0} :
                     {left: 0, right: 'unset'};
         }
-    }
+    }, [xOverride, tPositionX, tWidth, wWidth]);
 
-    const handleAbsoluteY = () => {
+    const handleAbsoluteY = useCallback(() => {
         if(yOverride){
             return yOverride === 'top' ?
                 {top: 'unset', bottom: `${gHeight + 5}px`} :
@@ -108,10 +107,10 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
                 {top: `${gHeight + 5}px`, bottom: 'unset'} :
                 {top: 'unset', bottom: `${gHeight + 5}px`};                    
         }
-    }
+    }, [yOverride, gHeight, tPositionY, tHeight, wHeight]);
     
     useEffect(() => {
-        if(!tPositionY && !tHeight) return;
+        if((!tPositionY && !tHeight) || !mainContainerInView) return;
         
         if(!initialToggle || toggle){
             const {left, right} = handleAbsoluteX();
@@ -122,7 +121,7 @@ const CardToggleBase : ForwardRefRenderFunction<CardToggleHandle, CardToggleProp
                 top, bottom
             });
         }
-    }, [toggle, forceRefresh]);
+    }, [toggle, forceRefresh, mainContainerInView]);
 
     useEffect(() => {
         //set toggle false here because if start the component
