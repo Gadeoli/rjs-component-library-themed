@@ -1026,13 +1026,13 @@ export const SelectedResult = styled.div<{$outline?: boolean, $disabled?: boolea
     width: 100%;
 `;
 
-export const SelectedResultItem = styled.span`
+export const SelectedResultItem = styled.span<{$isMultiple: boolean}>`
     font-family: ${(props: any) => props.theme.fonts.primary}, sans-serif;
     font-size: ${(props: any) => props.theme.fontSize.text+"rem"};
     background-color: ${(props: any) => props.theme.body};
     color: ${(props: any) => props.theme.text};
     border-radius: ${defaultRadius};
-    margin: 0 0.4rem 4px 0;
+    margin: 0 0.4rem ${props => !props.$isMultiple ? 0 : '3px'} 0;
     display: flex;
     align-items: center;
 

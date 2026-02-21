@@ -130,7 +130,8 @@ const Select: FC<SelectProps> = ({
 
     const renderSelected = () => {
         const selected = cookValuesSelectedSorted([...values]);
-        const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem theme={theme} key={sel.key}>
+        const isMultiple = selected.length > 1;
+        const selections = selected && selected.length ? selected.map(sel => <StyledSelectedResultItem $isMultiple={isMultiple} theme={theme} key={sel.key}>
             <Span>{sel.value}</Span> 
             
             <StyledSelectBtn width={20} color={theme.danger} $bgcolor={theme.body} onClick={(e) => {
